@@ -1,0 +1,19 @@
+---
+- name: Deploy bash_profile
+  template: src=bash_profile.j2 dest={{ item.home }}/.bash_profile
+        owner={{ item.user }}
+        group={{ item.group }}
+        mode=0740
+        force=true
+  with_flattened:
+   - root:
+     user:    root
+     group:   root
+     home:    /root
+
+   - {{ product.admin }}:
+     user:   {{ product.admin }}
+     group:  {{ product.admin }}
+     home:   /home/{{ product.admin }}
+  become:   yes
+  register: rc

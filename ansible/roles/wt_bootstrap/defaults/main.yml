@@ -1,0 +1,26 @@
+---
+webtelemetry:
+  rubyver: '2.3.5'
+  workers: 4
+  nginx:
+    host: localhost
+    user: openadr
+    #password: password
+    vhost: grafana
+  mirwais:
+    host: localhost
+  debugging:
+    log_xml_requests: true
+    log_xml_responses: true
+    log_worker: false
+  path: /WT/appserver
+
+  newrelic:
+    license_key: 'license_key'
+    common:
+      agent_enabled: false
+      resque_capture_params: true
+      app_name: ssn-test001-webtelemetry
+      log_level: info
+
+  device_offline_after: 86400

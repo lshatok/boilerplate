@@ -1,0 +1,4 @@
+custom.
+  file_observer:
+    source: /sftp/telemetrix/meterdata/archive
+    dest: /sftp/nextera/meterdata

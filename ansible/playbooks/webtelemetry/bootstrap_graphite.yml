@@ -1,0 +1,14 @@
+## PlayBook to Setup Dashboards ##
+---
+- name: Playbook Bootstrap Dashboards
+  hosts: "{{ target }}"
+  sudo: true
+
+  #vars_prompt:
+  #  - name: "branch"
+  #    prompt: "Which grafana branch to clone"
+  #    default: "master"
+  #    private: no
+
+  roles:
+    - wt_telemetrix

@@ -1,0 +1,8 @@
+## PlayBook to create fireball servers 
+---
+- name: Playbook manage_user_accounts
+  hosts: "{{ target }}"
+  sudo: true
+
+  roles:
+    - fireball 

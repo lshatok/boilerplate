@@ -1,0 +1,9 @@
+[jenkins]
+jenkins ansible_ssh_host=10.81.2.9
+
+[elk]
+logstash-redis ansible_ssh_host=10.0.0.145
+telemetrix-data-collector ansible_ssh_host=10.0.0.235
+telemetrix-data-01 ansible_ssh_host=10.0.0.247
+
+freight-repo ansible_ssh_host=10.0.0.11

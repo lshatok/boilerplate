@@ -1,0 +1,32 @@
+---
+- name: AWS | Launch Ubuntu 16.1 in VPC
+  hosts: "{{ target }}"
+  gather_facts: False
+  connection: local
+
+  vars_files:
+    - "vars/{{ vpc_var }}"
+    - "vars/chat.yml"
+
+  roles:
+    - aws_ec2_launch
+    - wt_append_host
+
+- name: Configure instance(s)
+  hosts: launched
+  sudo: true
+  gather_facts: true
+
+  vars:
+    ec2:
+      mount_path: /WT
+
+  vars_files:
+    - "../webtelemetry/password_vars/all"
+
+  roles:
+    - aws_dhclient_patch
+    - wt_core
+    - wt_git
+    - wt_users
+    - os_reboot

@@ -1,0 +1,49 @@
+# Configure Using Gemfile
+# gem 'activerecord-jdbc-postgresql-adapter'
+#
+development:
+  adapter: jdbc-postgresql
+  encoding: utf8
+  database: {{ product.db.dev_name }}
+  username: root
+  password: {{ product.db.password }}
+
+test:
+  adapter: jdbc-postgresql
+  encoding: utf8
+  database: {{ product.db.test_name }}
+  username: root
+  password: {{ product.db.password }}
+
+production:
+  adapter: jdbc-postgresql
+  encoding: utf8
+  database: {{ snmp.postgresql_db.name }}
+  username: {{ snmp.postgresql_db.user }}
+  password: {{ snmp.postgresql_db.pass }}
+  host: {{ snmp.postgresql_db.host }}
+
+# ---- Report databases ----
+
+dashboard_development:
+  adapter: jdbc-postgresql
+  encoding: utf8
+  database: webtelemetry_product_db_dev
+  username: webtelemetry_product_db_dev_user
+  password: webtelemetry_product_db_pass
+  host: webtelemetry_product_db_host
+
+dashboard_test:
+  adapter: jdbc-postgresql
+  encoding: utf8
+  database: {{ product.db.name }}
+  username: root
+  password: {{ product.db.password }}
+
+dashboard_production:
+  adapter: jdbc-postgresql
+  encoding: utf8
+  database: {{ snmp.postgresql_dashboard_db.name }}
+  username: {{ snmp.postgresql_dashboard_db.user }}
+  password: {{ snmp.postgresql_dashboard_db.pass }}
+  host: {{ snmp.postgresql_dashboard_db.host }}

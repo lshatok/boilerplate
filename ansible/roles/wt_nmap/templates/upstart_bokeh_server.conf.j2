@@ -1,0 +1,10 @@
+start on runlevel [2345]
+stop on runlevel [!2345]
+env TELEMETRIX_HOME="{{ telemetrix_home }}"
+respawn
+
+  # run as non privileged user
+  setuid wtuser
+  setgid wtuser
+
+exec {{ virtualenv_path }}/bin/bokeh serve {{ virtualenv_path }}/lib/python2.7/site-packages/webtelemetry/mars/gateway/admin/widget.py --allow-websocket-origin={{ ansible_default_ipv4.address }}:8000 --host={{ ansible_default_ipv4.address }}:5006

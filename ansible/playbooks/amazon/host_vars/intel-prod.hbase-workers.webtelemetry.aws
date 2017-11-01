@@ -1,0 +1,36 @@
+network_name: Websnmp Prod BackHaul
+
+subnet: subnet-c19c86b9 # intel_prod_backhaul_2b - 172.19.1.0/26
+
+application: hbase-worker
+
+security_groups:
+  - sg-6028e609 # intel_prod_ops
+  - sg-6528e60c # intel_prod_ops_cdh
+  - sg-de528db7 # intel_prod_backhaul
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 200
+    delete_on_termination: false
+    volume_type: gp2
+  - device_name: /dev/sdg
+    volume_size: 750
+    delete_on_termination: false
+    volume_type: gp2
+  - device_name: /dev/sdh
+    volume_size: 750
+    delete_on_termination: false
+    volume_type: gp2
+
+ebs_optimized: true
+
+assign_eip: false
+
+count: 4
+
+tags:
+  customer: intel
+  stack_name: intel-prod
+
+release: xenial

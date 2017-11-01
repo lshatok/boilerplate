@@ -1,0 +1,28 @@
+network_name: Websnmp Prod Fronthaul
+
+subnet: subnet-68615a22 # intel_prod_fronthaul_2c - 172.19.0.192/26
+
+application: influxdb
+
+security_groups:
+  - sg-6028e609 # intel_prod_ops
+  - sg-d3528dba # intel_prod_fronthaul
+
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1 
+
+tags:
+  customer: intel
+  stack_name: intel-prod
+
+release: xenial

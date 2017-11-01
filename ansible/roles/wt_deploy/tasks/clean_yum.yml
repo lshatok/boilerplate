@@ -1,0 +1,15 @@
+---
+- name: Clean-up old kernels and yum
+  shell: " nice -10 {{ item }}"
+  with_items:
+    - /bin/package-cleanup --oldkernels --count=1
+    - /usr/bin/yum clean all
+  ignore_errors: true
+  register: os_cleanup
+  tags: cleanup_os
+
+- name: delete cache files
+  file: path=/var/cache/{{ item }}
+        state=absent
+  with_items:
+    - yum

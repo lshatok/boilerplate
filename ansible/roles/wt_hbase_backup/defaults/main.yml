@@ -1,0 +1,36 @@
+---
+hbase_s3backup:
+  access_key: xxx_placeholder_access_key  # password Vars
+  secret_key: xxx_placeholder_secret_key  # password Vars
+  java_home: /usr/lib/jvm/j2sdk1.6-oracle
+  bucket:  dev01
+  bucket_base_dest: backups/hbase
+  backup_local_path: /tmp/backup
+  backup_hdfs_path: tmp/backup
+  name_server: placeholder_for_distcp
+
+  rules:
+   - name: Hbase Incremental Backup to S3
+     state: present
+     cron_file: "hbase_s3_incremental_backup"
+     user: webtelemetry
+     job: 'bash -lc ". /WT/virtualenvs/telemetrix/bin/activate && /WT/scripts/hbase_backup.py --incremental_backup"'
+     schedule:
+       month: "*"
+       weekday: 6
+       day: "*"
+       hour: 04
+       minute: 30
+
+   - name: Hbase Full Backup to S3
+     state: present
+     cron_file: "hbase_s3_full_backup"
+     user: webtelemetry
+     job: 'bash -lc ". /WT/virtualenvs/telemetrix/bin/activate && /WT/scripts/hbase_backup.py"'
+     schedule:
+       month: "1,4,7,10"
+       weekday: 1
+       day: "*"
+       hour: 04
+       minute: 30
+

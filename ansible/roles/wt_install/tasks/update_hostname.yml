@@ -1,0 +1,11 @@
+---
+- name: update /etc/hostname
+  template: src=hostname.j2 dest=/etc/hostname
+        owner=root
+        group=root
+        mode=0644
+        force=true
+  become: yes
+  ignore_errors: true
+  register: rc
+

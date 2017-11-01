@@ -1,0 +1,39 @@
+development:
+  adapter: postgresql2
+  encoding: utf8
+  reconnect: true
+  database:telemetrix_dev
+  pool: 5
+  username: local_user
+  password: local_password
+  host: localhost
+
+staging:
+  adapter: postgresql2
+  encoding: utf8
+  reconnect: true
+  database:telemetrix_staging
+  pool: 5
+  username: staging_user
+  password: staging_password
+  host: staging_host
+
+production:
+  adapter: postgresql2
+  encoding: utf8
+  reconnect: true
+  database: {{ grafana.postgresql_database }}
+  pool: 5
+  username: {{ grafana.postgresql_username }}
+  password: {{ grafana.postgresql_password }}
+  host: {{ grafana.postgresql_host }}
+
+collection:
+  adapter: postgresql2
+  encoding: utf8
+  reconnect: true
+  database: {{ grafana.collection_database }}
+  pool: 5
+  username: {{ grafana.collection_username }}
+  password: {{ grafana.collection_password }}
+  host: {{ grafana.collection_host }}

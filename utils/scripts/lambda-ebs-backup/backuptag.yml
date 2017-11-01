@@ -1,0 +1,26 @@
+---
+#ansible-playbook -i inventory/myinv tags.yml -e "target=myservergroup"
+
+- name: Add tags to instance
+  hosts: "{{ target }}"
+  become: false
+
+  tasks:
+  - name: Gathering ec2 facts
+    action: ec2_facts
+
+  - name: Tag all instances
+    local_action:
+      module: ec2_tag
+      region: "{{ ansible_ec2_placement_region }}"
+      resource: "{{ ansible_ec2_instance_id }}"
+     # state: list
+      state: present
+      tags:
+        backup: yes
+    register: ec2_tags
+
+  - debug: var=ec2_tags
+
+
+

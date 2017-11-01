@@ -1,0 +1,10 @@
+---
+branch: master
+webtelemetry_home: /WT
+
+domain: webtelemetry.us
+
+telemetrix_db_user: {{ product.admin }}
+telemetrix_db_pass:
+telemetrix_db_host: bpa-test.c9wgtsalen8m.us-gov-west-1.rds.amazonaws.com
+telemetrix_db_name: telemetrix_db

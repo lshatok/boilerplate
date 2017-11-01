@@ -1,0 +1,17 @@
+---
+branch: master
+webtelemetry_home: /WT
+
+rrd_path: /WT/rrdtool
+
+domain: webtelemetry.us
+
+metrix_db_name: wt_db
+metrix_db_user: {{ product.admin }}
+metrix_db_pass: "pEkSz*3&9Udw3Sv93XHEk!kp"
+metrix_db_host: http://bpa-prod.c9wgtsalen8m.us-gov-west-1.rds.amazonaws.com
+
+product_db_name: dashboard_db
+product_db_user: {{ product.admin }}
+product_db_pass: "pEkSz*3&9Udw3Sv93XHEk!kp"
+product_db_host: http://bpa-prod.c9wgtsalen8m.us-gov-west-1.rds.amazonaws.com

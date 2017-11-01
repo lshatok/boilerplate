@@ -1,0 +1,25 @@
+network_name: WALMART BackHaul
+
+# CPS test backhaul 1c
+subnet: subnet-c036a3ea
+
+application: redis
+
+security_groups:
+  - sg-20595b58 # walmart_test_backhaul
+  - sg-5345412b # walmart_test_fronthaul
+  - sg-93090beb # walmart_ops
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 60
+    delete_on_termination: false
+
+assign_eip: false
+release: xenial
+
+count: 1
+
+tags:
+  customer: ffx-test
+  stack_name: ffx-test

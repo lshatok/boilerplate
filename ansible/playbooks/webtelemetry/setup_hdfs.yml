@@ -1,0 +1,77 @@
+## Default Common role for every instance ##
+---
+- name: Setup HDFS directory structure
+  hosts: "{{ target }}"
+  sudo: true
+
+  #vars:
+  #  rubyver: 2.3.5
+
+  tasks:
+    - name: Check for /user path
+      shell: "hadoop fs -ls /user"
+      args:
+        executable: /bin/bash
+      sudo_user: hdfs
+      register: hdfs_user
+      ignore_errors: true
+      changed_when: False
+
+    - name: Create /user dir
+      shell: "hadoop fs -mkdir /user"
+      args:
+        executable: /bin/bash
+      sudo_user: hdfs
+      when: hdfs_user.rc != 0
+
+    - name: chmod /user
+      shell: "hadoop fs -chmod go+rx /user"
+      sudo_user: hdfs
+      when: hdfs_user.rc != 0
+
+    - name: Check for /user/webtelemetry path
+      shell: "hadoop fs -ls /user/webtelemetry"
+      args:
+        executable: /bin/bash
+      sudo_user: hdfs
+      register: hdfs_webtelemetry
+      ignore_errors: true
+      changed_when: False
+
+    - name: Create /user/webtelemetry dir
+      shell: "hadoop fs -mkdir /user/webtelemetry"
+      args:
+        executable: /bin/bash
+      sudo_user: hdfs
+      when: hdfs_webtelemetry.rc != 0
+
+    - name: chown to webtelemetry
+      shell: "hadoop fs -chown webtelemetry:{{ product.admin }} /user/webtelemetry"
+      args:
+        executable: /bin/bash
+      sudo_user: hdfs
+      when: hdfs_webtelemetry.rc != 0
+
+    - name: Check for /user/hbase path
+      shell: "hadoop fs -ls /user/hbase"
+      args:
+        executable: /bin/bash
+      sudo_user: hdfs
+      register: hdfs_hbase
+      ignore_errors: true
+      changed_when: False
+
+    - name: Create /user/hbase dir
+      shell: "hadoop fs -mkdir /user/hbase"
+      args:
+        executable: /bin/bash
+      sudo_user: hdfs
+      when: hdfs_hbase.rc != 0
+
+    - name: chown to hbase
+      shell: "hadoop fs -chown hbase:hbase /user/hbase"
+      args:
+        executable: /bin/bash
+      sudo_user: hdfs
+      when: hdfs_hbase.rc != 0
+

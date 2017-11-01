@@ -1,0 +1,14 @@
+{{ wt_core.logger.logdir }}/*.log
+{
+    su {{ wt_core.user }} {{ wt_core.user_group }}
+    missingok
+    notifempty
+    size {{ wt_core.logger.logrotate.threshold_size_mb }}M
+    rotate {{ wt_core.logger.logrotate.count_to_keep }}
+    compress
+{% if wt_core.logger.logrotate.copytruncate is defined and wt_core.logger.logrotate.copytruncate %}
+    copytruncate
+{% else %}
+    create 644 {{ wt_core.user }} {{ wt_core.user_group }}
+{% endif %}
+}

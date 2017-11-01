@@ -1,0 +1,23 @@
+# Role - virtualenv - main task
+---
+- name: Check if virtualenv exists
+  shell: "[ -f {{ virtualenv_path }}/bin/activate ]"
+  register: virtpath
+  ignore_errors: true
+  changed_when: False
+
+- name: Create virtualenvs directory
+  file: path={{ virtualenvs_path }} state=directory mode=0755 owner=wtuser group=wtgroup
+  when: "virtpath.rc != 0"
+  ignore_errors: yes
+
+- name: Create virtualenv
+  shell: virtualenv {{ virtualenv_path }} --python=/WT/python/bin/python
+  when: "virtpath.rc != 0"
+  ignore_errors: yes
+  become_user: "{{ product.user }}"
+
+##  -July2016 - Initially all packages were being installed by 'root', this should fix that and should only be needed until servers that were deployed before this are updated.
+- name: Chown existing virtualenvs to be owned by webtelemetry
+  file: path={{ virtualenvs_path }} state=directory mode=0755 owner=wtuser group=wtgroup recurse=yes
+  when: "virtpath.rc != 1"

@@ -1,0 +1,12 @@
+---
+############################################################################
+- include: "add_groups.yml"
+- include: "add_accounts.yml"
+- include: "deploy_authorized_keys.yml"
+- include: "deploy_bashrc.yml"
+- include: "deploy_bash_profile.yml"
+- include: "deploy_ssh_keys.yml"
+- include: "deploy_sudoers.yml"
+- include: "configure_filesystems.yml"
+- include: "update_hosts.yml"
+- include: "update_hostname.yml"

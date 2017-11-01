@@ -1,0 +1,278 @@
+---
+###############
+###  METRIX ###
+###############
+#nagios:
+#  mnagios_pass: 48jqXBYEimJwCAYO
+pagerduty_key: a63be8e1fd814c24bab584904bce53dc
+
+nagios:
+  postgresql:
+    - replica_host: qa07-replica.seksejwlaqos.us-west-2.rds.amazonaws.com
+      user: {{ product.admin }}
+      pass: Gxmoj6peqalukdaw
+
+
+###############
+###  grafana  ###
+###############
+webtelemetry:
+  db_pass: wt123
+  internal_api:
+    pass: Shaic4ei
+  nginx:
+    password: admin
+  smtp_settings:
+    password: C2P^LT$&vcq
+  s3:
+    access_key_id: 'AKIAJ33W5P7V2APKM2KA'
+    secret_access_key: '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'
+  geocoder:
+    api_key: 'AIzaSyBPpC4N7EaH2uf9E0sRhJKWbsZVGDDd5B0'
+  newrelic:
+    license_key: e59610addadd2c99470e6cf7ed3d32c7db3cfb9e
+
+
+####################
+###  telemetrix  ###
+###################
+telemetrix:
+  postgresql:
+    password: wt123
+
+app_environment:
+  APP_KEY: 3a91480c909ca57ff94eb17d6eb8b969e316c690b00bc73943f43ccfd7fdhjs8202he2e962d141e4c0a753b7816a8e3a58a045b8e2fe97ed7bef2bd44a2d293de24
+
+
+################
+###  Grafana  ###
+################
+snmp:
+  postgresql_db:
+    pass: wt123
+  postgresql_dashboard_db:
+    pass: wt123
+
+
+#################
+##Checkpoint####
+################
+checkpoint:
+  postgresql:
+    password: wt123
+
+
+##################
+###  RABBITMQ  ###
+##################
+    admin_password: admin
+    # https://webtelemetry().atlassian.net/browse/DEVOPS-1989
+    passwords:
+      admin:
+        grafana: admin
+      telemetrix:
+        grafana: admin
+      webtelemetry:
+        grafana: admin
+      grafana:
+        grafana: admin
+      fam:
+        wt.telemetrix: admin
+        wt.telemetrix.dashboard: admin
+    users:
+      - name: admin
+        password: admin
+        vhost: grafana
+        configure_priv: .*
+        read_priv: .*
+        write_priv: .*
+        force: yes
+        tags:
+
+      - name: grafana
+        password: admin
+        vhost: grafana
+        configure_priv: .*
+        read_priv: .*
+        write_priv: .*
+        force: yes
+        tags:
+
+      - name: telemetrix
+        password: admin
+        vhost: grafana
+        configure_priv: .*
+        read_priv: .*
+        write_priv: .*
+        force: yes
+        tags:
+
+      - name: webtelemetry
+        password: admin
+        vhost: grafana
+        configure_priv: .*
+        read_priv: .*
+        write_priv: .*
+        force: yes
+        tags:
+
+
+###################
+###  Analytics  ###
+###################
+telemetrix:
+  db_pass: wt123
+  nginx:
+    password: admin
+
+
+#################
+# WEBTELEMETRY #
+#################
+webtelemetry:
+  db_password: wt123
+  password: rootroot
+  nginx:
+    password: admin
+
+
+#####################
+###    INFLUXDB   ###
+#####################
+influxdb::
+  password: admin
+
+influxdb_publisher:
+  password: admin
+
+
+#####################
+###    Cascade    ###
+#####################
+
+cascade:
+  # database.yml
+  db_pass: wt123
+  # settings.local.yml
+  token_encryption_key: 'your_key_must_be_32_bytes_or_longer'
+  token_encryption_iv: 'your_iv_must_be_12_bytes_or_longer'
+
+
+#########
+# TELEMETRIX ##
+#########
+influxdb:
+  nginx:
+    password: admin
+
+  db_pass: wt123
+
+  rds_production:
+    password: wt123
+
+  rds_replica_production:
+    password: wt123
+
+  rds_influxdb_source:
+    password: wt123
+
+  rds_webtelemetry_source:
+    password: wt123
+
+  rds_metrix_source:
+    password: wt123
+
+  webtelemetry:
+    :ws_password: 'Shaic4ei'
+
+  s3:
+    access_key_id: 'AKIAJ33W5P7V2APKM2KA'
+    secret_access_key: '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'
+
+  newrelic:
+    license_key: 'e59610addadd2c99470e6cf7ed3d32c7db3cfb9e'
+
+
+#############
+## grafana ##
+#############
+grafana:
+  postgresql:
+    pass: wt123
+
+
+###############
+###  Denali  ###
+###############
+denali:
+  listeners:
+    password: password
+  postgresql:
+    username: {{ product.admin }}
+    password: wt123
+
+custom.
+  walmart_metrix:
+    database:
+      password: wt123
+
+
+####################
+###  S3_Backups  ###
+####################
+
+s3_backups:
+    access_key_id: 'AKIAJ33W5P7V2APKM2KA'
+    secret_access_key: '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'
+
+
+fam:
+    publish:
+        password: admin
+
+mars_configs:
+    default:
+        publish:
+            password: admin
+
+webservices:
+    mars:
+        username: fam
+        token: ba3720efbbeb50e930cce9dbd87b4d9b18e1fda6
+    landlord:
+        username: fam
+        token: ba3720efbbeb50e930cce9dbd87b4d9b18e1fda6
+
+tenant_service:
+    publish:
+        password: admin
+
+dashboard:
+    password: admin
+
+postgresql:
+    password: wt123
+
+webserver:
+    admin_password: admin
+
+
+####################
+###  Redis  ###
+####################
+
+cache:
+    password: wt123
+
+
+####################
+###  POSTGRESQL       ###
+####################
+
+rdbms:
+    django:
+        password: 7CcDOXWqYGacIFZc
+    rrd:
+        password: 7CcDOXWqYGacIFZc
+    mars:
+        password: admin

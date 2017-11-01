@@ -1,0 +1,5 @@
+[wt:children]
+install
+
+[install]
+webtelemetry ansible_ssh_host=10.0.0.234

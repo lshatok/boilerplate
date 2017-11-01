@@ -1,0 +1,27 @@
+---
+- name: Check if git is installed
+  shell: "[ -f /usr/bin/git ] || [ -f /usr/local/bin/git ]"
+  register: git
+  ignore_errors: true
+  changed_when: False
+
+- name: Add repository
+  apt_repository: repo='ppa:git-core/ppa'
+  when: "git.rc != 0"
+
+- name: Install git
+  apt: name="{{ item }}" update_cache=yes state=present
+  with_items:
+    - git
+    - git-man
+    - git-svn
+  when: "git.rc != 0"
+
+- name: Setup Initial Git config
+  shell: git config --system color.{{ item }} auto executable=/bin/bash
+  with_items:
+    - status
+    - branch
+    - interactive
+    - diff
+  when: "git.rc != 0"

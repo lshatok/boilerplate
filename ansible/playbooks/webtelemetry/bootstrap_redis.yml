@@ -1,0 +1,8 @@
+---
+
+- name: Playbook wt_common
+  hosts: "{{ target }}"
+  sudo: true
+
+  roles:
+      - wt_redis

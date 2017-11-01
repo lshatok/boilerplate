@@ -1,0 +1,9 @@
+[telemetrix-app]
+vrt-dev-current.telemetrix-app-01.webtelemetry.amazon.aws ansible_ssh_host=10.81.0.44
+
+[telemetrix-all]
+vrt-dev-current.telemetrix-all-01.webtelemetry.amazon.aws ansible_ssh_host=10.0.0.156
+
+[dev-current:children]
+telemetrix-app
+telemetrix-all

@@ -1,0 +1,26 @@
+network_name: SNMP_Prod BackHaul
+
+subnet: subnet-e18bab85 # snmp_prod_backhaul_2b
+
+application: hbase-worker
+
+security_groups:
+  - sg-ce9478b7 # snmp_ops
+  - sg-57e31d2e # snmp_prod_backhaul
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdg
+    volume_size: 50
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1
+
+tags:
+  customer: WebTelemetry_SNMP
+  stack_name: snmp-prod
+

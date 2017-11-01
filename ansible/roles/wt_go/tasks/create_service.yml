@@ -1,0 +1,40 @@
+#role: wt_go
+#task: create_service
+---
+
+- name: Create Ceep nginx template
+  template: src=nginx.j2 dest=/etc/nginx/sites-available/influxdb
+
+- name: Remove nginx default
+  file: path=/etc/nginx/sites-enabled/default state=absent
+
+- name: Create Ceep nginx sites-enabled
+  file: src=/etc/nginx/sites-available/influxdb dest=/etc/nginx/sites-enabled/influxdb state=link
+
+- name: Create /var/log/influxdb path
+  file: path=/var/log/influxdb owner={{ influxdb.user }} group={{ influxdb.group }} state=directory
+
+- name: Create unicorn.rb file
+  shell: cp {{ influxdb.path }}/config/unicorn.conf.rb /WT/influxdb/config/unicorn.rb
+
+- name: Create  sockets directory for unicorn
+  file: path={{ influxdb.path }}/tmp/sockets state=directory mode=0755 owner={{ influxdb.user }} group={{ influxdb.group }}
+
+- name: Create  pids directory for unicorn
+  file: path={{ influxdb.path }}/tmp/pids state=directory mode=0755 owner={{ influxdb.user }} group={{ influxdb.group }}
+
+- name: Update env.local
+  template: src=.env.local.j2 dest={{ influxdb.path }}/.env.local owner={{ influxdb.user }} group={{ influxdb.group }}
+  sudo_user: "{{ influxdb.user }}"
+
+- name: Update Procfile
+  template: src=Procfile.local.j2 dest={{ influxdb.path }}/Procfile.local owner={{ influxdb.user }} group={{ influxdb.group }}
+  sudo_user: "{{ influxdb.user }}"
+
+- name: Create upstart influxdb service
+  command: "/WT/.rbenv/shims/foreman export upstart /etc/init -a influxdb -u {{ influxdb.user }} -l log -f Procfile.local -e .env.local"
+  args:
+    chdir: "{{ influxdb.path }}"
+  environment:
+    APP_KEY: "{{ app_environment.APP_KEY }}"
+  sudo: yes

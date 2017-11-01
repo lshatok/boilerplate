@@ -1,0 +1,56 @@
+---
+- name: Stop services
+  service:
+    name: "{{ item }}"
+    state: stopped
+  with_items:
+    - auditd
+    - snmpd
+    - vboxadd
+    - vboxadd-service
+    - postfix
+    - rsyslog
+    - WTdb
+    - WTmon
+    - WTappl
+    - WThttpd
+  register: services_stop
+  ignore_errors: true
+  tags: stop_services
+
+
+  #####################################################################################################
+- name: Clean-up WT logs temp dirs and old files
+  shell: 'nice -n -16 rm -Rf {{ item }} &'
+  with_items:
+    - /tmp/*
+    - /var/tmp/*
+    - /var/lib/pcp/tmp/*
+    - /var/tmp/*
+    - /WT/install/users
+    - /WT/httpd/manual
+    - /WT/htdocs/temp/*
+    - /WT/appserver/temp/*
+    - /WT/appserver/logs/*
+    - /WT/appserver/temp/*
+    - /WT/appserver/webapps/wt-portal/WEB-INF/log/*
+    - /WT/snmp/events/*
+    - /WT/snmp/log/*
+    - /WT/snmp/configs/[0-9]
+    - /WT/httpd/logs/*
+    - /WT/dbserver/backups/*
+    - /WT/management/perl/log/*
+    - /WT/appserver/webapps/wt-portal/WEB-INF/log/*
+    - /WT/appserver/webapps/wt-portal/WEB-INF/psml-backup/*
+    - /WT/.WatchTower.properties
+    - /WT/.WatchTower.license
+    - /WT/plugin/tools/TrapCompiler/TrapGen/mib2open/libsmi-0.4.5/test
+    - /WT/appserver/server/classes
+    - /WT/appserver/server/lib/test
+    - /WT/appserver/server/lib/test2
+    - /var/spool/mail/*
+  ignore_errors: true
+  register: fs_cleanup
+  when: wt.fs_cleanup == "true"
+  tags: cleanup_fs
+

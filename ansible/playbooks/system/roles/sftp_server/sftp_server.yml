@@ -1,0 +1,17 @@
+required_roles:  [ core_os, core_webtelemetry ]
+
+tasks:
+    sftp_server
+    sftp_users
+
+
+sftp_server:
+    group:  sftpusers
+    chroot:  /WT/sftp
+
+sftp_users:
+    ssn-test-01:
+        password:  ssntest
+        group:  sftpusers
+        home:  /home/ssn-test-01
+        chroot:  /WT/sftp

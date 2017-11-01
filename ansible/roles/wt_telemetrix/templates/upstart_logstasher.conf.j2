@@ -1,0 +1,5 @@
+start on starting grafana
+stop on stopping grafana
+respawn
+
+exec su - wtuser -c 'cd /WT/telemetrix; export PORT=5300; bundle exec logstasher >> log/logstasher-1.log 2>&1'

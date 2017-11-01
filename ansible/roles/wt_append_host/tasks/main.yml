@@ -1,0 +1,18 @@
+---
+
+- name: Append info to WebTelemetry_Playbooks hosts
+  local_action: lineinfile dest="../webtelemetry/inventory/hosts.yml" line="{{ target }}  ansible_ssh_host={{ item.private_ip }}"
+  with_items: ec2.instances
+  sudo: false
+
+- name: Check if local host var file exists
+  local_action: shell "[ -f ../webtelemetry/host_vars/{{ target }} ]"
+  sudo: false
+  register: file_found
+  ignore_errors: true
+  changed_when: False
+
+- name: Copy hosts vars template
+  local_action: copy src=host_vars.template dest="../webtelemetry/host_vars/{{ target }}"
+  sudo: false
+  when: file_found != 0

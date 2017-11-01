@@ -1,0 +1,11 @@
+#role: wt_go
+---
+- name: Install dependencies
+  apt: name="{{ item }}" update_cache=yes cache_valid_time=3600
+  with_items:
+    - imagemagick
+    - python-postgresqldb
+  tags:
+    - update
+    - db_users
+

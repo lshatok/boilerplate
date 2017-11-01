@@ -1,0 +1,27 @@
+#role: wt_telemetrix
+#task: create_service
+---
+
+- name: Create TELEMETRIX nginx template
+  template: src=nginx.j2 dest=/etc/nginx/sites-available/grafana
+
+- name: Remove nginx default
+  file: path=/etc/nginx/sites-enabled/default state=absent
+
+- name: Create TELEMETRIX nginx sites-enabled
+  file: src=/etc/nginx/sites-available/grafana dest=/etc/nginx/sites-enabled/grafana state=link
+
+- name: Create /var/log/grafana path
+  file: path=/var/log/grafana owner={{ grafana.user }} group={{ grafana.group }} state=directory
+
+- name: Create grafana upstart script
+  template: src=upstart_rrd.conf.j2 dest=/etc/init/grafana.conf owner={{ grafana.user }} group={{ grafana.group }}
+
+- name: Create scheduler upstart script
+  template: src=upstart_scheduler.conf.j2 dest=/etc/init/grafana-scheduler.conf owner={{ grafana.user }} group={{ grafana.group }}
+
+- name: Create grafana worker pool script
+  template: src=upstart_worker_pool.conf.j2 dest=/etc/init/grafana-worker-pool.conf owner={{ grafana.user }} group={{ grafana.group }}
+
+- name: Create logstasher upstart script
+  template: src=upstart_logstasher.conf.j2 dest=/etc/init/logstasher.conf owner={{ grafana.user }} group={{ grafana.group }}

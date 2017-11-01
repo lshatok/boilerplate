@@ -1,0 +1,18 @@
+##  Playbook to add dns records into Route53 for AWS ELB ##
+---
+- name: Add Route53 records
+  hosts: localhost
+  gather_facts: false
+  connection: local
+
+  vars_files:
+    - "vars/{{ env }}"
+
+  tasks:
+    - route53:
+        command: "create"
+        zone: "{{ route53.zone }}"
+        record: "{{ route53.record }}"
+        type: "CNAME"
+        value: "{{ route53.value }}"
+        ttl: "{{ route53.ttl }}"

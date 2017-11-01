@@ -1,0 +1,14 @@
+description "telemetrix_ercot_crs_soap_consume"
+    start on runlevel [2345]
+    stop on runlevel [!2345]
+    respawn
+
+    # run as non privileged user
+    setuid {{ custom.user }}
+    setgid {{ custom.group }}
+
+    chdir "{{ custom.path }}/telemetrix/python/webtelemetry"
+
+    env PYTHONPATH="{{ custom.path }}/telemetrix/python"
+
+exec stdbuf -oL {{ virtualenv_path }}/bin/python ercot_soap_consumer.py > {{ custom.log.path }}/ercot_soap_consumer.log 2>&1

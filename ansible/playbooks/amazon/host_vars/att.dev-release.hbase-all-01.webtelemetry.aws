@@ -1,0 +1,55 @@
+network_name: WALMART Backhaul 2a
+
+subnet: subnet-3b25b350
+# 10.0.0.128/25
+
+application: telemetrix
+
+security_groups:
+  - sg-44f90d2b #default
+  - sg-0ef90d61 #Backhaul
+  - sg-d7a657b8 #devops-west
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sda1
+    volume_size: 100
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdi
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdj
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdk
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdl
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdm
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdn
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdo
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdp
+    volume_size: 50
+    delete_on_termination: false
+assign_eip: false
+
+count: 1
+
+tags:
+  customer:  comcast

@@ -1,0 +1,24 @@
+---
+- name: Register current translation files
+  shell: ls -1 {{ grafana.path }}/config/*.translation
+  register: contents
+
+- name: Destroy all translation files
+  file: name={{ grafana.path }}/config/{{ item }} state=absent
+  with_items: contents.stdout_lines
+
+- name: Create translation files
+  copy: src="{{ item }}.translation" dest="{{ grafana.path }}/config//{{ item }}.translation" owner=wtuser group={{ product.admin }}
+  with_items: grafana.tenants
+
+# TODO: Stat all data dirs, and error if any is missing.
+# It is the responsability of wt_sftp to create these.
+#
+#- name: Create sftp folders
+#  file: path="/sftp/{{ item }}" state=directory mode=0755 owner=root group=root
+#  with_items: grafana.tenants
+#
+#- name: Create sftp meterdata folders
+#  file: path="/sftp/{{ item }}/meterdata" state=directory mode=0755 owner="{{ item }}" group=sftpusers
+#  with_items: grafana.tenants
+

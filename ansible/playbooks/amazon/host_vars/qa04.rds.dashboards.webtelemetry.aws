@@ -1,0 +1,25 @@
+rds_subnets:
+  - subnet-426f726d  # 10.0.0.0/24  us-west-2b
+  - subnet-207a2366  # 10.0.0.0/24  us-west-2c
+  - subnet-64772e22  # 10.0.0.0/24  us-west-2c
+
+region: us-west-2
+
+zone: us-west-2b
+
+subnetgroup_name: qa04-group
+
+description:  qa04 RDS subnet group
+
+type: db.t2.small
+
+instance_name: qa04-influxdb
+size: 20
+
+admin_user:  {{ product.admin }}
+admin_pass:  iNg1luxeneishah6
+
+# Backup retention days [0-35]
+backup_retention: 3
+
+vpc_security_groups: "sg-6i2s3y76"

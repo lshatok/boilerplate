@@ -1,0 +1,7 @@
+---
+dependencies:
+  - { role: wt_core }
+  - { role: wt_redis }
+  - { role: wt_ruby_rbenv }
+  - { role: wt_nginx }
+#  - { role: wt_nagios }

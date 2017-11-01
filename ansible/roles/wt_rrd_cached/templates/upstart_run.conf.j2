@@ -1,0 +1,17 @@
+description "rtcc {{ rtcc.name }}"
+  start on runlevel [2345]
+  stop on runlevel [!2345]
+  respawn
+
+  env TELEMETRIX_HOME="{{ telemetrix_home }}"
+  env VIRTUAL_ENV={{ virtualenv_path }}
+  env PYTHONPATH={{ rtcc.path }}
+
+  # run as non privileged user
+  setuid {{ rtcc.user }}
+  setgid {{ rtcc.group }}
+
+console log
+
+chdir /WT
+exec stdbuf -oL {{ virtualenv_path }}/bin/python -m webtelemetry.rtcc.run > {{ rtcc.log_path}}/rtcc_{{ rtcc.name }}.log 2>&1

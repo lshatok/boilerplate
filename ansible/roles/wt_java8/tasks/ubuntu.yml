@@ -1,0 +1,32 @@
+---
+
+- name: Debian | Check for Existing Java8
+  shell: "[ -d /usr/lib/jvm/java-8-oracle ]"
+  register: java8
+  ignore_errors: true
+  changed_when: False
+
+- name: Debian | Add java8 repository
+  apt_repository: repo='ppa:webupd8team/java'
+  when: "java8.rc != 0"
+
+- name: Apt-get Update
+  apt: update_cache=yes
+  when: "java8.rc != 0"
+
+- name: Debian | Install prepackaging requirements
+  apt: name={{ item }} state=present
+  with_items:
+    - python-software-properties
+    - software-properties-common
+    - debconf-utils
+  when: "java8.rc != 0"
+
+
+- name: Debian | Setup Installer to be non interactive
+  shell: "echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections"
+  when: "java8.rc != 0"
+
+- name: Debian | Install Java8
+  apt: name="oracle-java8-installer" state=present
+  when: "java8.rc != 0"

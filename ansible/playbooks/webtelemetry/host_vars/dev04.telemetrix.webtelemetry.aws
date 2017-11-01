@@ -1,0 +1,7 @@
+---
+branch: master
+webtelemetry_home:  /WT
+webtelemetry_path:  /WT/appserver
+grafana_host:  https://dev04-{{ product.url }}
+
+domain: dev.{{ product.url }}

@@ -1,0 +1,147 @@
+---
+#####################################################################################################
+# - name: Remove Linux device firmware packages
+#  command: "nice -10  rpm -e  {{ item }}"
+#  with_items:
+#   - ivtv-firmware
+#   - iwl100-firmware
+#   - iwl1000-firmware
+#   - iwl105-firmware
+#   - iwl135-firmware
+#   - iwl2000-firmware
+#   - iwl2030-firmware
+#   - iwl3160-firmware
+#   - iwl3945-firmware
+#   - iwl4965-firmware
+#   - iwl5000-firmware
+#   - iwl5150-firmware
+#   - iwl6000-firmware
+#   - iwl6000g2a-firmware
+#   - iwl6000g2b-firmware
+#   - iwl6050-firmware
+#   - iwl7260-firmware
+#    - libertas-sd8686-firmware
+#    - libertas-sd8787-firmware
+#    - libertas-usb8388-firmware
+#  ignore_errors: true
+#  when: packages.remove == "true" or packages.reinstall == "true" or packages.reinstall is not defined
+# tags: remove_firmwarw
+
+
+
+#####################################################################################################
+- name: Remove extraneous system packages
+  command: "nice -10  rpm -e  {{ item }}"
+  with_items:
+    - cim-schema
+    - doxygen
+    - VirtualBox
+    - emacs-filesystem
+    - grafana-web
+    - golang
+    - golang-bin
+    - gettext-common-devel
+    - httpd-manual
+    - hunspell
+    - hunspell-en
+    - hunspell-en-GB
+    - hunspell-en-US
+    - subversion
+    - subversion-libs
+    - nano
+    - pakchois
+    - quota
+    - pykickstart
+    - pcp
+    - rdate
+    - mesa-libgbm
+    - hicolor-icon-theme
+    - gettext-common-devel
+    - kernel-devel
+    - rsyslogd
+    - tuned
+    - emacs-filesystem
+    - satyr
+    - json-c
+    - iprutils
+    - dmraid
+  register: remove_packages
+  when: packages.remove == "true" or packages.reinstall == "true" or packages.reinstall is not defined
+  tags: remove_packages
+
+
+- name: Remove extraneous system libraries
+  command: "nice -10  rpm -e --force {{ item }}"
+  with_items:
+    - cracklib-dicts
+    - libstdc++-devel
+    - tog-pegasus-libs
+    - libvorbis
+    - subversion-libs
+    - libreport
+    - libX11
+    - alsa-lib
+    - libgfortran
+    - libsoup
+    - augeas-libs
+    - compat-libgfortran-41
+    - cups-libs
+    - libthai
+    - pcp-libs
+    - libtheora
+    - mesa-libGL
+    - cyrus-sasl-lib
+    - libgpg-error
+    - cracklib
+    - mesa-libEGL
+    - libXft
+    - libXext
+    - libXi
+    - mesa-libgbm
+    - libXcursor
+    - libXtst
+    - libXdamage
+    - libXevie
+    - libXfixes
+    - libXxf86vm
+    - libXinerama
+  ignore_errors: true
+  register: remove_packages
+  when: packages.remove == "true" or packages.reinstall == "true" or packages.reinstall is not defined
+  tags: remove_libs
+
+
+- name: Remove extraneous system libraries
+  command: "yum remove  {{ item }}"
+  with_items:
+    - alsa-lib
+    - gpm-libs
+    - libgfortran
+    - libvorbis
+    - libquadmath-devel
+    - libgfortran
+    - libogg
+    - libXau
+    - libXext
+    - libXi
+    - libXcomposite
+    - libX11
+    - libX11-common
+    - libXtst
+    - libXdamage
+    - libXevie
+    - libXfixes
+    - libXft
+    - libXrandr
+    - libXrender
+    - libXxf86vm
+    - libXinerama
+    - libXcursor
+    - libstdc++-devel
+    - libwsman1
+    - libtheora
+    - mesa-libglapi
+    - pcp-libs
+  ignore_errors: true
+  when: packages.remove == "true" or packages.reinstall == "true" or packages.reinstall is not defined
+  tags: remove_libs

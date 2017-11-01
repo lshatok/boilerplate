@@ -1,0 +1,30 @@
+network_name: WALMART Test Fronthaul
+
+subnet: subnet-e20a588b # walmart_test_fronthaul_2a - 171.112.10.0/27
+
+application: grafana
+
+security_groups:
+  - sg-4abd4222 # walmart_ops
+  - sg-f21de19a # walmart_test_fronthaul
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdg
+    volume_size: 500
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1
+
+tags:
+  customer: WALMART
+  stack_name: walmart-test
+
+release: xenial

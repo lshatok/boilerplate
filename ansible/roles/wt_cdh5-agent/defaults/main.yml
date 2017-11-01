@@ -1,0 +1,6 @@
+---
+cdh_db_host: localhost
+cdh_db_port: 5432
+cdh_db_name: cloudera-scm
+cdh_db_user: cloudera-scm
+cdh_db_pass: cloudera-scm

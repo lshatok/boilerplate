@@ -1,0 +1,28 @@
+rds_subnets:
+ - subnet-7ec7bf08 # snmp test backhual 2a
+ - subnet-f58bab91 # snmp test bahhual 2b
+ - subnet-8cc6befa # snmp front backhual 2a
+ - subnet-ef8bab8b # snmp front backhual 2b
+
+region: us-west-2
+
+zone: us-west-2a
+
+subnetgroup_name: snmp-test-group
+
+description:  DRAM Test RDS subnet group
+
+type: db.m3.medium
+
+instance_name: snmp-test-influxdb
+size: 5
+
+admin_user:  {{ product.admin }}
+admin_pass:  wt123
+
+# Backup retention days [0-35]
+backup_retention: 7
+count: 1
+vpc_security_groups: "sg-f0769889" # snmp_test_rds
+
+key_name: snmp-forwardrers

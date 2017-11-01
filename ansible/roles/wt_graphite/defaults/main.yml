@@ -1,0 +1,141 @@
+---
+grafana:
+  host: localhost
+  repo: ssh://git@github.com/webtelemetry-grafana.git
+  branch: master
+  path: /WT/grafana
+  venv_path: /WT/grafana
+  venv_name: grafana
+  user: webtelemetry
+  group: sftpusers
+
+  appserver_path: "{{ product.appserver.path }}"/
+
+  tenants:
+    - nhec
+    - pge
+
+  multiprocessing: false
+  preprocessor: false
+
+  # Different output options.
+  # Only need to override for the configured output, ie ignore kafka if you are using output: snmp
+  output: snmp
+  snmp:
+    url: http://localhost:8080/snmp
+    endpoint: /api/telemetrix/collector/device_data/snmp
+
+  kafka: 127.0.0.1:9092
+
+  nginx:
+    url: influxdb://admin:admin@localhost:5672/%2F
+
+  postgresql:
+    host: 127.0.0.1
+    user: {{ product.admin }}
+    pass: password
+    database: wt_db
+    table: device_data
+
+  log_level: debug
+
+##This stuff is only for Basalt.yml
+telemetrix:
+  db_host: 127.0.0.1
+  db_user: {{ product.admin }}
+  db_name: telemetrix_db
+  db_pass: password
+
+  forecast_model: marsb
+
+  nginx:
+    host: 127.0.0.1
+    user: telemetrix
+    password: password
+
+  demandcharge:
+    num_meters_per_task: 1
+    mapred_job_reuse_jvm_num_tasks: 2
+    mapred_child_java_opts: -Xms200M -Xmx200M
+    mapred_task_timeout_ms: 1200000
+
+  training:
+    num_meters_per_task: 1
+    mapred_job_reuse_jvm_num_tasks: 2
+    mapred_child_java_opts: -Xms200M -Xmx200M
+    mapred_task_timeout_ms: 1200000
+
+  evaluation:
+    num_meters_per_task: 1
+    mapred_job_reuse_jvm_num_tasks: 2
+    mapred_child_java_opts: -Xms200M -Xmx200M
+    mapred_task_timeout_ms: 1200000
+
+  metrics:
+    num_meters_per_task: 1
+    mapred_job_reuse_jvm_num_tasks: 2
+    mapred_child_java_opts: -Xms200M -Xmx200M
+    mapred_task_timeout_ms: 1200000
+
+  reporting:
+    num_meters_per_task: 1
+    mapred_job_reuse_jvm_num_tasks: 2
+    mapred_child_java_opts: -Xms200M -Xmx200M
+    mapred_task_timeout_ms: 1200000
+
+telemetrix:
+  host: localhost
+  user: internal_api
+  group: wtgroup
+
+  aggregation:
+    number_of_partitions: 3
+    sliding_window_days: 7
+    sliding_window_cycles: 3
+    sliding_window_events: 7
+    clean_type: 'clean'
+    baseline_type: 'baseline_ld_fcst_rwb_usage_kwh'
+    default_type: 'clean'
+
+log:
+  mode: local
+  level: debug
+  logstash_host: logstash-analytics.dev.{{ product.url }}
+
+spark:
+  master: yarn-client
+  app_name: webtelemetry_spark
+  settings:
+    spark_executor_memory: 512M
+
+kafka:
+  host: localhost
+
+snmp:
+  postgresql_db:
+    host: 127.0.0.1
+    user: {{ product.admin }}
+    pass: password
+
+  mirwais:
+    host: 127.0.0.1
+
+hbase:
+  thriftserver_host: 127.0.0.1
+
+hadoop:
+  zookeeper_hosts: 127.0.0.1,127.0.0.2
+hdfs:
+  namenode_host: 127.0.0.1
+
+webtelemetry:
+  host: localhost
+  internal_api:
+    user: api_user
+    pass: password
+
+incremental_job:
+  max_skip_count: 10
+  past_cleaning_days: 0
+  batch_size: 3200
+  duration: 0

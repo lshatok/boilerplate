@@ -1,0 +1,29 @@
+#role: wt_go
+#task: update_configs
+---
+- name: Update database.yml
+  template: src=database.yml.j2 dest={{ influxdb.path }}/config/database.yml owner={{ influxdb.user }} group={{ influxdb.group }}
+  sudo_user: "{{ influxdb.user }}"
+
+- name: Update settings.yml
+  template: src=settings.yml.j2 dest={{ influxdb.path }}/config/settings.local.yml owner={{ influxdb.user }} group={{ influxdb.group }}
+  sudo_user: "{{ influxdb.user }}"
+
+- name: Update newrelic.yml
+  template: src=newrelic.yml.j2 dest=/WT/influxdb/config/newrelic.yml owner=wtuser group=wtgroup mode=755
+
+- name: Get webtelemetry deployment_keys.yml
+  slurp: src={{ item }}
+  with_items:
+    - /WT/appserver/config/deployment_keys.yml
+  register: deployment_keys
+  delegate_to: "{{ webtelemetry.host }}"
+
+- name: Create deployment_keys.yml from webtelemetry deployment_keys
+  copy:
+    dest: "{{ influxdb.path }}/config/deployment_keys.yml"
+    content: "{{ item.content | b64decode }}"
+    owner: {{ product.admin }}
+    group: wtgroup
+    mode: 0644
+  with_items: deployment_keys.results

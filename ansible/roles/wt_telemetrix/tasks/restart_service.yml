@@ -1,0 +1,11 @@
+#role: wt_rrd
+#task: restart_service
+---
+- name: Stop nginx
+  service: name=nginx state=stopped
+
+- name: Restart grafana service
+  service: name=grafana state=restarted
+
+- name: Start nginx
+  service: name=nginx state=started

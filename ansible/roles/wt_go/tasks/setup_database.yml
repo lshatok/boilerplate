@@ -1,0 +1,54 @@
+#role: wt_go
+#task: setup_database
+---
+
+- name: Check if database exists
+  command: "/home/{{ influxdb.user }}/.rbenv/shims/rake db:version APP_ENV={{ influxdb.rails_env }}"
+  args:
+    chdir: "{{ influxdb.path }}"
+  environment:
+    APP_KEY: "{{ app_environment.APP_KEY }}"
+  sudo_user: wtuser
+  ignore_errors: true
+  register: rake_db_version_result
+
+- name: Setup database
+  shell: "/home/{{ influxdb.user }}/.rbenv/shims/rake db:create APP_ENV={{ influxdb.rails_env }}"
+  args:
+    chdir: "{{ influxdb.path }}"
+  environment:
+    APP_KEY: "{{ app_environment.APP_KEY }}"
+  sudo_user: "{{ influxdb.user }}"
+  when: rake_db_version_result|failed
+
+- name: Create DB User
+  postgresql_user:
+    login_host: "{{ rds.main_db.host }}"
+    login_user: "{{ rds.main_db.username }}"
+    login_password: "{{ rds.main_db.password }}"
+    name:  "{{ influxdb.rds_influxdb_source.username }}"
+    state: present
+    host: "%"
+    priv: "{{ influxdb.rds_webtelemetry_source.database }}.*:SELECT/{{ influxdb.rds_metrix_source.database }}.*:SELECT/{{ influxdb.rds_influxdb_source.database }}.*:ALL"
+    password: "{{ influxdb.rds_influxdb_source.password }}"
+  tags:
+    - db_users
+
+- name: Setup custom databases
+  shell: "/home/{{ influxdb.user }}/.rbenv/shims/rake db:create APP_ENV={{ item }}"
+  args:
+    chdir: "{{ influxdb.path }}"
+  environment:
+    APP_KEY: "{{ app_environment.APP_KEY }}"
+  sudo_user: "{{ influxdb.user }}"
+  with_items:
+    - influxdb_source
+
+- name: Create views and populate
+  command: "/home/{{ influxdb.user }}/.rbenv/shims/bundle exec rake db:views:create db:views:populate APP_ENV={{ influxdb.rails_env }}"
+  args:
+    chdir: "{{ influxdb.path }}"
+  environment:
+    APP_KEY: "{{ app_environment.APP_KEY }}"
+  sudo_user: wtuser
+  ignore_errors: true

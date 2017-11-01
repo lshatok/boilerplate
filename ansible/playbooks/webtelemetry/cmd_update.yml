@@ -1,0 +1,14 @@
+## Playbook to update / upgrade packages and utilities
+---
+- name: Playbook to update/upgrade packages and utilities
+  hosts: all
+  sudo: true
+
+  vars_prompt:
+
+    - name: "utility"
+      prompt: "Package to update"
+      private: no
+
+  roles:
+    - cmd_update

@@ -1,0 +1,79 @@
+upstream unicorn_webtelemetry-nginx {
+    server 127.0.0.1:4200 fail_timeout=0;
+    server unix:{{ webtelemetry.path }}/tmp/sockets/unicorn.sock fail_timeout=0;
+}
+
+server {
+    listen 80;
+    #connect_max_body_size 4G;
+    server_name ~^(?<subdomain>.+)\.{{ domain }}$;
+    rewrite ^ https://$subdomain.{{ domain }}$request_uri? permanent;
+}
+
+server {
+
+    listen 443;
+    server_name {{ webtelemetry.url }};
+
+    ssl                  on;
+    ssl_certificate      /usr/local/ssl/certs/{{ ssl_cert }};
+    ssl_certificate_key  /usr/local/ssl/private/{{ ssl_key }};
+
+    ssl_session_timeout  5m;
+
+    ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers  HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers   on;
+
+    charset utf-8;
+    keepalive_timeout 5;
+
+    root {{ webtelemetry.path }};
+    add_header Cache-Control public;
+
+    access_log /var/log/nginx/grafana-access.log;
+    error_log /var/log/nginx/grafana-error.log;
+
+    rewrite_log on;
+
+    location / {
+        root {{ webtelemetry.path }}/public;
+        try_files $uri @unicorn_webtelemetry-nginx;
+    }
+
+    location @unicorn_webtelemetry-nginx {
+          proxy_pass http://unicorn_webtelemetry-nginx;
+          proxy_redirect     off;
+
+          proxy_set_header   X-Forwarded-Proto https;
+          proxy_set_header   Host             $host;
+          proxy_set_header   X-Real-IP        $remote_addr;
+          proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+
+          client_max_body_size       10m;
+          client_body_buffer_size    128k;
+
+          proxy_connect_timeout      90;
+          proxy_send_timeout         90;
+          proxy_read_timeout         90;
+
+          proxy_buffer_size          4k;
+          proxy_buffers              4 32k;
+          proxy_busy_buffers_size    64k;
+          proxy_temp_file_write_size 64k;
+    }
+
+    location = /favicon.ico {
+      root {{ webtelemetry.path }}/public;
+      expires max;
+      break;
+    }
+
+    location ~ ^/(images|javascripts|stylesheets|system|assets)/  {
+      root {{ webtelemetry.path }}/public;
+      expires max;
+      break;
+    }
+
+    #error_page   500 502 503 504  /50x.html;
+}

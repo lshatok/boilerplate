@@ -1,0 +1,48 @@
+network_name: WebTelemetry Dev Private
+
+subnet: subnet-426f726d
+
+application:  hbase
+
+security_groups:
+  - sg-6i2s3y76 #webtelemetry_ops
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 100
+    delete_on_termination: false
+  - device_name: /dev/sdh
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdi
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdj
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdk
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdl
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdm
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdn
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdo
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdp
+    volume_size: 50
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1
+release: xenial
+tags:
+  customer:  eng
+  stack_name: dev01

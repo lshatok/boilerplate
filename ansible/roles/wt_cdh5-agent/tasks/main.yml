@@ -1,0 +1,21 @@
+---
+- name: Install Cloudera Agent
+  apt: name="{{ item }}" state=latest
+  with_items:
+    - cloudera-manager-daemons
+    - cloudera-manager-agent
+
+- name: Install Cloudera custome services
+  apt: name="{{ item }}" state=latest
+  with_items:
+    - hbase
+    - hbase-master
+    - hive-hbase
+    - hadoop-hdfs-fuse
+    - hadoop-hdfs-nfs3
+    - hadoop-mapreduce
+    - hadoop-yarn
+    - hue-common
+    - hue-hbase
+    - hue-spark
+    - hue-zookeeper

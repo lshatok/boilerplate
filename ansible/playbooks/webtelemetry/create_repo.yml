@@ -1,0 +1,9 @@
+#Playbook to create local repository
+---
+- name: create repository
+  hosts: "{{ target }}"
+  sudo: true
+
+  roles:
+      - wt_local_repo
+

@@ -1,0 +1,124 @@
+{% if grafana.ssl == true %}
+upstream grafana {
+    server 127.0.0.1:4200 fail_timeout=0;
+    server unix:/WT/telemetrix/tmp/sockets/unicorn.sock fail_timeout=0;
+}
+
+# Redirect all HTTP requests to corresponding HTTPS URLs
+server {
+
+    listen 80;
+    server_name ~^(?<subdomain>.+)\.webtelemetry.us$;
+    rewrite ^ https://$subdomain.webtelemetry.us$request_uri? permanent;
+    client_max_body_size       10m;
+}
+
+server {
+
+    listen 443;
+
+    ## we create symlinks to the proper ssl certs in bootstrap##
+    ssl                  on;
+    ssl_certificate      /usr/local/ssl/certs/webtelemetry_star.crt;
+    ssl_certificate_key  /usr/local/ssl/private/webtelemetry_star.key;
+
+    ssl_session_timeout  5m;
+
+    ssl_protocols  TLSv1.2;
+    ssl_ciphers  HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers   on;
+
+    charset utf-8;
+    keepalive_timeout 5;
+    client_max_body_size       10m;
+
+    root /WT/telemetrix/public;
+
+    access_log /var/log/nginx/telemetrix-access.log;
+    error_log /var/log/nginx/telemetrix-error.log;
+
+    rewrite_log on;
+
+    location / {
+        root /WT/telemetrix/public;
+        try_files $uri @grafana;
+    }
+
+    location @grafana {
+          proxy_pass http://grafana;
+          proxy_redirect     off;
+
+          proxy_set_header   X-Forwarded-Proto https;
+          proxy_set_header   Host             $host;
+          proxy_set_header   X-Real-IP        $remote_addr;
+          proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+
+          client_max_body_size       10m;
+          client_body_buffer_size    128k;
+
+          proxy_connect_timeout      90;
+          proxy_send_timeout         90;
+          proxy_read_timeout         90;
+
+          proxy_buffer_size          4k;
+          proxy_buffers              4 32k;
+          proxy_busy_buffers_size    64k;
+          proxy_temp_file_write_size 64k;
+    }
+
+    location = /favicon.ico {
+      root /WT/telemetrix/public;
+      expires max;
+      break;
+    }
+
+    location ~ ^/(images|javascripts|stylesheets|system|assets)/  {
+      root /WT/telemetrix/public;
+      expires max;
+      break;
+    }
+
+    #error_page   500 502 503 504  /50x.html;
+}
+{% else %}
+upstream unicorn_rrd {
+    server unix:{{ grafana.path }}/tmp/sockets/unicorn.sock fail_timeout=0;
+}
+
+server {
+	listen   80; ## listen for ipv4; this line is default and implied
+
+	# Make site accessible from http://localhost/
+	server_name localhost;
+	client_max_body_size       10m;
+
+
+	location / {
+        root {{ grafana.path }}/public;
+        try_files $uri @unicorn_rrd;
+    }
+
+
+    location @unicorn_rrd {
+          proxy_pass http://unicorn_rrd;
+          proxy_redirect     off;
+
+          proxy_set_header   X-Forwarded-Proto http;
+          proxy_set_header   Host             $host;
+          proxy_set_header   X-Real-IP        $remote_addr;
+          proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+
+          client_max_body_size       10m;
+          client_body_buffer_size    128k;
+
+          proxy_connect_timeout      90;
+          proxy_send_timeout         90;
+          proxy_read_timeout         90;
+
+          proxy_buffer_size          4k;
+          proxy_buffers              4 32k;
+          proxy_busy_buffers_size    64k;
+          proxy_temp_file_write_size 64k;
+    }
+}
+{% endif %}

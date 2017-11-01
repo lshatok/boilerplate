@@ -1,0 +1,18 @@
+#!/bin/bash
+echo "<update.sh>"
+
+<%= render('common.sh') %>
+<%= render('setup.sh') %>
+
+cd $BOOTSTRAP_PATH
+git pull
+
+cd $APP_PATH
+babushka "update app" app_name=$APP_NAME prefix=$WT_ROOT user=$APP_USER \
+  repo=$REPO branch=$BRANCH group=$COMMON_GROUP domain=$DOMAIN \
+  reconfigure=false <%= verbose? %>
+
+<%= render('install.sh') %>
+echo "</update.sh>"
+
+<%= render('teardown.sh') %>

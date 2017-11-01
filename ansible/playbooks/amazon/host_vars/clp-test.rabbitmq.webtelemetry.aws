@@ -1,0 +1,28 @@
+network_name: WALMART Test BackHaul
+
+subnet: subnet-e40a588d # walmart_test_backhaul_2a - 171.112.10.96/27
+
+application: influxdb
+
+security_groups:
+  - sg-23bc434b # walmart_ops_influxdb
+  - sg-4abd4222 # walmart_ops
+  - sg-f71de19f # walmart_test_influxdb
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 40
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 40
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1
+
+tags:
+  customer: WALMART
+  stack_name: walmart-test
+
+release: xenial

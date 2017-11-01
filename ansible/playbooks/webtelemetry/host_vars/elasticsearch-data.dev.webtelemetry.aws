@@ -1,0 +1,2 @@
+node_name: webtelemetry-dev-telemetrix-data-1
+discovery_hosts: "ip-10-11-32-115.us-west-2.compute.internal"

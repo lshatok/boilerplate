@@ -1,0 +1,18 @@
+#role: wt_rrd
+#task: setup_database
+---
+
+- name: Check if database exists
+  command: "/home/{{ grafana.user }}/.rbenv/shims/rake db:version APP_ENV={{ grafana.rails_env }}"
+  args:
+    chdir: "{{ grafana.path }}"
+  sudo_user: wtuser
+  ignore_errors: true
+  register: rake_db_version_result
+
+- name: Setup database
+  shell: "/home/{{ grafana.user }}/.rbenv/shims/rake db:setup APP_ENV={{ grafana.rails_env }}"
+  args:
+    chdir: "{{ grafana.path }}"
+  sudo_user: "{{ grafana.user }}"
+  when: rake_db_version_result|failed

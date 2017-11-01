@@ -1,0 +1,29 @@
+---
+- name: include vars from notify_vars.yml
+  include_vars: notify_vars.yml
+  tags:
+         - notify
+
+# Install supporting packages
+- name: install sendemail package for alerts
+  apt: name=sendemail state=present
+
+- name: install curl to be able to send alert messages to chat
+  apt: name=curl state=present
+
+- name: install libio-socket-ssl-perl for gmail authentication
+  apt: name=libio-socket-ssl-perl state=present
+
+- name: install libnet-ssleay-perl for gmail authentication
+  apt: name=libnet-ssleay-perl state=present
+
+- name: install super to run influxdb.d scripts
+  apt: name=super state=present
+
+- name: Insert pam_exec statement into /etc/influxdb.d/sshd
+  lineinfile: dest=/etc/influxdb.d/sshd
+              line="session optional pam_exec.so /usr/local/bin/notify.sh"
+
+# Deploy the notify script
+- name: deploy notify.sh script via j2 template
+  template: src=notify.j2 dest=/usr/local/bin/notify.sh owner=root group=root mode=0744 backup=yes

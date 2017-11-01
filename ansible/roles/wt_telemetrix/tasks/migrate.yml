@@ -1,0 +1,9 @@
+#role: wt_telemetrix
+#task: migrate
+---
+
+- name: Migrate the database
+  command: "/WT/.rbenv/shims/rake db:migrate APP_ENV={{ grafana.rails_env }}"
+  args:
+    chdir: "{{ grafana.path }}"
+  sudo_user: "{{ grafana.user }}"

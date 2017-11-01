@@ -1,0 +1,5 @@
+---
+branch: deploy/webtelemetry/webtelemetry-2.1/telemetrix-2.4/demo
+webtelemetry_home: /WT
+
+domain: dev.{{ product.url }}

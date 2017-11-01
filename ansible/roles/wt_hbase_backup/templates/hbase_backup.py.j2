@@ -1,0 +1,206 @@
+#!/usr/bin/env python
+"""
+hbase_backup script
+    This script will run a map reduce Export job, keep a version on
+    a local mount and then send a copy S3 for storage
+
+Variables which need to be updated:
+    AWS_ACCESS = ( AWS_KEY_ID, AWS_KEY_SECRET )
+    s3bucket = 'net.webtelemetry().ssn.oge.backup'
+    backup_path_local = '/vol2/backup'
+    backup_path_hdfs = '/tmp/backup'
+    distcp_log_path = '/tmp/backup/logs'
+    Hadoop_NameServer = servername:port
+    Hbase_Tables = ['meter_data','snmp_data']
+    Mapred_Compression = 'org.apache.hadoop.io.compress.GzipCodec'
+
+Known Issues:
+ - Hbase tables must be listed in ansible play. Only table listes will be exported
+ - Depending on HBASE Export size, local storage may be an issue as the local
+   copy of the hbase will be uploaded to S3
+ - Distcp (not fully coinfigured yet), can go from HDFS to S3 direct.
+
+"""
+################################################
+__author__ = 'Leo Shatokhin'
+__copyright__ = "Copyright 2017, WebTelemetry US Inc."
+__version__ = "0.7.6"
+__maintainer__ = "Larry Sellars"
+__email__ = "larry.sellars@webtelemetry.us"
+__status__ = "Production"
+################################################
+
+## -------- Update for Environment -----------##
+AWS_ACCESS = ('{{hbase_s3backup.access_key }}','{{hbase_s3backup.secret_key}}') # currently in s3cmd config file
+s3bucket = '{{hbase_s3backup.bucket}}'
+backup_s3_base_dest = '{{hbase_s3backup.bucket_base_dest}}'
+backup_path_local = '{{hbase_s3backup.backup_local_path}}'
+backup_path_hdfs = '{{hbase_s3backup.backup_hdfs_path}}'
+distcp_log_path = '%s/logs' % (backup_path_hdfs)
+
+Hadoop_NameServer = '{{hbase_s3backup.name_server}}'
+Hbase_Scanner_cache = '30000'
+################################################
+
+import os
+import shutil
+import subprocess
+import sys
+import time
+from datetime import datetime, timedelta
+from optparse import OptionParser
+
+try:
+    import happybase
+except Exception as e:
+    print "[ERROR] import Happybase (HBase) library"
+    sys.exit(1)
+
+os.environ['JAVA_HOME'] = '{{hbase_s3backup.java_home}}'
+
+Today = datetime.now()
+
+
+if not os.path.exists(backup_path_local):
+    os.mkdir(backup_path_local)
+
+def hdfs_cleanup():
+    """
+    Clear out the /tmp/backup hdfs path
+    Return: exit code
+    """
+    ## hardcoding this directory for now ##
+    h_cmd = ['hadoop','fs','-rmr','-skipTrash','/tmp/backup/*']
+    print "CMD: ", ' '.join(h_cmd)
+    r_code = subprocess.call(h_cmd)
+    return r_code
+
+def local_cleanup():
+    """
+    Rotate the local copy if needed
+    """
+    PrevPath = '%s/prev' % (backup_path_local)
+    if os.path.exists(PrevPath):
+        shutil.rmtree(PrevPath)
+    if os.path.exists('%s/curr' % backup_path_local):
+        os.rename('%s/curr' % backup_path_local,PrevPath)
+
+def hbase_export(hbase_tbl, DateStr, **kwargs):
+    """
+    Execute the hbase export command
+    Return: exit code
+    """
+    hdfs_backup_path = os.path.join('/',backup_path_hdfs,DateStr,hbase_tbl)
+    #'-Dhbase.client.scanner.caching=%s' % (Hbase_Scanner_cache)
+
+    h_cmd =""
+    if kwargs is not None and (kwargs.get('starttime',False) and kwargs.get('endtime',False)):
+        starttime = "{}".format(kwargs['starttime'])
+        endtime = "{}".format(kwargs['endtime'])
+
+        h_cmd = ['hbase', 'org.apache.hadoop.hbase.mapreduce.Export', '-Dmapred.output.compress=true',
+                 '-Dmapred.output.compression.codec=org.apache.hadoop.io.compress.GzipCodec',
+                 hbase_tbl, hdfs_backup_path, starttime, endtime,]
+    else:
+        h_cmd = ['hbase','org.apache.hadoop.hbase.mapreduce.Export','-Dmapred.output.compress=true',
+                 '-Dmapred.output.compression.codec=org.apache.hadoop.io.compress.GzipCodec',hbase_tbl,hdfs_backup_path]
+    print "CMD: ", ' '.join(h_cmd)
+    r_code = subprocess.call(h_cmd)
+    return r_code
+
+
+def xfer_hdfs_to_local(Hdfs_path,Local_path):
+    """
+    Make a HDFS copy to local
+    Return: exit_code
+    """
+    h_cmd = ['hadoop','fs','-copyToLocal',Hdfs_path,Local_path]
+    print "CMD: ", ' '.join(h_cmd)
+    r_code = subprocess.call(h_cmd)
+    return r_code
+
+
+def backup_to_S3(local_path, bucket_path):
+    """
+    Use S3cmd to transfer the copy from the local
+    file system to S3 Bucket
+    """
+    b_cmd = ['s3cmd','put',local_path,'s3://%s' % bucket_path,'--config', '/WT/configs/hbase_s3backup.cfg']
+    print "CMD: ", ' '.join(b_cmd)
+    r_code = subprocess.call(b_cmd)
+    return r_code
+
+def distcp_to_s3(Log,Hdfs_path,Bucket):
+    """
+    Use Distcp to transfer the hdfs backup to S3
+    Return: exit_code
+    """
+    h_cmd = ['hadoop','distcp','-log',Log,'hdfs:/%s' % (Hdfs_path),'s3n://%s:%s@%s/' % (AWS_ACCESS[0],AWS_ACCESS[1],Bucket)]
+    print "CMD: ", h_cmd
+    r_code = subprocess.call(h_cmd)
+    return r_code
+
+
+if __name__ == "__main__":
+
+    parser = OptionParser()
+    parser.add_option("-i", "--incremental_backup", dest="incremental_backup",
+                      action='store_true',default=False)
+
+    (options, args) = parser.parse_args()
+
+
+
+    DateStr = Today.strftime('%Y-%m-%d')
+    hdfs_from_path = '%s/%s/' % (backup_path_hdfs,DateStr)
+    local_to_path = '%s/curr/%s' % (backup_path_local,DateStr)
+    Logpath = '%s/%s' % (distcp_log_path,DateStr)
+
+
+    ## Cleanup FS ##
+    hdfs_cleanup()
+    c = happybase.Connection()
+    Hbase_Tables = c.tables()
+
+    last_week = Today - timedelta(days=7)
+    last_week_start_time = time.mktime(last_week.timetuple())
+    this_week_end_end =time.mktime(Today.timetuple())
+
+    export_date=""
+    if options.incremental_backup:
+        print "[Info] Export from {} - {}".format(Today.strftime("%y-%m-%d %H:%M:%S.%f"), last_week.strftime("%y-%m-%d %H:%M:%S.%f"))
+        s3Backup = '%s/%s/%s' % (s3bucket, backup_s3_base_dest,"incrementals")
+        export_date = "{}_{}".format(last_week.strftime('%Y-%m-%d'), Today.strftime('%Y-%m-%d'))
+
+    else:
+        print "[Info] Full back on {}".format(Today.strftime("%y-%m-%d %H:%M:%S.%f"))
+        s3Backup = '%s/%s/%s' % (s3bucket, backup_s3_base_dest,"full_backups")
+        export_date = Today.strftime('%Y-%m-%d')
+
+    hdfs_from_path = '%s/%s/' % (backup_path_hdfs,export_date)
+
+    for Hbase_Table in Hbase_Tables:
+        if options.incremental_backup:
+            R = hbase_export(Hbase_Table,export_date,starttime=int(round(last_week_start_time)),endtime=int(round(this_week_end_end)))
+        else:
+            R = hbase_export(Hbase_Table,export_date)
+
+        if R > 0:
+            print "[Error] hbase_export(%s) ret_code: %s" % (Hbase_Table,R)
+            print "[Error] Unable to save to S3"
+            sys.exit(1)
+
+        r = distcp_to_s3(Logpath, hdfs_from_path, s3Backup)
+        if r > 0:
+            print "[Error] distcp_to_S3 (%s) ret_code: %s" % (Hbase_Table, r)
+            sys.exit(1)
+        print "[done]"
+
+    # print "Copying to Local"
+    # local_cleanup()
+    # if not os.path.exists('%s/curr' % backup_path_local):
+    #     os.mkdir('%s/curr' % backup_path_local)
+    #
+    # xfer_hdfs_to_local(hdfs_from_path,local_to_path)
+    # print "Copying to S3"
+    # backup_to_S3(local_to_path,s3Backup)

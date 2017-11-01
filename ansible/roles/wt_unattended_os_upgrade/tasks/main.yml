@@ -1,0 +1,36 @@
+---
+# tasks file for upgrading Ubuntu servers in unattended mode
+
+- name: Clean apt cache
+  command: rm -rf /var/lib/apt/lists/*
+  become: yes
+  tags: clean-cache
+
+- name: Apt-get Update
+  command: apt-get update
+  become: yes
+
+- name: Apt-get Clean
+  command: apt-get clean
+  become: yes
+
+- name: Apt-get Update
+  command: apt-get update
+  become: yes
+
+- name: Update Ubuntu OS version to latest production LTS version
+  command: do-release-upgrade -f DistUpgradeViewNonInteractive
+  when: ansible_distribution == "Ubuntu"
+
+- name: Rebooting machine
+  shell: sleep 2 && shutdown -r now "OS upgrade complete, rebooting AMI"
+  async: 1
+  poll: 0
+  sudo: true
+  ignore_errors: true
+  when: ansible_distribution == "Ubuntu"
+
+- name: Waiting for machine to come back up
+  local_action: wait_for host={{ ansible_default_ipv4.address }} state=started delay=5 timeout=120
+  sudo: false
+

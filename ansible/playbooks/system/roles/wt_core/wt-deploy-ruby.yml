@@ -1,0 +1,9 @@
+required_roles: [ core_webtelemetry ]
+
+tasks:
+    - ruby_rbenv
+
+ruby_rbenv:
+    user:  webtelemetry
+    path:  /WT
+    ruby_ver: 2.3.5

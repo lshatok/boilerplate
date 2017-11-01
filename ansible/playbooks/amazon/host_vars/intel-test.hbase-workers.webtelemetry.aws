@@ -1,0 +1,38 @@
+network_name: Websnmp Test BackHaul
+
+
+subnet: subnet-1ea81e57 #intel_test_backhaul_1d -172.19.4.224/27
+
+
+application: hbase-worker
+
+security_groups:
+  - sg-6052731a #intel_nonprod_ops
+  - sg-6f5d7e15 #intel_nonprod_ops_cdh
+  - sg-e642619c #intel_test_backhual
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 200
+    delete_on_termination: false
+    volume_type: gp2
+  - device_name: /dev/sdg
+    volume_size: 100
+    delete_on_termination: false
+    volume_type: gp2
+  - device_name: /dev/sdh
+    volume_size: 100
+    delete_on_termination: false
+    volume_type: gp2
+
+ebs_optimized: true
+
+assign_eip: false
+
+count: 3
+
+tags:
+  customer: intel
+  stack_name: intel-test
+
+release: xenial

@@ -1,0 +1,8 @@
+!vendor/cookbooks
+.vagrant
+*.swp
+.idea/
+Vagrantfile
+tmp
+scratch
+cookbooks

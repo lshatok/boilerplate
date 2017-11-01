@@ -1,0 +1,187 @@
+#if ($config.getString("app.name.ref"))
+    #set ($AppNameRef = $config.getString("app.name.ref"))
+#else
+    #set ($AppNameRef = webtelemetry)
+#end
+#if ($config.getString("app.name.formal"))
+    #set ($AppNameFormal = $config.getString("app.name.formal"))
+#else
+    #set ($AppNameFormal = "WebTelemetry")
+#end
+#if ($config.getString("topnav.title"))
+    #set ($TNtitle = $config.getString("topnav.title"))
+#else
+    #set ($TNtitle = "WebTelemetry Enterprise System Monitoring & Management")
+#end
+
+#if ($config.getString("topnav.logo.file"))
+    #set ($LogoFile = $config.getString("topnav.logo.file"))
+    #set ($LogoURI = $clink.setURI("$LogoFile").Absolute)
+#else
+    #if ($config.getString("topnav.logo.url"))
+        #set ($LogoURI = $config.getString("topnav.logo.url"))
+    #else
+        #set ($LogoURI = "/wt-portal/images/logos/tn_logo_webtelemetry.gif")
+    #end
+#end
+
+// Should be placed into /WT/appserver/webapps/wt-portal/WEB-INF/templates/vm/layouts/html/default.vm
+
+<head>
+    <title>$TNtitle</title>
+    <link rel="SHORTCUT ICON" href="/wt-portal/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/wt-portal/css/${AppNameRef}.css"/>
+    <link rel="stylesheet" type="text/css" href="css/webtelelemetry.css"/>
+
+    <script type="text/javascript" src="/wt-portal/javascript/modal.js"></script>
+    <script type="text/javascript" src="/wt-portal/javascript/WTtools.js"></script>
+
+    <script type="text/javascript">
+        // Should script hide iframe from browsers that don't support tag
+        // (Recommended for non IE5+/NS6+ browsers):
+        var iframehide = "no";
+        //var iframehide = "yes"
+        var getFFVersion = navigator.userAgent.substring(navigator.userAgent.indexOf("Firefox")).split("/")[1];
+        var FFextraHeight = parseFloat(getFFVersion) >= 0.1 ? 16 : 0;  // Extra height in px to add to iframe in FireFox 1.0+ browsers
+
+        function loadCaller() {
+            modalInit();
+            resizeCaller();
+        }
+
+        function resizeCaller() {
+            runOnResize();
+            var dyniframe = [];
+            var iframes = document.getElementsByTagName("iframe");
+            for (i = 0; i < 1; i++) {
+                resizeIframe(iframes[i]);
+                // Reveal iframe for lower end browsers? (see var above):
+                if ((document.all || document.getElementById) && iframehide == "no") {
+                    iframes[i].style.display = "block";
+                }
+            }
+        }
+
+        function resizeIframe(currentfr) {
+            if (!currentfr || currentfr.name != "sysmonMotherFrame") {
+                //alert ("no iframe");
+                return;
+            }
+            var tableCell = currentfr.parentNode;
+            var tableRow = tableCell.parentNode;
+            var tableElem = tableRow.parentNode.parentNode;
+
+            var winHeight = 0;
+            var winWidth = 0;
+            if (top.window.innerHeight) {
+                winHeight = top.window.innerHeight;
+                winWidth = top.window.innerWidth;
+            } else {
+                winHeight = top.document.body.clientHeight;
+                winWidth = top.document.body.clientWidth;
+            }
+
+            var bannerTd = document.getElementById("tableBannerCell");
+            var chromeHeight = bannerTd.offsetHeight + 8;
+            var bannerTable = document.getElementById("tableBanner");
+
+            var newFrameHeight = Math.max(10, winHeight - chromeHeight);
+            currentfr.height = newFrameHeight;
+            currentfr.style.height = newFrameHeight + "px"; //FF likes this better
+
+            tableCell.height = newFrameHeight;
+            tableCell.style.height = newFrameHeight + "px"; //FF likes this better
+            tableRow.height = newFrameHeight;
+            tableRow.style.height = newFrameHeight + "px"; //FF likes this better
+            tableElem.height = newFrameHeight;
+            tableElem.style.height = newFrameHeight + "px"; //FF likes this better
+
+            // Gecko doesn't take into account scrollbars, so read
+            // if necessary (only for very small windows)
+            if (bannerTable.offsetWidth > winWidth && winHeight >= top.document.body.offsetHeight) {
+                newFrameHeight -= 20;
+                newFrameHeight = Math.max(10, newFrameHeight);
+                currentfr.height = newFrameHeight;
+                currentfr.style.height = newFrameHeight + "px"; //FF likes this better
+
+                tableCell.height = newFrameHeight;
+                tableCell.style.height = newFrameHeight + "px"; //FF likes this better
+                tableRow.height = newFrameHeight;
+                tableRow.style.height = newFrameHeight + "px"; //FF likes this better
+                tableElem.height = newFrameHeight;
+                tableElem.style.height = newFrameHeight + "px"; //FF likes this better
+            }
+        }
+
+        if (window.addEventListener) {
+            window.addEventListener("load", loadCaller, false);
+            window.addEventListener("resize", resizeCaller, false);
+        } else if (window.attachEvent) {
+            window.attachEvent("onload", loadCaller);
+            window.attachEvent("onresize", resizeCaller);
+        } else {
+            window.onload = loadCaller;
+            window.onresize = resizeCaller;
+        }
+
+        function checkCookie() {
+            deleteCookie('WTCookieTest', '/', '');
+            setCookie('WTCookieTest', 'WTCookieTest', '', '/', '', '');
+            if (getCookie('WTCookieTest')) {
+                deleteCookie('WTCookieTest', '/', '');
+            }
+            else {
+                alert('Your Browser currently does not accept cookies.  We recommend enabling cookies before proceeding any further.');
+            }
+        }
+    </script>
+</head>
+<body scroll="no">
+
+<script>checkCookie();</script>
+
+
+<!-- BEGIN LOGO & LOGIN TABLE -->
+<table class="topBanner" width="100%" border="0" cellpadding="0" cellspacing="0" id="tableBanner">
+    <tr>
+        <!-- <td class="topBanner" colspan="2"><img src="/wt-portal/images/spacers/spacer.gif" height="2" width="400" border="0" alt="$AppNameFormal" /></td> -->
+    </tr>
+    <tr>
+
+
+        <!--Logo Padding on top left -->
+        <td width="228" valign="middle" rowspan="2" bgcolor="#032b3b" id="tableBannerCell"><a
+            href="$jslink.getPaneById("P-f5085d3ad2-1001c")"><img border="0" alt="$l10n.HOME" src="$LogoURI"></a></td>
+
+        <!-- end logo padding -->
+
+
+        <td class="topBanner" colspan="2" align="right">$jnavigation.setTemplate("top.vm")</td>
+
+
+        <td bgcolor="#FFFFFF"><img src="/wt-portal/images/spacers/spacer.gif" height="36" width="0" border="0"
+                                   alt="$AppNameFormal"/></td>
+    </tr>
+    <tr>
+        <td bgcolor="#CC6600" valign="top"><img src="/wt-portal/images/misc/tn_slant_${AppNameRef}.gif" height="21"
+                                                width="30" border="0" alt="$AppNameFormal"/></td>
+
+
+        <td bgcolor="#cc6600">
+            <!-- BEGIN TOP NAV LINKS -->
+            $screen_placeholder
+            <!-- CLOSING TABLE TAGS IN /wt-portal/WEB-INF/templates/vm/controls/html/jetspeed-tab.vm -->
+            $jnavigation.setTemplate("bottom.vm")
+
+            <div id="float"
+                 style="position:absolute; z-index: 1002; top:0px; left:0x; width: 10px; height: 10px; display:none;">
+                <iframe id="floatframe" width="900" height="500" marginheight="0" marginwidth="0" frameborder="0"
+                        scrolling="no"></iframe>
+            </div>
+            <div id="floatshadow"
+                 style="position: absolute; z-index: 1001; top: 10px; left: 10px; width: 10px; height: 10px; background-color:#837158; display:none"></div>
+            <div id="flashobscurer"
+                 style="position: absolute; z-index: 1000; top: 0px; left: 0px; width: 10px; height: 10px; display:none; background-color:#837158; opacity:0.3; filter: alpha(opacity=30)"></div>
+
+</body>
+</html>

@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Commenting out DOCTYPE so our blue outline shows on hadoop 0.20.205.0, etc.
+     See tail of HBASE-2110 for explaination.
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>HBase Master: ip-10-81-1-110.us-west-2.compute.internal,60000,1407204382782</title>
+    <link rel="stylesheet" type="text/css" href="/static/hbase.css"/>
+</head>
+<body>
+<a id="logo" href="http://wiki.apache.org/lucene-hadoop/Hbase"><img src="/static/hbase_logo.png" alt="HBase Logo"
+                                                                    title="HBase Logo"/></a>
+<h1 id="page_title">Master: ip-10-81-1-110.us-west-2.compute.internal:60000</h1>
+<p id="links_menu">
+    <a href="/logs/">Local logs</a>,
+    <a href="/stacks">Thread Dump</a>,
+    <a href="/logLevel">Log Level</a>,
+    <a href="/dump">Debug dump</a>,
+
+    <a href="/conf">HBase Configuration</a>
+
+</p>
+
+<!-- Various warnings that cluster admins should be aware of -->
+
+
+<hr id="head_rule"/>
+<h2>Attributes</h2>
+<table id="attributes_table">
+    <tr>
+        <th>Attribute Name</th>
+        <th>Value</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>HBase Version</td>
+        <td>0.94.15-cdh4.6.0, rUnknown</td>
+        <td>HBase version and revision</td>
+    </tr>
+    <tr>
+        <td>HBase Compiled</td>
+        <td>Wed Feb 26 02:39:52 PST 2014, jenkins</td>
+        <td>When HBase version was compiled and by whom</td>
+    </tr>
+    <tr>
+        <td>Hadoop Version</td>
+        <td>2.0.0-cdh4.6.0, r8e266e052e423af592871e2dfe09d54c03f6a0e8</td>
+        <td>Hadoop version and revision</td>
+    </tr>
+    <tr>
+        <td>Hadoop Compiled</td>
+        <td>Wed Feb 26 02:00:51 PST 2014, jenkins</td>
+        <td>When Hadoop version was compiled and by whom</td>
+    </tr>
+    <tr>
+        <td>HBase Root Directory</td>
+        <td>hdfs://ip-10-81-1-110.us-west-2.compute.internal:8020/hbase</td>
+        <td>Location of HBase home directory</td>
+    </tr>
+    <tr>
+        <td>Zookeeper Quorum</td>
+        <td>ip-10-81-1-110.us-west-2.compute.internal:2181</td>
+        <td>Addresses of all registered ZK servers. For more, see <a href="/zk.jsp">zk dump</a>.</td>
+    </tr>
+    <tr>
+        <td>HMaster Start Time</td>
+        <td>Tue Aug 05 02:06:28 UTC 2014</td>
+        <td>Date stamp of when this HMaster was started</td>
+    </tr>
+
+
+    <tr>
+        <td>HMaster Active Time</td>
+        <td>Tue Aug 05 02:06:28 UTC 2014</td>
+        <td>Date stamp of when this HMaster became active</td>
+    </tr>
+    <tr>
+        <td>Load average</td>
+        <td>52.00</td>
+        <td>Average number of regions per regionserver. Naive computation.</td>
+    </tr>
+    <tr>
+        <td>HBase Cluster ID</td>
+        <td>15e68ce7-b11a-4007-87a3-1f4c6a10e9b1
+        <td>Unique identifier generated for each HBase cluster</td>
+    </tr>
+
+    <tr>
+        <td>
+            Coprocessors
+        </td>
+        <td>[]
+        </td>
+        <td>Coprocessors currently loaded loaded by the master</td>
+    </tr>
+
+</table>
+
+
+<h2>Tasks</h2>
+<div id="tasks_menu">
+    <a href="?filter=all">Show All Monitored Tasks</a>
+    <a href="?filter=general">Show non-RPC Tasks</a>
+    <a href="?filter=handler">Show All RPC Handler Tasks</a>
+    <a href="?filter=rpc">Show Active RPC Calls</a>
+    <a href="?filter=operation">Show Client Operations</a>
+    <a href="?format=json&filter=general">View as JSON</a>
+</div>
+
+No tasks currently running on this node.
+
+
+<h2>Tables</h2>
+<table>
+    <tr>
+        <th>Catalog Table</th>
+
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><a href="table.jsp?name=-ROOT-">-ROOT-</a></td>
+
+        <td>The -ROOT- table holds references to all .META. regions.</td>
+    </tr>
+
+    <tr>
+        <td><a href="table.jsp?name=.META.">.META.</a></td>
+
+        <td>The .META. table holds references to all User Table regions</td>
+    </tr>
+
+
+</table>
+
+
+<table>
+    <tr>
+        <th>User Table</th>
+
+        <th>Online Regions</th>
+        <th>Description</th>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=TELEMETRIX_temp_test>TELEMETRIX_temp_test</a></td>
+
+        <td>1
+        <td>'TELEMETRIX_temp_test', {NAME =&gt; 'actual', VERSIONS =&gt; '2', COMPRESSION =&gt; 'SNAPPY', TTL =&gt;
+            '-1'},
+            {NAME =&gt; 'fcst', VERSIONS =&gt; '2', COMPRESSION =&gt; 'SNAPPY', TTL =&gt; '-1'}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_webtelemetry>device_data_webtelemetry</a></td>
+
+        <td>1
+        <td>'device_data_webtelemetry', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY'}</td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_cmcapital>device_data_cmcapital</a></td>
+
+        <td>1
+        <td>'device_data_cmcapital', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt;
+            {'COMPRESSION_COMPACT' =&gt; 'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_cpi>device_data_cpi</a></td>
+
+        <td>1
+        <td>'device_data_cpi', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_rrd>device_data_rrd</a></td>
+
+        <td>1
+        <td>'device_data_rrd', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY'}</td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_equity>device_data_equity</a></td>
+
+        <td>1
+        <td>'device_data_equity', {NAME =&gt; 'actual', TTL =&gt; '-1', BLOCKCACHE =&gt; 'false'}</td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_equityoffice>device_data_equityoffice</a></td>
+
+        <td>1
+        <td>'device_data_equityoffice', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY'}</td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_hp>device_data_hp</a></td>
+
+        <td>1
+        <td>'device_data_hp', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_lockheedmartin>device_data_lockheedmartin</a></td>
+
+        <td>1
+        <td>'device_data_lockheedmartin', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt;
+            {'COMPRESSION_COMPACT' =&gt; 'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_maxtest2>device_data_maxtest2</a></td>
+
+        <td>1
+        <td>'device_data_maxtest2', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt;
+            {'COMPRESSION_COMPACT' =&gt; 'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_mtsac>device_data_mtsac</a></td>
+
+        <td>1
+        <td>'device_data_mtsac', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY'}</td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_parc>device_data_parc</a></td>
+
+        <td>1
+        <td>'device_data_parc', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_sap>device_data_sap</a></td>
+
+        <td>1
+        <td>'device_data_sap', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_test_tenant>device_data_test_tenant</a></td>
+
+        <td>1
+        <td>'device_data_test_tenant', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY'}</td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_tibco>device_data_tibco</a></td>
+
+        <td>1
+        <td>'device_data_tibco', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_uci>device_data_uci</a></td>
+
+        <td>1
+        <td>'device_data_uci', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY'}</td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_variant>device_data_variant</a></td>
+
+        <td>1
+        <td>'device_data_variant', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT'
+            =&gt; 'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=device_data_yahoo>device_data_yahoo</a></td>
+
+        <td>1
+        <td>'device_data_yahoo', {NAME =&gt; 'actual', TTL =&gt; '-1', BLOCKCACHE =&gt; 'false'}</td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=fcst_webtelemetry>fcst_webtelemetry</a></td>
+
+        <td>1
+        <td>'fcst_webtelemetry', {NAME =&gt; 'current', COMPRESSION =&gt; 'SNAPPY'}, {NAME =&gt; 'dayahead',
+            COMPRESSION
+            =&gt; 'SNAPPY'}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=fcst_cmcapital>fcst_cmcapital</a></td>
+
+        <td>1
+        <td>'fcst_cmcapital', {NAME =&gt; 'current', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}, {NAME =&gt; 'dayahead', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=fcst_cpi>fcst_cpi</a></td>
+
+        <td>1
+        <td>'fcst_cpi', {NAME =&gt; 'current', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}, {NAME =&gt; 'dayahead', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=fcst_rrd>fcst_rrd</a></td>
+
+        <td>1
+        <td>'fcst_rrd', {NAME =&gt; 'current', COMPRESSION =&gt; 'SNAPPY'}, {NAME =&gt; 'dayahead', COMPRESSION =&gt;
+            'SNAPPY'}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=fcst_equityoffice>fcst_equityoffice</a></td>
+
+        <td>1
+        <td>'fcst_equityoffice', {NAME =&gt; 'current', COMPRESSION =&gt; 'SNAPPY'}, {NAME =&gt; 'dayahead', COMPRESSION
+            =&gt; 'SNAPPY'}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=fcst_hp>fcst_hp</a></td>
+
+        <td>1
+        <td>'fcst_hp', {NAME =&gt; 'current', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}, {NAME =&gt; 'dayahead', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=fcst_lockheedmartin>fcst_lockheedmartin</a></td>
+
+        <td>1
+        <td>'fcst_lockheedmartin', {NAME =&gt; 'current', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt;
+            {'COMPRESSION_COMPACT' =&gt; 'SNAPPY'}}, {NAME =&gt; 'dayahead', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt;
+            {'COMPRESSION_COMPACT' =&gt; 'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=fcst_maxtest2>fcst_maxtest2</a></td>
+
+        <td>1
+        <td>'fcst_maxtest2', {NAME =&gt; 'current', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}, {NAME =&gt; 'dayahead', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=fcst_mtsac>fcst_mtsac</a></td>
+
+        <td>1
+        <td>'fcst_mtsac', {NAME =&gt; 'current', COMPRESSION =&gt; 'SNAPPY'}, {NAME =&gt; 'dayahead', COMPRESSION =&gt;
+            'SNAPPY'}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=fcst_parc>fcst_parc</a></td>
+
+        <td>1
+        <td>'fcst_parc', {NAME =&gt; 'current', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}, {NAME =&gt; 'dayahead', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=fcst_sap>fcst_sap</a></td>
+
+        <td>1
+        <td>'fcst_sap', {NAME =&gt; 'current', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}, {NAME =&gt; 'dayahead', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=fcst_test_tenant>fcst_test_tenant</a></td>
+
+        <td>1
+        <td>'fcst_test_tenant', {NAME =&gt; 'current', COMPRESSION =&gt; 'SNAPPY'}, {NAME =&gt; 'dayahead', COMPRESSION
+            =&gt; 'SNAPPY'}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=fcst_tibco>fcst_tibco</a></td>
+
+        <td>1
+        <td>'fcst_tibco', {NAME =&gt; 'current', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}, {NAME =&gt; 'dayahead', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=fcst_uci>fcst_uci</a></td>
+
+        <td>1
+        <td>'fcst_uci', {NAME =&gt; 'current', COMPRESSION =&gt; 'SNAPPY'}, {NAME =&gt; 'dayahead', COMPRESSION =&gt;
+            'SNAPPY'}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=fcst_variant>fcst_variant</a></td>
+
+        <td>1
+        <td>'fcst_variant', {NAME =&gt; 'current', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}, {NAME =&gt; 'dayahead', COMPRESSION =&gt; 'SNAPPY', CONFIG =&gt; {'COMPRESSION_COMPACT' =&gt;
+            'SNAPPY'}}
+        </td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=test_table>test_table</a></td>
+
+        <td>1
+        <td>'test_table', {NAME =&gt; 'test', COMPRESSION =&gt; 'SNAPPY'}</td>
+    </tr>
+
+    <tr>
+        <td><a href=table.jsp?name=snmp_data>snmp_data</a></td>
+
+        <td>16
+        <td>'snmp_data', {NAME =&gt; 'actual', COMPRESSION =&gt; 'SNAPPY'}, {NAME =&gt; 'raw', COMPRESSION =&gt;
+            'SNAPPY'}
+        </td>
+    </tr>
+
+
+    <p> 35 table(s) in set. [<a href=tablesDetailed.jsp>Details</a>]</p>
+</table>
+
+
+<h2>Region Servers</h2>
+
+<table>
+    <tr>
+        <th rowspan="2"></th>
+        <th>ServerName</th>
+        <th>Start time</th>
+        <th>Load</th>
+    </tr>
+    <tr>
+        <td><a href="//ip-10-81-1-110.us-west-2.compute.internal:60030/">ip-10-81-1-110.us-west-2.compute.internal,60020,1407204382855</a>
+        </td>
+        <td>Tue Aug 05 02:06:22 UTC 2014</td>
+        <td>requestsPerSecond=0, numberOfOnlineRegions=52, usedHeapMB=1195, maxHeapMB=2031</td>
+    </tr>
+    <tr>
+        <th>Total:</th>
+        <td>servers: 1</td>
+        <td></td>
+        <td>requestsPerSecond=0, numberOfOnlineRegions=52</td>
+    </tr>
+</table>
+
+<p>Load is requests per second and count of regions loaded</p>
+
+
+<h3>Dead Region Servers</h3>
+
+
+<h2>Regions in Transition</h2>
+
+No regions in transition.
+
+
+<h2>Backup Masters</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>ServerName</th>
+        <th>Port</th>
+        <th>Start Time</th>
+    </tr>
+    <tr>
+        <td>Total:0</td>
+</table>
+
+
+</body>
+</html>
+

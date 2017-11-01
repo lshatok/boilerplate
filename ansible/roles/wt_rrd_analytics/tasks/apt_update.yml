@@ -1,0 +1,18 @@
+---
+- name: Apt-get Update
+  apt:  cache_valid_time=3600 update_cache=yes
+  ignore_errors: yes
+
+- name: Install required system packages
+  apt: name={{ item }} state=present cache_valid_time=3600
+  with_items:
+    - gfortran
+    - libopenblas-dev
+    - liblapack-dev
+    - libfreetype6-dev
+    - libpng-dev
+    - libncurses5-dev
+    - libatlas-base-dev
+    - libpostgresqlclient-dev
+    - libffi6
+    - libffi-dev

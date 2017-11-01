@@ -1,0 +1,9 @@
+---
+
+- include: update_apt.yml tags=update
+- include: install_metrix.yml tags=update
+- include: update_configs.yml tags=configs
+- include: bundle.yml tags=update
+- include: setup_database.yml
+- include: migrate.yml tags=update
+- include: restart_tomcat.yml tags=update,configs

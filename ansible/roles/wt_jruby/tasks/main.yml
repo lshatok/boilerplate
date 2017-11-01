@@ -1,0 +1,38 @@
+# install jruby #
+---
+
+- name: Check if rbenv is already installed
+  shell: "[ -d /WT/.rbenv ]"
+  register: rbenv
+  ignore_errors: true
+
+- name: Install rbenv
+  git: repo=https://github.com/sstephenson/rbenv.git dest=/WT/.rbenv
+  become_user: "{{ product.user }}"
+  when: "rbenv.rc != 0"
+
+- name: Install rbenv-build
+  git: repo=https://github.com/sstephenson/ruby-build.git dest=/WT/.rbenv/plugins/ruby-build
+  become_user: "{{ product.user }}"
+  when: "rbenv.rc != 0"
+
+- name: Check if jruby is already installed
+  shell: "[ -d /WT/.rbenv/versions/{{ jrubyver }} ]"
+  register: jruby
+  ignore_errors: true
+  changed_when: False
+
+- name: Build jruby (this may take a while)
+  shell: "/WT/.rbenv/bin/rbenv install {{ jrubyver }} executable=/bin/bash chdir=/home/webtelemetry"
+  become_user: "{{ product.user }}"
+  when: "jruby.rc != 0"
+
+- name: Run rbenv global
+  shell: "/WT/.rbenv/bin/rbenv global {{ jrubyver }} executable=/bin/bash chdir=/home/webtelemetry"
+  become_user: "{{ product.user }}"
+  when: "jruby.rc != 0"
+
+- name: Run rbenv rehash
+  shell: "/WT/.rbenv/bin/rbenv rehash executable=/bin/bash chdir=/home/webtelemetry"
+  become_user: "{{ product.user }}"
+  when: "jruby.rc != 0"

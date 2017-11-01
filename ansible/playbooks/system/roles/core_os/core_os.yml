@@ -1,0 +1,62 @@
+## ROLE: CORE_OS - base system setup with minimal configs ##
+
+# Execute these tasks in order #
+tasks:
+    - apt_update
+    - apt_upgrade
+    - packages
+    - python_install_distribute
+    - files
+    - groups
+    - os_common
+    - directories
+    - aws_fix_dhclient
+    - reboot
+    - git
+    - python_pip
+
+#ToDo - add update-alternatives --set editor /usr/bin/vim.basic
+
+# Config Section #
+
+packages: [
+    ntp, xfsprogs, xfsdump, vim, htop, debconf-utils, python-software-properties, software-properties-common,
+    build-essential, sysstat, uuid-dev, libtool, pkg-config, autoconf, unzip, lvm2, curl, facter, gettext,
+    libssl-dev, python-dev, libxt-dev, libcurl4-gnutls-dev, libexpat1-dev, libz-dev, libx11-dev, acl, nethogs,
+    s3cmd, postgresql-client, apt-show-versions, tree, libxml2-utils
+    ]
+
+groups:
+    - ai
+
+files:
+    /etc/rc.local:
+        source:  rc.local
+        owner:  root
+        group:  root
+        mode:  755
+    /etc/vim/vimrc.local:
+        source: vimrc.local
+        owner:  root
+        group:  root
+        mode:  644
+
+directories:
+    /usr/local/ssl:
+        owner:  root
+        group:  root
+        mode:   755
+    /usr/local/ssl/certs:
+        owner:  root
+        group:  root
+        mode:   755
+    /usr/local/ssl/private:
+        owner:  root
+        group:  root
+        mode:   700
+
+
+# Global Python pip install
+python_pip: [ virtualenv, virtualenvwrapper, pyaml ]
+
+

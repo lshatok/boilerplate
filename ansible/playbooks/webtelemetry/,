@@ -1,0 +1,104 @@
+[defaults]
+# remote_user           = ubuntu
+# private_key_file    = ~/.ssh/autogrid-dev.pem
+
+#####################################################################################################################
+# For local boxes
+remote_user           = root 
+#
+private_key_file      = ~/.ssh/id_rsa.pub
+
+vault_password_file   = ~/.master_password
+roles_path            =  ../../roles/
+hash_behaviour        = merge
+host_key_checking     = False
+display_skipped_hosts = False
+callback_whitelist    = profile_tasks
+
+# Enable/Disable Deprecation Warning
+# deprecation_warnings  = True 
+deprecation_warnings  = False 
+
+
+[ssh_connection]
+
+# ssh arguments to use
+# Leaving off ControlPersist will result in poor performance, so use
+# paramiko on older platforms rather than removing it, -C controls compression use
+ssh_args = -C -o ControlMaster=auto -o ControlPersist=60s
+
+# The base directory for the ControlPath sockets. 
+# This is the "%(directory)s" in the control_path option
+# 
+# control_path_dir = /tmp/.ansible/cp
+# control_path_dir   = ~/.ansible/cp
+control_path_dir   = ~/.ssh/multiplex/%r@%h:%p
+
+# The path to use for the ControlPath sockets. This defaults to a hashed string of the hostname, 
+# port and username (empty string in the config). The hash mitigates a common problem users 
+# found with long hostames and the conventional %(directory)s/ansible-ssh-%%h-%%p-%%r format. 
+# In those cases, a "too long for Unix domain socket" ssh error would occur.
+#
+# Example:
+# control_path = %(directory)s/%%h-%%r
+#control_path =
+
+# Enabling pipelining reduces the number of SSH operations required to
+# execute a module on the remote server. This can result in a significant
+# performance improvement when enabled, however when using "sudo:" you must
+# first disable 'requiretty' in /etc/sudoers
+#
+# By default, this option is disabled to preserve compatibility with
+# sudoers configurations that have requiretty (the default on many distros).
+#
+pipelining            = True
+forks                 = 50
+serial                = 50
+ssh_args              = -o ControlMaster=auto -o ControlPersist=10m
+transport	      = smart
+
+[accelerate]
+
+accelerate_port = 5099
+accelerate_timeout = 30
+accelerate_connect_timeout = 5.0
+
+# The daemon timeout is measured in minutes. This time is measured
+# from the last activity to the accelerate daemon.
+accelerate_daemon_timeout = 30
+
+# If set to yes, accelerate_multi_key will allow multiple
+# private keys to be uploaded to it, though each user must
+# have access to the system via SSH to add a new key. The default
+# is "no".
+scp_if_ssh            = True
+accelerate_multi_key  = yes
+deprecation_warnings  = False
+command_warnings     = False
+##############################################################################################
+
+# squash actions
+# Ansible can optimise actions that call modules with list parameters
+# when looping. Instead of calling the module once per with_ item, the
+# module is called once with all items at once. Currently this only works
+# under limited circumstances, and only with parameters named 'name'.
+squash_actions = apk,apt,dnf,homebrew,pacman,pkgng,yum,zypper,copy,unarchive
+
+[colors]
+highlight = white
+verbose = blue
+warn = bright purple
+error = red
+debug = dark gray
+deprecate = purple
+skip = cyan
+unreachable = red
+ok = green
+changed = yellow
+diff_add = green
+diff_remove = red
+diff_lines = cyan
+
+##################################################################
+callback_whitelist = profile_tasks
+ansible_managed = Ansible managed: {file} modified on %Y-%m-%d %H:%M:%S by {uid} on {host}

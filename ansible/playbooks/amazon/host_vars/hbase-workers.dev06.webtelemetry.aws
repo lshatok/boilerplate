@@ -1,0 +1,49 @@
+network_name: WebTelemetry Dev Private
+
+subnet:  subnet-64772e22
+# 10.0.0.0/24 us-west-2c
+
+application:  hbase
+
+security_groups:
+  - sg-6i2s3y76 #webtelemetry_ops
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 100
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdi
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdj
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdk
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdl
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdm
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdn
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdo
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdp
+    volume_size: 50
+    delete_on_termination: false
+
+
+assign_eip: false
+
+count: 2
+
+tags:
+  customer:  comcast

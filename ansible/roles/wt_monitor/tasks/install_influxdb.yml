@@ -1,0 +1,91 @@
+---
+- name: Install dependencies (bundle install)
+  shell: "/WT/.rbenv/versions/{{ snmp.rubyver }}/bin/bundle install"
+  args:
+    chdir: "{{ telemetrix.jruby_path }}"
+    executable: /bin/bash
+  become_user: "{{ product.user }}"
+  register: bundled
+
+- name: Checks for /WT/.rbenv/shims/.rbenv-shim
+  shell: "[ -f /WT/.rbenv/shims/.rbenv-shim ]"
+  register: rbenvshim
+  ignore_errors:  True
+  changed_when: False
+
+- name: Remove rbenv-shim
+  # https://webtelemetry().atlassian.net/wiki/topics/automation/How+to+deploy+grafana+to+a+remote+development+environment+via+Ansible
+  file: path=/WT/.rbenv/shims/.rbenv-shim state=absent
+  when: "rbenvshim.rc == 0"
+
+- name: Run rbenv rehash
+  shell: "/WT/.rbenv/bin/rbenv rehash executable=/bin/bash chdir=/home/webtelemetry"
+  become_user: "{{ product.user }}"
+  when: bundled.changed
+
+- name: Remove snmp jar
+  file: path=/WT/java/build/jar/snmp.jar state=absent
+  become_user: "{{ product.user }}"
+
+- name: Build jar
+  shell: 'ant clean-build'
+  args:
+    chdir: "/WT/java"
+  become_user: "{{ product.user }}"
+
+- name: Remove snmp jar
+  file: path=/WT/jruby/lib/snmp.jar state=absent
+  become_user: "{{ product.user }}"
+
+- name: Copy jar
+  shell: 'cp /WT/java/build/jar/snmp.jar /WT/jruby/lib/snmp.jar'
+  args:
+    chdir: "/WT/appserver"
+  become_user: "{{ product.user }}"
+
+- name: Copy all jars to tmp and jruby
+  shell: 'find java/lib -name *\.jar > /tmp/jars; while read line; do cp $line jruby/lib; done < /tmp/jars'
+  args:
+    chdir: "/WT/appserver"
+  become_user: "{{ product.user }}"
+
+- name: Build war
+  shell: '/WT/.rbenv/shims/bundle exec warble'
+  args:
+    chdir: "/WT/jruby"
+  become_user: "{{ product.user }}"
+  environment:
+      TELEMETRIX_HOME: "{{ snmp.path }}"
+
+- name: Remove tmp
+  shell: "while read line; do file=`echo $line | rev | cut -d'/' -f1 | rev`; rm -f lib/$file; done < /tmp/jars; rm /tmp/jars"
+  args:
+    chdir: "/WT/jruby"
+  become_user: "{{ product.user }}"
+
+- name: Stat snmp directory
+  stat: path=/WT/appserver/webapps/snmp
+  register:telemetrix_directory
+  changed_when: true
+
+- name: Remove old snmp directory
+  shell: rm -rf /WT/appserver/webapps/snmp
+  when:telemetrix_directory.stat.exists
+
+- name: Stat snmp war
+  stat: path=/WT/appserver/webapps/snmp.war
+  register:telemetrix_war
+  changed_when: true
+
+- name: Remove old snmp war
+  shell: rm /WT/appserver/webapps/snmp.war
+  when:telemetrix_war.stat.exists
+
+- name: Move snmp war
+  shell: mv /WT/appserver/snmp.war /WT/appserver/webapps/snmp.war
+  become_user: "{{ product.user }}"
+
+- name: Restart tomcat
+  service: name=tomcat state=restarted
+
+- pause: seconds=30

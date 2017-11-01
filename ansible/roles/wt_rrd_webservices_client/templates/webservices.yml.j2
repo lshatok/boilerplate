@@ -1,0 +1,18 @@
+apps:
+{% for app_key, app_info in webservices.iteritems() %}
+  {{ app_key }}:
+    url: {{ app_info['url'] }}
+{% if app_info.username is defined %}
+    username: {{ app_info['username'] }}
+{% endif %}
+{% if app_info.password is defined %}
+    password: {{ app_info['password'] }}
+{% endif %}
+{% if app_info.token is defined %}
+    token: {{ app_info['token'] }}
+{% endif %}
+    endpoints:
+{% for ep_name, ep_path in app_info['endpoints'].iteritems() %}
+      {{ ep_name }}: "{{ ep_path }}"
+{% endfor %}
+{% endfor %}

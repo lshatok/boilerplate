@@ -1,0 +1,19 @@
+---
+- hosts: "tag_Name_IPSEC_devops_west_aws"
+  gather_facts: true
+  connection: local
+
+  tasks:
+    - name: Create inventory
+      file:
+        name: "{{ dynamic_inv|default('inventory.ini') }}"
+        state: touch
+
+    - name: "Build inventory"
+      lineinfile:
+        dest: "{{ dynamic_inv|default('inventory.ini') }}"
+        regexp: '.*{{ hostvars[item].ec2_private_ip_address}}$'
+        line: "{{ hostvars[item].ec2_tag_Name }} ansible_ssh_host={{ hostvars[item].ec2_private_ip_address }}"
+        state: present
+      when: hostvars[item].ec2_private_ip_address is defined
+      with_items: "{{ groups['all'] }}"

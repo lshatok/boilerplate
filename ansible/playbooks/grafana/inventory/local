@@ -1,0 +1,29 @@
+[telemetrix-app]
+grafana ansible_ssh_host=10.0.0.91 ansible_ssh_port=22
+
+[webtelemetry]
+webtelemetry ansible_ssh_host=10.0.0.92 ansible_ssh_port=22
+
+[snmp]
+snmp ansible_ssh_host=10.0.0.93 ansible_ssh_port=22
+
+[checkpoint]
+checkpoint ansible_ssh_host=10.0.0.94 ansible_ssh_port=22
+
+[hbase-master]
+hbase-master ansible_ssh_host=10.0.0.95 ansible_ssh_port=22
+
+[hbase-worker]
+hbase-worker ansible_ssh_host=10.0.0.96 ansible_ssh_port=22
+
+[telemetrix]
+telemetrix ansible_ssh_host=10.0.0.97 ansible_ssh_port=22
+
+[redis]
+redis ansible_ssh_host=10.0.0.53 ansible_ssh_port=22
+
+
+grafana ansible_ssh_host=10.0.0.50 ansible_ssh_port=22
+kibana ansible_ssh_host=10.0.0.56 ansible_ssh_port=22
+esmaster ansible_ssh_host=10.0.0.55 ansible_ssh_port=22
+esdata ansible_ssh_host=10.0.0.54 ansible_ssh_port=22

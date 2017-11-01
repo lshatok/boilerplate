@@ -1,0 +1,9 @@
+## Default Common role for every instance ##
+---
+- name: WebTelemetry | Playbook Bootstrap hbase-master
+  hosts: "{{ target }}"
+  sudo: true
+
+  roles:
+    - wt_java9
+    - wt_hbase_master

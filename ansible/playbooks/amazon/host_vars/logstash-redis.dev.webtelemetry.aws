@@ -1,0 +1,24 @@
+network_name: WebTelemetry Dev Private Backhaul
+
+subnet:  subnet-64772e22
+# 10.0.0.0/18 us-west-2c
+
+application:  logstash-redis
+
+security_groups:
+  - sg-5e08bb3b
+
+volumes:
+- device_name: /dev/sda1
+  volume_size: 15
+  delete_on_termination:  true
+- device_name: /dev/sdf
+  volume_size: 15
+  delete_on_termination:  true
+
+assign_eip: false
+
+count: 1
+
+tags:
+  customer: engineering

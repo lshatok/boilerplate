@@ -1,0 +1,7 @@
+---
+
+- name: Apt-get Update
+  apt:  cache_valid_time=3600 update_cache=yes
+
+- name: Apt-get Upgrade
+  apt:  upgrade=dist

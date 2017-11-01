@@ -1,0 +1,8 @@
+---
+- name : Create Celery upstart script
+  template: src=upstart_celery.conf.j2 dest=/etc/init/celery_beat.conf
+  when: ansible_os_family == 'Debian'
+
+- name : RedHat | Create Celery upstart scripts
+  template: src=systemd_celery.conf.j2 dest=/etc/systemd/system/celery_beat.service
+  when: ansible_os_family == 'RedHat'

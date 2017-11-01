@@ -1,0 +1,15 @@
+---
+- name: Check if database exists
+  command: "/WT/.rbenv/shims/rake db:version APP_ENV={{telemetrix_rails_env }}"
+  args:
+    chdir: "{{ telemetrix_jruby_path }}"
+  sudo_user: wtuser
+  ignore_errors: true
+  register: rake_db_version_result
+
+- name: Setup database
+  shell: "/WT/.rbenv/shims/rake db:setup APP_ENV={{telemetrix_rails_env }}"
+  args:
+    chdir: "{{ telemetrix_jruby_path }}"
+  sudo_user: wtuser
+  when: rake_db_version_result|failed

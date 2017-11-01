@@ -1,0 +1,8 @@
+---
+- name: Create service
+  include: create_service.yml
+  tags: [ install, update, configs ]
+
+- name: Restart service
+  include: restart_service.yml
+  tags: [ restart, update, configs ]

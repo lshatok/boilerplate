@@ -1,0 +1,230 @@
+defaults:
+      domain:   webtelemetry.amazon
+      # Define AWS IAM keys here to override env vars if desired
+      #AWS_ACCESS_KEY_ID:
+      #AWS_SECRET_ACCESS_KEY:
+
+webtelemetry_dev_fronthaul:
+      vpcid: vpc-26c9b24d
+      region:  us-west-2
+      rootkey:  id_rsa.pub
+      default_group: sg-6i2s3y76   # webtelemetrydev-ai-west
+      subnet:
+            subnet-207a2366 : 10.0.0.0/24
+      security_groups:
+            - sg-1c8d6b79
+      rootvol_size: 30
+      eip:  yes
+
+webtelemetry_dev_backhaul:
+      vpcid: vpc-26c9b24d
+      region:  us-west-2
+      rootkey:  id_rsa.pub
+      default_group: sg-6i2s3y76   # webtelemetrydev-ai-west
+      subnet:
+            subnet-64772e22 : 10.0.0.0/24
+      rootvol_size: 50
+
+dtech_west_fronthaul:
+      domain:  dtech-west.amazon.{{ product.url }}
+      vpcid:   vpc-26c9b24d
+      region:  us-west-2
+      rootkey:  id_rsa.pub
+      default_group:  sg-c6a045a3
+      subnet:
+            subnet-b40714d6 :  10.11.21.0/27
+      security_groups:
+            - sg-57a24732
+      rootvol_size: 30
+      eip:  yes
+
+dtech_west_backhaul:
+      domain:  dtech-west.amazon.{{ product.url }}
+      vpcid:   vpc-26c9b24d
+      region:  us-west-2
+      rootkey:  id_rsa.pub
+      default_group:  sg-c6a045a3
+      subnet:
+            subnet-6f06150d :  10.11.21.32/27
+      rootvol_size: 50
+
+
+fronthaul_agdev_east:
+      domain:   agdev.amazon.{{ product.url }}
+      vpcid:   vpc-ee328380
+      region:   us-east-1
+      rootkey:  id_rsa.pub
+      default_group: sg-968004f9
+      subnet:
+            subnet-fdc693bb : 10.6.3.0/26 
+      security_groups:
+            - sg-b4abb9d6  # rubygems server
+      rootvol_size:  16
+      eip:  yes 
+      
+fronthaul_devops_west:
+      domain:   ai-west.amazon.{{ product.url }}
+      vpcid:    vpc-26c9b24d
+      region:   us-west-2
+      rootkey:  id_rsa.pub
+      default_group: sg-60c8390f 
+      subnet:
+            subnet-30c9b25b  : 10.0.0.0/26
+      rootvol_size: 16
+      eip:  yes
+
+backhaul_devops_west:
+      domain:  ai.amazon.{{ product.url }}
+      vpcid:   vpc-26c9b24d
+      region:   us-west-2
+      rootkey:  id_rsa.pub
+      default_group: sg-60c8390f
+      subnet:
+            subnet-3dc9b256 : 10.0.0.0/24
+      security_groups:
+            - sg-fea75691
+      rootvol_size: 16 
+
+
+backhaul_eng_west:
+      domain:   dev.amazon.{{ product.url }}
+      vpcid:    vpc-26c9b24d
+      region:   us-west-2
+      rootkey:  id_rsa.pub
+      default_group:  sg-60c8390f
+      subnet:
+            subnet-426f726d  :  10.0.0.0/24
+      security_groups:
+            - sg-fea75691
+      rootvol_size:  75
+
+
+
+
+fronthaul_devops:
+      vpcid:    vpc-ce716da0
+      region:   us-east-1
+      rootkey:  id_rsa.pub
+      default_group:  sg-2db41542
+      subnet:
+            subnet-c7716da9 :  10.10.0.0/24
+      security_groups:
+            - sg-60b2130f  # Fronthaul-vpc10-10-0
+      rootvol_size:  16
+      eip:  yes
+
+backhaul_devops:
+      vpcid:    vpc-ce716da0
+      region:   us-east-1
+      rootkey:  id_rsa.pub
+      default_group:  sg-2db41542
+      subnet:
+            subnet-c8716da6 :  10.10.1.0/24
+      rootvol_size:  16
+      security_groups:
+            - sg-09b41566  # Backhaul-vpc10-10-0
+
+bootstrap_test:
+      ami_id:   ami-f71a4e9e
+      vpcid:    vpc-ce716da0
+      region:   us-east-1
+      rootkey:  id_rsa.pub
+      default_group:  sg-2db41542
+      subnet:
+            subnet-c7716da9 :  10.10.0.0/24
+      security_groups:
+            - sg-60b2130f  # Fronthaul-vpc10-10-0
+      rootvol_size:  16
+      eip:  yes
+
+
+EBS_profiles:
+      18GB:
+          type: standard
+          devices:
+              sdf:  18
+
+      30GB_opt:
+          type: standard
+          devices:
+              sdf:  30
+
+      40GB_hbase_master:
+          type:  standard
+          devices:
+              sdi:  40
+
+      120GB_hbase_worker:
+          type:  standard
+          devices:
+              sdi:  12
+              sdj:  12
+              sdk:  12
+              sdl:  12
+              sdm:  12
+              sdn:  12
+              sdo:  12
+              sdp:  12
+              sdq:  12
+              sdr:  12
+
+      100GB_hbase:
+          type: standard
+          devices:
+              sdi:  20
+              sdj:  20
+              sdk:  20
+              sdl:  20
+              sdm:  20
+
+      120GB_hbase:
+          type: standard
+          devices:
+              sdi:  30
+              sdj:  30
+              sdk:  30
+              sdl:  30
+
+      100GB:
+          type: standard
+          devices:
+              sdf:  100
+
+      200GB:
+          type: standard
+          devices:
+              sdf:  100
+              sdg:  100
+
+      1TB_hbase:
+          type: standard
+          devices:
+              sdi:  100
+              sdj:  100
+              sdk:  100
+              sdl:  100
+              sdm:  100
+              sdn:  100
+              sdo:  100
+              sdp:  100
+              sdq:  100
+              sdr:  100
+
+
+RDS_profiles:
+      postgresql_devops:
+          region:      us-east-1
+          postgresql_ver:   5.6.13
+          inst_class:  db.m1.small
+          storage:     50
+          avail_zone:  us-east-1b
+          subnets:
+              - subnet-c7716da9
+              - subnet-c8716da6
+          master_user:  {{ product.admin }}
+          master_pass:  AwsRoot
+          security_groups:
+              - sg-60b2130f
+              - sg-09b41566
+          multi_az:   no
+

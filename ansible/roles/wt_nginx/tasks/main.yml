@@ -1,0 +1,31 @@
+---
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Debian Installation
+  include: ubuntu.yml
+  when: ansible_os_family == 'Debian'
+
+- name: RedHat Installation
+  include: redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+# Nginx setup.
+- name: Copy nginx configuration in place.
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - reload nginx
+
+- name: Make sure that /etc/nginx/sites-available created
+  file: path=/etc/nginx/sites-available state=directory mode=0644 owner=root group=root
+
+- name: Make sure that /etc/nginx/sites-enabled created
+  file: path=/etc/nginx/sites-enabled state=directory mode=0644 owner=root group=root
+
+- name: Ensure nginx is started and enabled to start at boot.
+  service: name=nginx state=started enabled=yes

@@ -1,0 +1,33 @@
+source:
+  # 'host' works in 12.34.56.78 format; do not include protocol
+  host: {{ custom.source.host }}
+  account: {{ custom.source.account }}
+  password: {{ custom.source.password }}
+  source_path: {{ custom.source.source_path }}
+  archive_path: {{ custom.source.archive_path }}
+  # 'filename_pattern' is a string fragment that must be present in ingested file filenames
+  filename_pattern: {{ custom.source.filename_pattern }}
+
+webtelemetry:
+  # 'host' format must include protocol; e.g., 'http://'; do not end with '/'
+  host: {{ custom.grafana.host }}
+  # Do not begin 'api_path' with '/'
+  api_path: {{ custom.grafana.api_path }}
+  username: {{ custom.grafana.username }}
+  password: {{ custom.grafana.password }}
+  tenant_name: {{ custom.grafana.tenant_name }}
+
+log:
+  path: {{ custom.log.path }}
+  filename: {{ custom.log.filename }}
+
+# Email non-functional as of 03-2016, email logged instead
+email:
+  smtp_server:
+    host: {{ custom.email.smtp_server.host }}
+    port: {{ custom.email.smtp_server.port }}
+    sender_domain: {{ custom.email.smtp_server.sender_domain }}
+    username: {{ custom.email.smtp_server.username }}
+    password: {{ custom.email.smtp_server.password }}
+  from_address: {{ custom.email.from_address }}
+  to_address: {{ custom.email.to_address }}

@@ -1,0 +1,10 @@
+---
+- file: path=/WT/scripts state=directory owner=wtuser group=wtgroup
+
+- name: Create script for pjm_ercot_import shell script
+  template: src="{{ item.name }}_import.sh.j2" dest="/WT/scripts/{{ item.name }}_import.sh" owner=wtuser group=wtgroup mode=755
+  with_items: "{{ denali.data_importer.jobs }}"
+
+- cron: name="{{ item.name }}" minute="{{ item.cron.minute }}" hour="{{ item.cron.hour }}" day="{{ item.cron.day }}"
+        user=webtelemetry job="/WT/scripts/{{ item.name }}_import.sh"
+  with_items: "{{ denali.data_importer.jobs }}"

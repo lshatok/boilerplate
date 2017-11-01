@@ -1,0 +1,74 @@
+defaults:
+    domain:  agsys.webtelemetry.amazon
+
+
+prod01_fronthaul:
+    vpcid:  vpc-53d7cf31
+    region:  us-west-2
+    rootkey:  id_rsa.pub
+    default_group:  sg-002fdb65  # prod01-group
+    subnet:
+        subnet-b5dbfaf3 :  10.0.0.0/25
+    security_groups:
+        - sg-d37699b6
+    rootvol_size: 30
+    eip:  yes
+
+prod01_backhaul:
+    vpcid:  vpc-53d7cf31
+    region:  us-west-2
+    rootkey:  id_rsa.pub
+    default_group:  sg-002fdb65  # prod01-group
+    subnet:
+        subnet-bedbfaf8 :  10.0.0.128/25
+    rootvol_size: 50
+
+
+test01_fronthaul:
+    vpcid:  vpc-53d7cf31
+    region:  us-west-2
+    rootkey:  id_rsa.pub
+    default_group:  sg-7f76991a  # test01-group
+    subnet:
+        subnet-afdbfae9 :  10.22.1.0/25
+    security_groups:
+        - sg-d37699b6
+    rootvol_size: 30
+    eip:  yes
+
+test01_backhaul:
+    vpcid:  vpc-53d7cf31
+    region:  us-west-2
+    rootkey:  id_rsa.pub
+    default_group:  sg-7f76991a  # test01-group
+    subnet:
+        subnet-aadbfaec :  10.22.1.128/25
+    rootvol_size: 50
+
+
+EBS_profiles:
+    30GB_opt:
+        type:  standard
+        devices:
+            sdf:  30
+
+    60GB_hbase_master:
+        type:  standard
+        devices:
+            sdi:  20
+            sdj:  20
+            sdk:  20
+
+    100GB_hbase_worker:
+        type:  standard
+        devices:
+            sdi:  10
+            sdj:  10
+            sdk:  10
+            sdl:  10
+            sdm:  10
+            sdn:  10
+            sdo:  10
+            sdp:  10
+            sdq:  10
+            sdr:  10

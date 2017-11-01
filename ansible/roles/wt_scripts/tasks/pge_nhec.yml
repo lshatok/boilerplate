@@ -1,0 +1,31 @@
+- name: Gem install bundler
+  shell: "/WT/.rbenv/shims/gem install bundler -v '~> {{ custom.bundler_ver }}'"
+  become_user: "{{ custom.user }}"
+
+- name: Run Bundle install (this may take a while)
+  shell: /WT/.rbenv/shims/bundle install
+  args:
+    chdir: "{{ custom.path }}"
+    executable: /bin/bash
+  become_user: "{{ custom.user }}"
+
+- debug: msg="{{ rubyver }}"
+
+- name: Copy configs
+  template:
+    src: settings.yml.j2
+    dest: "{{ custom.configs }}/{{ item.config}}"
+  with_items:
+    - "{{ scripts }}"
+  tags:
+    - configs
+  become_user: "{{ custom.user }}"
+
+- name: Create crontab files
+  template:
+    src: crontab.j2
+    dest: "/etc/cron.d/{{ item.name }}"
+  with_items:
+    - "{{ scripts }}"
+  tags:
+    - configs

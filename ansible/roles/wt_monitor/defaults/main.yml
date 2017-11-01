@@ -1,0 +1,222 @@
+# Default Grafana variables
+# Commented out variables must be set in group_vars or password_vars
+---
+snmp:
+  host: localhost
+  path: /WT/appserver
+  rubyver: jruby-1.7.17
+  git:
+    url: ssh://git@github.com/webtelemetrytelemetrix.git
+    branch: master
+  app_env: production
+  postgresql_db:
+    host: localhost
+    name: wt_db
+    user: root
+    pass: ''
+  postgresql_dashboard_db:
+    host: localhost
+    name: reporting_db
+    user: root
+    pass: ''
+  mirwais:
+    host: localhost
+    env_name: local_env
+  db_pool_properties:
+    time_between_eviction_runs_millis: 3000000
+    max_active: 10
+    max_idle: 1
+    initial_size: 1
+    min_idle: 1
+    max_wait: 10000
+    remove_abandonded_timeout: 60
+  product_db_pool_properties:
+    time_between_eviction_runs_millis: 3000000
+    max_active: 10
+    max_idle: 1
+    initial_size: 1
+    min_idle: 1
+    max_wait: 10000
+    remove_abandonded_timeout: 60
+  cache_pool_properties:
+    max_total: 10
+    max_idle: 5
+    min_idle: 2
+    num_tests_per_eviction_run: 5
+    time_between_eviction_runs_millis: 60000
+    cache_expire: 86400
+
+  data_collection_schema_url: localhost
+
+  jvm:
+    initial_heap_size: 512m
+    max_heap_size: 1024m
+    perm_size: 256m
+    max_perm_size: 256m
+
+  tenants:
+    - webtelemetry1
+    - telemetrix_tenant
+    - qa5bpa
+    - qa5nhec
+    - qa5pge
+    - qa5schneider
+
+  autoscale:
+    aws:
+      access_key_id: ''
+      secret_access_key: ''
+    cloudera:
+      username: fake
+      password: fake
+    ec2_id: i-xxx, i-xxxx
+    cluster_name: autoscale
+    cluster_ip: localhost
+    tenant_uids: fake_t1, fake_t2
+    timeout: 200
+    shutdown: true
+
+ssn_amm:
+  user: ssn_amm_user
+  pass: ssn_amm_pass
+  url:  https://ssnagent.example.net:6875/agent/amm/v2_0/
+
+ssn_hcm:
+  user: ssn_hcm_user
+  pass: ssn_hcm_pass
+  url: https://ssnagent.example.net:6875/agent/hcm/v1_6/
+
+incremental_job:
+  max_skip_count: 10
+  past_cleaning_days: 0
+  batch_size: 3200
+  duration: 0
+
+full_load_job:
+  batch_size: 3200
+
+webtelemetry_callback:
+  participant_api:
+    eventlist_size_limit: 1
+    account_details_batch_size: 250
+  event_api:
+    num_trailing_days: 30
+
+product_repo_ip: 10.0.0.11
+webtelemetry_home: /WT
+virtualenv_path: "{{ webtelemetry_home }}/virtualenvs/telemetrix"
+
+telemetrix:
+  version: 2.3
+  branch: master
+  app_env: production
+  path: /WT/appserver
+  rrd_path: /WT/rrdtool
+
+#################################
+######  Basalt.yml  ##########
+#################################
+telemetrix:
+  virtualenv: /WT/virtualenvs/telemetrix
+
+  db_host: localhost
+  db_name: telemetrix_db
+  db_user: root
+  db_pass: ''
+
+  forecast_model: marsb
+
+  demandcharge:
+    num_meters_per_task: 1
+    mapred_job_reuse_jvm_num_tasks: 2
+    mapred_child_java_opts: -Xms200M -Xmx200M
+    mapred_task_timeout_ms: 1200000
+
+  training:
+    num_meters_per_task: 1
+    mapred_job_reuse_jvm_num_tasks: 2
+    mapred_child_java_opts: -Xms200M -Xmx200M
+    mapred_task_timeout_ms: 1200000
+
+  evaluation:
+    num_meters_per_task: 1
+    mapred_job_reuse_jvm_num_tasks: 2
+    mapred_child_java_opts: -Xms200M -Xmx200M
+    mapred_task_timeout_ms: 1200000
+
+  metrics:
+    num_meters_per_task: 1
+    mapred_job_reuse_jvm_num_tasks: 2
+    mapred_child_java_opts: -Xms200M -Xmx200M
+    mapred_task_timeout_ms: 1200000
+
+  reporting:
+    num_meters_per_task: 50
+    mapred_job_reuse_jvm_num_tasks: 2
+    mapred_child_java_opts: -Xms200M -Xmx200M
+    mapred_task_timeout_ms: 1200000
+
+nginx:
+  user: influxdb_user
+  #pass: rabbit_password
+  host: localhost
+
+hbase:
+  thriftserver_host: localhost
+
+hadoop:
+  zookeeper_hosts: localhost
+
+hdfs:
+  namenode_host: localhost
+
+log:
+  level: info
+  mode: local
+  logstash_host: logstash-analytics.dev.{{ product.url }}
+
+telemetrix:
+  host: localhost
+  user: internal_api
+  group: wtgroup
+  #pass: reduce
+
+  aggregation:
+    number_of_partitions: 3
+    sliding_window_days: 7
+    sliding_window_cycles: 3
+    sliding_window_events: 7
+    clean_type: 'clean'
+    baseline_type: 'baseline_ld_fcst_rwb_usage_kwh'
+    default_type: 'clean'
+
+webtelemetry:
+  host: localhost
+  user: wtuser
+  #pass: webtelemetry_password
+
+  #url: "https://customer-prod-grafana.example.com"
+  #base_url: "https://customer-prod-grafana.example.com/api/telemetrix"
+
+  internal_api:
+    user: internal_api_user
+    #pass: reduce
+
+spark:
+  master: yarn-client
+  app_name: webtelemetry_spark
+  settings:
+    spark_executor_memory: 512M
+
+kafka:
+  host: localhost
+#######################################
+######  Grafana settings.yml  ##########
+#######################################
+
+
+#other
+nagios:
+  checks:
+    - name: os
+    - name: tomcat

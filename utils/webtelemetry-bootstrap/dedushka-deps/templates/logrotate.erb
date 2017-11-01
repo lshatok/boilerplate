@@ -1,0 +1,14 @@
+<%= path / 'log' %>/*.log {
+daily
+minsize 1M
+dateext
+missingok
+rotate 100
+compress
+delaycompress
+olddir old
+
+lastaction
+pkill -USR1 -f 'unicorn master'
+endscript
+}

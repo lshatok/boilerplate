@@ -1,0 +1,25 @@
+---
+- include: ubuntu.yml
+  when: ansible_os_family == 'Debian'
+
+- include: redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Create /WT/configs
+  file: path=/WT/configs state=directory mode=0755 owner=wtuser group=wtgroup
+
+- name: Update s3cfg config
+  template: src=s3cfg.j2 dest=/WT/configs/s3cfg
+
+- name: Update crontab
+  cron:
+    state: "{{ item.state }}"
+    name: "{{ item.name }}"
+    month: "{{ item.schedule.month }}"
+    day: "{{ item.schedule.day }}"
+    hour: "{{ item.schedule.hour }}"
+    minute: "{{ item.schedule.minute }}"
+    job: "s3cmd sync {{ item.src }} s3://{{ item.bucket }}/{{ item.dest }}/ --delete-removed --config /WT/configs/s3cfg"
+  when: s3_backups.rules
+  with_items: s3_backups.rules
+  sudo_user: wtuser

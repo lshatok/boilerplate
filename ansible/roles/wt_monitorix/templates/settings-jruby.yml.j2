@@ -1,0 +1,73 @@
+:shared_config:
+  :file_name: 'Basalt.yml'
+
+:data_collection_schema_service:
+  :url: {{ data_collection_schema_url }}
+  :username: {{ internal_api_user }}
+  :password: {{ internal_api_pass }}
+
+:virtual_env_path: {{ virtualenv_path }}
+
+:db_pool_properties:  # Grafana
+  driver_class_name: com.postgresql.jdbc.Driver    # The fully qualified Java class name of the JDBC driver to be used
+  test_on_borrow: true                        # The indication of whether objects will be validated before being borrowed from the pool
+  validate_query: SELECT 1                    # The SQL query that will be used to validate connections from this pool before returning them to the caller
+  time_between_eviction_runs_millis: {{telemetrix_db_pool_properties_time_between_eviction_runs_millis }}  # The number of milliseconds to sleep between runs of the idle connection validation/cleaner thread
+  max_active: {{telemetrix_db_pool_properties_max_active }} # The maximum number of active connections that can be allocated from this pool at the same time
+  max_idle: {{telemetrix_db_pool_properties_max_idle }}  # The maximum number of connections that should be kept in the pool at all times.
+  initial_size: {{telemetrix_db_pool_properties_initial_size }} # The initial number of connections that are created when the pool is started
+  min_idle: {{telemetrix_db_pool_properties_min_idle }} # The minimum number of established connections that should be kept in the pool at all times
+  max_wait: {{telemetrix_db_pool_properties_max_wait }} # The maximum number of milliseconds that the pool will wait (when there are no available connections) for a connection to be returned before throwing an exception
+  remove_abandoned: true                      # Flag to remove abandoned connections if they exceed the removeAbandonedTimout.
+  remove_abandoned_timeout:  {{telemetrix_db_pool_properties_remove_abandonded_timeout }} # Timeout in seconds before an abandoned(in use) connection can be removed
+  log_abandoned: false                        # Timeout in seconds before an abandoned(in use) connection can be removed
+  jdbc_interceptors: org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer
+
+:product_db_pool_properties: # Reporting
+  driver_class_name: com.postgresql.jdbc.Driver    # The fully qualified Java class name of the JDBC driver to be used
+  test_on_borrow: true                        # The indication of whether objects will be validated before being borrowed from the pool
+  validate_query: SELECT 1                    # The SQL query that will be used to validate connections from this pool before returning them to the caller
+  time_between_eviction_runs_millis: {{ webtelemetry_product_db_pool_properties_time_between_eviction_runs_millis }}  # The number of milliseconds to sleep between runs of the idle connection validation/cleaner thread
+  max_active: {{ webtelemetry_product_db_pool_properties_max_active }} # The maximum number of active connections that can be allocated from this pool at the same time
+  max_idle: {{ webtelemetry_product_db_pool_properties_max_idle }} # The maximum number of connections that should be kept in the pool at all times.
+  initial_size: {{ webtelemetry_product_db_pool_properties_initial_size }}  # The initial number of connections that are created when the pool is started
+  min_idle: {{ webtelemetry_product_db_pool_properties_min_idle }} # The minimum number of established connections that should be kept in the pool at all times
+  max_wait: {{ webtelemetry_product_db_pool_properties_max_wait }} # The maximum number of milliseconds that the pool will wait (when there are no available connections) for a connection to be returned before throwing an exception
+  remove_abandoned: true                      # Flag to remove abandoned connections if they exceed the removeAbandonedTimout.
+  remove_abandoned_timeout: {{ webtelemetry_product_db_pool_properties_remove_abandonded_timeout }} # Timeout in seconds before an abandoned(in use) connection can be removed
+  log_abandoned: false                        # Timeout in seconds before an abandoned(in use) connection can be removed
+  jdbc_interceptors: org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer
+
+
+
+:cache_pool_properties:
+  host: {{ redis_host }}
+  env_name: {{ cache_env_name }}
+  max_total: {{ cache_pool_properties_max_total }}
+  max_idle: {{ cache_pool_properties_max_idle }}
+  min_idle: {{ cache_pool_properties_min_idle }}
+  test_on_borrow: true
+  test_on_return: true
+  test_while_idle: true
+  num_tests_per_eviction_run: {{ cache_pool_properties_num_tests_per_eviction_run }}
+  time_between_eviction_runs_millis: {{ cache_pool_properties_time_between_eviction_runs_millis }}
+  cache_expire: {{ cache_pool_properties_cache_expire }}  # 1 day
+
+
+:webtelemetry:
+  :url: {{ webtelemetry_url }}
+  :base_url: {{ webtelemetry_base_url }}
+  :username: {{ internal_api_user }}
+  :password: {{ internal_api_pass }}
+
+:ssn_agent:
+  :amm:
+    :local_wsdl_base_dir: {{ telemetrix_path }}/java/ssn/wsdl/amm/2_0
+    :username: {{ ssn_amm_user }}
+    :password: {{ ssn_amm_pass }}
+    :base_url: {{ ssn_amm_url }}
+  :hcm:
+    :local_wsdl_base_dir: {{ telemetrix_path }}/java/ssn/wsdl/hcm/1_6
+    :username: {{ ssn_hcm_user }}
+    :password: {{ ssn_hcm_pass }}
+    :base_url: {{ ssn_hcm_url }}

@@ -1,0 +1,22 @@
+{% if wt_core.logger.mode is defined %}
+mode: {{ wt_core.logger.mode }}
+{% endif %}
+{% if wt_core.logger.level is defined %}
+level: {{ wt_core.logger.level }}
+{% endif %}
+{% if wt_core.logger.logdir is defined and wt_core.logger.logfile is defined %}
+log: {{ wt_core.logger.logdir }}/{{ wt_core.logger.logfile }}
+{% endif %}
+{% if wt_core.logger.logdir is defined and wt_core.logger.errlogfile is defined %}
+error_log: {{ wt_core.logger.logdir }}/{{ wt_core.logger.errlogfile }}
+{% endif %}
+{% if wt_core.logger.remotehost is defined %}
+remote_host: {{ wt_core.logger.remotehost }}
+{% endif %}
+{% if wt_core.logger.config is defined %}
+config:
+{{ wt_core.logger.config | to_nice_yaml | indent(indentfirst=true) }}
+{% endif %}
+{% if wt_core.logger.remotetimeout is defined %}
+remote_timeout: {{ wt_core.logger.remotetimeout }}
+{% endif %}

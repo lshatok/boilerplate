@@ -1,0 +1,29 @@
+---
+
+- name: Check if tomcat is installed for WebTelemetry
+  shell: "[ -f {{ webtelemetry_home }}/apache-tomcat/bin/bootstrap.jar ]"
+  register: tomcat
+  ignore_errors: true
+  changed_when: False
+
+- name: Untar Apache Tomcat
+  unarchive: src=apache-tomcat-7.0.54.tar.gz dest="{{ webtelemetry_home }}/"
+  become_user: "{{ product.user }}"
+  when: tomcat.rc != 0
+
+- name: Crete link
+  file: src="{{ webtelemetry_home }}/apache-tomcat-7.0.54" dest="{{ webtelemetry_home }}/apache-tomcat"
+        state=link
+  become_user: "{{ product.user }}"
+  when: tomcat.rc != 0
+
+- name: Copy logging.properties
+  copy: src=logging.properties dest="{{ webtelemetry_home }}/apache-tomcat/conf/logging.properties"
+  become_user: "{{ product.user }}"
+
+- name: Create upstart from template
+  template: src=tomcat-upstart.j2  dest=/etc/init/tomcat.conf
+            owner=root group=root
+
+- name: Start tomcat
+  service: name=tomcat state=started

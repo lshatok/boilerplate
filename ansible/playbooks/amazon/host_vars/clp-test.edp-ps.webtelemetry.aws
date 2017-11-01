@@ -1,0 +1,27 @@
+network_name: WALMART Test Backhaul
+
+subnet: subnet-e40a588d # walmart_test_backhaul_2a - 171.112.10.96/27
+
+application: telemetrix
+
+security_groups:
+- sg-fe1de196 # walmart_test_backhaul
+- sg-4abd4222 # walmart_ops
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 80
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 80
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1
+
+tags:
+  customer: WALMART
+  stack_name: walmart-test
+
+release: xenial

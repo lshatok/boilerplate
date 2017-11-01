@@ -1,0 +1,27 @@
+network_name: Websnmp Prod Fronthaul
+
+subnet: subnet-cd9c86b5 # intel_prod_fronthaul_2b - 172.19.0.128/26
+
+application: grafana
+
+security_groups:
+  - sg-6028e609 # intel_prod_ops
+  - sg-d3528dba # intel_prod_fronthaul
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1
+
+tags:
+  customer: intel
+  stack_name: intel-prod
+
+release: xenial

@@ -1,0 +1,8 @@
+#aws_manage_volumes:
+#  region: us-west-2
+#
+#  mounts:
+#    - device_name: d
+#      mount_point: /hdfs/vol01
+#      volume_size: 500
+#      delete_on_termination: false

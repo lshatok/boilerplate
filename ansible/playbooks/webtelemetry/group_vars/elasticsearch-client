@@ -1,0 +1,3 @@
+masternode: "false"
+    datanode: "false"
+    http_enabled: "true"

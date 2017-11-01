@@ -1,0 +1,263 @@
+---
+###############
+###  METRIX ###
+###############
+#nagios:
+mnagios_pass: 48jqXBYEimJwCAYO
+pagerduty_key: db0362bfa6634686bf6580b13dd85911
+
+nagios:
+  postgresql:
+    - replica_host: dev01-replica.seksejwlaqos.us-west-2.rds.amazonaws.com
+      user: {{ product.admin }}
+      pass: Gxmoj6peqalukdaw
+
+###############
+###  grafana  ###
+###############
+webtelemetry:
+  db_pass: Gxmoj6peqalukdaw
+  internal_api:
+    pass: zohph5Ai
+  nginx:
+    password: 6ajX055OuLuO
+  smtp_settings:
+    password: C2P^LT$&vcq
+  s3:
+    access_key_id: 'AKIAJ33W5P7V2APKM2KA'
+    secret_access_key: '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'
+  geocoder:
+    api_key: 'AIzaSyB9JP7X1BO2uo2EePDOSz9lQmtv3EH3qbQ'
+  newrelic:
+    license_key: e59610addadd2c99470e6cf7ed3d32c7db3cfb9e
+
+####################
+###  telemetrix  ###
+###################
+telemetrix:
+  postgresql:
+    password: Gxmoj6peqalukdaw
+
+
+app_environment:
+  APP_KEY: 3a91480c909ca57ff94eb17d6eb8b969e316c690b00bc73943f43ccfd7fdhjs8202he2e962d141e4c0a753b7816a8e3a58a045b8e2fe97ed7bef2bd44a2d293de24
+
+#################
+###  Dashboards  ###
+#################
+grafana:
+  postgresql:
+    pass: Gxmoj6peqalukdaw
+
+################
+###  Grafana  ###
+################
+snmp:
+  postgresql_db:
+    pass: Gxmoj6peqalukdaw
+  postgresql_dashboard_db:
+    pass: Gxmoj6peqalukdaw
+
+##################
+###  RABBITMQ  ###
+##################
+nginx:
+  admin_password: admin
+# https://webtelemetry().atlassian.net/browse/DEVOPS-1989
+  passwords:
+    admin:
+      grafana: admin
+    telemetrix:
+      grafana: password
+    webtelemetry:
+      grafana: veirait0Si8neiya
+    grafana:
+      grafana: 6ajX055OuLuO
+    fam:
+      wt.telemetrix: password
+      wt.telemetrix.dashboard: password
+
+  users:
+    - name: admin
+      password: admin
+      vhost: grafana
+      configure_priv: .*
+      read_priv: .*
+      write_priv: .*
+      force: yes
+      tags: administrator
+
+    - name: telemetrix
+      password: password
+      vhost: grafana
+      configure_priv: .*
+      read_priv: .*
+      write_priv: .*
+      force: yes
+      tags:
+
+    - name: webtelemetry
+      password: veirait0Si8neiya
+      vhost: grafana
+      configure_priv: .*
+      read_priv: .*
+      write_priv: .*
+      force: yes
+      tags:
+
+    - name: grafana
+      password: 6ajX055OuLuO
+      vhost: grafana
+      configure_priv: .*
+      read_priv: .*
+      write_priv: .*
+      force: yes
+      tags:
+
+    - name: fam
+      vhost: wt.telemetrix
+      configure_priv: .*
+      read_priv: .*
+      write_priv: .*
+      force: yes
+      tags:
+
+    - name: fam
+      vhost: wt.telemetrix.dashboard
+      configure_priv: .*
+      read_priv: .*
+      write_priv: .*
+      force: yes
+      tags:
+
+###################
+###  Analytics  ###
+###################
+telemetrix:
+  db_pass: Gxmoj6peqalukdaw
+  nginx:
+    user: telemetrix
+    password: password
+
+#################
+# WEBTELEMETRY #
+#################
+webtelemetry:
+  db_password: Gxmoj6peqalukdaw
+  password: rootroot
+  nginx:
+    password: veirait0Si8neiya
+
+#####################
+###    INFLUXDB   ###
+#####################
+influxdb::
+  password: password
+
+influxdb_publisher:
+  password: password
+
+
+#####################
+###    Cascade    ###
+#####################
+
+cascade:
+  # database.yml
+  db_pass: Gxmoj6peqalukdaw
+  # settings.local.yml
+  token_encryption_key: 'your_key_must_be_32_bytes_or_longer'
+  token_encryption_iv: 'your_iv_must_be_12_bytes_or_longer'
+
+
+#####################
+###  TELEMETRIX   ###
+#####################
+
+influxdb:
+  nginx:
+    password: 6ajX055OuLuO
+
+  rds_production:
+    password: Gxmoj6peqalukdaw
+
+  rds_replica_production:
+    password: Gxmoj6peqalukdaw
+
+  rds_influxdb_source:
+    password: Gxmoj6peqalukdaw
+
+  rds_webtelemetry_source:
+    password: Gxmoj6peqalukdaw
+
+  rds_metrix_source:
+    password: Gxmoj6peqalukdaw
+
+
+  s3:
+    access_key_id: AKIAJ33W5P7V2APKM2KA
+    secret_access_key: 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
+
+  newrelic:
+    license_key: 'e59610addadd2c99470e6cf7ed3d32c7db3cfb9e'
+
+###############
+###  Denali  ###
+###############
+denali:
+  listeners:
+      password: password
+  postgresql:
+    username: {{ product.admin }}
+    password: Gxmoj6peqalukdaw
+
+custom.
+  walmart_metrix:
+    database:
+      password: Gxmoj6peqalukdaw
+
+
+####################
+###  S3_Backups  ###
+####################
+
+s3_backups:
+  access_key: AKIAJ33W5P7V2APKM2KA
+  secret_key: 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
+
+
+dashboard:
+    password: password
+
+fam:
+    publish:
+        password: password
+
+postgresql:
+    password: Gxmoj6peqalukdaw
+
+webserver:
+    admin_password: admin
+
+webservices:
+    landlord:
+        username: marsuser
+        token: f524b6b0f51bc0c446387c020532399d562f36a1
+    mars:
+        username: admin
+        token: 1154ff13f94a76667d404175cd6e15b28ee210c2
+
+tenant_service:
+    publish:
+        password: password
+
+rdbms:
+    django:
+        password: Gxmoj6peqalukdaw
+    mars:
+        password: Gxmoj6peqalukdaw
+
+mars_configs:
+    generic:
+        publish:
+            password: password

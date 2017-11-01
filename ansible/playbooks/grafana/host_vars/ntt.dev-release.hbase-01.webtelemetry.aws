@@ -1,0 +1,6 @@
+nagios:
+  hostname: ip-10-81-1-153
+  checks:
+    - name: os
+    - name: telemetrix_metrix_forecast_service
+    - name: telemetrix_metrix_training_service

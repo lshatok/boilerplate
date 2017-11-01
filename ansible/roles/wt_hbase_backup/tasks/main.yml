@@ -1,0 +1,36 @@
+---
+
+  - include: ubuntu.yml
+    when: ansible_os_family == 'Debian'
+
+  - include: redhat.yml
+    when: ansible_os_family == 'RedHat'
+
+  - name: Create /WT/configs
+    file: path=/WT/configs state=directory mode=0755 owner=wtuser group=wtgroup
+
+  - name: Create /WT/scripts
+    file: path=/WT/scripts state=directory mode=0755 owner=wtuser group=wtgroup
+
+#  - name: Deploy S3cmd confg
+#    template: src=hbase_s3backup.cfg.j2 dest=/WT/configs/hbase_s3backup.cfg force=yes
+
+  - name: Deploy Backup script
+    template: src=hbase_backup.py.j2 dest=/WT/scripts/hbase_backup.py mode=0755 force=yes
+    when: hbase_s3backup.rules
+
+  - name: Hbase Backup crontab
+    cron:
+      state: "{{ item.state }}"
+      name: "{{ item.name }}"
+      month: "{{ item.schedule.month }}"
+      day: "{{ item.schedule.day }}"
+      weekday: "{{ item.schedule.weekday }}"
+      hour: "{{ item.schedule.hour }}"
+      minute: "{{ item.schedule.minute }}"
+      job: "{{item.job}}"
+      cron_file: "{{item.cron_file}}"
+      user: "{{item.user}}"
+    when: hbase_s3backup.rules
+    with_items: hbase_s3backup.rules
+    become_user: root

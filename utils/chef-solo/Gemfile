@@ -1,0 +1,5 @@
+source "http://rubygems.org"
+
+#removed vagrant https://groups.google.com/forum/#!msg/vagrant-up/kX_wvn7wcds/luwNur4kgDEJ
+#don't use it in a gemfile
+gem "librarian"

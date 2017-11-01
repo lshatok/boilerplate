@@ -1,0 +1,13 @@
+---
+- name: Stop services
+  service:
+    name: "{{ item }}"
+    state: stopped
+  with_items:
+    - WTdb
+    - WTmon
+    - WTappl
+    - WThttpd
+  register: services_stop
+  ignore_errors: true
+  tags: stop_services

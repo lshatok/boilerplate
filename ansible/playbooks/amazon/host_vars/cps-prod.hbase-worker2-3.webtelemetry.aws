@@ -1,0 +1,29 @@
+network_name: WALMART BackHaul
+
+# CPS prod backhaul 1d
+subnet: subnet-1e175068
+
+application: hbase-worker
+
+security_groups:
+  - sg-a7e521dc # walmart_prod_backhaul
+  - sg-93090beb # walmart_ops
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 100
+    delete_on_termination: false
+  - device_name: /dev/sdg
+    volume_size: 100
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 2
+
+tags:
+  customer: walmart-prod
+  stack_name: walmart-prod

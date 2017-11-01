@@ -1,0 +1,9 @@
+---
+branch: heco/2.0/prod
+webtelemetry_home: /WT
+virtualenv:  /WT/virtenv
+
+jruby_path:  /WT/jruby
+
+
+domain: dev.{{ product.url }}

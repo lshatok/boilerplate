@@ -1,0 +1,2 @@
+export TELEMETRIX_HOME="{{ telemetrix_home }}"
+{{ denali.wt_data_importer.virtualenv_path }}/bin/python -m data_importer.dayahead_lmp_import >> /var/log/webtelemetry/dayahead_lmp_import.log 2>&1

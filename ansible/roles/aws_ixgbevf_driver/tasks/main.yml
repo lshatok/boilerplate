@@ -1,0 +1,126 @@
+---
+# tasks file for role aws_enhanced_networking 
+# Contains a list of tasks that installs the neccesary ixgbevf network drivers
+# and configures AWS instance for enhanced networking
+#
+#
+- name: Install awscli tools locally
+  local_action: shell pip install awscli
+  register: install_awscli
+  tags: install-awscli
+  sudo: False
+
+- name: Get the username running the deploy
+  local_action: shell whoami
+  register: aws_cli_user 
+  sudo: False
+
+- name: Set home directory of the user
+  set_fact:
+     home_dir: /Users/{{ aws_cli_user.stdout }}
+
+- name: Create the AWS config directory
+  file: path={{ home_dir }}/.aws state=directory owner={{ aws_cli_user.stdout }} mode=0755
+  delegate_to: localhost
+  sudo: False
+
+- name: Create AWS config file 
+  template: src=aws_cli_config.j2 dest={{ home_dir }}/.amazon/config owner={{ aws_cli_user.stdout }} mode=0600 force=yes
+  delegate_to: localhost
+  sudo: False
+
+- name: Update the package cache
+  apt:  update_cache=yes 
+  when: ansible_distribution == "Ubuntu"
+  tags: update_package_cache
+
+- name: Update all packages to the latest version
+  apt:  upgrade=dist  
+  when: ansible_distribution == "Ubuntu"
+  tags: update_packages
+
+- name: Unzip ixgbevf drivers to /usr/src on AWS node
+  unarchive: src=ixgbevf-2.16.4.tar.gz dest=/usr/src owner=root group=root mode=0644                                  
+  sudo: true
+  when: ansible_distribution == "Ubuntu"
+  tags: unzip_drivers
+
+- name: Install dkms apt package
+  apt: name=dkms state=present 
+  when: ansible_distribution == "Ubuntu"
+  tags: install_dkms
+
+- name: Create dkms config file
+  template: src=dkms.j2 dest=/usr/src/ixgbevf-2.16.4/dkms.conf owner=root group=root mode=0644
+  when: ansible_distribution == "Ubuntu"
+
+- name: Remove old ixgbevf driver from dkms config                                                                  
+  command: dkms remove -m ixgbevf/2.16.4 --all                                                                    
+  sudo: true
+  ignore_errors: true
+  when: ansible_distribution == "Ubuntu"                                                                                
+
+- name: Add ixgbevf driver to dkms config 
+  command: dkms add -m ixgbevf -v 2.16.4 
+  sudo: true
+  when: ansible_distribution == "Ubuntu"
+
+- name: Build ixgbevf driver
+  command: dkms build -m ixgbevf -v 2.16.4 
+  sudo: true
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install ixgbevf driver into dkms
+  command: dkms install -m ixgbevf -v 2.16.4 
+  sudo: true
+  when: ansible_distribution == "Ubuntu"
+
+- name: Update initramfs 
+  command: update-initramfs -c -k all 
+  sudo: true
+  when: ansible_distribution == "Ubuntu"
+  tags: initramfs
+
+- name: Gather instance facts
+  action: ec2_facts
+  register: ec2_facts
+  tags: ec2_facts
+
+- debug: var=amazon.ec2.access_key_id
+- debug: var=amazon.ec2.secret_access_key
+- debug: var=amazon.ec2.region
+- debug: var=amazon.ec2.output_format
+
+- name: "Stop the AWS instance"
+  local_action:
+     module: ec2
+     state: stopped
+     aws_access_key: "{{ amazon.ec2.access_key_id }}"
+     aws_secret_key: "{{ amazon.ec2.secret_access_key }}"
+     instance_ids: "{{ ansible_ec2_instance_id }}"
+     region: "{{ ansible_ec2_placement_region }}"
+     wait: true
+
+
+- name: Export local variables
+  local_action: shell export region="{{ ansible_ec2_placement_region }}"
+
+
+#- name: Turn on enhanced networking on AWS instance 
+#  local_action: shell ec2-modify-instance-attribute {{ansible_ec2_instance_id}}  --sriov simple  --region {{ansible_ec2_placement_region}}
+#  sudo: False
+
+
+- name: Turn on enhanced networking for AWS instance
+  local_action: command amazon ec2 modify-instance-attribute --region {{ ansible_ec2_placement_region }} --instance-id {{ ansible_ec2_instance_id }}  --sriov-net-support simple
+  sudo: False 
+
+- name: "Start the AWS instance"                                                                                            
+  local_action:                                                                                                            
+     module: ec2                                                                                                           
+     state: running                                                                                    
+     aws_access_key: "{{ amazon.ec2.access_key_id }}"
+     aws_secret_key: "{{ amazon.ec2.secret_access_key }}"
+     instance_ids: "{{ ansible_ec2_instance_id }}"                                                                         
+     region: "{{ ansible_ec2_placement_region }}"                                                                          
+     wait: true

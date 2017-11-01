@@ -1,0 +1,169 @@
+## Default Common role for every instance ##
+---
+
+- name: Update system limits
+  lineinfile: dest=/etc/security/limits.conf
+              line="{{ item }}"
+  with_items: '{{ limits_lines }}'
+
+- name: Disable swap
+  sysctl: name=vm.swappiness value=0 state=present
+
+- name: Create FileSystems
+  filesystem: fstype=xfs dev="{{ item.device_name }}" force=yes
+  with_items: '{{ hbase_mounts }}'
+  ignore_errors: true
+
+- name: Create directories
+  file: path="{{ item.mount_point }}" state=directory
+  with_items: '{{ hbase_mounts }}'
+  ignore_errors: true
+
+- name: Mount FileSystems
+  mount: name="{{ item.mount_point }}" src="{{ item.device_name }}" fstype=xfs
+         opts=defaults,nobootwait,noatime
+         state=mounted
+  with_items: '{{ hbase_mounts }}'
+  ignore_errors: true
+
+- name: Add Cloudera Precise Repository Apt Key (16.1)
+  apt_key: url=http://archive.cloudera.com/cm5/ubuntu/xenial/amd64/cm/archive.key state=present
+  when: ansible_distribution_version == '16.1'
+
+- name: Add Cloudera Precise Repository (16.1)
+  apt_repository: repo='{{ item }}' state=present filename='cloudera-cm5'
+  with_items:
+   - 'deb [arch=amd64] http://archive.cloudera.com/cm5/ubuntu/xenial/amd64/cm trusty-cm5.8.2 contrib'
+   - 'deb-src http://archive.cloudera.com/cm5/ubuntu/xenial/amd64/cm trusty-cm5.8.2 contrib'
+  when: ansible_distribution_version == '16.1'
+
+- name: Add Cloudera Trusty Repository Apt Key (14.04)
+  apt_key: url=http://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/archive.key state=present
+  when: ansible_distribution_version == '14.04'
+
+- name: Add Cloudera Trusty Repository (14.04)
+  apt_repository: repo='{{ item }}' state=present filename='cloudera-cm5'
+  with_items:
+   - 'deb [arch=amd64] http://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm trusty-cm5.8.2 contrib'
+   - 'deb-src http://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm trusty-cm5.8.2 contrib'
+  when: ansible_distribution_version == '14.04'
+
+- name: Apt-get Update
+  apt:  cache_valid_time=3600 update_cache=yes
+  become: yes
+
+- name: Install Cloudera Manager Agent Packages
+  apt: name={{ item }} state=present cache_valid_time=3600
+  become: yes
+  with_items:
+    - oracle-j2sdk1.7
+    - cloudera-manager-agent
+    - cloudera-manager-daemons
+
+- name: Setup Cloudera SCM Agent Config
+  template: src=config.ini.j2 dest=/etc/cloudera-scm-agent/config.ini owner=root group=root mode=0644
+
+- name: Restart Cloudera SCM Agent
+  service: name=cloudera-scm-agent state=restarted
+
+- name: Installation instructions
+  pause: prompt="Complete manual installation on master, using CDH installer.  Press any key when ready..."
+
+- name: Check for /user path
+  shell: "hadoop fs -ls /user"
+  args:
+    executable: /bin/bash
+  become_user: hdfs
+  register: hdfs_user
+  ignore_errors: true
+  changed_when: False
+
+- name: Create /user dir
+  shell: "hadoop fs -mkdir /user"
+  args:
+    executable: /bin/bash
+  become_user: hdfs
+  when: hdfs_user.rc != 0
+
+- name: chmod /user
+  shell: "hadoop fs -chmod go+rx /user"
+  become_user: hdfs
+  when: hdfs_user.rc != 0
+
+- name: Check for /user/webtelemetry path
+  shell: "hadoop fs -ls /user/webtelemetry"
+  args:
+    executable: /bin/bash
+  become_user: hdfs
+  register: hdfs_webtelemetry
+  ignore_errors: true
+  changed_when: False
+
+- name: Create /user/webtelemetry dir
+  shell: "hadoop fs -mkdir /user/webtelemetry"
+  args:
+    executable: /bin/bash
+  become_user: hdfs
+  when: hdfs_webtelemetry.rc != 0
+
+- name: chown to webtelemetry
+  shell: "hadoop fs -chown webtelemetry:{{ product.admin }} /user/webtelemetry"
+  args:
+    executable: /bin/bash
+  become_user: hdfs
+  when: hdfs_webtelemetry.rc != 0
+
+- name: Check for /user/hbase path
+  shell: "hadoop fs -ls /user/hbase"
+  args:
+    executable: /bin/bash
+  become_user: hdfs
+  register: hdfs_hbase
+  ignore_errors: true
+  changed_when: False
+
+- name: Create /user/hbase dir
+  shell: "hadoop fs -mkdir /user/hbase"
+  args:
+    executable: /bin/bash
+  become_user: hdfs
+  when: hdfs_hbase.rc != 0
+
+- name: chown to hbase
+  shell: "hadoop fs -chown hbase:hbase /user/hbase"
+  args:
+    executable: /bin/bash
+  become_user: hdfs
+  when: hdfs_hbase.rc != 0
+
+- name: Check for /user/history path
+  shell: "hadoop fs -ls /user/history"
+  args:
+    executable: /bin/bash
+  become_user: hdfs
+  register: hdfs_history
+  ignore_errors: true
+  changed_when: False
+
+- name: Create /user/history dir
+  shell: "hadoop fs -mkdir /user/history"
+  args:
+    executable: /bin/bash
+  become_user: hdfs
+  when: hdfs_history.rc != 0
+
+- name: chown to history
+  shell: "hadoop fs -chown webtelemetry:{{ product.admin }} /user/history"
+  args:
+    executable: /bin/bash
+  become_user: hdfs
+  when: hdfs_history.rc != 0
+
+- name: hadoop chmod /user/history
+  shell: "hadoop fs -chmod -R 777 /user/history"
+  args:
+    executable: /bin/bash
+  become_user: hdfs
+  when: hdfs_history.rc != 0
+
+

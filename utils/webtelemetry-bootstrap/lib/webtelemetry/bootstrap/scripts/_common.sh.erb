@@ -1,0 +1,59 @@
+#!/bin/bash
+echo "<common.sh>"
+
+#set -e
+
+APP_USER="<%= app.app_user %>"
+APP_USER_HOME="/home/$APP_USER"
+APP_NAME="<%= app.name %>"
+PORT="<%= app.port %>"
+WT_ROOT="<%= app.prefix %>"
+APP_SUBDIRECTORY="<%= app.subdirectory %>"
+REPO_ROOT="$WT_ROOT/$APP_NAME"
+APP_ROOT="${REPO_ROOT}${APP_SUBDIRECTORY}"
+GITHUB_USER="<%= app.github_user %>"
+REPO="<%= app.git_repo %>"
+BRANCH="<%= app.branch %>"
+COMMON_GROUP="<%= app.common_group %>"
+DOMAIN="<%= app.domain %>"
+RECONFIGURE="<%= app.configure %>"
+
+successfully() {
+  $* && echo "ok." || (echo -e "\n"failed 1>&2 && exit 1)
+}
+
+fancy_echo() {
+  echo -e "\n$1"
+}
+
+<%- if Deployment.verbose -%>
+next_step() {
+  echo "$1..."
+}
+<%- else -%>
+next_step() {
+ echo >> /dev/null
+}
+<%- end -%>
+
+as_app_user() {
+  successfully sudo -u $APP_USER -E $*
+}
+
+quiet() {
+  $* >/dev/null
+}
+
+installed() {
+  quiet which $1
+}
+
+install() {
+  successfully sudo apt-get install -y $*
+}
+
+function git_branch {
+  local ref=$(git symbolic-ref HEAD 2> /dev/null)
+  ${ref#refs/heads/}
+}
+echo "</common.sh>"

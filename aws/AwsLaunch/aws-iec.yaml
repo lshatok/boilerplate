@@ -1,0 +1,61 @@
+defaults:
+      domain:   iec.amazon.{{ product.url }}
+      # Define AWS IAM keys here to override env vars if desired
+      #AWS_ACCESS_KEY_ID:
+      #AWS_SECRET_ACCESS_KEY:
+
+devops_public:
+      vpcid:   vpc-a13122c3
+      region:   us-east-1
+      rootkey:  id_rsa.pub
+      default_group: sg-2d3bd248
+      subnet:
+            subnet-817506a9 : 10.97.0.0/28
+      security_groups:
+            - sg-723ad317  # vpc-iec-pilot
+      rootvol_size:  16
+      eip:  yes 
+
+
+fronthaul_iec_pilot:
+      vpcid:   vpc-a13122c3
+      region:   us-east-1
+      rootkey:  id_rsa.pub
+      default_group: sg-b53bd2d0  # frontaul-iec-pilot
+      subnet:
+            subnet-f06211d8  : 10.97.0.16/28
+      security_groups:
+            - sg-723ad317  # vpc-iec-pilot
+            - sg-2d3bd248  # ai
+      rootvol_size: 8
+      eip:  yes
+
+
+backhaul_iec_pilot:
+      vpcid:   vpc-a13122c3
+      region:   us-east-1
+      rootkey:  id_rsa.pub
+      default_group: sg-813bd2e4  # backhaul-iec-pilot
+      subnet:
+            subnet-807506a8 :  10.97.1.0/25
+      security_groups:
+            - sg-723ad317  # vpc-iec-pilot
+            - sg-2d3bd248  # ai
+      rootvol_size:  50
+
+
+
+EBS_profiles:
+      300GB_hbase:
+          type:  standard
+          devices:
+              sdi:  100
+              sdj:  100
+              sdk:  100
+
+      30GB_opt:
+          type: standard
+          devices:
+              sdf:  30
+
+

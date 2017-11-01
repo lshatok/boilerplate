@@ -1,0 +1,94 @@
+---
+
+- name: Check for nginx
+  shell: "[ -f /usr/sbin/nginx ]"
+  register: nginx
+  ignore_errors:  True
+  changed_when:  False
+
+- name: Add Nginx ppa repository
+  shell: add-apt-repository -y ppa:nginx/stable
+  when: "nginx.rc != 0 or nginx_update"
+
+- name: Run apt-get update
+  apt: update_cache=yes
+  when: "nginx.rc != 0 or nginx_update"
+
+- name: Install nginx
+  apt: name=nginx state=latest
+  when: "nginx.rc != 0 or nginx_update"
+
+- name: Start nginx
+  service: name=nginx state=started
+  when: "nginx.rc != 0 or nginx_update"
+
+- name: Copy ssl certs
+  copy: src=webtelemetry.us/{{ item }} dest=/usr/local/ssl/certs/{{ item }} owner=root group=root
+  with_items:
+    - webtelemetry.us.ca-bundle
+    - webtelemetry.us.ca-chain.crt
+    - webtelemetry.us.crt
+  when: domain == "webtelemetry.us"
+
+- name: Copy webtelemetry.us ssl key
+  copy: src=webtelemetry.us/webtelemetry.us.key dest=/usr/local/ssl/private/webtelemetry.us.key owner=root group=root
+  when: domain == "webtelemetry.us"
+
+- name: Copy dev.{{ product.url }} ssl certs
+  copy: src=dev.{{ product.url }}/{{ item }} dest=/usr/local/ssl/certs/{{ item }} owner=root group=root
+  with_items:
+    - dev.{{ product.url }}.ca-bundle
+    - dev.{{ product.url }}.ca-chain.crt
+    - dev.{{ product.url }}.crt
+  when: domain == "dev.{{ product.url }}"
+
+- name: Copy dev.{{ product.url }} ssl key
+  copy: src=dev.{{ product.url }}/dev.{{ product.url }}.key dest=/usr/local/ssl/private/dev.{{ product.url }}.key owner=root group=root
+  when: domain == "dev.{{ product.url }}"
+
+- name: Copy fed.{{ product.url }} ssl certs
+  copy: src=fed.{{ product.url }}/{{ item }} dest=/usr/local/ssl/certs/{{ item }} owner=root group=root
+  with_items:
+    - fed.{{ product.url }}.ca-bundle
+    - fed.{{ product.url }}.ca-chain.crt
+    - fed.{{ product.url }}.crt
+  when: domain == "fed.{{ product.url }}"
+
+- name: Copy fed.{{ product.url }} ssl key
+  copy: src=fed.{{ product.url }}/fed.{{ product.url }}.key dest=/usr/local/ssl/private/fed.{{ product.url }}.key owner=root group=root
+  when: domain == "fed.{{ product.url }}"
+
+- name: Copy webtelemetry.us ssl certs
+  copy: src=webtelemetry.us/{{ item }} dest=/usr/local/ssl/certs/{{ item }} owner=root group=root
+  with_items:
+    - webtelemetry.us.ca-bundle
+    - webtelemetry.us.crt
+  when: domain == "webtelemetry.us"
+
+- name: Copy webtelemetry.us ssl key
+  copy: src=webtelemetry.us/{{ item }} dest=/usr/local/ssl/private/{{ item }} owner=root group=root
+  with_items:
+    - webtelemetry.us.key
+  when: domain == "webtelemetry.us"
+
+- name: Copy ssn.{{ product.url }} ssl certs
+  copy: src=ssn.{{ product.url }}/{{ item }} dest=/usr/local/ssl/certs/{{ item }} owner=root group=root
+  with_items:
+    - ssn.{{ product.url }}.ca-bundle
+    - ssn.{{ product.url }}.ca-chain.crt
+    - ssn.{{ product.url }}.crt
+  when: domain == "ssn.{{ product.url }}"
+
+- name: Copy ssn.{{ product.url }} ssl key
+  copy: src=ssn.{{ product.url }}/dev.{{ product.url }}.key dest=/usr/local/ssl/private/dev.{{ product.url }}.key owner=root group=root
+  when: domain == "ssn.{{ product.url }}"
+
+- name: Copy do.test01.hec.ssnsgs.net ssl certs
+  copy: src=do.test01.hec.ssnsgs.net/{{ item }} dest=/usr/local/ssl/certs/{{ item }} owner=root group=root
+  with_items:
+    - do_test01_hec_ssnsgs_net.ca-bundle
+    - do_test01_hec_ssnsgs_net.crt
+  when: domain == "do.test01.hec.ssnsgs.net"
+
+- name: Restart nginx
+  service: name=nginx state=restarted

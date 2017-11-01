@@ -1,0 +1,40 @@
+---
+#####################################################################################################
+- name: Disable services for automatic start
+  service:
+    name: "{{ item }}"
+    enabled: no
+  with_items:
+    - snmpd
+    - vboxadd
+    - vboxadd-service
+    - postfix
+    - rsyslog
+    - WTdb
+    - WTmon
+    - WTappl
+    - WThttpd
+  register: services_disable
+  ignore_errors: true
+  tags: disable_services
+
+- name: Stop services
+  service:
+    name: "{{ item }}"
+    state: stopped
+  with_items:
+    - snmpd
+    - vboxadd
+    - vboxadd-service
+    - postfix
+    - rsyslog
+    - WTdb
+    - WTmon
+    - WTappl
+    - WThttpd
+  register: services_stop
+  ignore_errors: true
+  tags: stop_services
+
+
+- include: "selinux_config.yml"

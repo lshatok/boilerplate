@@ -1,0 +1,7 @@
+---
+- name: Playbook Deploy Nginx
+  hosts: "{{ target }}"
+  sudo: true
+  roles:
+    - wt_webserver
+

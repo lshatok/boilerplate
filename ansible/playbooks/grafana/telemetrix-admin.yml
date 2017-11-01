@@ -1,0 +1,8 @@
+---
+- name: Playbook deploy telemetrix-admin
+  hosts: "grafana-app"
+  gather_facts: true
+  sudo: true
+
+  roles:
+    - wt_telemetrix-admin

@@ -1,0 +1,63 @@
+#TELEMETRIX default variables
+---
+grafana:
+  repo: ssh://git@github.com/webtelemetrygrafana.git
+  branch: master
+  path: /WT/grafana
+  rubyver: 2.1.2
+  enforce_polling: false
+  app_env: production
+  user: webtelemetry
+  group: wtgroup
+  new_relic_key: ''
+  ssl: false
+
+  #database.yml
+  postgresql_host: localhost
+  postgresql_database: grafana
+  postgresql_username: {{ product.user }}
+  postgresql_password: ''
+
+  collection_host: XXX.us-east-1.rds.amazonaws.com
+  collection_database: telemetrix
+  collection_username: root
+  collection_password: ''
+
+  #settings.yml
+  deployment_id: dso1
+
+  interact:
+    gmail_username: interact_user
+    gmail_password: interact_pass
+
+  kamaishi:
+    gmail_password: interact_pass
+
+  smtp:
+    username: smtp_user
+    password: smtp_pass
+
+  sms:
+    account_sid: sms_account_sid
+    auth_token: sms_auth_token
+    number: +XXXXXXXXX
+    base_url: https://{{ product.url }}
+
+  nagios:
+    checks:
+      - name: os
+      - name: nginx
+      - name: unicorn
+      - name: https
+      - name: redis
+      - name: resque
+
+telemetrix:
+  host: localhost
+
+snmp:
+  host: localhost
+ telemetrix_host: localhost
+
+logstash:
+  host: 10.0.0.145

@@ -1,0 +1,13 @@
+---
+- name: Playbook deploy hbase, telemetrix
+  hosts: "hbase-worker"
+  gather_facts: true
+  sudo: true
+
+  vars:
+    cloudera_manager: false
+    cdh_version: 5
+
+  roles:
+    - wt_hbase
+    - wt_telemetrix

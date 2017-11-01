@@ -1,0 +1,43 @@
+#role: wt_go
+#task: bundle
+---
+
+- name: Gem install bundler
+  shell: "/WT/.rbenv/shims/gem install bundler"
+  sudo_user: "{{ influxdb.user }}"
+
+- name: Run rbenv rehash
+  shell: "/home/{{ influxdb.user }}/.rbenv/bin/rbenv rehash executable=/bin/bash chdir=/home/{{ influxdb.user }}"
+  sudo_user: "{{ influxdb.user }}"
+
+- name: Gem install bundle
+  shell: "/home/{{ influxdb.user }}/.rbenv/shims/gem install bundle"
+  sudo_user: "{{ influxdb.user }}"
+
+- name: Run rbenv rehash
+  shell: "/home/{{ influxdb.user }}/.rbenv/bin/rbenv rehash executable=/bin/bash chdir=/home/{{ influxdb.user }}"
+  sudo_user: "{{ influxdb.user }}"
+
+- name: Install dependencies (bundle install)
+  shell: "/home/{{ influxdb.user }}/.rbenv/shims/bundle install"
+  args:
+    chdir: "{{ influxdb.path }}"
+    executable: /bin/bash
+  sudo_user: "{{ influxdb.user }}"
+
+- name: Run rbenv rehash
+  shell: "/home/{{ influxdb.user }}/.rbenv/bin/rbenv rehash executable=/bin/bash chdir=/home/{{ influxdb.user }}"
+  sudo_user: "{{ influxdb.user }}"
+
+- name: Gem install foreman
+  shell: "/home/{{ influxdb.user }}/.rbenv/shims/gem install foreman"
+  sudo_user: "{{ influxdb.user }}"
+
+- name: NPM Install bower
+  npm: name=bower global=yes state=present
+
+- name: Bower:install
+  shell: "/home/{{ influxdb.user }}/.rbenv/shims/bundle exec rake bower:install"
+  args:
+    chdir: "{{ influxdb.path }}"
+  sudo_user: "{{ influxdb.user }}"

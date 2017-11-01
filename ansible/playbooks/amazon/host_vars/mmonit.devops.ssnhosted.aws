@@ -1,0 +1,24 @@
+network_name: Devops us-west-2b private
+
+subnet:  subnet-307fb855
+# 10.18.16.16/28   us-west-2b
+
+application:  mnagios
+
+security_groups:
+  - sg-419a2e24  #ssn_hosted_vpc
+  - sg-eee0488b  #webtelemetry_ops
+
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+
+count: 1
+
+tags:
+  customer:  webtelemetry

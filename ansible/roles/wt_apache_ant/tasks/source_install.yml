@@ -1,0 +1,11 @@
+---
+- name: download apache-ant
+  get_url: url=http://archive.apache.org/dist/ant/binaries/apache-ant-1.8.2-bin.tar.gz dest=/WT/files/apache-ant-1.8.2-bin.tar.gz
+
+- name: Unarchive ant tar to /opt/ant
+  unarchive: src=/WT/files/apache-ant-1.8.2-bin.tar.gz dest=/opt/ copy=no
+
+- command: mv /opt/apache-ant-1.8.2 /opt/ant
+
+- name: Create symlink for ant to /usr/bin
+  file: src=/opt/ant/bin/ant dest=/usr/bin/ant state=link

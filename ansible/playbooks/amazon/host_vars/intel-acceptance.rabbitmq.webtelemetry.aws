@@ -1,0 +1,29 @@
+network_name: Intel Acceptance BackHaul
+
+
+subnet: subnet-cc3ff8e1 # intel_acceptance_backhaul_1c - 109.36.9.106/24
+
+application: influxdb
+
+security_groups:
+  - sg-6052731a #intel_nonprod_ops
+  - sg-533e1d29 #intel_nonprod_ops_influxdb
+  - sg-03a6187e #intel_acceptance_influxdb
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 40
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 40
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1
+
+tags:
+  customer: intel
+  stack_name: intel-acceptance
+
+release: xenial

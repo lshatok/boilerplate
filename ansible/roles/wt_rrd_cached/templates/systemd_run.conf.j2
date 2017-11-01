@@ -1,0 +1,11 @@
+[Unit]
+Description=RTCC
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+WorkingDirectory=/WT/rtcc
+Environment="TELEMETRIX_HOME="{{ telemetrix_home }}"" "VIRTUAL_ENV={{ virtualenv_path }}" "PYTHONPATH={{ rtcc.path }}"
+ExecStart={{ virtualenv_path }}/bin/python -m run.py > {{ rtcc.log_path}}/rtcc_external_{{ rtcc.name }}.log 2>&1
+
+[Install]
+WantedBy=multi-user.target

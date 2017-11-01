@@ -1,0 +1,6 @@
+[wt:children]
+local
+
+[local]
+# webtelemetry ansible_ssh_host=10.0.0.100
+wt ansible_ssh_host=10.0.0.234

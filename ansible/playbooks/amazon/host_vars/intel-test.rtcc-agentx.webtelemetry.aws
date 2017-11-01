@@ -1,0 +1,28 @@
+network_name: Intel Test Fronthaul
+
+subnet: subnet-033ef92e # intel_test_fronthaul_1c - 172.19.4.128/27
+
+application: rtcc
+
+security_groups:
+  - sg-6052731a #intel_nonprod_ops
+  - sg-f8436082 #intel_test_fronthual
+
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1
+
+tags:
+  customer: intel
+  stack_name: intel-test
+
+release: xenial

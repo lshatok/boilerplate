@@ -1,0 +1,9 @@
+
+---
+- name: Create groups
+  group: name="{{ item }}" state=present
+  ignore_errors: true
+  with_items:
+    - wtgroup
+    - admin
+  register: rc

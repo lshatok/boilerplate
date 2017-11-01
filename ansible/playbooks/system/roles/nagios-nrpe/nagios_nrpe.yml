@@ -1,0 +1,17 @@
+required_roles = [ core_os, core_webtelemetry ]
+
+
+
+packages = [ nagios-nrpe-server, nagios-plugins-basic, nagios-plugins,
+             nagios-plugins-extra, libnagios-plugin-perl ]
+
+
+# add updated file - /etc/nagios/nrpe.cfg
+# - add allowed hosts
+# - dont_blame_nrpe=1
+#   (config engine candidate)
+
+
+# separate nagios roles for : influxdb, resque,
+
+

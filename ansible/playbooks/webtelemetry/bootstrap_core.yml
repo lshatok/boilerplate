@@ -1,0 +1,8 @@
+---
+
+- name: Playbook wt_core
+  hosts: "{{ target }}"
+  sudo: true
+
+  roles:
+      - wt_core

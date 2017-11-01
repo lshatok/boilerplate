@@ -1,0 +1,7 @@
+---
+- name: Make sure production.log is owned by webtelemetry (there is a root cause for this that needs fixed)
+  file: path=/WT/appserver-7.0.54/webapps/snmp/WEB-INF/log/production.log owner=wtuser group={{ product.admin }}
+  ignore_errors: yes
+
+- name: Restart tomcat
+  service: name=tomcat state=restarted

@@ -1,0 +1,39 @@
+---
+- name: WTdb
+  template: src=WTdb.j2 dest="{{ item }}" owner=root group=root mode=755
+  with_items:
+    - /etc/init.d/WTdb
+  become: true
+  ignore_errors: true
+  tags: WTdb
+
+- name: WTmon
+  template: src=WTmon.j2 dest="{{ item }}" owner=root group=root mode=755
+  with_items:
+    - /etc/init.d/WTmon
+  become: true
+  ignore_errors: true
+  tags: WTmon
+
+- name: WTappl
+  template: src=WTappl.j2 dest="{{ item }}" owner=root group=root mode=755
+  with_items:
+    - /etc/init.d/WTappl
+  become: true
+  ignore_errors: true
+  tags: WTappl
+
+- name: WThttpd
+  template: src=WThttpd.j2 dest="{{ item }}" owner=root group=root mode=755
+  with_items:
+    - /etc/init.d/WThttpd
+  become: true
+  ignore_errors: true
+  tags: WThttpd
+
+- name: Reload daemon configuration
+  shell: "{{ item }}"
+  with_items:
+    - "/usr/bin/systemctl daemon-reload"
+  delegate_to: "{{ ansible_ssh_host }}"
+

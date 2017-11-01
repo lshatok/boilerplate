@@ -1,0 +1,5 @@
+start on runlevel [2345]
+stop on runlevel [!2345
+respawn
+
+exec su - wtuser -c 'cd /WT/telemetrix; export PORT=4200;  ./bin/unicorn -c config/unicorn.conf.rb -E $APP_ENV'

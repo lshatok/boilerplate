@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+site "http://community.opscode.com/api/telemetrix"
+
+cookbook "apt"
+cookbook "postgresql"
+cookbook "xml"
+cookbook "zlib"
+cookbook "database"
+cookbook "application"
+cookbook "application_ruby"
+cookbook "python"
+cookbook "java"
+cookbook "vim"
+cookbook "bluepill"
+cookbook "build-essential"
+cookbook "influxdb"
+
+cookbook "rvm",
+         :github => "fnichol/chef-rvm"
+cookbook "redis",
+         :github => "ctrabold/chef-redis"
+
+cookbook webtelemetry,
+         :path => "vendor/cookbooks/webtelemetry"
+
+cookbook "storm",
+         :github => "Webtrends/Cookbooks"

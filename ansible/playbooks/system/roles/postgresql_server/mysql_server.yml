@@ -1,0 +1,9 @@
+
+required_roles:  [ 'core_os' ]
+
+tasks:
+    - postgresql_server
+
+
+postgresql_server:
+    root_password:  postgresql123

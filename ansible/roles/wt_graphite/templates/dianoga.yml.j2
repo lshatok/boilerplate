@@ -1,0 +1,50 @@
+# Specify which directory to watch
+# File Location /SFTP/TENANT_ID/TYPE(METER_DATA)/
+# INCOMING /SFTP/TENANT_ID/TYPE(METER_DATA)/
+# INPROCESS /SFTP/TENANT_ID/TYPE(METER_DATA)/INPROCESS
+# ERROR /SFTP/TENANT_ID/TYPE(METER_DATA)/ERROR
+# ARCHIVE /SFTP/TENANT_ID/TYPE(METER_DATA)/ARCHIVE
+watchdog:
+  what_to_watch: {{ grafana.sftp_path }}
+
+general:
+  output: {{ grafana.output }}
+  multiprocessing: {{ grafana.multiprocessing }}
+
+{% if grafana.output == 'snmp' %}
+  snmp:
+    endpoint: {{ grafana.snmp.endpoint }}
+{% elif grafana.output == 'kafka' %}
+  kafka: {{ grafana.kafka }}
+{% elif grafana.output == 'influxdb' %}
+  rabbit:
+    exchange: telemetrix.grafana.topic
+    exchange_type: topic
+    publish_interval: 10
+    queueprefix: telemetrix.grafana.
+    ampq_url: {{ grafana.influxdb.url }}
+{% endif %}
+
+{% if grafana.preprocessor == "IntelLoader" %}
+  postgresql:
+    host: {{ grafana.postgresql.host }}
+    user: {{ grafana.postgresql.user }}
+    pass: {{ grafana.postgresql.pass }}
+    database: {{ grafana.postgresql.database }}
+    table: {{ grafana.postgresql.table }}
+{% endif %}
+
+parseconfig:
+  encoding: utf-8
+  msg_buffer_size: 100000
+  end_of_file_marker: _EOM
+
+logger:
+  level: {{ grafana.log_level }}
+  log_file: /log/grafana.log
+
+  # Apr-16. The following settings have been replaced with a single log_file above. It is still needed for some tags
+  # like v2.8.0-rc2, but can be removed once all active deployments advance past this (v2.8.0-rc3 onwards).
+  grafanafilesnmplog: /log/grafana-file-snmp-process.log
+  grafanalog: /log/grafana.log
+  grafanaerrorlog: /log/grafana_error.log

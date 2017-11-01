@@ -1,0 +1,11 @@
+- name: wt_clean
+  hosts: "{{ target }}"
+  become: true
+
+  vars_files:
+    - "password_vars/all"
+    - "password_vars/{{ env }}"
+
+
+  roles:
+    - wt_cleanup

@@ -1,0 +1,8 @@
+#role: wt_rrd
+#task: precompile_assets
+---
+- name: Precompile assets
+  shell: "/home/{{ grafana.user }}/.rbenv/shims/bundle exec rake assets:precompile APP_ENV={{ grafana.rails_env }}"
+  args:
+    chdir: "{{ grafana.path }}"
+  sudo_user: "{{ grafana.user }}"

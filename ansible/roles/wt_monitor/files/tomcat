@@ -1,0 +1,23 @@
+/WT/appserver/webapps/snmp/WEB-INF/log/*.log
+/var/log/upstart/*.log
+{
+        daily
+        missingok
+        copytruncate
+        rotate 100
+        compress
+        size 10M
+}
+
+/WT/appserver/logs/*.log
+/WT/appserver/logs/*.txt
+/WT/appserver/webapps/snmp/WEB-INF/log/*.log
+/var/log/upstart/tomcat.log
+{
+        size 500M
+        rotate 100
+        compress
+        missingok
+        copytruncate
+        create 0644 webtelemetry wtuser
+}

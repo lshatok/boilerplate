@@ -1,0 +1,6 @@
+---
+- debug: msg="branch= {{ snmp.git.branch }} "
+- name: Pull from github repo
+  git: repo={{ snmp.git.url }} dest={{ snmp.path }} version="{{ snmp.git.branch }}"
+       key_file="/WT/.ssh/gitro_id_rsa" accept_hostkey=yes force=yes
+  become_user: "{{ product.user }}"

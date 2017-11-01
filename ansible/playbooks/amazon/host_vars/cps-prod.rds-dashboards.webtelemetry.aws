@@ -1,0 +1,29 @@
+rds_subnets:
+  - subnet-a20d68ed # walmart_prod_backhaul_1c
+  - subnet-1e175068 # walmart_prod_backhaul_1d
+  - subnet-d90693f3 # walmart_prod_fronthaul_1c
+  - subnet-b90d4acf # walmart_prod_fronthaul_1d
+
+region: us-east-1
+
+zone: us-east-1c
+
+subnetgroup_name: walmart-prod-group
+
+description:  CPS Prod RDS subnet group
+
+type: db.t2.medium
+
+instance_name: walmart-prod-influxdb
+size: 50
+
+admin_user:  {{ product.admin }}
+admin_pass:  T86W9kZek3EF
+
+# Backup retention days [0-35]
+backup_retention: 35
+count: 1
+vpc_security_groups: "sg-c2e125b9" # walmart_prod_rds
+
+key_name: ffx-devops
+

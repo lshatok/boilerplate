@@ -1,0 +1,5 @@
+---
+dependencies:
+  - { role: wt_core }
+  - { role: wt_python }
+  - { role: wt_virtualenv, virtualenv_path: "{{ denali.wt_data_importer.virtualenv_path }}" }

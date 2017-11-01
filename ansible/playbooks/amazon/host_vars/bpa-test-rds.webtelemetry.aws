@@ -1,0 +1,25 @@
+rds_subnets:
+  - subnet-34102640
+  - subnet-37998d55
+ 
+
+region: us-gov-west
+
+zone: us-gov-west-1b
+
+subnetgroup_name: bpa-test
+
+description: BPA Test Database
+
+type: db.m1.small
+
+instance_name: bpa-test
+size: 30
+
+admin_user:  {{ product.admin }}
+admin_pass:  
+
+# Backup retention days [0-35]
+backup_retention: 3
+
+vpc_security_groups: "sg-725q02bz"

@@ -1,0 +1,19 @@
+---
+env_vars: {}
+#make sure all vars with keys/passwords are in an encrypted file
+product_url: https://pypi.fury.io/<add_key>/webtelemetry/
+
+wt_core:
+  artifact: telemetrix-core
+#  version: 'telemetrix-core-version'
+
+  logger:
+    mode: local
+    logdir: /var/log/webtelemetry
+    level: debug
+    logfile: telemetrix.log
+    errlogfile:telemetrix_error.log
+    remotehost: logstash-analytics.dev.{{ product.url }}
+    remotetimeout: 5
+
+metrix_home: /WT/configs

@@ -1,0 +1,28 @@
+
+- name: Create ELB
+  hosts: localhost
+  gather_facts: false
+  connection: local
+
+  vars_files:
+    - "vars/{{ env }}"
+
+  tasks:
+    - local_action:
+        module: ec2_elb_lb
+        state: present
+        name: "{{ elb.ec2_elb_name }}"
+        scheme: internet-facing
+        security_group_ids: "{{ elb.security_group_ids }}"
+        region: us-west-2
+        subnets: "{{ elb.subnets }}"
+        purge_subnets: yes
+        listeners: "{{ elb.listeners }}"
+      #register: ec2_elbs
+
+    - local_action:
+        module: ec2_elb
+        instance_id: "{{ item }}"
+        ec2_elbs: "{{ elb.ec2_elb_name }}"
+        state: present
+      with_items: "{{ elb.ec2_instances }}"

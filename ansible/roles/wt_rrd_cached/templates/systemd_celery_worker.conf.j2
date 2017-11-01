@@ -1,0 +1,11 @@
+[Unit]
+Description=Celery RTCC
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+WorkingDirectory=/WT/rtcc
+Environment="TELEMETRIX_HOME="{{ telemetrix_home }}"" "VIRTUAL_ENV={{ virtualenv_path }}" "PYTHONPATH={{ rtcc.path }}"
+ExecStart={{ virtualenv_path }}/bin/dashboard -A webtelemetry.rtcc.tasks worker --loglevel=debug > {{ rtcc.log_path}}/celery_rtcc.log 2>&1
+
+[Install]
+WantedBy=multi-user.target

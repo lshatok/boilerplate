@@ -1,0 +1,25 @@
+---
+- name: Install Cloudera Manager server
+  apt: name="{{ item }}" state=latest
+  with_items:
+    - cloudera-manager-daemons
+    - cloudera-manager-server-db
+    - cloudera-manager-server
+
+- name: Copy db.properties
+  template: src=db.properties.j2 dest=/etc/cloudera-scm-server/db.properties owner=cloudera-scm group=cloudera-scm mode=0644
+
+- name: Create user for cloudera-scm
+  sudo_user: postgres
+  postgresql_user: name="{{ cdh_db_user }}" password="{{ cdh_db_pass }}"
+
+- name: Create database for cloudera-scm
+  sudo_user: postgres
+  postgresql_db: name="{{ cdh_db_name }}" owner="{{ cdh_db_user }}"
+
+- name: Stop cloudera-scm-server
+  service: name=cloudera-scm-server state=stopped
+  ignore_errors: yes
+
+- name: Start cloudera-scm-server
+  service: name=cloudera-scm-server state=started

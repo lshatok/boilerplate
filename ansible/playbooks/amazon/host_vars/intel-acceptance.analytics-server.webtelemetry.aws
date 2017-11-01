@@ -1,0 +1,27 @@
+network_name: Intel Acceptance BackHaul
+
+subnet: subnet-cc3ff8e1 # intel_acceptance_backhaul_1c - 109.36.9.106/24
+
+application: telemetrix-server
+
+security_groups:
+  - sg-6052731a #intel_nonprod_ops
+  - sg-e6c6789b # intel_acceptance_backhual
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1
+
+tags:
+  customer: intel
+  stack_name: intel-acceptance
+
+release: xenial

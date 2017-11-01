@@ -1,0 +1,25 @@
+[telemetrix-app]
+vrt-performance.telemetrix-app-01.webtelemetry.amazon.aws ansible_ssh_host=10.81.0.10
+
+[snmp]
+vrt-performance.snmp-01.webtelemetry.amazon.aws ansible_ssh_host=10.0.0.249
+
+[checkpoint]
+vrt-performance.checkpoint-01.webtelemetry.amazon.aws ansible_ssh_host=10.0.0.000
+
+[hbase-master]
+vrt-performance.hbase-master-01.webtelemetry.amazon.aws ansible_ssh_host=10.0.0.218
+
+[hbase-worker]
+vrt-performance.hbase-worker-01.webtelemetry.amazon.aws ansible_ssh_host=10.0.0.237
+vrt-performance.hbase-worker-02.webtelemetry.amazon.aws ansible_ssh_host=10.0.0.144
+vrt-performance.hbase-worker-03.webtelemetry.amazon.aws ansible_ssh_host=10.0.0.186
+vrt-performance.hbase-worker-04.webtelemetry.amazon.aws ansible_ssh_host=10.0.0.142
+vrt-performance.hbase-worker-05.webtelemetry.amazon.aws ansible_ssh_host=10.0.0.167
+
+[performance:children]
+telemetrix-app
+snmp
+checkpoint
+hbase-master
+hbase-worker

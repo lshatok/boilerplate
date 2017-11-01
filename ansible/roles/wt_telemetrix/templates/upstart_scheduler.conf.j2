@@ -1,0 +1,5 @@
+start on starting grafana
+stop on stopping grafana
+respawn
+
+exec su - wtuser -c 'cd /WT/grafana; export PORT=4300;  ./bin/rake resque:scheduler >> /WT/grafana/log/scheduler-1.log 2>&1'

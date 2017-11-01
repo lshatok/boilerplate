@@ -1,0 +1,13 @@
+---
+branch: heco/2.0/prod
+webtelemetry_home:  /WT
+virtualenv: /WT/virtenv
+
+# scp role #
+chrootpath: /WT/chroot
+scp_user: heco_prod
+## encrypted password:  doCUSTProd2014! ##
+scp_pass: "$6$rounds=100000$2kMsEMwba6X.ZYHW$ttrCfLCXoCIBVobPEzIWU9ErNaXiNEx29zIOGVdBvJLltnyjoxz5F2HjOIjjJsWWVShUWJSMks9uCFwVzF1Dt0"
+# --------- #
+
+# grafana #

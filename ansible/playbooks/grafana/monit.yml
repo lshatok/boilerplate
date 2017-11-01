@@ -1,0 +1,10 @@
+---
+- name: Add nagios checks to target
+  hosts: "{{ target }}"
+  sudo: true
+  vars:
+    nagios:
+      mnagios_host: 10.0.0.171
+
+  roles:
+    # - wt_nagios

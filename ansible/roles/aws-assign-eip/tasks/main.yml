@@ -1,0 +1,8 @@
+---
+- name: Pause 4 seconds
+  pause: seconds=4
+
+- name: AWS | Assign Elastic IP
+  ec2_eip: region={{ item.region }} in_vpc=yes instance_id={{ item.id }}
+  with_items: ec2.instances
+  register: eip

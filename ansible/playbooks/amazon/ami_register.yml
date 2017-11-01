@@ -1,0 +1,18 @@
+---
+- name: AWS | Launch Ubuntu 16.1 in VPC
+  hosts: "{{ target }}"
+  gather_facts: False
+  connection: local
+
+  vars_files:
+    - "vars/{{ vpc_var }}"
+    - "vars/chat.yml"
+
+roles:
+    - aws_ami_register
+
+- name: Configure Launched Instances with Roles
+  hosts: launched
+  sudo: true
+  remote_user: ubuntu
+  gather_facts: true

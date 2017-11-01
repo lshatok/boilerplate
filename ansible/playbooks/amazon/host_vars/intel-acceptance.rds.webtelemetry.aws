@@ -1,0 +1,28 @@
+rds_subnets:
+  - subnet-15ad1b5c # intel_acceptance_backhaul_1d - 172.19.5.128/26
+  - subnet-cc3ff8e1 # intel_acceptance_backhaul_1c - 109.36.9.106/24
+  - subnet-16ad1b5f # intel_acceptance_fronthaul_1d - 172.19.5.0/26
+  - subnet-ca3ff8e7 # intel_acceptance_fronthaul_1c - 22.126.90.228/26
+
+region: us-east-1
+
+zone: us-east-1c
+
+subnetgroup_name: intel-acceptance-group
+
+description:  Web Snmp RDS subnet group
+
+type: db.m3.medium
+
+instance_name: intel-acceptance
+size: 50
+
+admin_user: {{ product.admin }}
+admin_pass: XXXXXXXXXXXXXXXX
+
+# Backup retention days [0-35]
+backup_retention: 7
+count: 1
+vpc_security_groups: "sg-98cf71e5" # intel_acceptance_rds
+
+key_name: intel-devops

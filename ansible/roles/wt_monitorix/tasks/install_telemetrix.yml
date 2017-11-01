@@ -1,0 +1,101 @@
+---
+- name: Add WebTelemetry freight apt key
+  shell: 'sudo wget -O /etc/apt/trusted.gpg.d/freight.gpg http://{{ product_repo_ip }}/keyring.gpg'
+
+- name: Add apt repo
+  apt_repository: repo='deb [arch=amd64] http://{{ product_repo_ip }} xenial main'
+  register: repo
+
+- name: Update apt-get
+  apt: update_cache=yes
+
+- name: Stop tomcat service
+  service: name=tomcat state=stopped
+
+- name: Apt-get install snmp
+  apt: name=snmp={{ selena_version }} state=present force=yes
+
+- name: Hold snmp at version {{ selena_version }}
+  shell: sudo apt-mark hold snmp
+  ignore_errors: true
+
+- name: Make webtelemetry owner
+  file: path=/WT/appserver owner=wtuser group={{ product.admin }} state=directory recurse=yes
+
+- name: Make webtelemetry owner
+  file: path=/WT/appserver owner=wtuser group={{ product.admin }} state=directory recurse=yes
+
+- name: Start service
+  service: name=tomcat state=started
+
+- pause: seconds=30
+
+- name: Create configs directory
+  file: path=/WT/configs state=directory owner=wtuser group={{ product.admin }}
+
+- name: Create database.yml
+  template: src=database-jruby.yml.j2 dest=/WT/configs/database.yml
+  sudo_user: wtuser
+
+- name: Stat database.yml
+  stat: path=/WT/appserver/webapps/snmp/WEB-INF/config/database.yml
+  register: database
+  changed_when: true
+
+- name: Create database.yml
+  file: path=/WT/appserver/webapps/snmp/WEB-INF/config/database.yml state=touch
+  sudo_user: wtuser
+  when: database.stat.exists == false
+
+- name: Create symlink for database.yml
+  file: src=/WT/configs/database.yml dest=/WT/appserver/webapps/snmp/WEB-INF/config/database.yml
+  args:
+    owner: {{ product.admin }}
+    group: {{ product.admin }}
+    state: link
+    force: yes
+
+- name: Stat settings.local.yml
+  stat: path=/WT/configs/settings.local.yml
+  register: settings
+  changed_when: true
+
+- name: Remove settings.local.yml
+  command: rm /WT/configs/settings.local.yml
+  when: settings.stat.exists
+
+- name: Create settings.local.yml
+  template: src=settings-jruby.yml.j2 dest=/WT/configs/settings.local.yml
+  sudo_user: wtuser
+
+- name: Create symlink for settings.local.yml
+  file: src=/WT/configs/settings.local.yml dest=/WT/appserver/webapps/snmp/WEB-INF/config/settings.local.yml
+  args:
+    owner: {{ product.admin }}
+    group: {{ product.admin }}
+    state: link
+    force: yes
+
+- name: Stat Basalt.yml
+  stat: path=/WT/appserver/webapps/snmp/shared/Basalt.yml
+  register: grafana
+  changed_when: true
+
+- name: Remove Basalt.yml
+  command: rm /WT/appserver/webapps/snmp/shared/Basalt.yml
+  when: grafana.stat.exists
+
+- name: Create Basalt.yml
+  template: src=Basalt.yml.j2 dest=/WT/configs/Basalt.yml
+  sudo_user: wtuser
+
+- name: Create symlink for Basalt.yml
+  file: src=/WT/configs/Basalt.yml dest=/WT/appserver/webapps/snmp/shared/Basalt.yml
+  args:
+    owner: {{ product.admin }}
+    group: {{ product.admin }}
+    state: link
+    force: yes
+
+- name: Start service
+  service: name=tomcat state=started

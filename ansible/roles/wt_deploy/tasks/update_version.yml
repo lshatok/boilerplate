@@ -1,0 +1,42 @@
+---
+- name: bottom.vm
+  template: src=WebTelemetry.version.j2 dest="{{ item }}" owner=root group=root mode=644
+  with_items:
+    - "/WT/.WebTelemetry.version"
+  ignore_errors: true
+  tags: version_file
+
+- name: bottom.vm
+  template: src=bottom.vm.j2 dest="{{ item }}" owner=root group=root mode=644
+  with_items:
+    - "/WT/appserver/webapps/wt-portal/WEB-INF/templates/vm/navigations/html/bottom.vm"
+  ignore_errors: true
+  tags: bottom
+
+- name: version.vm
+  template: src=version.vm.j2 dest="{{ item }}" owner=root group=root mode=644
+  with_items:
+    - "/WT/appserver/webapps/wt-portal/WEB-INF/templates/vm/navigations/html/version.vm"
+  ignore_errors: true
+  tags: version
+
+- name: WTWelcome
+  template: src=WTWelcome.html.j2 dest="{{ item }}" owner=root group=root mode=644
+  with_items:
+    - "/WT/appserver/webapps/wt-portal/wt-docs/wt-html/WTWelcome.html"
+  ignore_errors: true
+  tags: version
+
+- name: about_webtelemetry.jsp
+  template: src=about_webtelemetry.jsp.j2 dest="{{ item }}" owner=root group=root mode=644
+  with_items:
+    - "/WT/appserver/webapps/wt-core/jsp/about_webtelemetry.jsp"
+  ignore_errors: true
+  tags: "about_webtelemetry"
+
+- name: build.properties
+  template: src=build.properties.j2 dest="{{ item }}" owner=root group=root mode=644
+  with_items:
+    - "/WT/appserver/webapps/wt-core/jsp/includes/build.properties"
+  ignore_errors: true
+  tags: version

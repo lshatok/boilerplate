@@ -1,0 +1,14 @@
+##  Playbook to launch RDS isntance ##
+---
+- name: Launch RDS instance
+  hosts: "{{ target }}"
+  gather_facts: False
+  connection: local
+
+  vars_files:
+    - "vars/{{ vpc_var }}"
+    - "vars/chat.yml"
+
+  roles:
+     - aws_rds_launch
+

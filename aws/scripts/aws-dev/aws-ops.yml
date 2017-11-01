@@ -1,0 +1,61 @@
+defaults:
+      domain:   webtelemetry.amazon
+      # Define AWS IAM keys here to override env vars if so desired
+      #AWS_ACCESS_KEY_ID:
+      #AWS_SECRET_ACCESS_KEY:
+
+dev_fronthaul:
+      vpcid: vpc-26c9b24d
+      region:  us-west-2
+      rootkey:  id_rsa.pub
+      default_group: sg-6i2s3y76   # webtelemetrydev-ai-west
+      subnet:
+            subnet-207a2366 : 10.0.0.0/24
+      security_groups:
+            - sg-1c8d6b79
+      rootvol_size: 30
+      eip:  yes
+
+
+dev_backhaul:
+      vpcid: vpc-26c9b24d
+      region:  us-west-2
+      rootkey:  id_rsa.pub
+      default_group: sg-6i2s3y76   # webtelemetrydev-ai-west
+      subnet:
+            subnet-64772e22 : 10.0.0.0/24
+      rootvol_size: 50
+
+
+devops_sandbox:
+      vpcid: vpc-26c9b24d
+      region:  us-west-2
+      rootkey:  id_rsa.pub
+      default_group: sg-6i2s3y76
+      subnet:
+            subnet-3c7d5f7a :  10.11.33.0/27
+      rootvol_size: 30
+
+
+EBS_profiles:
+      18GB:
+          type: standard
+          devices:
+              sdf:  18
+
+      30GB_hbase:
+          type: standard
+          devices:
+              sdi:  10
+              sdj:  10
+              sdk:  10
+
+      100GB_hbase:
+          type: standard
+          devices:
+              sdi:  25
+              sdj:  25
+              sdk:  25
+              sdl:  25
+
+

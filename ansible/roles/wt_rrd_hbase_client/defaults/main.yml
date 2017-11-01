@@ -1,0 +1,9 @@
+metrix_home: /WT/configs
+hbase_thrift_group: hbase-workers
+
+hbase:
+  port: 9090
+  timeout: 30000
+  retry_count: 2
+  retry_pause_seconds: 1
+  num_connections_per_table: 5

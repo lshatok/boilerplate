@@ -1,0 +1,44 @@
+APP_ROOT = File.expand_path('../..', __FILE__)
+
+puts "Starting unicorn process from app root #{APP_ROOT}..."
+
+ENV['BUNDLE_GEMFILE'] = File.expand_path('../Gemfile', File.dirname(__FILE__))
+require 'bundler/setup'
+
+worker_processes <%= worker_processes %>
+working_directory APP_ROOT
+
+preload_app true
+
+timeout 300
+
+listen "#{APP_ROOT}/tmp/sockets/unicorn.sock", backlog: 64
+listen <%= port %>
+
+pid "#{APP_ROOT}/tmp/pids/unicorn.pid"
+
+stderr_path "#{APP_ROOT}/log/unicorn.stderr.log"
+stdout_path "#{APP_ROOT}/log/unicorn.stdout.log"
+
+before_fork do |server, worker|
+  # Disconnect database connection
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.connection.disconnect!
+
+  old_pid = "#{APP_ROOT}/tmp/pids/unicorn.pid.oldbin"
+  if File.exists?(old_pid) && server.pid != old_pid
+    begin
+      Process.kill('QUIT', File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH
+      puts 'Old master already dead'
+    end
+  end
+end
+
+after_fork do |server, worker|
+  # Re-establish database connection
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.establish_connection
+  if defined?(Redis) && defined?(Resque)
+    Resque.redis = Settings[:resque][:url]
+    Resque.analytics.namespace = Settings[:resque][:namespace]
+  end
+end

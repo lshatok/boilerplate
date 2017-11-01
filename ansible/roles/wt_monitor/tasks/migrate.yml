@@ -1,0 +1,6 @@
+---
+- name: Migrate the database
+  command: "/WT/.rbenv/shims/rake db:migrate APP_ENV={{ snmp.rails_env }}"
+  args:
+    chdir: "/WT/appserver/webapps/snmp/WEB-INF"
+  become_user: "{{ product.user }}"

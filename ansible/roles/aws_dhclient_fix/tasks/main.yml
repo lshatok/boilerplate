@@ -1,0 +1,21 @@
+---
+
+- name: Test if dhclient needs fixing for AWS
+  shell: "host $(hostname)"
+  register: fix_dhclient
+  ignore_errors: true
+  changed_when: False
+  when: ansible_distribution == "Ubuntu"
+
+- name: Check if us-west-2 domain
+  shell: "host $(hostname).us-west-2.compute.internal"
+  register: us_west_2
+  ignore_errors: true
+  when: fix_dhclient.rc != 0 and ansible_distribution == "Ubuntu"
+
+- name:  Fix dhclient.conf for AWS VPC us-west-2
+  lineinfile: dest=/etc/dhcp/dhclient.conf
+              line='supersede domain-name "us-west-2.compute.internal";'
+  when: us_west_2.changed
+
+

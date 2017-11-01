@@ -1,0 +1,5 @@
+---
+# default vars file used with EC2 command tools
+# aws_access_key_id: "put your own amazon access key here"
+# aws_secret_key: "put your own amazon secret key here"
+# aws_region: 'us-west-2'

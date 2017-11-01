@@ -1,0 +1,28 @@
+rds_subnets:
+  - subnet-9036a3ba  # ffx test fronthaul 1c
+  - subnet-cf1d5ab9  # ffx test fronthaul 1d
+  - subnet-c036a3ea  # ffx test  backhaul 1c
+  - subnet-991d5aef  # ffx test backhaul  1d
+
+region: us-east-1
+
+zone: us-east-1c
+
+subnetgroup_name: ffx-test-group
+
+description:  CPS Test RDS subnet group
+
+type: db.m4.large
+
+instance_name: ffx-test
+size: 50
+
+admin_user:  {{ product.admin }}
+admin_pass:  d13a0c8D6A69pf0
+
+# Backup retention days [0-35]
+backup_retention: 7
+count: 1
+vpc_security_groups: "sg-0ef7f876" # walmart_test_rds
+
+key_name: ffx-devops

@@ -1,0 +1,16 @@
+{% if hbase_thrift_group is defined %}
+host:
+{% for host in groups[hbase_thrift_group] %}
+- {{ hostvars[host]['ansible_ssh_host'] }}
+{% endfor %}
+{% else %}
+host: {{ hbase.thriftserver_host }}
+{% endif %}
+port: {{ hbase.port }}
+timeout: {{ hbase.timeout }}
+retry_count: {{ hbase.retry_count }}
+retry_pause_seconds: {{ hbase.retry_pause_seconds }}
+num_connections_per_table: {{ hbase.num_connections_per_table }}
+{% if hbase.partitioner is defined %}
+partitioner: {{ hbase.partitioner }}
+{% endif %}

@@ -1,0 +1,61 @@
+---
+
+- name: AWS | Get the latest Ubuntu Xenial AMI
+  ec2_ami_search: distro=ubuntu release={{release|default('xenial') }} region={{ region }} virt=hvm
+# ec2: image=ami-11a3c432 region={{ region }} vpc_subnet_id={{ subnet }} instance_type=m3.medium
+  register: ubuntu_ami
+
+
+- name: AWS Launch EC2 instance in VPC
+  local_action:
+    module: ec2
+    region: "{{ region }}"
+    key_name: "{{ key_name }}"
+    group_id: "{{ security_groups }}"
+    image: "{{ image|default(ubuntu_ami.ami) }}"
+#   image: "ami-11a3c432" #us-gov-1 ubuntu_ami
+    vpc_subnet_id: "{{ subnet }}"
+    volumes: "{{ volumes }}"
+    instance_type: "{{ type }}"
+    ebs_optimized: "{{ ebs_optimized |default(omit) }}"
+    assign_public_ip: "{{ assign_public_ip  | default(omit) }}"
+    wait: yes
+    instance_tags:
+      Name: "{{ inventory_hostname }}"
+      customer: "{{ tags.customer }}"
+      network: "{{ network_name }}"
+      created_with: "ansible"
+      create_date: "{{ lookup('pipe','date') }}"
+      created_from: "{{ lookup('env','HOSTNAME') }}"
+      creator: "{{ lookup('env','USER') }}"
+      application: "{{ application }}"
+      stack_name: "{{ tags.stack_name }}"
+    count: "{{ count }}"
+  register: ec2
+
+- name: Add new instance to host group
+  local_action: add_host hostname="{{ item.private_ip }}" groupname=launched
+  with_items: ec2.instances
+
+- name: Wait for SSH to come up
+  local_action: wait_for host="{{ item.private_ip }}" port=22 delay=30 timeout=400 state=started
+  with_items: ec2.instances
+
+- name: Assign Elastic IP
+  local_action:
+    module: ec2_eip
+    region: "{{ item.region }}"
+    in_vpc: yes
+    instance_id: "{{ item.id }}"
+  with_items: ec2.instances
+  register: eip
+  when: assign_eip
+
+#- name: AWS | Send Chat Notification
+  #chat: >
+      #token="{{ chat_token }}"
+      #room="{{ room }}"
+      #msg="EC2 Launched { {{ target }} priv_ip:{{ item.private_ip }}, id:{{ item.id }}, type:{{ item.instance_type
+      #}}, by:{{ lookup('env','USER') }} }"
+#  with_items: ec2.instances
+#  ignore_errors: yes

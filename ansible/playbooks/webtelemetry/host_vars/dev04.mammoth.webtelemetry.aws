@@ -1,0 +1,71 @@
+---
+branch: master
+webtelemetry_home: /WT
+virtualenv:  /WT/virtenv
+
+rrd_path: /WT/rrdtool
+
+telemetrix_repo: https://github.com/webtelemetrytelemetrix.git
+domain: dev.{{ product.url }}
+
+app_env: production
+telemetrix_jruby_path: /WT/snmp/jruby
+
+#database.yml
+metrix_db_host: dev04.seksejwlaqos.us-west-2.rds.amazonaws.com
+metrix_db_name: wt_db
+metrix_db_user: {{ product.admin }}
+metrix_db_pass: 'wt123'
+
+product_db_host: dev04.seksejwlaqos.us-west-2.rds.amazonaws.com
+product_db_name: webtelemetry_dashboard_db
+product_db_user: {{ product.admin }}
+product_db_pass: 'wt123'
+
+#Basalt.yml
+telemetrix_db_host: dev04.seksejwlaqos.us-west-2.rds.amazonaws.com
+telemetrix_db_name: telemetrix_db
+telemetrix_db_user: {{ product.admin }}
+telemetrix_db_pass: 'wt123'
+
+influxdb_user: guest
+influxdb_pass: guest
+influxdb_host: 10.0.0.239
+
+hbase_thriftserver: 10.0.0.20
+analytics_model: marsb
+
+hadoop_zookeeper: 10.0.0.20
+hdfs_namenode: 10.0.0.20
+
+metrix_host: 10.0.0.20
+metrix_user: internal_api
+metrix_pass: reduce
+
+grafana_host: XXX
+wtuser: XXX
+webtelemetry_pass: XXX
+
+remote_logstash_host: XXX
+
+#settings.yml
+data_collection_schema_url: localhost
+data_collection_schema_user: internal_api
+data_collection_schema_pass: reduce
+
+virtualenv: /WT/virtualenvs/telemetrix
+redis_host: localhost
+cache_env: XXX
+
+webtelemetry_url: XXX
+webtelemetry_base_url: XXX
+wtuser: XXX
+webtelemetry_pass: XXX
+
+ssn_amm_user: XXX
+ssn_amm_pass: XXX
+ssn_amm_url: XXX
+
+ssn_hcm_user: XXX
+ssn_hcm_pass: XXX
+ssn_hcm_url: XXX

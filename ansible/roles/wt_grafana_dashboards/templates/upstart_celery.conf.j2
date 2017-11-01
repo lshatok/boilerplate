@@ -1,0 +1,18 @@
+start on runlevel [2345]
+stop on runlevel [!2345]
+env TELEMETRIX_HOME="{{ telemetrix_home }}"
+{% if scheduler_id is defined %}
+env SCHEDULER_ID={{ scheduler_id }}
+{% endif %}
+respawn
+
+  # run as non privileged user
+  setuid wtuser
+  setgid wtuser
+
+exec {{ virtualenv_path }}/bin/dashboard beat \
+    --logfile={{ telemetrix.logger.logdir }}/celery_beat.log \
+    --loglevel={{ dashboard.loglevel }} \
+    --schedule={{ dashboard.run_dir }}/celerybeat_schedule.db \
+    --pidfile={{ dashboard.run_dir }}/celerybeat.pid \
+    -A {{ dashboard.beat.app }}

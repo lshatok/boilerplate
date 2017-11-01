@@ -1,0 +1,17 @@
+- name: Create /etc/nginx/sites-available directory
+  file: path=/etc/nginx/sites-available state=directory
+
+- name: Create /etc/nginx/sites-enabled directory
+  file: path=/etc/nginx/sites-enabled state=directory
+
+- name: Create telemetrix nginx template
+  template: src=telemetrix_nginx.j2 dest=/etc/nginx/sites-available/telemetrix
+
+- name: Remove nginx default
+  file: path=/etc/nginx/sites-enabled/default state=absent
+
+- name: Create telemetrix nginx sites-enabled
+  file: src=/etc/nginx/sites-available/telemetrix dest=/etc/nginx/sites-enabled/telemetrix state=link
+
+- name: Restart nginx service
+  service: name=nginx state=restarted

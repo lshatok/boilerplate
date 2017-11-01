@@ -1,0 +1,3 @@
+---
+- name: Update webservices configuration
+  template: src=webservices.yml.j2 dest="{{ telemetrix_home }}"/webservices.yml owner=wtuser group=wtgroup

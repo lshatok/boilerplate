@@ -1,0 +1,46 @@
+---
+## cloudera manager installer does not work with ansible (requires a tty for UI)
+## visit www.cloudera.com to playbooks_supplemental the manual steps and convert to ansible
+
+- name: Update system limits
+  lineinfile: dest=/etc/security/limits.conf
+              line="{{ item }}"
+  with_items: '{{ limits_lines }}'
+
+- name: Disable swap
+  sysctl: name=vm.swappiness value=0 state=present
+
+- name: Create FileSystems
+  filesystem: fstype=xfs dev="{{ item.device_name }}"
+  with_items: '{{ hbase_mounts }}'
+
+- name: Create directories
+  file: path="{{ item.mount_point }}" state=directory
+  with_items: '{{ hbase_mounts }}'
+
+- name: Mount FileSystems
+  mount: name="{{ item.mount_point }}" src="{{ item.device_name }}" fstype=xfs
+         opts=defaults,nobootwait,noatime
+         state=mounted
+  with_items: '{{ hbase_mounts }}'
+
+- name: Copy Cloudera Manager Installer v4
+  copy: src=../files/cloudera-manager-installer-v4.bin dest=/WT/files/cloudera-manager-installer.bin
+        owner=wtuser group={{ product.admin }} mode=755
+  when: cloudera_manager and cdh_version == 4
+
+- name: Copy Cloudera Manager Installer v5
+  copy: src=../files/cloudera-manager-installer-v5.bin dest=/WT/files/cloudera-manager-installer.bin
+        owner=wtuser group={{ product.admin }} mode=755
+  when: cloudera_manager and cdh_version == 5
+
+- name: Copy Cloudera Manager Installer v5.1.3
+  copy: src=../files/cloudera-manager-installer-v5.1.3.bin dest=/WT/files/cloudera-manager-installer.bin
+        owner=wtuser group={{ product.admin }} mode=755
+  when: cloudera_manager and cdh_version == '5.1.3'
+
+- name: Message to Installer
+  debug: msg="Install manually with cloudera-manager-installer.bin --i-agree-to-all-licenses --noprompt --noreadme --nooptions"
+
+# To Install CDH manager with ansible, follow steps from
+# http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_install_path_B.html

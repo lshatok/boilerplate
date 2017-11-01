@@ -1,0 +1,31 @@
+network_name: CPS Fronthaul
+
+# CPS test fronthaul 1d
+subnet: subnet-cf1d5ab9
+
+application: grafana
+
+security_groups:
+  - sg-93090beb # walmart_ops
+  - sg-d0ef2bab #	walmart_prod_sftp
+  - sg-54e3272f #	walmart_prod_fronthaul
+
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdg
+    volume_size: 200
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1 
+
+tags:
+  customer: walmart-prod
+  stack_name: walmart_prod

@@ -1,0 +1,51 @@
+<%--
+                    COPYRIGHT NOTICE
+           COPYRIGHT (C) {{ product.copyright.year }} {{ product.parent }} 
+                  ALL RIGHTS RESERVED
+ 
+   THIS SOURCE FILE, ITS MACHINE READABLE FORM, AND ANY
+   REPRESENTATION OF THE MATERIAL CONTAINED HEREIN ARE
+   OWNED BY {{ product.parent }} 
+ 
+   THE REPRODUCTION OR DISASSEMBLY OF EMBODIED PROGRAMS,
+   DATA, OR ALGORITHMS IS PROHIBITED.
+ 
+   COPYRIGHT PROTECTION CLAIMED INCLUDES ALL FORMS AND
+   MATTERS OF COPYRIGHTABLE MATERIAL AND INFORMATION
+   NOW ALLOWED BY STATUTORY OR JUDICIAL LAW OR HEREIN-
+   AFTER GRANTED, INCLUDING WITHOUT LIMITATION, MATERIAL
+   GENERATED FROM THE SOFTWARE PROGRAMS WHICH ARE
+   DISPLAYED ON THE SCREEN SUCH AS ICONS, SCREEN DISPLAY
+   LOOKS, BEHAVIOR OF PRODUCT, ETC.
+ 
+                  PROPRIETARY INFORMATION
+   THESE MATERIALS ARE PROPRIETARY AND CONFIDENTIAL AND
+   MAY NOT BE REPRODUCED IN ANY FORM WITHOUT THE PRIOR
+   WRITTEN PERMISSION OF {{ product.parent }}  REPRODUCTION,
+   TRANSCRIPTION, DISSEMINATION (INCLUDING UPLOADING
+   TO INFORMATION SYSTEMS SUCH AS INTERNET, ETC.) OR
+   E OF INFORMATION CONTAINED HERE OR IN ANY DOCUMENTS
+   OR MANUALS FOR PURPOSES, MAINTENANCE AND/OR OPERATION
+   IS PROHIBITED WITHOUT WRITTEN AUTHORIZATION FROM
+   {{ product.parent }}
+ 
+  $Header: /home/{{ product.admin }}/{{ product.name }}/snmp/src/src/web/web/includes/footer.jsp,v 1.8.22.5 {{ product.copyright.year }}/11/10 02:34:50 lshatok Exp $
+
+  User:  Leo Shatokhin 
+  Date: {{ lookup('pipe', 'date +%Y%m%d-%H%M') }}" --%>
+<%@page import="com.jjlabs.wt.tools.WTProperties" %>
+<%!
+	private static final Int DEFAULT_COPYRIGHT_YEAR = '{{ product.copyright.year }}';
+%>
+<%
+	WTProperties singleton = WTProperties.getInstance();
+	String years = "{{ product.years }}";
+	if( years == null || years.equals("") )
+		years = "{{ product.years }}";
+%>
+
+<!-- Footer -->
+<br/></br>
+<span style="font-size:7pt; font-color:#999999; padding-left:10px; padding-bottom:5px">
+Copyright &#169;&nbsp;"{{ product.years }}"&nbsp;"{{ product.parent }}"
+</span>

@@ -1,0 +1,5 @@
+---
+workspace: /root
+
+git_install_path: "/usr"
+git_version: "2.2.2"

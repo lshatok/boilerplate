@@ -1,0 +1,247 @@
+## needs testing ##
+# - needs nginx template
+---
+
+- name: Install required system packages
+  apt: name={{ item }} state=present cache_valid_time=3600 update_cache=yes
+  with_items:
+    - ejabberd
+
+
+- name: Clone webtelemetry from github
+  git: repo=ssh://git@github.com/webtelemetry-nginxtelemetry_selena.git version='{{ webtelemetry.branch }}'
+       dest='{{ webtelemetry.path }}' key_file=/WT/.ssh/gitro_id_rsa
+       accept_hostkey=yes force=yes
+  become_user: "{{ product.user }}"
+  tags:
+    - update
+
+- name: Gem install bundler
+  shell: "/WT/.rbenv/shims/gem install bundler"
+  become_user: "{{ product.user }}"
+  tags:
+    - update
+
+
+- name: Run rbenv rehash
+  shell: "/WT/.rbenv/bin/rbenv rehash executable=/bin/bash chdir=/home/webtelemetry"
+  become_user: "{{ product.user }}"
+
+- name: Install dependencies (bundle install)
+  shell: "/WT/.rbenv/shims/bundle install"
+  args:
+    chdir: "{{ webtelemetry.path }}"
+    executable: /bin/bash
+  become_user: "{{ product.user }}"
+  tags:
+    - update
+
+
+- name: Run rbenv rehash
+  shell: "/WT/.rbenv/bin/rbenv rehash executable=/bin/bash chdir=/home/webtelemetry"
+  become_user: "{{ product.user }}"
+  tags:
+    - update
+
+- name: Run bundle install binsutbs
+  shell: "/WT/.rbenv/shims/bundle install --binstubs"
+  args:
+    chdir: "{{ webtelemetry.path }}"
+    executable: /bin/bash
+  become_user: "{{ product.user }}"
+  tags:
+    - update
+
+- name: Run gem regenerate_binstubs
+  shell: /WT/.rbenv/shims/gem regenerate_binstubs
+  args:
+    chdir: "{{ webtelemetry.path }}"
+    executable: /bin/bash
+  become_user: "{{ product.user }}"
+  tags:
+    - update
+
+- name: Run rbenv rehash
+  shell: "/WT/.rbenv/bin/rbenv rehash executable=/bin/bash chdir=/home/webtelemetry"
+  args:
+    chdir: '{{ webtelemetry.path }}'
+    executable: /bin/bash
+  become_user: "{{ product.user }}"
+  tags:
+    - update
+
+- name: Create webtelemetry nginx directory
+  file: path=/etc/nginx/sites-available state=directory
+
+- name: Create webtelemetry nginx template
+  template: src=webtelemetry_nginx.j2 dest=/etc/nginx/sites-available/webtelemetry
+  tags:
+    - service
+
+- name: Remove nginx default
+  file: path=/etc/nginx/sites-enabled/default state=absent
+
+- name: Create webtelemetry nginx sites-enabled
+  file: src=/etc/nginx/sites-available/webtelemetry dest=/etc/nginx/sites-enabled/webtelemetry state=link
+
+- name: Restart nginx service
+  service: name=nginx state=started
+
+- name: Create /var/log/webtelemetry_selena path
+  file: path=/var/log/webtelemetry_selena owner=wtuser group={{ product.admin }} state=directory
+
+- name: Create /WT/webtelemetry_upstart path
+  file: path=/WT/webtelemetry_upstart owner=wtuser group={{ product.admin }} state=directory
+
+- name: Create foreman upstart files
+  shell: '/WT/.rbenv/shims/foreman export --app webtelemetry_selena --user webtelemetry upstart /WT/webtelemetry_upstart'
+  args:
+    chdir: '{{ webtelemetry.path }}'
+    executable: /bin/bash
+  become_user: "{{ product.user }}"
+  tags:
+    - update
+
+- name: Copy the webtelemetry upstart scripts
+  shell: 'cp webtelemetry*.conf /etc/init/'
+  args:
+    chdir: /WT/webtelemetry_upstart
+  tags:
+    - update
+
+- name: Copy logrotation config
+  copy: src=webtelemetry_openadr dest=/etc/logrotate.d/ owner=root group=root mode=644
+  become: true
+  tags:
+    - configs
+    - update
+
+- name: Enable log rotation
+  shell: logrotate /etc/logrotate.d/webtelemetry_openadr
+  become: true
+  tags:
+    - configs
+    - update
+
+## bundle exec rake -T tmp
+
+#- name: Create unicorn.rb file
+#  shell: 'cp /WT/appserver/config/unicorn.conf.rb /WT/appserver/config/unicorn.rb'
+#  ignore_errors: true
+#  tags:
+#    - configs
+
+- name: Create sockets directory for unicorn
+  file: path=/WT/appserver/tmp/sockets state=directory mode=0755 owner=wtuser group=wtgroup
+  tags:
+    - configs
+    - update
+
+- name: Copy settings.local.yml
+  template: src=settings.yml.j2 dest=/WT/appserver/config/settings.local.yml owner=wtuser group=wtgroup mode=755
+  tags:
+    - configs
+    - update
+
+- name: Copy database.yml
+  template: src=database.yml.j2 dest=/WT/appserver/config/database.yml owner=wtuser group=wtgroup mode=755
+  tags:
+    - configs
+    - update
+
+- name: Copy unicorn.rb
+  template: src=unicorn.rb.j2 dest=/WT/appserver/config/unicorn.rb owner=wtuser group=wtgroup mode=755
+  tags:
+    - configs
+    - update
+
+- name: Copy newrelic.yml
+  template: src=newrelic.yml.j2 dest=/WT/appserver/config/newrelic.yml owner=wtuser group=wtgroup mode=755
+  tags:
+    - configs
+    - update
+
+#- name: Copy password.yml
+# template: src=passwords.yml.j2 dest=/WT/appserver/config/passwords.yml owner=wtuser group=wtgroup mode=755
+
+#- name: Copy twilio.yml files
+# template: src=twilio.yml.j2 dest=/WT/appserver/config/twilio.yml owner=wtuser group=wtgroup mode=755
+
+- name: Check if database exists
+  command: "/WT/.rbenv/shims/bundle exec rake db:version APP_ENV=production"
+  args:
+    chdir: "{{ webtelemetry.path }}"
+  become_user: "{{ product.user }}"
+  ignore_errors: true
+  register: rake_db_version_result
+  tags:
+    - database
+
+- name: Create webtelemetry_selena database
+  shell: "/WT/.rbenv/shims/bundle exec rake db:create  APP_ENV=production"
+  args:
+   chdir: '{{ webtelemetry.path }}'
+   executable: /bin/bash
+  become_user: "{{ product.user }}"
+  tags:
+    - database
+  when: rake_db_version_result|failed
+
+- name: Setup webtelemetry_selena database
+  shell: "/WT/.rbenv/shims/bundle exec rake db:setup  APP_ENV=production"
+  args:
+    chdir: '{{ webtelemetry.path }}'
+    executable: /bin/bash
+  become_user: "{{ product.user }}"
+  tags:
+    - database
+  when: rake_db_version_result|failed
+
+- name: Migrate webtelemetry_selena data
+  shell: /WT/.rbenv/shims/bundle exec rake db:migrate
+  args:
+    chdir: '{{ webtelemetry.path }}'
+    executable: /bin/bash
+  become_user: "{{ product.user }}"
+  tags:
+    - database
+    - update
+
+- name: Seed webtelemetry_selena database
+  shell: "/WT/.rbenv/shims/bundle exec rake db:seed  APP_ENV=production"
+  args:
+    chdir: '{{ webtelemetry.path }}'
+    executable: /bin/bash
+  become_user: "{{ product.user }}"
+  tags:
+    - database
+
+- name: Clean assets
+  shell: "/WT/.rbenv/shims/bundle exec rake assets:clean APP_ENV=production"
+  args:
+    chdir: '{{ webtelemetry.path }}'
+    executable: /bin/bash
+  become_user: "{{ product.user }}"
+  tags:
+    - database
+    - update
+
+- name: Precompile assets
+  shell: "/WT/.rbenv/shims/bundle exec rake assets:precompile APP_ENV=production"
+  args:
+    chdir: '{{ webtelemetry.path }}'
+    executable: /bin/bash
+  become_user: "{{ product.user }}"
+  tags:
+    - database
+    - update
+
+- name: Restart webtelemetry_selena service
+  service: name=webtelemetry_selena state=restarted
+  tags:
+    - database
+    - update
+    - configs
+
+- name: Restart nginx service
+  service: name=nginx state=restarted

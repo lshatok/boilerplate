@@ -1,0 +1,31 @@
+## Playbook to search and replace pattern in a file
+---
+- name: Playbook to replace pattern in a file
+  hosts: "{{ target }}"
+  sudo: true
+
+  vars_prompt:
+
+    - name: "dir"
+      prompt: "Directory"
+      private: no
+
+    - name: "string"
+      prompt: "Regular Expression"
+      private: no
+
+    - name: "new_string"
+      prompt: "Replacement"
+      private: no
+
+
+  tasks:
+
+     - shell: ls -1 {{ dir }}
+       register: files
+
+     - replace: dest={{ dir }}/{{ item }} regexp='{{ string }}' replace='{{ new_string }}'
+       with_items: files.stdout_lines
+       register: output
+
+     - debug: var=output

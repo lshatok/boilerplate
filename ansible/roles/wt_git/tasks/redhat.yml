@@ -1,0 +1,53 @@
+- name: Check if git is installed
+  shell: "[ -f /usr/bin/git ] || [ -f /usr/local/bin/git ]"
+  register: git
+  ignore_errors: true
+  changed_when: False
+
+- name: Install the 'Development tools' package group
+  yum: name="@Development tools" state=present
+  when: "git.rc != 0"
+
+- name: Install dependencies
+  yum: name="{{ item }}" state=present
+  with_items:
+    - gettext-devel
+    - openssl-devel
+    - perl-CPAN
+    - perl-devel
+    - zlib-devel
+    - libcurl-devel
+    - expat-devel
+  when: "git.rc != 0"
+
+- name: Download git
+  get_url:
+    url: "https://www.kernel.org/pub/software/scm/git/git-{{ git_version }}.tar.gz"
+    dest: "{{ workspace }}/git-{{ git_version }}.tar.gz"
+  when: "git.rc != 0"
+
+- name: Expand git archive.
+  command: >
+    tar -zxf {{ workspace }}/git-{{ git_version }}.tar.gz
+    chdir={{ workspace }}
+    creates={{ workspace }}/git-{{ git_version }}/README
+  when: "git.rc != 0"
+
+- name: Build git.
+  command: >
+    make prefix={{ git_install_path }} {{ item }}
+    chdir={{ workspace }}/git-{{ git_version }}
+  when: "git.rc != 0"
+  with_items:
+    - all
+    - install
+  become: yes
+
+- name: Setup Initial Git config
+  shell: git config --system color.{{ item }} auto executable=/bin/bash
+  with_items:
+    - status
+    - branch
+    - interactive
+    - diff
+  when: "git.rc != 0"

@@ -1,0 +1,27 @@
+## For network name description ##
+network_name: Walmart External
+
+## Add VPC Subnet ID ##
+subnet: subnet-e60a588f # walmart_internet_2a - 108.216.30.22/24
+
+application: IPSEC
+
+security_groups:
+  - sg-f227db9a # walmart_ipsec
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 20
+    delete_on_termination: false
+
+tags:
+  customer: WALMART
+  stack_name: wt_devops
+
+# assign eip true or false
+assign_eip: true
+
+# How many instances to create
+count: 1
+release: xenial
+

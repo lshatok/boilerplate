@@ -1,0 +1,22 @@
+#!/bin/bash
+
+TIMESTAMP=`date`
+LOCAL_HOSTNAME=`hostname`
+MESSAGE="User $PAM_USER logged in to $LOCAL_HOSTNAME from $PAM_RHOST on $TIMESTAMP"
+
+# Message DevOps room on chat
+curl -H "Content-Type: application/json" \
+     -X POST \
+     -d "{\"color\": \"red\", \"message_format\": \"text\", \"message\": \"$MESSAGE\" }" \
+     https://api.chat.com/v2/room/{{ chat.room1 }}/notification?auth_token={{ chat.token }}
+
+# Message Prod-Ops room on chat
+curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "{\"color\": \"red\", \"message_format\": \"text\", \"message\": \"$MESSAGE\" }" \
+          https://api.chat.com/v2/room/{{ chat.room2 }}/notification?auth_token={{ chat.token }}
+
+# Send out the audit email
+echo "$MESSAGE" | \
+sendemail -u "User $PAM_USER logged in from $PAM_RHOST on $TIMESTAMP" -f {{ email.from }} -t {{ email.to }} \
+-s {{ email.smtp }} -xu {{ email.user }} -xp {{ email.pass }} > /dev/null 2>&1 &

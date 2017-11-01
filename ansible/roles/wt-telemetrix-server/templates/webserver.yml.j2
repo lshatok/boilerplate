@@ -1,0 +1,4 @@
+installed_apps:
+{{ webserver.installed_apps | to_nice_yaml | indent(indentfirst=true) }}
+debug: {{ webserver.debug }}
+template_debug: {{ webserver.template_debug }}

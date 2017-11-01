@@ -1,0 +1,129 @@
+---
+- name: Debian installation
+  include: debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: RedHat installation
+  include: redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Create WT user group
+  group:  name=wtgroup state=present
+
+- name: Add WebTelemetry User
+  user:  name={{ product.user }} comment="{{ product.name }} User" uid=1000 group=wtgroup shell=/bin/bash groups={{ product.user }},{{ product.admin }} append=yes
+
+# Create core paths and files
+- name: Files | Create /usr/local/ssl
+  file: path=/usr/local/ssl state=directory mode=0755 owner=root group=root
+- name: Files | Create /usr/local/ssl/certs
+  file: path=/usr/local/ssl/certs state=directory mode=0755 owner=root group=root
+- name: Files | Create /usr/local/ssl/private
+  file: path=/usr/local/ssl/private state=directory mode=0700 owner=root group=root
+
+# Copy common files
+- name: Copy | Copy global vimrc.local
+  copy: src=vimrc.local dest=/etc/vim/vimrc.local owner=root group=root mode=0644 backup=yes
+- name: Copy | Copy rc.local
+  copy: src=rc.local dest=/etc/rc.local owner=root group=root mode=0755 backup=yes
+
+# Create groups
+- name: Group | Create groups
+  group: name={{ item }} state=present
+  with_items:
+  - telemetrix
+  - {{ product.admin }}
+  - {{ product.user }}
+  - dev
+  - qa
+
+- name: Display all variables/facts for host
+  debug: var=hostvars[inventory_hostname]
+
+- name: Create .ssh path
+  file: path=/WT/.ssh state=directory mode=0700 owner={{ product.user }} group=wtgroup
+- name: Copy git read only ssh key
+  # Note: in Ansible 2.2, this can be solved more elegantly using
+  # 'include_vars', which appears to be broken in 2.1.
+  vars:
+    git_key: "{{ lookup('file', '../vars/gitkey.txt') }}"
+  template: src=gitro_id_rsa.j2 dest=/WT/.ssh/gitro_id_rsa mode=0600 owner={{ product.user }} group=wtgroup backup=yes
+  tags:
+    - git
+- name: Copy webtelemetry user ssh config
+  copy: src=webtelemetry-ssh_config dest=/WT/.ssh/config mode=0644 owner={{ product.user }} group=wtgroup backup=yes
+
+- name: Files | Create configs directory
+  file: path="{{ telemetrix_home }}" state=directory owner={{ product.user }} group=wtgroup
+
+# Create WebTelemetry core paths and files
+- name: Create /WT
+  file: path=/WT state=directory mode=0755 owner={{ product.user }} group=wtgroup
+- name: Create /WT/profiles
+  file: path=/WT/profiles state=directory mode=0755 owner={{ product.user }} group=wtgroup
+- name: Create /WT/profiles.d
+  file: path=/WT/profiles.d state=directory mode=0755 owner={{ product.user }} group=wtgroup
+- name: Create /WT/files
+  file: path=/WT/files state=directory mode=0755 owner={{ product.user }} group=wtgroup
+- name: Files | Create configs directory
+  file: path="{{ telemetrix_home }}" state=directory owner={{ product.user }} group=wtgroup
+
+- name: Create profile-webtelemetry_core.sh
+  template: src=profile-webtelemetry_core.sh.j2 dest=/WT/profiles/profile-webtelemetry_core.sh
+            owner={{ product.user }} group=wtgroup mode=0755
+- name: Copy postgresql-db-init.sh
+  copy: src=postgresql-db-init.sh dest=/WT/files/postgresql-db-init.sh
+        owner={{ product.user }} group=wtgroup mode=0755
+- name: Copy bash_profile.j2
+  copy: src=bash_profile.j2 dest=/WT/.bash_profile.j2 owner={{ product.user }} group=wtgroup
+
+# Create lvm diskgroups and mounts
+- name: Create {{ ec2.mount_path }}
+  file: path={{ ec2.mount_path }} state=directory mode=0755 owner=root group=root
+
+- name: Create /WT
+  file: path=/WT state=directory mode=0755 owner={{ product.user }} group=wtgroup
+- name: Create TELEMETRIX_HOME directory
+  file: path="{{ telemetrix_home }}" state=directory mode=0755 owner={{ product.user }} group=wtgroup
+- name: Create /var/log/webtelemetry
+  file: path=/var/log/webtelemetry state=directory mode=0755 owner={{ product.user }} group=wtgroup
+
+# test for /dev/sdf or if already in use, default device for /WT
+- name: Check for /dev/xvdf
+  shell: "[ -e /dev/xvdf ] && ! blkid /dev/xvdf"
+  register:  xvdf
+  ignore_errors: true
+  changed_when: False
+
+- name: Create LVM diskgroup ebsdg
+  lvg: vg=ebsdg pvs=/dev/xvdf state=present vg_options=--verbose
+  when: "xvdf.rc == 0"
+
+- name: Create Volume
+  lvol: vg=ebsdg lv=lv_optag size=100%FREE
+  when: "xvdf.rc == 0"
+
+- name: Create filesystem
+  filesystem: dev=/dev/ebsdg/lv_optag fstype=xfs
+  when: "xvdf.rc == 0"
+
+- name: Touch not_mounted
+  file: path={{ ec2.mount_path }}/Not_Mounted state=touch
+  when: "xvdf.rc == 0"
+
+- name: Mount {{ ec2.mount_path }}
+  mount: name={{ ec2.mount_path }} src=/dev/ebsdg/lv_optag fstype=xfs
+         state=mounted opts="defaults,nobootwait" dump=0 passno=0
+  when: "xvdf.rc == 0"
+
+- name: Update /WT ownership after mount
+  file: path=/WT owner={{ product.user }} group=wtgroup
+  when: "xvdf.rc == 0"
+
+- name: git config user.email
+  shell: "git config --global user.email 'ai@webtelemetry.us'"
+  become_user: {{ product.user }}
+
+- name: git config user.name
+  shell: "git config --global user.name 'WebTelemetry User'"
+  become_user: {{ product.user }}

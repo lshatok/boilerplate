@@ -1,0 +1,21 @@
+---
+- name: Add accounts
+  become: true
+  user:   
+    name: "{{ item.user }}"
+    comment: "{{ item.comment | default(omit) }}"
+    shell: "{{ item.shell }}"
+    append: "{{ item.append | default('no') }}"
+  with_flattened:
+    - wtuser: "{{ product.user }}"
+      comment: wtuser
+      user: wtuser
+      append: no
+      home: '/WT'
+
+    - wtadmin: "{{ product.admin }}"
+      comment: "{{ product.admin }}"
+      user: "{{ product.admin }}"
+      append: no
+      home: "/home/{{ product.admin }}"
+  register: rc

@@ -1,0 +1,26 @@
+network_name: HECO Test FrontEnd
+
+subnet:  subnet-3dbcba7b
+# 10.18.16.96/28   us-west-2b
+
+application:  webtelemetry
+
+security_groups:
+  - sg-eee0488b  #webtelemetry_ops
+  - sg-faac189f  #heco_test
+  - sg-d01fb5b5  #ssn_network
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 50
+    delete_on_termination: false
+
+eip: no
+
+count: 1
+
+tags:
+  customer:  heco

@@ -1,0 +1,10 @@
+#role: wt_rrd
+#task: update_configs
+---
+- name: Update database.yml
+  template: src=database.yml.j2 dest={{ grafana.path }}/config/database.yml owner={{ grafana.user }} group={{ grafana.group }}
+  sudo_user: "{{ grafana.user }}"
+
+- name: Update settings.yml
+  template: src=settings.yml.j2 dest={{ grafana.path }}/config/settings.local.yml owner={{ grafana.user }} group={{ grafana.group }}
+  sudo_user: "{{ grafana.user }}"

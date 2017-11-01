@@ -1,0 +1,22 @@
+---
+- name: Copy RTCC config
+  template: src=config.yaml.j2 dest="{{ telemetrix_home }}"/config.yaml owner={{ scanner.user }} group={{ scanner.group }}
+
+- name: Create log directory
+  file: path={{ rtcc.log_path}} state=directory owner=wtuser group=wtgroup
+
+- name: Create RTCC Service
+  template: src=upstart_run.conf.j2 dest=/etc/init/rtcc.conf
+  when: ansible_os_family == 'Debian'
+
+- name: Create RTCC Service
+  template: src=systemd_run.conf.j2 dest=/etc/systemd/system/rtcc.service
+  when: ansible_os_family == 'RedHat'
+
+- name: Create RTCC Celery Service
+  template: src=upstart_celery_worker.conf.j2 dest=/etc/init/celery_rtcc.conf
+  when: ansible_os_family == 'Debian'
+
+- name: Create RTCC Celery Service
+  template: src=systemd_celery_worker.conf.j2 dest=/etc/systemd/system/celery_rtcc.service
+  when: ansible_os_family == 'RedHat'

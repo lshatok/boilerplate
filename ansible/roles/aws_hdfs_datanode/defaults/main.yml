@@ -1,0 +1,71 @@
+aws_hdfs_datanode:
+  region: us-west-2
+
+  hdfs_mounts:
+    - device_name: d
+      mount_point: /hdfs/vol01
+      volume_size: 500
+      delete_on_termination: false
+    - device_name: e
+      mount_point: /hdfs/vol02
+      volume_size: 500
+      delete_on_termination: false
+    - device_name: f
+      mount_point: /hdfs/vol03
+      volume_size: 500
+      delete_on_termination: false
+    - device_name: g
+      mount_point: /hdfs/vol04
+      volume_size: 500
+      delete_on_termination: false
+    - device_name: h
+      mount_point: /hdfs/vol05
+      volume_size: 500
+      delete_on_termination: false
+#    - device_name: i
+#      mount_point: /hdfs/vol06
+#      volume_size: 500
+#      delete_on_termination: false
+#    - device_name: j
+#      mount_point: /hdfs/vol07
+#      volume_size: 500
+#      delete_on_termination: false
+#    - device_name: k
+#      mount_point: /hdfs/vol08
+#      volume_size: 500
+#      delete_on_termination: false
+#    - device_name: l
+#      mount_point: /hdfs/vol09
+#      volume_size: 500
+#      delete_on_termination: false
+#    - device_name: m
+#      mount_point: /hdfs/vol10
+#      volume_size: 500
+#      delete_on_termination: false
+#    - device_name: n
+#      mount_point: /hdfs/vol11
+#      volume_size: 500
+#      delete_on_termination: false
+#    - device_name: o
+#      mount_point: /hdfs/vol12
+#      volume_size: 500
+#      delete_on_termination: false
+#    - device_name: p
+#      mount_point: /hdfs/vol13
+#      volume_size: 500
+#      delete_on_termination: false
+#    - device_name: q
+#      mount_point: /hdfs/vol14
+#      volume_size: 500
+#      delete_on_termination: false
+#    - device_name: r
+#      mount_point: /hdfs/vol15
+#      volume_size: 500
+#      delete_on_termination: false
+#    - device_name: s
+#      mount_point: /hdfs/vol16
+#      volume_size: 500
+#      delete_on_termination: false
+
+limits_lines:
+  - "hdfs  -       nofile  32768"

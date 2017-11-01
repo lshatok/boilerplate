@@ -1,0 +1,4 @@
+---
+dependencies:
+ - { role: wt_core }
+ - { role: wt_cdh5-base }

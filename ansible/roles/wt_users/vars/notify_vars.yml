@@ -1,0 +1,13 @@
+# Notification variables  
+---
+email:
+  user: alerts@webtelemetry.us
+  pass: Z5pv@1NN
+  from: alerts@webtelemetry.us
+  to:   alerts@webtelemetry.us
+  smtp: smtp.gmail.com
+
+chat:
+  token: XQREW346Hlk8391tqxsHJ3091hn3uMy231k891j1
+  room1: Security-Alerts
+  room2: Ops-Security-Alerts

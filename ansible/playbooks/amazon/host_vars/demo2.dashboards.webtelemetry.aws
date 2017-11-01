@@ -1,0 +1,25 @@
+network_name: WebTelemetry Dev Public FrontHaul
+
+subnet: subnet-207a2366
+
+application:  influxdb
+
+security_groups:
+  - sg-6i2s3y76 #webtelemetry_ops
+  - sg-1c8d6b79 #fronthaul-webtelemetry-dev
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+
+assign_eip: true
+
+count: 2
+
+tags:
+  customer: demo2
+  stack_name: demo2

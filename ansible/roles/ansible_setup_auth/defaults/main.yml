@@ -1,0 +1,27 @@
+# Dictionary of vars for auth purposes
+---
+common:
+  root_password: wt123
+  deploy_password: wt123
+  logwatch_email: logwatch@webtelemetry.us
+  deploy_user_name: {{ product.admin }}
+  deploy_user_groups: {{ product.admin }},wtgroup
+  deploy_user_shell: /bin/bash
+  deploy_public_keys:
+       - ~/.ssh/id_rsa.pub
+  deploy_sshd: ssh
+  deploy_sshd_config: /etc/ssh/sshd_config
+
+  required_packages:
+    - ufw
+    - fail2ban
+    - unattended-upgrades
+    - logwatch
+   
+  optional_packages:
+    - mosh
+    - vim
+
+  ssh_port: 22
+  mosh_from_port: 60000
+  mosh_to_port: 60010

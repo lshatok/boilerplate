@@ -1,0 +1,52 @@
+- name: Ensure that telemetrix dirs exists
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: "{{ custom.user }}"
+  with_items:
+    - "{{ custom.telemetrix.path }}"
+    - "{{ custom.telemetrix.archive_path }}"
+
+- name: Install dependencies (apt)
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - python-requests
+    - python-dateutil
+
+- name: Install dependencies (pip)
+  pip:
+    name: "{{ item }}"
+    state: present
+    virtualenv: "{{ virtualenv_path }}"
+  with_items:
+    - certifi
+    - untangle
+    - watchdog
+    - requests
+    - python-dateutil
+  become_user: "{{ custom.user }}"
+
+- name: Create upstart script
+  template:
+    src: upstart_telemetrix_ercot_crs_soap_consumer.conf.j2
+    dest: /etc/init/telemetrix_ercot_crs_soap_consumer.conf
+
+- name: Update settings for ercot_soap_consumer
+  template:
+    src: settings_ercot_soap_consumer.yml.j2
+    dest: "{{ custom.configs }}/ercot_soap_consumer.conf"
+  become_user: "{{ custom.user }}"
+
+- name: Create symlink for settings.local.yml
+  file: src="{{ custom.configs }}/ercot_soap_consumer.conf" dest="{{ custom.path }}/telemetrix/python/webtelemetry/ercot_soap_consumer.conf"
+  args:
+    owner: "{{ custom.user }}"
+    group: "{{ custom.group }}"
+    state: link
+    force: yes
+
+- name: Start service
+  service: name=telemetrix_ercot_crs_soap_consumer state=restarted

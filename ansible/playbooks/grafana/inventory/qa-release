@@ -1,0 +1,13 @@
+[telemetrix-app]
+vrt-qa-release.telemetrix-app-01.webtelemetry.amazon.aws ansible_ssh_host=10.81.0.36
+
+[snmp]
+vrt-qa-release.snmp-01.webtelemetry.amazon.aws ansible_ssh_host=10.0.0.232
+
+[hbase-all]
+vrt-qa-release.hbase-01.webtelemetry.amazon.aws ansible_ssh_host=10.0.0.227
+
+[qa-release:children]
+telemetrix-app
+snmp
+hbase-all

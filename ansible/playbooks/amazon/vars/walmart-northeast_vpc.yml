@@ -1,0 +1,15 @@
+---
+# WALMART VPC
+# ap-northeast-2
+# webtelemetry.us
+
+vpcid: vpc-487f3d21
+region: ap-northeast-2
+key_name: webtelemetry_walmart_devops
+environment_name: walmart_test
+release: xenial # ubuntu 16
+environment_type: prod
+
+#image: ami-61ed390f #"099720109477/ubuntu/images/hvm/ubuntu-xenial-16.10-amd64-server-20160811
+
+# image: ami-7669be18 # "099720109477/ubuntu/images/hvm-ssd/ubuntu-xenial-16.10-amd64-server-20170811"

@@ -1,0 +1,69 @@
+---
+- name: Create groups
+  group: name="{{ item }}" state=present
+  ignore_errors: true
+  with_items:
+    - wtgroup
+    - admin
+  register: rc
+
+# install user accounts from list
+- name: Add accounts
+  become: true
+  user:   name="{{ item.user }}"
+          comment="{{ item.comment | default(omit) }}"
+          shell="{{ item.shell | default('/bin/bash') }}"
+          home="{{ item.home }}" createhome=yes
+          append="{{ item.append | default('no') }}"
+  with_flattened:
+    - wtuser:
+      comment: wtuser
+      user: wtuser
+      append: no
+      home: /WT
+  become:    yes
+  register: rc
+
+# deploy root ssh keys
+- name: Deploy root ssh keys
+  authorized_key: user="{{ item.user }}"
+                  key="{{ item.pubkey }}"
+                  path="{{ item.home }}/.ssh/id_rsa.pub"
+                  manage_dir="yes"
+  with_flattened:
+   - root:
+     user:  root
+     home:  /root
+     append: no
+     pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDQs4+vQtTrq0+9+hIhL3IcRyn5dHc3r4x3j3cxhGUvsxzPQdPx4d1drgGb8M+sted6Hr2wLwaFfhF11a+MtUrn2JD+rHQYbbZnNCGqi9bzujdtVz3j7AANmg1nqFAAQNUV+YV6x/fIbgnfuRQfASZ6Ome+J+AAIO3otb+ExkbAzJ9IW4FKP5Wdv1XqYEwLKRPEnFKvM924Pa/hSkVeH+00L7Ch2z7qMB6H5GWNE30n4pbINDiXgPs9Cw8Y9TbUjCZ776mCBOnpN96u5Uvg4XIav/ngdtR3uHMJkzEUDUgqKAfOlFlMQY/uy34rAcS/txKDlj9YhLsNKDO5egcy1GmVi3kdHvl0dP4F75eVZkY/+kej+HJDcp9P8//ETWQ8IpeGRNlwiJGwDHaTdLsbNkPCodOSqQhxZDAo1/zu56RJToJ2Rq9U3IU6nwMwpgrRyUR7ZKkNI9JHdy125QUxXN5OoayJmTECdJ3kt6W89SvvRHur/UjbvSqFmJNREVkMVPvrq8Gf2w0D3tgnaf6r6VIA2UHhjtPZ0ctnKTcQeghd/wfpn4FTAnSW19zn7XGfUMj23DIxpG6fu8PTH08lGUcFNBe8RSm8jl6LviIbQevdxFJxnjsMukH8RlGRJ3tSGhyA+QZ69rHzeQ3eQvVF1uNZEBQq3zkWt/kaTnpGg8pzJQ== {{ product.admin }}@webtelemetry.us
+  become:   yes
+  register: rc
+
+# deploy user authorized_keys
+- name: Deploy authorized_keys
+  authorized_key: user="{{ item.user }}"
+                  key="{{ item.pubkey }}"
+                  path="{{ item.home }}/.ssh/authorized_keys"
+                  manage_dir=yes
+  with_flattened:
+    - {{ product.admin }}:
+      user:  {{ product.admin }}
+      home:  /home/{{ product.admin }}
+      append: no
+      pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDQs4+vQtTrq0+9+hIhL3IcRyn5dHc3r4x3j3cxhGUvsxzPQdPx4d1drgGb8M+sted6Hr2wLwaFfhF11a+MtUrn2JD+rHQYbbZnNCGqi9bzujdtVz3j7AANmg1nqFAAQNUV+YV6x/fIbgnfuRQfASZ6Ome+J+AAIO3otb+ExkbAzJ9IW4FKP5Wdv1XqYEwLKRPEnFKvM924Pa/hSkVeH+00L7Ch2z7qMB6H5GWNE30n4pbINDiXgPs9Cw8Y9TbUjCZ776mCBOnpN96u5Uvg4XIav/ngdtR3uHMJkzEUDUgqKAfOlFlMQY/uy34rAcS/txKDlj9YhLsNKDO5egcy1GmVi3kdHvl0dP4F75eVZkY/+kej+HJDcp9P8//ETWQ8IpeGRNlwiJGwDHaTdLsbNkPCodOSqQhxZDAo1/zu56RJToJ2Rq9U3IU6nwMwpgrRyUR7ZKkNI9JHdy125QUxXN5OoayJmTECdJ3kt6W89SvvRHur/UjbvSqFmJNREVkMVPvrq8Gf2w0D3tgnaf6r6VIA2UHhjtPZ0ctnKTcQeghd/wfpn4FTAnSW19zn7XGfUMj23DIxpG6fu8PTH08lGUcFNBe8RSm8jl6LviIbQevdxFJxnjsMukH8RlGRJ3tSGhyA+QZ69rHzeQ3eQvVF1uNZEBQq3zkWt/kaTnpGg8pzJQ== {{ product.admin }}@webtelemetry.us
+
+    - root:
+      user:  root
+      home:  /root
+      append: no
+      pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDQs4+vQtTrq0+9+hIhL3IcRyn5dHc3r4x3j3cxhGUvsxzPQdPx4d1drgGb8M+sted6Hr2wLwaFfhF11a+MtUrn2JD+rHQYbbZnNCGqi9bzujdtVz3j7AANmg1nqFAAQNUV+YV6x/fIbgnfuRQfASZ6Ome+J+AAIO3otb+ExkbAzJ9IW4FKP5Wdv1XqYEwLKRPEnFKvM924Pa/hSkVeH+00L7Ch2z7qMB6H5GWNE30n4pbINDiXgPs9Cw8Y9TbUjCZ776mCBOnpN96u5Uvg4XIav/ngdtR3uHMJkzEUDUgqKAfOlFlMQY/uy34rAcS/txKDlj9YhLsNKDO5egcy1GmVi3kdHvl0dP4F75eVZkY/+kej+HJDcp9P8//ETWQ8IpeGRNlwiJGwDHaTdLsbNkPCodOSqQhxZDAo1/zu56RJToJ2Rq9U3IU6nwMwpgrRyUR7ZKkNI9JHdy125QUxXN5OoayJmTECdJ3kt6W89SvvRHur/UjbvSqFmJNREVkMVPvrq8Gf2w0D3tgnaf6r6VIA2UHhjtPZ0ctnKTcQeghd/wfpn4FTAnSW19zn7XGfUMj23DIxpG6fu8PTH08lGUcFNBe8RSm8jl6LviIbQevdxFJxnjsMukH8RlGRJ3tSGhyA+QZ69rHzeQ3eQvVF1uNZEBQq3zkWt/kaTnpGg8pzJQ== {{ product.admin }}@webtelemetry.us
+  become:   yes
+  register: rc
+
+
+- name: Deploy user's bash_profile
+  copy: src=bash_profile dest=/root/.bash_profile  owner=root  group=root   mode=0740
+  become: yes
+  register: rc
+
+

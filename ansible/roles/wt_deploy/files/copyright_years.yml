@@ -1,0 +1,4 @@
+/WT/appserver/webapps/wt-core/jsp/includes/footer.jsp:	private static final String DEFAULT_COPYRIGHT_YEAR = "2013-2015";
+/WT/appserver/webapps/wt-core/jsp/scripts/graphmgmt.js:        COPYRIGHT (C) 2013-2015 WEBTELEMETRY US
+/WT/appserver/webapps/wt-snmp/includes/footer.jsp:	private static final String DEFAULT_COPYRIGHT_YEAR = "2013-2015";
+/WT/appserver/webapps/wt-snmp/performance/results.jsp:Copyright &#169;&nbsp;<%= "2013-2015" %>&nbsp;WebTelemetry LLC

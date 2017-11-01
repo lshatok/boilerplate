@@ -1,0 +1,6 @@
+---
+branch: deploy/bpa/webtelemetry-2.1/webtelemetry-2.1/test
+webtelemetry_home: /WT
+webtelemetry_path:  /WT/appserver
+
+domain: bpa-test-grafana.fed.{{ product.url }}

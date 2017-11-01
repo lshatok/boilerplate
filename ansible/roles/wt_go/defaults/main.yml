@@ -1,0 +1,78 @@
+#GO default variables
+---
+domain: dev.{{ product.url }}
+ssl_cert: dev.{{ product.url }}.crt
+ssl_key: dev.{{ product.url }}.key
+
+#rds:
+#  main_db:
+#    host: env.random.us-west-2.rds.amazonaws.com
+#    username: {{ product.admin }}
+#    password: rds_root_password
+
+influxdb:
+  host: localhost
+  repo: ssh://git@github.com/webtelemetry/webtelemetry.git
+  branch: master
+  rubyver: 2.1.5
+  path: /WT/influxdb
+  url: local-influxdb.dev.{{ product.url }}
+  app_env: production
+  user: webtelemetry
+  group: wtgroup
+
+  # TELEMETRIX app configuration
+  config:
+    my_usage:
+      force_standard_aggregation_tables: false
+
+  # database.yml
+  rds_production:
+    database: influxdb_db
+    username: root
+    password: root
+    host: localhost
+
+  rds_replica_production:
+    database: influxdb_views
+    username: root
+    password: root
+    host: localhost
+
+  rds_influxdb_source:
+    database: influxdb_views
+    username: root
+    password: root
+    host: localhost
+
+  rds_webtelemetry_source:
+    database: webtelemetry_db
+    username: root
+    password: root
+    host: localhost
+
+  rds_metrix_source:
+    database: wt_db
+    username: root
+    password: root
+    host: localhost
+
+  s3:
+    bucket: influxdb
+    s3_protocol: 'https'
+
+  newrelic:
+    license_key: 'license_key'
+    common:
+      agent_enabled: false
+      resque_capture_params: true
+      app_name: ssn-test001-influxdb
+      log_level: info
+
+  snmp:
+    device_data:
+      host: 'http://localhost'
+      port: '8080'
+      path: '/snmp/api/telemetrix/collector/device_data/retrieve'
+
+env_vars: {}

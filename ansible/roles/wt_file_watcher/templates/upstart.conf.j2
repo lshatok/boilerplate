@@ -1,0 +1,7 @@
+start on runlevel [2345]
+stop on runlevel [!2345]
+respawn
+
+env TELEMETRIX_HOME="{{ telemetrix_home }}"
+
+exec su - wtuser -c 'cd /WT/ps-custom/telemetrix/python/grafana;  {{ virtualenv_path }}/bin/python fileobserver.py {{ custom.file_observer.source }} {{ custom.file_observer.dest }}'

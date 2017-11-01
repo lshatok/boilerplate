@@ -1,0 +1,28 @@
+# Main file wt_telemetrix
+---
+- name: Update repo
+  include: 01_update_repo.yml
+  tags: [ update ]
+
+- name: Install requirements
+  include: 02_install_requirements.yml
+  tags: [ update ]
+
+- name: Create folders
+  include: 03_create_dirs.yml
+
+- name: Update configs
+  include: 04_update_configs.yml
+  tags: [ configs, update ]
+
+- name: Tanants configs
+  include: 05_tenant_configs.yml
+  tags: [ configs, update ]
+
+- name: Enable LogRotate
+  include: 06_enable_log_rotate.yml
+  tags: [ configs ]
+
+- name: Restart services
+  include: 07_restart_service.yml
+  tags: [ configs,update ]

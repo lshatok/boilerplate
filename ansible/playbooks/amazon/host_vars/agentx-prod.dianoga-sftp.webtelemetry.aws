@@ -1,0 +1,28 @@
+network_name: SNMP Internet
+
+subnet: subnet-7cc7bf0a # snmp_internet_2a
+
+application: snmp-agent
+
+security_groups:
+  - sg-ce9478b7 # snmp_ops
+  - sg-20d40a59 # snmp_prod_sftp
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdg
+    volume_size: 200
+    delete_on_termination: false
+
+assign_eip: true
+
+count: 1
+
+tags:
+  customer: WebTelemetry_SNMP
+  stack_name: snmp-prod

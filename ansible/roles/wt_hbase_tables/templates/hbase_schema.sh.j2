@@ -1,0 +1,10 @@
+create 'transmission_system_data', {NAME => 'load', COMPRESSION => 'SNAPPY'}, {NAME => 'lmp', COMPRESSION => 'SNAPPY'}
+create 'snmp_data', {NAME => 'raw', COMPRESSION => 'SNAPPY'}, {NAME => 'actual', COMPRESSION => 'SNAPPY'}
+create 'hist_temp_fcst', {NAME => 'actual', COMPRESSION => 'SNAPPY'}, {NAME => 'forecast', COMPRESSION => 'SNAPPY'}
+create 'fcst_cp', {NAME => 'fcst', COMPRESSION => 'SNAPPY'}
+
+#create 'ean', {NAME => 'ts', COMPRESSION => 'SNAPPY'}
+#create 'asset', {NAME => 'ts', COMPRESSION => 'SNAPPY'}, {NAME => 'md', COMPRESSION => 'SNAPPY'}
+#create 'asset_metadata', {NAME => 'md', COMPRESSION => 'SNAPPY'}
+#create 'aggregate', {NAME => 'ts', COMPRESSION => 'SNAPPY'}
+exit

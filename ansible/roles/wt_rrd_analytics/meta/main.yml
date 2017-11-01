@@ -1,0 +1,3 @@
+---
+dependencies:
+  - { role: wt_rrd_core }

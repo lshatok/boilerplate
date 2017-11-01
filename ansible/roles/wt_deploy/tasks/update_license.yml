@@ -1,0 +1,8 @@
+---
+- name: "{{ product.name}} license"
+  template: src=WebTelemetry.license.j2 dest="{{ item }}" owner=root group=root mode=640
+  with_items:
+    - "{{ product.license.path }}"
+  become: true
+  ignore_errors: true
+  tags: license

@@ -1,0 +1,8 @@
+---
+- name: Install required system packages
+  include: apt_update.yml
+  tags: [ update ]
+  
+- name: Install Analytics
+  include: pip_install.yml
+  tags: [ update, pipup ]

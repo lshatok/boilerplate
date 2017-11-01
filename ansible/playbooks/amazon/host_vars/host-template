@@ -1,0 +1,41 @@
+## Copy file to the name of the AWS instance ##
+
+## For network name description ##
+network_name:
+
+## Add VPC Subnet ID ##
+subnet:  subnet-123abc
+# add a comment with network cidr and zone
+## If subnet is public, add ec2_assign_eip task in the playbook ##
+
+# webtelemetry, snmp, hbase,
+application:
+
+# Add VPC Security group ID
+security_groups:
+  - sg-1234abcd  #add comment sg name/description
+  - sg-1235aaaa  #add comment sg name/description
+
+
+volumes:
+  # /dev/sda1 = rootvol (default is 8gb)
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  # /dev/sdf = /WT
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+
+# customer tag
+tags:
+  customer:  webtelemetry
+  stack_name: prod04 # <env>-(test,prod,accpetance)
+
+# assign eip true or false
+assign_eip: false
+
+# How many instances to create
+count: 1
+
+

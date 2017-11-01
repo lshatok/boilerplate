@@ -1,0 +1,23 @@
+[telemetrix-app]
+vrt-prod.telemetrix-app-01.webtelemetry.amazon.aws ansible_ssh_host=10.81.5.138
+
+[snmp]
+vrt-prod.snmp-01.webtelemetry.amazon.aws ansible_ssh_host=10.81.5.240
+
+[checkpoint]
+vrt-all-halex.checkpoint.webtelemetry.amazon.aws ansible_ssh_host=10.81.0.17
+
+[hbase-master]
+vrt-prod.hbase-master-01.webtelemetry.amazon.aws ansible_ssh_host=10.81.5.227
+
+[hbase-worker]
+vrt-prod.hbase-worker-01.webtelemetry.amazon.aws ansible_ssh_host=10.81.5.231
+vrt-prod.hbase-worker-02.webtelemetry.amazon.aws ansible_ssh_host=10.81.5.209
+vrt-prod.hbase-worker-03.webtelemetry.amazon.aws ansible_ssh_host=10.81.5.228
+
+[prod:children]
+telemetrix-app
+snmp
+checkpoint
+hbase-master
+hbase-worker

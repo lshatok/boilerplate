@@ -1,0 +1,5 @@
+- name: Create upstart script
+  template: src=upstart_telemetrix_server.conf.j2 dest=/etc/init/telemetrix-server.conf
+
+- name: Create log directory
+  file: path=/var/log/webtelemetry state=directory

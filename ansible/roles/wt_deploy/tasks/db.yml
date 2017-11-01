@@ -1,0 +1,35 @@
+---
+- name: Reload daemon configuration
+  shell: "{{ item }}"
+  with_items:
+    - "/usr/bin/systemctl daemon-reload"
+  delegate_to: "{{ ansible_ssh_host }}"
+
+- name: Start WTdb
+  service:
+    name: "{{ item }}"
+    state: started
+  with_items:
+    - "WTdb"
+
+- name: Clean up java
+  shell: "{{ item }}"
+  with_items:
+    - "find /var/log -type f | xargs rm -rf"
+  tags: kill_java
+  become: 'yes'
+  ignore_errors: true
+
+- name: Perform system maintenance tasks
+  shell: "{{ item }}"
+  with_items:
+    - "/WT/dbserver/bin/psql -U {{ dbserver.username }} -c 'vacuum analyze;'"
+  delegate_to: "{{ ansible_ssh_host }}"
+
+- name: Perform system maintenance task1
+  shell: "{{ item }}"
+  with_items:
+    - "/WT/dbserver/bin/psql -U {{ dbserver.username }} -c 'vacuum full;'"
+    - "systemctl daemon-reload"
+  ignore_errors: true
+  delegate_to: "{{ ansible_ssh_host }}"

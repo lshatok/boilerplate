@@ -1,0 +1,11 @@
+
+devops_west_oregon:
+        region: us-west-2
+        cidr: 10.0.0.0/16
+        name: ai-us-west
+        description: DevOps West primary VPC
+
+
+        Subnet:
+            10.0.0.0/24:
+                name:   ai-public

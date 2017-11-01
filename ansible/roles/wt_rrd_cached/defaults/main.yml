@@ -1,0 +1,45 @@
+metrix_home: /WT/configs
+virtualenv_path: /WT/virtualenvs/rtcc
+
+rtcc:
+  tenant_uid: system
+  name: rtcc
+  user: webtelemetry
+  group: wtgroup
+  path: /WT/rtcc
+  log_path: /var/log/webtelemetry/rtcc
+  device_data_refresh: 0
+
+influxdb::
+  brokers:
+      - 127.0.0.1
+  port: 5673
+  user: {{ product.user }}
+  password: password
+  heartbeat_sec: 5
+  listeners:
+    rtcc:
+        app_class: webtelemetry.telemetrix.messaging.WTListenerApp
+        app_config:
+            mapper: webtelemetry.rtcc.rtcclistener.mapper
+        consumer:
+            factory: webtelemetry.telemetrix.messaging.SNMPDataConsumer.NamedQueueConsumerFactory
+            queue_name: qu.fam.assets.out.system
+        vhost: wt.telemetrix
+
+dashboard:
+    loglevel: debug
+    vhost: wt.telemetrix.dashboard
+    user: {{ product.user }}
+    timezone: Europe/Amsterdam
+    workers:
+        fam:
+          app: webtelemetry.rtcc.tasks
+          queues: dashboard.rtcc
+
+influxdb:
+  enabled: false
+
+kafka:
+  enabled: false
+

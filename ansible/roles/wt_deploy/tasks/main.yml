@@ -1,0 +1,35 @@
+---
+#####################################################################################################
+#- include:
+
+# - include: "stop_services.yml"
+# - include: "disable_services.yml"
+# - include: "clean_rrd.yml"
+# - include: "clean_yum.yml"
+# -  include: "replace_plugin.yml"
+
+
+#####################################################################################################
+- include: "deploy_product_admin.yml"
+- include: "configure_filesystems.yml"
+- include: "update_profile.yml"
+- include: "update_startup.yml"
+- include: "reboot_os.yml"
+- include: "update_hosts.yml"
+- include: "update_hostname.yml"
+- include: "update_version.yml"
+- include: "update_documentation.yml"
+- include: "configure_filesystems.yml"
+- include: "db.yml"
+- include: "update_hosts.yml"
+- include: "clean2.yml"
+- include: "compact.yml"
+- include: "reboot_os.yml"
+#####################################################################################################
+- include: "start_services.yml"
+# - include: "optimize.yml"
+
+
+
+
+

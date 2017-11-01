@@ -1,0 +1,1093 @@
+<;;;;;;;;;;;;;;;;;%@page language="java" contentType="text/html" session="true"
+import="java.io.*"
+import="java.text.DateFormat"
+import="java.util.*"
+import="org.opennms.core.resource.Vault"
+import="org.opennms.web.*"
+import="org.opennms.web.element.NetworkElementFactory"
+import="org.opennms.web.graph.*"
+import="org.opennms.web.performance.*"
+import="com.jjlabs.wt.tools.WTProperties"
+import="com.jjlabs.wt.tools.WTTools" %>
+<;;;;;;;;;;;;;;;;;%@ page import="com.jjlabs.wt.security.manager.WTAccountCredentials"%>
+<;;;;;;;;;;;;;;;;;%@ page import="com.jjlabs.wt.dao.impl.DAOImpl"%>
+<;;;;;;;;;;;;;;;;;%@ page import="org.opennms.web.element.Node"%>
+<;;;;;;;;;;;;;;;;;%@ page import="org.opennms.web.element.NetworkElementFactory"%>
+
+<;;;;;;;;;;;;;;;;;%!
+static DateFormat dateFormatter = DateFormat.getDateInstance( DateFormat.LONG );
+static DateFormat timeFormatter = DateFormat.getTimeInstance( DateFormat.LONG );
+protected long graphDefinitionsModified;
+protected PerformanceModel model = null;
+
+public void setDates(Vector dates, String displayType, String strTimeChoice, HttpServletRequest request) {
+    java.util.Date startDate = null;
+    java.util.Date endDate = null;
+    if (displayType.equals("range")) {
+    String startDateStr = request.getParameter( "startdate" );
+    String endDateStr   = request.getParameter( "enddate" );
+    String startHour  = request.getParameter( "startHour" );
+    String endHour  = request.getParameter( "endHour" );
+    String startMin  = request.getParameter( "startMin" );
+    String endMin  = request.getParameter( "endMin" );
+    if (startMin == null) startMin = "0";
+    if (endMin == null) endMin = "0";
+
+    if( startDateStr == null || startHour == null ||
+    endDateStr == null   || endHour == null  )
+{
+    throw new MissingParameterException( "startDate", new String[] {"startDateStr", "startHour", "endDateStr", "endHour"} );
+}
+    else
+{
+
+    Calendar startCal = Calendar.getInstance();
+    startCal.setTime (new java.util.Date(startDateStr));
+    startCal.set( Calendar.HOUR_OF_DAY, Integer.parseInt( startHour ));
+    startCal.set( Calendar.MINUTE, Integer.parseInt(startMin) );
+    startCal.set( Calendar.SECOND, 0 );
+    startCal.set( Calendar.MILLISECOND, 0 );
+
+    Calendar endCal = Calendar.getInstance();
+    endCal.setTime(new java.util.Date(endDateStr));
+    endCal.set( Calendar.HOUR_OF_DAY, Integer.parseInt( endHour ));
+    endCal.set( Calendar.MINUTE, Integer.parseInt(endMin) );
+    endCal.set( Calendar.SECOND, 0 );
+    endCal.set( Calendar.MILLISECOND, 0 );
+
+    //gather information for displaying around the image
+    startDate = startCal.getTime();
+    endDate   = endCal.getTime();
+
+
+}
+} else { // Time Choice
+
+    // Set different times for when time choices are changed
+    java.util.Calendar cal = new java.util.GregorianCalendar();
+    java.util.Date now = cal.getTime();
+    cal.add( java.util.Calendar.HOUR, -1 );
+    java.util.Date oneHourAgo = cal.getTime();
+    cal.add( java.util.Calendar.HOUR, -3 );
+    java.util.Date fourHoursAgo = cal.getTime();
+    cal.add( java.util.Calendar.HOUR, -4 );
+    java.util.Date eightHoursAgo = cal.getTime();
+    cal.add( java.util.Calendar.HOUR, -4 );
+    java.util.Date twelveHoursAgo = cal.getTime();
+
+
+    cal.add( java.util.Calendar.HOUR, -12 );
+    java.util.Date twentyFourHoursAgo = cal.getTime();
+    cal.add( java.util.Calendar.DATE, -1 );
+    java.util.Date fourtyEightHoursAgo = cal.getTime();
+    cal.add( java.util.Calendar.DATE, -1 );
+    java.util.Date seventyTwoHoursAgo = cal.getTime();
+    cal.add( java.util.Calendar.DATE, -4 );
+    java.util.Date weekAgo = cal.getTime();
+
+    cal = new java.util.GregorianCalendar();
+    cal.add( java.util.Calendar.MONTH, -1 );
+    java.util.Date monthAgo = cal.getTime();
+
+    cal.add( java.util.Calendar.MONTH, -2 );
+    java.util.Date threeMonthsAgo = cal.getTime();
+
+    cal.add( java.util.Calendar.MONTH, -9 );
+    java.util.Date yearAgo = cal.getTime();
+
+    endDate = now;
+
+    if (strTimeChoice.equals("Last Hour")) {
+    startDate = oneHourAgo;
+} else if (strTimeChoice.equals("Last 4 Hours")) {
+    startDate = fourHoursAgo;
+} else if (strTimeChoice.equals("Last 8 Hours")) {
+    startDate = eightHoursAgo;
+} else if (strTimeChoice.equals("Last 12 Hours")) {
+    startDate = twelveHoursAgo;
+} else if (strTimeChoice.equals("Last 24 Hours")) {
+    startDate = twentyFourHoursAgo;
+} else if (strTimeChoice.equals("Last 48 Hours")) {
+    startDate = fourtyEightHoursAgo;
+} else if (strTimeChoice.equals("Last 72 Hours")) {
+    startDate = seventyTwoHoursAgo;
+} else if (strTimeChoice.equals("Last Week")) {
+    startDate = weekAgo;
+} else if (strTimeChoice.equals("Last Month")) {
+    startDate = monthAgo;
+} else if (strTimeChoice.equals("Last 3 Months")) {
+    startDate = threeMonthsAgo;
+} else if (strTimeChoice.equals("Last Year")) {
+    startDate = yearAgo;
+}
+}
+    dates.add(startDate);
+    dates.add(endDate);
+
+
+}
+%>
+
+<;;;;;;;;;;;;;;;;;%
+
+try {
+    this.model = PerformanceModel.instance();
+} catch( Exception e ) {
+    throw new ServletException( "Could not initialize the PerformanceModel", e );
+}
+
+//required parameter reports
+String reports[] = request.getParameterValues( "reports" );
+    if(reports == null) {
+        throw new MissingParameterException( "report", new String[] {"report", "node"} );
+    }
+        
+    //required parameter node
+    String nodeIdString = request.getParameter( "node" );
+    if(nodeIdString == null) {
+        throw new MissingParameterException( "node", new String[] {"report", "node"} );
+    }
+    int nodeId = Integer.parseInt(nodeIdString);
+    
+	Node node_db = NetworkElementFactory.getNode( nodeId );
+    String orgName = node_db == null ? "" : node_db.getOrganizationName();
+
+    //optional parameter intf
+    String intf = request.getParameter( "intf" );
+
+    String displayType = request.getParameter("displayType");
+    if (displayType == null) displayType = "choice";
+
+    String strTimeChoice = request.getParameter("timeChoice");
+    if (strTimeChoice == null) {
+        if (displayType.equals("choice")) strTimeChoice = "Last 24 Hours";
+        else strTimeChoice = "";
+    }
+    
+    //With zoomChoice of 1.0, graph size is same as original graph size before zoom feature put in
+    String strZoomChoice = request.getParameter("zoomChoice");
+    if (strZoomChoice == null) strZoomChoice = "100%";
+
+Vector dates = new Vector(2);
+setDates(dates, displayType, strTimeChoice, request);
+java.util.Date startDate = (java.util.Date) dates.get(0);
+java.util.Date endDate = (java.util.Date) dates.get(1);
+
+String start = String.valueOf(startDate.getTime());
+String end = String.valueOf(endDate.getTime());
+
+//convert the report names to graph objects
+PrefabGraph[] graphs = new PrefabGraph[reports.length];
+
+/* for( int i=0; i
+< reports.length;;;;;;;;;;;;;;;;;; i++ )
+{
+    graphs[i] = (PrefabGraph)this.model.getQuery(reports[i]);
+    if( graphs[i] == null )
+    throw new IllegalArgumentException("Unknown report name: " + reports[i]);
+} */
+graphs = this.model.getQueries(nodeIdString, intf, true);
+
+//sort the graphs by their order in the properties file
+//(PrefabGraph implements the Comparable interface)
+Arrays.sort(graphs);
+
+// Set the current org stuff
+WTAccountCredentials ac = WTAccountCredentials.current();
+int orgid = ac.getCurrentManagedId();
+if( orgid == -1)
+{
+    request.removeAttribute("selected_org_name");
+}
+else
+{
+    request.setAttribute("selected_org_name", DAOImpl.OrgDAO.getWTOrganization(orgid).getName());
+}
+
+%>
+
+<;;;;;;;;;;;;;;;;;%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+
+<html>
+    <head>
+        <title>WebTelemetry - Node Graphs | Historic Graphs</title>
+        <base HREF="<%=org.opennms.web.Util.calculateUrlBase( request )%>"/>
+        <link rel="stylesheet" type="text/css" href="/wt-portal/css/default.css"/>
+        <!-- zoom also uses watchtower.properties -->
+        <
+        %
+        String strZoomRange=null;
+        String[] zoomValues = null;
+        String refresh=null;
+        WTProperties singleton=WTProperties.getInstance();
+        singleton.reload();
+        if( displayType.equals("choice")) {
+		refresh = singleton.getProperty(" sysmon.graph.historic.refresh.interval");
+		if( refresh == null )
+			refresh = "300";  // Default to 300 secs (i.e. 5 mins)
+        %>
+        <meta http-equiv="refresh" content="<%= refresh %>"/>
+        <
+        % } %>
+        <
+        %
+        strZoomRange = singleton.getProperty("historic.latency.graphviews.zoomvalues");
+ 	
+ 	if(strZoomRange == null)
+ 		zoomValues = new String[] {"75%","100%","125%","150%","175%","200%","250%"};
+        else {
+        StringTokenizer st = new StringTokenizer(strZoomRange,",");
+        zoomValues = new String[st.countTokens()];
+        int h = -1;
+        while (st.hasMoreTokens()) {
+        zoomValues[++h] = st.nextToken();
+    }
+    }
+        %>
+
+        <script type="text/javascript" src="/wt-portal/javascript/WTtools.js"></script>
+        <script type="text/javascript" src="/wt-portal/javascript/popcalendar.js"></script>
+        <script type="text/javascript" src="/wt-portal/javascript/jquery.easydrag.js"></script>
+
+        <script type="text/javascript" src="/wt-portal/javascript/fancybox/lib/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="/wt-portal/javascript/fancybox/source/jquery.fancybox.js"></script>
+        <script type="text/javascript" src="/wt-portal/javascript/fancybox/source/jquery.fancybox.pack.js"></script>
+        <script type="text/javascript"
+                src="/wt-portal/javascript/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+        <script type="text/javascript"
+                src="/wt-portal/javascript/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+        <script type="text/javascript"
+                src="/wt-portal/javascript/fancybox/source/helpers/jquery.fancybox-thumbs.js"></script>
+        <script type="text/javascript"
+                src="/wt-portal/javascript/fancybox/source/helpers/jquery.fancybox-media.js"></script>
+        <script type="text/javascript"
+                src="/wt-portal/javascript/fancybox/source/helpers/jquery.fancybox-buttons.js"></script>
+
+        <link rel="stylesheet" href="/wt-portal/javascript/fancybox/source/helpers/jquery.fancybox-thumbs.css"
+              type="text/css" media="screen"
+        / >
+        <link rel="stylesheet" href="/wt-portal/javascript/fancybox/source/helpers/jquery.fancybox-buttons.css"
+              type="text/css" media="screen"
+        / >
+        <link rel="stylesheet" href="/wt-portal/javascript/fancybox/source/helpers/jquery.fancybox-media.css"
+              type="text/css" media="screen"
+        / >
+        <link rel="stylesheet" href="/wt-portal/javascript/fancybox/source/jquery.fancybox-1.3.4.css" type="text/css"
+              media="screen"/>
+
+        <link rel="stylesheet" href="/wt-portal/javascript/fancybox/source/jquery.draggable.css" type="text/css"
+              media="screen"/>
+
+        <script type=text
+        /javascript>
+        function changeTimeFrame()
+        {
+            document.timeFrame.submit();
+        }
+        function changeZoomAmount()
+        {
+            document.zoomAmount.submit();
+        }
+
+        var win = null;
+        function openHelp(url)
+        {
+            var w = 800;
+            var h = 600;
+            var name = 'graphhelp';
+            var winLeft = (screen.width-w)/2;
+            var winTop  = (screen.height-h)/2;
+            var settings = 'height=' + h + ',';
+            settings += 'width=' + w + ',';
+            settings += 'top=' + winTop + ',';
+            settings += 'left=' + winLeft + ',';
+            settings += 'scrollbars=yes,resizable=yes';
+            win= window.open(url, name, settings);
+            if (parseInt(navigator.appVersion) >=4) {win.window.focus();}
+        }
+
+    </script>
+</head>;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+<body onload="self.focus()">
+    <
+    %  String title="";
+    title = "Historic Graphs for Node: " + NetworkElementFactory.getNodeLabel(nodeId) + " for Organization: " + orgName;
+	if(intf != null ) {
+        title = " Historic Graphs for
+      Node: " + NetworkElementFactory.getNodeLabel(nodeId) + ", Interface: " + this.model.getHumanReadableNameForIfLabel(nodeId, intf) + "
+      for Organization: " + orgName;
+	}
+%>
+<% request.setAttribute(" title",title);%>
+<c:import context="/wt-snmp" url="/includes/header.jsp">
+	<c:param name=" title" value=" ${title}"/>
+	<c:param name=" help" value=" snmping/graphviews/WTHelp_HistoricGraphs.html"/>
+    <c:param name=" noPopOut" value="1"/>;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+</c:import>
+<!-- BEGIN FRAMING TABLE:open tags, keep at 100%-->
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td width="10">
+            <img src="/wt-portal/images/spacers/spacer.gif" height="1" width="10" border="0" alt="WebTelemetry">
+        </td>
+        <td>
+            <!-- END FRAMING TABLE:open tags, keep at 100%-->
+
+            <form action="/wt-snmp/performance/results.jsp" name="timeFrame" method="get">
+                <table width="98%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td valign="top">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tr class="tableHeader">
+                                    <td colspan="2" class="tableHeader">
+                                        <input type="hidden" name="displayType" value="choice">
+
+                                            <
+                                            %=Util.makeHiddenTags(request, new String[] {"timeChoice", "displayType"})%>
+                                            <
+                                            %
+                                            String[] ranges = new
+                                               String[]{"Last Hour", "Last 4 Hours", "Last 8 Hours", "Last 12 Hours", "Last 24 Hours", "Last 48 Hours", "Last 72 Hours", "Last Week", "Last Month", "Last 3 Months", "Last Year"};
+                                            %>
+                                            Time Frame:&nbsp;&nbsp;
+                                            <select name="timeChoice" onchange="changeTimeFrame();" size="1">
+                                                <
+                                                %if (displayType.equals("range")) {%>
+            <option selected>----</option>
+        <%}
+          for ( int i=0; i < ranges.length; i++) {
+            String selected = "";
+            if (strTimeChoice.equalsIgnoreCase(ranges[i])) selected = " selected";
+			%><option <%=selected%>><%=ranges[i]%></option><%
+		  } %>		  
+      </select>
+    </tr>
+</form>
+	<tr class=" tableRowLight"><td class=" tableText" align=" right"><b>From:&nbsp;&nbsp;</b></td>
+		<td class=" tableText"><%=dateFormatter.format(startDate)%> <%=timeFormatter.format(startDate) %>&nbsp;&nbsp;</td></tr>
+    <tr class=" tableRowLight"><td class=" tableText" align=" right"><b>To:&nbsp;&nbsp;</b></td>
+		<td class=" tableText"><%=dateFormatter.format(endDate)%> <%=timeFormatter.format(endDate) %>&nbsp;&nbsp;</td></tr>
+	<tr class=" tableRowLight"><td class=" tableText" colspan="2">&nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                        <td valign="top" width="50">
+                            <b>OR</b>
+                        </td>
+                        <td valign="top">
+                            <!-- BEGIN Time range inputs -->
+                            <script language="javascript">
+                                var months = {"JAN": 0, "FEB": 1, "MAR": 2, "APR": 3, "MAY": 4, "JUN": 5, "JUL": 6,
+                                "AUG": 7, "SEP": 8, "OCT": 9, "NOV": 10, "DEC": 11};
+                                function validateDates(frm) {
+                                var beginHourIndex = frm.startHour.selectedIndex;
+                                var beginHour = frm.startHour.options[beginHourIndex].text;
+
+                                var beginMinuteIndex = frm.startMin.selectedIndex;
+                                var beginMinute = frm.startMin.options[beginMinuteIndex].text;
+
+                                var endHourIndex = frm.endHour.selectedIndex;
+                                var endHour = frm.endHour.options[endHourIndex].text;
+
+                                var endMinuteIndex = frm.endMin.selectedIndex;
+                                var endMinute = frm.endMin.options[endMinuteIndex].text;
+
+                                var dateValue = frm.startdate.value;
+                                var monthValue = dateValue.substr(dateValue.indexOf("-")+1, 3);
+                                beginDate = new Date(dateValue.replace(/-/g," ") + " "+beginHour+":"+beginMinute+":00");
+                                if (beginDate.getMonth() != months[monthValue]) {
+                                alert("Please enter a valid Start Date");
+                                return false;
+                            }
+                                dateValue = frm.enddate.value;
+                                monthValue = dateValue.substr(dateValue.indexOf("-")+1, 3);
+                                endDate = new Date(dateValue.replace(/-/g," ") + " "+endHour+":"+endMinute+":"+"59");
+                                if (endDate.getMonth() != months[monthValue]) {
+                                alert("Please enter a valid End Date");
+                                return false;
+                            }
+
+                                if (beginDate > endDate) {
+                                alert("'End Date' must be set to a date/time after 'Start Date'.");
+                                return false;
+                            }
+                                return true;
+
+                            }
+                            </script>
+                            <form action="/wt-snmp/performance/results.jsp" name="timeRange" method="get"
+                                  onsubmit="return validateDates(this)">
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                    <tr class="tableHeader">
+                                        <td colspan="4" class="tableHeader">
+                                            <input type="hidden" name="displayType" value="range">
+                                                <
+                                                %=Util.makeHiddenTags(request, new
+                                                   String[] {"startdate", "enddate", "startHour", "endHour", "startMin", "endMin", "displayType", "timeChoice"})%>
+                                                <
+                                                %
+                                                String[] months = new
+                                                   String[]{"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+                                                %>
+
+                                                Time Range:
+                                        </td>
+                                    </tr>
+                                    <tr class="tableRowLight">
+                                        <td align="right" class="tableText">
+                                            <b>Start Date:&nbsp;&nbsp;</b>
+                                        </td>
+                                        <td class="tableText">
+                                            <input type=text name="startdate" size="12" maxlength="12"
+                                                   value='<%=startDate.getDate()+"-"+months[startDate.getMonth()]+"-"+(1900+startDate.getYear())%>'>&nbsp;&nbsp;
+                                        </td>
+                                        <td class="tableText">
+                                            <a href="javascript:showCalendar(document.timeRange.startdate, document.timeRange.startdate, 'dd-mmmm-yyyy','en',1);">
+                                                <img src="/wt-portal/images/calendar/show-calendar.gif" border="0">
+                                            </a>
+                                        </td>
+                                        <td class="tableText">
+                                            <select name="startHour">
+                                                <
+                                                %
+                                                for (int i=0; i
+                                                <
+                                                = 23; i++) {
+                                                String selected="";
+                                                if ( i == startDate.getHours()) selected="selected";
+                                                %><option <%=selected%>><%=i%></option><%
+                                            }
+                                                %>
+                                            </select>
+                                            :
+                                            <select name="startMin">
+                                                <
+                                                %
+                                                for (int i=0; i
+                                                <
+                                                = 59; i++) {
+                                                String selected="";
+                                                String min = String.valueOf(i);
+                                                if (i < 10) min = "0"+min;
+                                                if ( i == startDate.getMinutes()) selected="selected";
+                                                %><option <%=selected%>><%=min%></option><%
+                                            }
+                                                %>
+
+                                            </select>
+                                            &nbsp;&nbsp;
+                                        </td>
+
+                                    </tr>
+
+                                    <tr class="tableRowLight">
+                                        <td align="right" class="tableText">
+                                            <b>End Date:&nbsp;&nbsp;</b>
+                                        </td>
+                                        <td class="tableText">
+                                            <input type=text name="enddate" size="12" maxlength="12"
+                                                   value='<%=endDate.getDate()+"-"+months[endDate.getMonth()]+"-"+(1900+endDate.getYear())%>'>&nbsp;&nbsp;
+                                        </td>
+                                        <td class="tableText">
+                                            <a href="javascript:showCalendar(document.timeRange.enddate, document.timeRange.enddate, 'dd-mmmm-yyyy','en',1);">
+                                                <img src="/wt-portal/images/calendar/show-calendar.gif" border="0">
+                                            </a>
+                                        </td>
+                                        <td class="tableText">
+                                            <select name="endHour">
+                                                <
+                                                %
+                                                for (int i=0; i
+                                                <
+                                                = 23; i++) {
+                                                String selected="";
+                                                if ( i == endDate.getHours()) selected="selected";
+                                                %><option <%=selected%>><%=i%></option><%
+                                            }
+                                                %>
+                                            </select>
+                                            :
+                                            <select name="endMin">
+                                                <
+                                                %
+                                                for (int i=0; i
+                                                <
+                                                = 59; i++) {
+                                                String selected="";
+                                                String min = String.valueOf(i);
+                                                if (i < 10) min = "0"+min;
+                                                if ( i == endDate.getMinutes()) selected="selected";
+                                                %><option <%=selected%>><%=min%></option><%
+                                            }
+                                                %>
+                                            </select>
+                                            &nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr class="tableRowLight">
+                                        <td class="tableText" colspan="4" align="center">
+                                            <INPUT type="image" src="/wt-portal/images/buttons/btn_update.gif">
+                                                <img src="/wt-portal/images/spacers/spacer.gif" height="4" width="1"
+                                                     border="0" align="right" alt="WebTelemetry">
+                                        </td>
+                                    </tr>
+                                </table>
+                        </td>
+            </form>
+
+            <td valign="top" align="right">
+
+                <!-- BEGIN UNIT EXPONENT LEGEND -->
+                <table border="0" cellpadding="3" cellspacing="0">
+                    <tr class="graphLegend">
+                        <td class="graphLegendTitle" colspan="6">Units Exponent Definition</td>
+                    </tr>
+                    <tr>
+                        <td width="10" class="graphLegendTBL">&#956;</td>
+                        <td width="40" class="graphLegendTBL">Micro</td>
+                        <td width="40" class="graphLegendTB">1x10
+                            <sup>-6</sup>
+                        </td>
+                        <td width="10" class="graphLegendTBL">M</td>
+                        <td width="40" class="graphLegendTBL">Mega</td>
+                        <td width="40" class="graphLegendTRB">1x10
+                            <sup>6</sup>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="graphLegendL">m</td>
+                        <td class="graphLegendL">Milli</td>
+                        <td class="graphLegend">1x10
+                            <sup>-3</sup>
+                        </td>
+                        <td class="graphLegendL">G</td>
+                        <td class="graphLegendL">Giga</td>
+                        <td class="graphLegendR">1x10
+                            <sup>9</sup>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="graphLegendTBL">k</td>
+                        <td class="graphLegendTBL">Kilo</td>
+                        <td class="graphLegendTB">1x10
+                            <sup>3</sup>
+                        </td>
+                        <td colspan="3" class="graphLegendBox">&nbsp;</td>
+                    </tr>
+                </table>
+                <!-- END UNIT EXPONENT LEGEND -->
+            </td>
+    </tr>
+</table>;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+</br>
+<form action="/wt-snmp/performance/results.jsp" name="zoomAmount" method="get">
+
+    <
+    %=Util.makeHiddenTags(request, new String[] {"zoomChoice"})%>
+
+    &nbsp;&nbsp;
+    <b>Graph zoom:</b>
+    <select name="zoomChoice" class="zoommenu" onchange="changeZoomAmount();">
+        <
+        %
+        for ( int i=0; i
+        < zoomValues.length
+        ; i++) {
+        String selected = "";
+        if (strZoomChoice.equalsIgnoreCase(zoomValues[i])) selected = "selected";
+        %><option <%=selected%>><%=zoomValues[i]%></option><%
+    } %>
+
+    </select>
+    <!-- Strip off the % sign  -->
+    <
+    %String strZoomChoicePassable=null;
+    if (strZoomChoice != null)
+    strZoomChoicePassable = strZoomChoice.substring(0,strZoomChoice.length() - 1);
+    %>
+    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click on a graph to pop it out, click it again to center, click on a pop-out graph
+        to close.
+    </b>
+</form>;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+<!-- BEGIN FRAMING TABLE:close tags-->
+</td>
+</tr>
+</table>
+<!-- END FRAMING TABLE:close tags-->
+<br/>;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+<table width="99%" cellpadding="0" cellspacing="0" border="0">
+    <
+    % if(graphs.length>0) {%>
+    <% for(int i=0; i < graphs.length; i++ ) {%>
+    <%-- encode the RRD filenames based on the graph's required data sources --%>
+    <% String [] rrds = null;
+    if( graphs[i].getType().startsWith("node") ||
+    graphs[i].getType().startsWith("interface") )
+    rrds = this.getRRDNames(nodeId, intf, graphs[i]);
+    else
+    rrds = this.getRRDNames(nodeIdString, graphs[i]); %>
+    <% String rrdParm = this.encodeRRDNamesAsParmString(rrds); %>
+    <%-- handle external values, if any --%>
+    <% String externalValuesParm = this.encodeExternalValuesAsParmString(nodeId, intf, graphs[i]); %>
+    <tr>
+    <td width="10"><img src="/wt-portal/images/spacers/spacer.gif" height="1" width="10" border="0" alt="WebTelemetry"></td>
+    <td align="right" valign="top">
+
+    <%if (graphs[i].getHelp() != null && graphs[i].getHelp().length() > 0) {%>
+        <a href="javascript:openHelp('<%=WTTools.getHelpURL(request)%><%=graphs[i].getHelp()%>');">
+        <img border="0" src="snmp/performance/graph.png?nodeid=<%= nodeIdString %>&zoomval=<%=strZoomChoicePassable%>&report=<%=graphs[i].getName()%>&start=<%=start%>&end=<%=end%>&<%=rrdParm%>&<%=externalValuesParm%>"/>
+        </a>
+        <%} else {%>
+        <a id="graph_options_3" href="snmp/performance/graph.png?nodeid=<%= nodeIdString %>&zoomval=150&report=<%=graphs[i].getName()%>&start=<%=start%>&end=<%=end%>&<%=rrdParm%>&title=<%= nodeIdString %>&<%=externalValuesParm%>&border="1" /> <img src="snmp/performance/graph.png?nodeid=<%= nodeIdString %>&zoomval=<%=strZoomChoicePassable%>&report=<%=graphs[i].getName()%>&start=<%=start%>&end=<%=end%>&<%=rrdParm%>&<%=externalValuesParm%>" />
+        </a
+        <%}%>
+    </td>
+    <td valign="top" width="3%">&nbsp;</td>
+    <td align="left" valign="top">
+    <% i++; %>
+    <% if (i < graphs.length) {%>
+        <%-- encode the RRD filenames based on the graph's required data sources --%>
+        <% if( graphs[i].getType().startsWith("node") ||
+        graphs[i].getType().startsWith("interface") )
+        rrds = this.getRRDNames(nodeId, intf, graphs[i]);
+        else
+        rrds = this.getRRDNames(nodeIdString, graphs[i]); %>
+
+        <% rrdParm = this.encodeRRDNamesAsParmString(rrds); %>
+
+        <%-- handle external values, if any --%>
+        <% externalValuesParm = this.encodeExternalValuesAsParmString(nodeId, intf, graphs[i]); %>
+
+        <%if (graphs[i].getHelp() != null && graphs[i].getHelp().length() > 0) {%>
+        <a href="javascript:openHelp('<%=WTTools.getHelpURL(request)%><%=graphs[i].getHelp()%>');">
+        <img border="0" src="snmp/performance/graph.png?nodeid=<%= nodeIdString %>&zoomval=<%=strZoomChoicePassable%>&report=<%=graphs[i].getName()%>&start=<%=start%>&end=<%=end%>&<%=rrdParm%>&<%=externalValuesParm%>"/>
+        </a>
+        <%} else {%>
+            <a id="graph_options_3" href="snmp/performance/graph.png?nodeid=<%= nodeIdString %>&zoomval=150&report=<%=graphs[i].getName()%>&start=<%=start%>&end=<%=end%>&<%=rrdParm%>&title=<%= nodeIdString %>&<%=externalValuesParm%>&border="1" /> <img src="snmp/performance/graph.png?nodeid=<%= nodeIdString %>&zoomval=<%=strZoomChoicePassable%>&report=<%=graphs[i].getName()%>&start=<%=start%>&end=<%=end%>&<%=rrdParm%>&<%=externalValuesParm%>" />
+            <%}%>
+        <% } %>
+    </td>
+    </tr>
+    <% } %>
+    <% } else {%>
+    <tr>
+    <td align="center" colspan="4">No SNMP performance data has been gathered at this level</td>
+    </tr>
+    <%} %>
+    <tr>
+        <td height="20" colspan="4">&nbsp;</td>
+    </tr>
+    <tr>
+        <td align="center" colspan="4">
+            <jsp:include page="/includes/bookmark.jsp" flush="false"/>
+        </td>
+    </tr>
+</table>;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+
+<br>
+    <script type="text/javascript">
+        $.fancybox.getViewport = function () {
+        // fancybox custom conditions for positioning here
+        return {w: 1000, h: 800, x: 900, y: 800}
+    };
+
+
+        //fancybox startup
+        $(document).ready(function () {
+        $.fancybox.center = function () {
+        };
+
+        $("#graph_options_1").fancybox({
+        helpers: {
+        title : {
+        type : 'float'
+    }
+    }
+    });
+
+        $("#graph_options_2").fancybox({
+        openEffect    : 'elastic',
+        closeEffect    : 'elastic',
+        closeClick      : true,
+        closeBtn        : true,
+
+        helpers : {
+        title : {
+        type : 'inside'
+    }
+    }
+    });
+
+        $("#graph_options_3").fancybox({
+
+        fitToView    : true,
+        autoSize    : true,
+        closeClick    : true,
+        closeBtn    : true,
+        openEffect    : 'none',
+        closeEffect    : 'none',
+        helpers : {
+        overlay : {
+        css : {
+        opacity: 100,
+        'background-color' : '#ffffff',
+    }
+    }
+    }
+    });
+
+        $("#graph_options_4").fancybox({
+        helpers : {
+        title : {
+        type : 'over'
+    }
+    }
+
+    });
+    })
+        ;
+
+
+    </script>
+</body>
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;;
+;
+;;
+;
+;
+;
+;
+</html>
+
+<;;;;;;;;;;;;;;;;;;;%!
+/** intf can be null */
+public String[] getRRDNames(int nodeId, String intf, PrefabGraph graph) {
+    if(graph == null) {
+    throw new IllegalArgumentException("Cannot take null parameters.");
+}
+
+    String[] columns = graph.getColumns();
+    String[] rrds = new String[columns.length];
+
+    for(int i=0; i < columns.length; i++ ) {
+    StringBuffer buffer = new StringBuffer();
+    buffer.append(nodeId);
+    buffer.append(File.separator);
+
+    if(intf != null && PerformanceModel.INTERFACE_GRAPH_TYPE.equals(graph.getType())) {
+    buffer.append(intf);
+    buffer.append(File.separator);
+}
+
+    buffer.append(columns[i]);
+    buffer.append(GraphUtil.RRD_SUFFIX);
+
+    rrds[i] = buffer.toString();
+}
+    return rrds;
+}
+
+public String[] getRRDNames(String nodeId, PrefabGraph graph)
+{
+    if(graph == null)
+{throw new IllegalArgumentException("Cannot take null parameters.");}
+
+    String[] columns = graph.getColumns();
+    String[] rrds = new String[columns.length];
+    Map dynaNames = new TreeMap();
+
+    // Get the dynamic data source(s) for specified dynaType
+    File dynaMainDir = new File( this.model.getRrdDirectory() + File.separator +
+    nodeId, graph.getType());
+    File[] dynaDirs = dynaMainDir.listFiles();
+    for( int i=0; i < dynaDirs.length; i++ )
+{
+    File dynaDir = dynaDirs[i];
+    if( dynaDir.isDirectory() )
+{
+    // Find the dynamic graph title text file (there should be
+    // only one), open it & read in the graph title (e.g. common
+    // name) for this directory
+    File [] titleFile = dynaDir.listFiles(
+    new FilenameFilter()
+{
+    public boolean accept(File file, String name)
+{return name.endsWith(".txt");}
+}
+    );
+
+    String title = new String();
+    try
+{
+    FileInputStream fis = new FileInputStream( titleFile[0] );
+    byte [] buffer = new byte[1024];
+    int size = fis.read(buffer, 0, 1024);
+    if( size != -1  )
+    title = new String(buffer, 0, size);
+    fis.close();
+}
+    catch(FileNotFoundException fnfe)  {}  // Do Nothing
+    catch(IOException ioe)  {}  // Do nothing
+
+    if( title != null )
+    dynaNames.put(dynaDir.getName(), title);
+}
+}
+
+    for( int i=0; i < columns.length; i++ )
+{
+    StringBuffer buffer = new StringBuffer();
+    buffer.append(nodeId + File.separator);
+    buffer.append(graph.getType() + File.separator);
+
+    Iterator it = dynaNames.keySet().iterator();
+    while( it.hasNext() )
+{
+    String dynaDir = (String)it.next();
+    String title = (String)dynaNames.get(dynaDir);
+    if( title.equals( graph.getTitle() ) )
+{
+    buffer.append(dynaDir + File.separator);
+    buffer.append(columns[i]);
+    buffer.append(GraphUtil.RRD_SUFFIX);
+    rrds[i] = buffer.toString();
+}
+}
+}
+    return rrds;
+}
+
+public String encodeRRDNamesAsParmString(String[] rrds) {
+    if(rrds == null) {
+    throw new IllegalArgumentException("Cannot take null parameters.");
+}
+
+    String parmString = "";
+
+    if(rrds.length > 0) {
+    StringBuffer buffer = new StringBuffer("rrd=");
+    buffer.append(java.net.URLEncoder.encode(rrds[0]));
+
+    for(int i=1; i < rrds.length; i++ ) {
+    buffer.append("&rrd=");
+    buffer.append(java.net.URLEncoder.encode(rrds[i]));
+}
+
+    parmString = buffer.toString();
+}
+
+    return parmString;
+}
+
+
+/** currently only know how to handle ifSpeed external value; intf can be null */
+public String encodeExternalValuesAsParmString(int nodeId, String intf, PrefabGraph graph) throws java.sql.SQLException {
+    if(graph == null) {
+    throw new IllegalArgumentException("Cannot take null parameters.");
+}
+
+    String parmString = "";
+    String[] externalValues = graph.getExternalValues();
+
+    if(externalValues != null && externalValues.length > 0) {
+    StringBuffer buffer = new StringBuffer();
+
+    for(int i=0; i < externalValues.length; i++) {
+    if("ifSpeed".equals(externalValues[i])) {
+    String speed = this.getIfSpeed(nodeId, intf);
+
+    if(speed != null) {
+    buffer.append(externalValues[i]);
+    buffer.append("=");
+    buffer.append(speed);
+    buffer.append("&");
+}
+}
+    else {
+    throw new IllegalStateException("Unsupported external value name: " + externalValues[i]);
+}
+}
+
+    parmString = buffer.toString();
+}
+
+    return parmString;
+}
+
+
+public String getIfSpeed(int nodeId, String intf) throws java.sql.SQLException {
+    if(intf == null) {
+    throw new IllegalArgumentException("Cannot take null parameters.");
+}
+
+    String speed = null;
+
+    try {
+    Map intfInfo = org.opennms.netmgt.utils.IfLabel.getInterfaceInfoFromIfLabel(nodeId, intf);
+
+    //if the extended information was found correctly
+    if(intfInfo != null) {
+    speed = (String)intfInfo.get("snmpifspeed");
+}
+}
+    catch (java.sql.SQLException e) {
+    this.log("SQLException while trying to fetch extended interface info", e);
+}
+
+
+    return speed;
+}
+%>
+
+<;;;;;;;;;;;;;;;;;;;!-- Footer -->
+<br/>
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;;
+;
+;;
+;
+;
+;
+;
+</br>
+<span style="font-size:7pt; font-color:#999999; padding-left:10px; padding-bottom:5px">
+    Copyright &#169;&nbsp;
+    <
+    %= "2013-2017" %>&nbsp;WebTelemetry Inc
+</span>
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;
+;;
+;
+;;
+;
+;
+;
+;

@@ -1,0 +1,7 @@
+---
+#####################################################################################################
+# Halt the  host
+- name: halt the machine
+  shell: sleep 2 && shutdown -P now "Host {{ ansible_default_ipv4.address }} halted"
+  sudo: true
+  ignore_errors: true

@@ -1,0 +1,8 @@
+---
+- name: Playbook wt_install
+  hosts: "{{ target }}"
+  become: true
+  remote_user: root
+
+  roles:
+    - wt_install

@@ -1,0 +1,34 @@
+required_roles:  [ core_web ]
+
+
+tasks:
+    - files
+    - run_commands:make_ssl_links
+
+files:
+    /usr/local/ssl/certs/dev.{{ product.url }}.crt:
+        source: webtelemetry-dev/dev.{{ product.url }}.crt
+        owner:  root
+        group:  root
+        mode:  0644
+    /usr/local/ssl/certs/dev.{{ product.url }}.ca-bundle:
+        source: webtelemetry-dev/dev.{{ product.url }}.ca-bundle
+        owner:  root
+        group:  root
+        mode:  0644
+    /usr/local/ssl/certs/dev.{{ product.url }}.ca-chain.crt:
+        source: webtelemetry-dev/dev.{{ product.url }}.ca-chain.crt
+        owner:  root
+        group:  root
+        mode:  0644
+    /usr/local/ssl/private/dev.{{ product.url }}.key:
+        source: webtelemetry-dev/dev.{{ product.url }}.key
+        owner:  root
+        group:  root
+        mode:  0600
+
+
+run_commands:
+    make_ssl_links:
+        - [ root, /usr/local/ssl/certs, 'ln -s dev.{{ product.url }}.ca-chain.crt webtelemetry_star.crt' ]
+        - [ root, /usr/local/ssl/private, 'ln -s dev.{{ product.url }}.key webtelemetry_star.key' ]

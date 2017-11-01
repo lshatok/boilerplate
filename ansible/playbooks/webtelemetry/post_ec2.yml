@@ -1,0 +1,16 @@
+#This can be used if the second half of amazon-launch fails
+---
+- name: Configure instance(s)
+  hosts: "{{ target }}"
+  sudo: true
+  gather_facts: true
+
+  roles:
+    - aws_dhclient_patch
+    - wt_core
+    - wt_python
+    - wt_git
+    - wt_java9
+    - wt_nodejs
+    - wt_users
+    - os_reboot

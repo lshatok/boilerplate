@@ -1,0 +1,122 @@
+#!/bin/sh
+#
+# Filename:    WTappl (init script)
+# chkconfig: 345 90 10
+# description: Starts & stops the WebTelemetry java application server (i.e.
+#              Tomcat v4.1.18 the Apache J2EE Servlet Engine for Servlet 2.3
+#              & JSP 1.2) which handles all dynamic servlet or JSP requests
+#              & responses (based on URL context or MIME extension).  It is
+#              forwarded HTTP requests from WThttpd (web server).
+#
+# processname: WTappl
+# pidfile: /var/run/WTappl.pid
+# config: /WT/appserver/conf/WTstartup.conf
+
+if [ "$WEBTELEMETRY_HOME" = "" ]; then
+	WEBTELEMETRY_HOME=/WT
+fi
+
+# Source function library.
+if [ -x /etc/rc.d/init.d/functions ]; then
+	. /etc/rc.d/init.d/functions
+fi
+
+# Apply the WTappl startup config settings
+TOMCAT_CFG="$WEBTELEMETRY_HOME/appserver/conf/WTstartup.conf"
+[ -r "$TOMCAT_CFG" ] && . "${TOMCAT_CFG}"
+
+# Path to the WTappl daemon launch script (direct don't use wrapper)
+PROG=WTappl
+TOMCAT_SCRIPT="/WT/appserver/bin/d$PROG"
+{{ product.pid.group }}="$WEBTELEMETRY_HOME/bin/wtOSProcess"
+        
+# If TOMCAT_USER is not set, use wtuser & wtgroup
+if [ -z "$TOMCAT_USER" ]; then
+    TOMCAT_USER="wtuser"
+    TOMCAT_GROUP="wtgroup"
+fi
+
+# Since the daemon function will sandbox TOMCAT_SCRIPT, no environment stuff
+# should be defined here anymore.  Use the WTstartup.conf file instead; it
+# will be read by the $tomcat script
+
+RETVAL=0
+
+# See how we were called.
+start()
+{
+    # Increase the number of OS file descriptors
+    ulimit -n 2048
+
+    echo -n "Starting $PROG: "
+
+    chown -R $TOMCAT_USER:$TOMCAT_GROUP ${{ appserver.type }}_HOME/logs
+    chown -R $TOMCAT_USER:$TOMCAT_GROUP ${{ appserver.type }}_HOME/work
+    chown -R $TOMCAT_USER:$TOMCAT_GROUP ${{ appserver.type }}_TMPDIR
+    chown -R $TOMCAT_USER:$TOMCAT_GROUP ${{ appserver.type }}_HOME/webapps
+
+    if [ -x /etc/rc.d/init.d/functions ]; then
+        daemon --user $TOMCAT_USER $TOMCAT_SCRIPT start 
+    else
+        su - $TOMCAT_USER -c "$TOMCAT_SCRIPT start"
+    fi
+
+    RETVAL=$?
+    echo
+    [ $RETVAL = 0 ] && touch /var/lock/subsys/$PROG
+    return $RETVAL
+}
+
+stop()
+{
+    echo -n "Stopping $PROG: "
+    if [ -x /etc/rc.d/init.d/functions ]; then
+        daemon --user $TOMCAT_USER $TOMCAT_SCRIPT stop
+    else
+        su - $TOMCAT_USER -c "$TOMCAT_SCRIPT stop"
+    fi
+    RETVAL=$?
+    echo
+    [ $RETVAL = 0 ] && rm -f /var/lock/subsys/$PROG /var/run/$PROG.pid
+
+    # Verify the WebTelemetry Application Server is stopped
+    sleep 3
+    IS_RUNNING=`${{ product.pid.group }} -L bootstrap.jar | wc -l`
+    if [ "$IS_RUNNING" != "0" ]; then
+        ${{ product.pid.group }} -K bootstrap.jar
+    fi
+}
+
+
+# See how we were called.
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  status)
+        PID_RUNNING=`${{ product.pid.group }} -L bootstrap.jar | awk -F' ' '{ print $2 }'`
+	if [ "$PID_RUNNING" = "" ]; then
+		echo "$PROG is stopped..."
+	else
+		echo "$PROG (pid" $PID_RUNNING") is running..."
+	fi
+        ;;
+  restart)
+        stop
+        start
+        ;;
+  condrestart)
+        if [ -f /var/run/$PROG.pid ] ; then
+                stop
+                start
+        fi
+        ;;
+  *)
+        echo "Usage: $PROG {start|stop|restart|condrestart|status}"
+        exit 1
+esac
+
+exit $RETVAL

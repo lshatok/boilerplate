@@ -1,0 +1,13 @@
+---
+branch: heco/2.0/test
+webtelemetry_home:  /WT
+virtualenv: /WT/virtenv
+
+jruby_path:  /WT/jruby
+
+
+domain: webtelemetry.us
+
+#newrelic_jar: /opt/newrelic/jarfile
+#newrelic_hostagent: no
+

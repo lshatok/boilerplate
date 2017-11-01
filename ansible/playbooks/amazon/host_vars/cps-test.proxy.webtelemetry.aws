@@ -1,0 +1,23 @@
+network_name: CPS Fronthaul
+
+# CPS internet 1c
+subnet: subnet-cf1d5ab9
+
+
+application: proxy
+
+security_groups:
+  - sg-5345412b # walmart_test_fronthaul
+  - sg-93090beb # walmart_ops
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 20
+    delete_on_termination: false
+
+assign_eip: true
+
+count: 1
+
+tags:
+  customer: ffx-test

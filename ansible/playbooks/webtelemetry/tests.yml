@@ -1,0 +1,13 @@
+## Default Common role for every instance ##
+---
+- name: WebTelemetry | test playbook
+  hosts: "{{ target }}"
+  sudo: true
+
+  #vars:
+  #  rubyver: 2.3.5
+
+  # role var required to specify test
+
+  roles:
+    - "{{ role }}"

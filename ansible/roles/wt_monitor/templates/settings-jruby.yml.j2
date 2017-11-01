@@ -1,0 +1,140 @@
+:shared_config:
+  :file_name: 'Basalt.yml'
+
+:data_collection_schema_service:
+  :url: {{ snmp.data_collection_schema_url }}
+  :username: {{ grafana.internal_api.user }}
+  :password: {{ grafana.internal_api.pass }}
+
+:virtual_env_path: {{ virtualenv_path }}
+
+:db_pool_properties:  # Grafana
+  driver_class_name: com.postgresql.jdbc.Driver    # The fully qualified Java class name of the JDBC driver to be used
+  test_on_borrow: true                        # The indication of whether objects will be validated before being borrowed from the pool
+  validate_query: SELECT 1                    # The SQL query that will be used to validate connections from this pool before returning them to the caller
+  time_between_eviction_runs_millis: {{ snmp.db_pool_properties.time_between_eviction_runs_millis }}  # The number of milliseconds to sleep between runs of the idle connection validation/cleaner thread
+  max_active: {{ snmp.db_pool_properties.max_active }} # The maximum number of active connections that can be allocated from this pool at the same time
+  max_idle: {{ snmp.db_pool_properties.max_idle }}  # The maximum number of connections that should be kept in the pool at all times.
+  initial_size: {{ snmp.db_pool_properties.initial_size }} # The initial number of connections that are created when the pool is started
+  min_idle: {{ snmp.db_pool_properties.min_idle }} # The minimum number of established connections that should be kept in the pool at all times
+  max_wait: {{ snmp.db_pool_properties.max_wait }} # The maximum number of milliseconds that the pool will wait (when there are no available connections) for a connection to be returned before throwing an exception
+  remove_abandoned: true                      # Flag to remove abandoned connections if they exceed the removeAbandonedTimout.
+  remove_abandoned_timeout:  {{ snmp.db_pool_properties.remove_abandonded_timeout }} # Timeout in seconds before an abandoned(in use) connection can be removed
+  log_abandoned: false                        # Timeout in seconds before an abandoned(in use) connection can be removed
+  jdbc_interceptors: org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer
+
+:product_db_pool_properties: # Reporting
+  driver_class_name: com.postgresql.jdbc.Driver    # The fully qualified Java class name of the JDBC driver to be used
+  test_on_borrow: true                        # The indication of whether objects will be validated before being borrowed from the pool
+  validate_query: SELECT 1                    # The SQL query that will be used to validate connections from this pool before returning them to the caller
+  time_between_eviction_runs_millis: {{ snmp.product_db_pool_properties.time_between_eviction_runs_millis }}  # The number of milliseconds to sleep between runs of the idle connection validation/cleaner thread
+  max_active: {{ snmp.product_db_pool_properties.max_active }} # The maximum number of active connections that can be allocated from this pool at the same time
+  max_idle: {{ snmp.product_db_pool_properties.max_idle }} # The maximum number of connections that should be kept in the pool at all times.
+  initial_size: {{ snmp.product_db_pool_properties.initial_size }}  # The initial number of connections that are created when the pool is started
+  min_idle: {{ snmp.product_db_pool_properties.min_idle }} # The minimum number of established connections that should be kept in the pool at all times
+  max_wait: {{ snmp.product_db_pool_properties.max_wait }} # The maximum number of milliseconds that the pool will wait (when there are no available connections) for a connection to be returned before throwing an exception
+  remove_abandoned: true                      # Flag to remove abandoned connections if they exceed the removeAbandonedTimout.
+  remove_abandoned_timeout: {{ snmp.product_db_pool_properties.remove_abandonded_timeout }} # Timeout in seconds before an abandoned(in use) connection can be removed
+  log_abandoned: false                        # Timeout in seconds before an abandoned(in use) connection can be removed
+  jdbc_interceptors: org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer
+
+:cache_pool_properties:
+  host: {{ snmp.analytics.host }}
+{% if snmp.analytics.password is defined %}
+  password: {{ snmp.analytics.password }}
+{% endif %}
+  env_name: {{ snmp.analytics.env_name }}
+  max_total: {{ snmp.cache_pool_properties.max_total }}
+  max_idle: {{ snmp.cache_pool_properties.max_idle }}
+  min_idle: {{ snmp.cache_pool_properties.min_idle }}
+  test_on_borrow: true
+  test_on_return: true
+  test_while_idle: true
+  num_tests_per_eviction_run: {{ snmp.cache_pool_properties.num_tests_per_eviction_run }}
+  time_between_eviction_runs_millis: {{ snmp.cache_pool_properties.time_between_eviction_runs_millis }}
+  cache_expire: {{ snmp.cache_pool_properties.cache_expire }}  # 1 day
+
+:webtelemetry:
+  :url: {{ grafana.url }}
+  :base_url: {{ grafana.base_url }}
+  :username: {{ grafana.internal_api.user }}
+  :password: {{ grafana.internal_api.pass }}
+
+:ssn_agent:
+  :amm:
+    :local_wsdl_base_dir: {{ telemetrix.path }}/java/ssn/wsdl/amm/2_0
+    :username: {{ ssn_amm.user }}
+    :password: {{ ssn_amm.pass }}
+    :base_url: {{ ssn_amm.url }}
+  :hcm:
+    :local_wsdl_base_dir: {{ telemetrix.path }}/java/ssn/wsdl/hcm/1_6
+    :username: {{ ssn_hcm.user }}
+    :password: {{ ssn_hcm.pass }}
+    :base_url: {{ ssn_hcm.url }}
+
+:net_http_request:
+  :participant_api:
+    :timeout: 480   # Seconds allowed participant api to respond to snmp
+  :event_meters_api:
+    :timeout: 960   # Seconds allowed event meters to respond to snmp
+  :dr_events_api:
+    :timeout: 960   # Seconds allowed dr events to respond to snmp
+
+:fast_data_aggregator:
+  :webtelemetry_uri: {{ grafana.url }}
+  :device_data_interval_in_min: 1
+  :device_data_persistence_limit_in_hrs: 24
+  :persist_device_timestamp_data_for_duplicates_check_in_min: 30
+
+:nagios:
+  :telemetrix_jobs:
+    :threshold_hours: 4 # returns
+    :tracking:
+       - Forecast(Evaluation)
+       - INCREMENTAL_LOAD
+       - Forecast(Training)
+       - FULL_LOAD
+
+:rails:
+  :secret_key_base: '(Set rails.secret_key_base in config/settings.local.yml)'
+
+:snmp:
+  :round_datetime: false
+  :meter_data_interval: 15
+  :store_to_db: false
+
+:aws:
+  :ec2_id: {{ snmp.autoscale.ec2_id }}
+  :access_key_id: {{ snmp.autoscale.aws.access_key_id }}
+  :secret_access_key: {{ snmp.autoscale.aws.secret_access_key }}
+
+:autoscale:
+  :tenant_uids: {{ snmp.autoscale.tenant_uids }}
+  :cloudera_username: {{ snmp.autoscale.cloudera.username }}
+  :cloudera_password: {{ snmp.autoscale.cloudera.password }}
+{% if snmp.autoscale.cloudera.host is defined %}
+  :cloudera_ip: {{ snmp.autoscale.cloudera.host }}
+{% else %}
+  :cloudera_ip: {{ hdfs.namenode_host }}
+{% endif %}
+  :cluster_name: {{ snmp.autoscale.cluster_name}}
+  :cluster_ip: {{ snmp.autoscale.cluster_ip}}
+  :timeout: {{ snmp.autoscale.timeout}}
+  :shutdown: {{ snmp.autoscale.shutdown}}
+
+  # Fills any missing data between datapoints using meter_data_interval, copying the value of the last datapoint.
+  :fill_missing_data: false
+
+  # (Optional) Split rows can be true or false. Incoming data with a "duration_sec" param is compared against meter_data_interval
+  # and divided into extra rows if necessary.
+  # Note: If meter_data_interval is greater than the duration_sec (eg meter_data_interval is 60, but duration_sec = 900), then the
+  # incoming data is stored as-is. There is no "multiply_rows" feature.
+  # eg Receive 10am = 4kwh with duration_sec = 3600, 11am = 8kwh with duration_sec = 3600. Assume meter_data_interval is 15.
+  # split_rows:true will give:
+  #   9.15 = 1kwh, 9.30 = 1kwh, 9.45 = 1kwh, 10.00 = 1kwh
+  #   10.15 = 2kwh, 10.30 = 2kwh, 10.45 = 2kwh, 10.00 = 2kwh
+  # :split_rows: true
+
+  # (Optional) Any value from http://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html
+  # eg 'Central Time (US & Canada)'
+  # :data_timezone: "Pacific Time (US & Canada)"

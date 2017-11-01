@@ -1,0 +1,42 @@
+---
+
+- name: AWS Create RDS Subnet Group
+  local_action:
+    module: rds_subnet_group
+    state: present
+    name: "{{ subnetgroup_name }}"
+    description: "{{ description }}"
+    subnets: "{{ rds_subnets }}"
+    region: "{{ region }}"
+  register: subnet_group
+
+- name: AWS Create RDS POSTGRESQL Instance
+  local_action:
+    module: rds
+    command: create
+    instance_name: "{{ instance_name }}"
+    db_engine: psql
+    size: "{{ size }}"
+    instance_type: "{{ type }}"
+    username: "{{ admin_user }}"
+    password: "{{ admin_pass }}"
+    region: "{{ region }}"
+    backup_retention: "{{ backup_retention }}"
+    subnet: "{{ subnetgroup_name }}"
+    vpc_security_groups: "{{ vpc_security_groups }}"
+    zone: "{{ zone }}"
+    wait: yes
+    wait_timeout: 3000
+  register: rds
+
+
+- name: AWS rds results
+  debug: var=rds
+
+- name: AWS | Send Chat Notification
+  chat:  token="{{ chat_token }}"
+            room="{{ room }}"
+            msg="RDS Launched {{ rds }}"
+  #with_items: rds.instance
+
+

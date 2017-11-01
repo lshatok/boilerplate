@@ -1,0 +1,6 @@
+---
+branch: heco/2.0/test
+webtelemetry_home:  /WT
+webtelemetry_path:  /WT/appserver
+
+domain: do.test01.hec.ssnsgs.net

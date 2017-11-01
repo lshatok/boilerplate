@@ -1,0 +1,7 @@
+:snmp:
+  :round_datetime: false
+  :meter_data_interval: 5
+  :store_to_db: false
+  #:split_rows: 4
+  :fill_missing_data: true
+  :data_timezone: "Pacific Time (US & Canada)"

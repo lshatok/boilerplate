@@ -1,0 +1,11 @@
+# Test configuration for WSI wind speed data for Fx.
+
+[datatype]
+weatherdata=meterdata
+
+[meterdata]
+parser=DelimiterParser
+
+mapped_columns=
+headers=datatype,tenant,filename,station_uid,uu1,fcst_date,fcst_time,power,issue_date,issue_time,wind_speed,uu2,uu3,uu4,uu5,uu6,uu7,uu8,uu9,uu10,uu11,uu12
+delimiter=,

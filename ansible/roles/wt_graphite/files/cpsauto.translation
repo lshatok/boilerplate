@@ -1,0 +1,10 @@
+# Types of data tenant is allowed to load
+[datatype]
+meterdata=meterdata
+
+[meterdata]
+parser=DelimiterParser
+
+mapped_columns=
+headers=datatype,tenant,filename,meter_id,unit,duration,end_time,usage_value
+delimiter=,

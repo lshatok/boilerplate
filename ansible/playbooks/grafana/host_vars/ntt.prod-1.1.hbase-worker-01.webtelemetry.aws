@@ -1,0 +1,3 @@
+nagios:
+  checks:
+    - name: os

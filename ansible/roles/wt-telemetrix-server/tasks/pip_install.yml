@@ -1,0 +1,3 @@
+- name: Install Gunicorn
+  pip: name=gunicorn=={{ gunicorn.version }}
+       virtualenv={{ virtualenv_path }}

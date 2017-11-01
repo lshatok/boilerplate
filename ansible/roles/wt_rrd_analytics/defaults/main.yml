@@ -1,0 +1,8 @@
+---
+product_url: https://pypi.fury.io/xDG0eEWUYwe6XWqXO5a/webtelemetry/
+
+telemetrix:
+#  version: 'telemetrix-version'
+  artifact: rrd-telemetrix
+
+metrix_home: /WT/configs

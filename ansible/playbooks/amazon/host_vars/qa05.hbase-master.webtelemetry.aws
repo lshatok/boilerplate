@@ -1,0 +1,27 @@
+network_name: WebTelemetry Dev Private
+
+subnet: subnet-426f726d
+
+application:  hbase
+
+security_groups:
+  - sg-6i2s3y76 #webtelemetry_ops
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 100
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 100
+    delete_on_termination: false
+  - device_name: /dev/sdg
+    volume_size: 100
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1
+release: xenial
+tags:
+  customer: qa07
+  stack_name: qa07

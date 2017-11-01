@@ -1,0 +1,12 @@
+---
+- name: Playbook deploy telemetrix-data node
+  hosts: "telemetrix-data-01"
+  gather_facts: true
+  sudo: true
+  vars:
+    cluster_name: webtelemetry
+    masternode: "false"
+    datanode: "true"
+
+  roles:
+    - wt_elasticsearch

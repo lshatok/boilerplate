@@ -1,0 +1,25 @@
+network_name: Websnmp Prod Internet
+
+subnet: subnet-c69c86be # intel_prod_internet_2b - 172.19.0.0/26
+
+application: proxy
+
+security_groups:
+  - sg-6028e609 # intel_prod_ops
+  - sg-7a28e613 # intel_prod_proxy
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+
+assign_eip: true
+
+count: 1
+
+tags:
+  customer: intel
+  stack_name: intel-prod
+
+release: xenial
+

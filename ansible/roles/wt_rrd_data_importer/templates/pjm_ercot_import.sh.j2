@@ -1,0 +1,2 @@
+export TELEMETRIX_HOME="{{ telemetrix_home }}"
+{{ denali.wt_data_importer.virtualenv_path }}/bin/python -m data_importer.pjm_ercot_import >> /var/log/webtelemetry/pjm_ercot_import.log 2>&1

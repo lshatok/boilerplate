@@ -1,0 +1,6 @@
+---
+- name: Update rdbms configuration
+  template: src=rdbms.yml.j2
+            dest="{{ telemetrix_home }}"/rdbms.yml
+            owner=wtuser
+            group=wtgroup

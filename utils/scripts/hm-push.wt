@@ -1,0 +1,13 @@
+#!/usr/bin/expect -f
+cd  ~/
+spawn git add .ssh .bash_profile .bashrc ansible.cfg timeshift_install.sh .Skype bin .master_password .boto
+spawn git commit -am "latest"
+spawn git remote add origin https://github.com/lshatok/home.git
+spawn git push
+expect "Username for 'https://github.com':"
+send "lshatok";
+send "\n";
+expect "Password for 'https://lshatok@github.com':"
+send "ther3dpi11";
+send "\n";
+interact

@@ -1,0 +1,21 @@
+rds_subnets:
+  - subnet-9b5b8dfe  # 10.108.9.32/24  us-west-2a
+  - subnet-935b8df6  # 10.81.2.32/27  us-west-2a
+  - subnet-c4332482  # 10.81.2.96/28  us-west-2c
+
+zone: us-west-2a
+
+subnetgroup_name: metrixdata-staging
+
+description:  Comcast Data Staging RDS multizone
+
+instance_name: metrixdatadb-staging
+size: 50
+
+admin_user:  {{ product.admin }}
+admin_pass:  wt123
+
+# Backup retention days [0-35]
+backup_retention: 3
+
+vpc_security_groups: "sg-bf0487da"

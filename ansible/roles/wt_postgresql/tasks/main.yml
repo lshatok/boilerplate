@@ -1,0 +1,30 @@
+---
+- name: Apt-get Update
+  apt:  cache_valid_time=3600 update_cache=yes
+  become: yes
+
+- name: install postgresql-server
+  apt: name=postgresql-server
+  become: yes
+
+- name: install postgresql-client
+  apt: name=postgresql-client
+  become: yes
+
+- name: install postgresql python connector
+  apt: name=python-postgresqldb state=present
+
+- name: create user
+  postgresql_user: name={{ postgresql.user }} password={{ postgresql.password }} host='%' priv=*.*:ALL state=present
+  become: yes
+
+- name: accept connections from remote hosts
+  lineinfile: dest=/etc/postgresql/my.cnf regexp="^bind-address" line="bind-address = 0.0.0.0"
+  become: yes
+
+#- name: adjust iptables rules
+#  shell: "/sbin/iptables -A INPUT -i eth0 -p tcp --destination-port 3306 -j ACCEPT"
+#  become: yes
+
+- name: restart postgresql
+  service: name=postgresql state=restarted

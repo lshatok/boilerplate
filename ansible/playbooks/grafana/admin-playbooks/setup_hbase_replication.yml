@@ -1,0 +1,13 @@
+---
+- name: Set replication to 1
+  hosts: 'hbase-all'
+  sudo: true
+  vars:
+    replication: 1
+
+  tasks:
+    - name: Check for /user path
+      shell: 'hadoop fs -setrep -R {{ replication }} /'
+      args:
+        executable: /bin/bash
+      sudo_user: hdfs

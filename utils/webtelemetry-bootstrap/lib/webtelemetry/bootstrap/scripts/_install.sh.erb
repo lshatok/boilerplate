@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Go back to application directory
+cd $APP_ROOT
+
+sudo chown -R $USER $REPO_ROOT
+
+babushka 'app pre-install.bootstrap' \
+<%- if app.configure -%>
+  reconfigure=true repo=$REPO
+<%- else -%>
+  app_name=$APP_NAME prefix=$WT_ROOT user=$APP_USER \
+  repo=$REPO branch=$BRANCH group=$COMMON_GROUP domain=$DOMAIN \
+  reconfigure=false <%= verbose? %> path=$APP_ROOT port=$PORT
+<%- end -%>
+
+sudo chown -R $APP_USER $REPO_ROOT
+
+sudo -Hu webtelemetry -i bash -c "cd $APP_ROOT && babushka 'app install.bootstrap' app_name=$APP_NAME prefix=$WT_ROOT user=$APP_USER \
+  repo=$REPO branch=$BRANCH group=$COMMON_GROUP domain=$DOMAIN <%= verbose? %> path=$APP_ROOT port=$PORT"
+
+sudo chown -R $USER $REPO_ROOT
+
+babushka 'app post-install.bootstrap' app_name=$APP_NAME prefix=$WT_ROOT user=$APP_USER \
+  repo=$REPO branch=$BRANCH group=$COMMON_GROUP domain=$DOMAIN <%= verbose? %> path=$APP_ROOT port=$PORT
+
+sudo chown -R $APP_USER $REPO_ROOT

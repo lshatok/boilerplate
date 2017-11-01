@@ -1,0 +1,16 @@
+/WT/appserver/log/production.log
+/WT/appserver/log/unicorn.stderr.log
+/WT/appserver/log/snmp.log
+/WT/appserver/log/worker.log
+/WT/appserver/log/messaging_*.log
+/WT/appserver/log/newrelic_agent.log{
+   daily
+   size 100M
+   missingok
+   notifempty
+   rotate 15
+   compress
+   delaycompress
+   copytruncate
+   su webtelemetry wtuser
+}

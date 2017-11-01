@@ -1,0 +1,8 @@
+## Playbook to patch bash vulnerability 
+---
+- name: Playbook to patch bash vulnerability
+  hosts: all
+  sudo: true
+
+  roles:
+    - patch_shellrock

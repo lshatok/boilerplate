@@ -1,0 +1,35 @@
+---
+# tasks file for cmd_update
+
+# Ubuntu
+- name: update apt
+  command: /usr/bin/apt-get update
+  when: ansible_distribution == "Ubuntu"
+
+- name: install latest version
+  apt: name={{ utility }} state=latest update_cache=yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: show version
+  command: /usr/bin/apt-show-versions -p {{ utility }}
+  when: ansible_distribution == "Ubuntu"
+  register: version
+- debug: var=version.stdout_lines
+  when: ansible_distribution == "Ubuntu"
+
+# !Ubuntu
+- name: update yum
+  command: /usr/bin/yum clean all
+  when: ansible_distribution != "Ubuntu"
+
+- name: install latest version
+  yum: name={{ utility }} state=latest
+  when: ansible_distribution != "Ubuntu"
+
+- name: show version
+  command: /usr/bin/yum list {{ utility }}
+  when: ansible_distribution != "Ubuntu"
+  register: version
+- debug: var=version.stdout_lines
+  when: ansible_distribution != "Ubuntu"
+

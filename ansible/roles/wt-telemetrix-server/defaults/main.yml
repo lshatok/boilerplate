@@ -1,0 +1,12 @@
+---
+server_root: webtelemetry.telemetrix.gateway.server
+gunicorn:
+  version: 2.4.1
+  workers: 5
+  host: 0.0.0.0
+  port: 8000
+webserver:
+  ssl: "off"
+  admin_user: admin
+  nginx: false
+metrix_home: /WT/configs

@@ -1,0 +1,6 @@
+---
+- name: Install CDH
+  include: create_file_system.yml
+
+- name: Create log directories
+  include: create_log_directory.yml tags=configs

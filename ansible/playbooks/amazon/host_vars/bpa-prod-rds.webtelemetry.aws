@@ -1,0 +1,24 @@
+rds_subnets:
+  - subnet-34102640
+  - subnet-37998d55
+ 
+region: us-gov-west
+
+subnetgroup_name: bpa-prod
+
+description: BPA Prod Database
+
+type: db.m1.small
+
+multi_zone: yes
+
+instance_name: bpa-prod
+size: 30
+
+admin_user:  {{ product.admin }}
+admin_pass:  "l0Qq&Wjf^rnh#p9cT95hGwXa"
+
+# Backup retention days [0-35]
+backup_retention: 7
+
+vpc_security_groups: "sg-725q02bz"

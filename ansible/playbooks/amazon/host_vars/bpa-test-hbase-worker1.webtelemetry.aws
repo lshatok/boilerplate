@@ -1,0 +1,31 @@
+network_name: BPA Backhaul
+
+subnet: subnet-34102640
+
+application: HBase
+
+security_groups:
+  - sg-725q02bz #WebTelemetry Office
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 100
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdi
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdj
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdk
+    volume_size: 50
+  
+assign_eip: no
+
+count: 1
+
+tags:
+  customer: SFBART

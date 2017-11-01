@@ -1,0 +1,25 @@
+network_name: Devops - telemetrix - Backend
+
+subnet: subnet-12af414a #Demo3 Private Back Haul 2c -10.10.201.96/27
+
+application: telemetrix-ai
+
+security_groups:
+  - sg-6i2s3y76 #webtelemetry_ops
+  - sg-fac02a9c #deom3 Backhaul
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 80
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 80
+    delete_on_termination: false
+
+assign_eip: no
+release: xenial
+count: 1
+
+tags:
+  customer:  eng
+  stack_name: Demo3

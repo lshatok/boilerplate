@@ -1,0 +1,10 @@
+---
+local_code:
+  python_interpreter: /Users/leoshatokhin/.virtualenvs/denali/bin/python
+  paths:
+    wt_core: ~/webtelemetry/grafana/grafana-core/python
+    wt_data_processing: ~/webtelemetry/grafana/grafana-data-processing
+    grafana: ~/webtelemetry/telemetrix/grafana
+
+grafana:
+  path: /WT/grafana

@@ -1,0 +1,9 @@
+---
+cloudera_manager: true
+cdh_version: 5
+
+## limits.conf settings ##
+
+limits_lines:
+  - "hdfs  -       nofile  32768"
+  - "hbase -       nofile  32768"

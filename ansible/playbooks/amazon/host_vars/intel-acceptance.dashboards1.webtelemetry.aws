@@ -1,0 +1,27 @@
+network_name: Web Snmp Fronhaul
+
+subnet: subnet-ca3ff8e7 # intel_acceptance_fronthaul_1c - 22.126.90.228/26
+
+application: influxdb
+
+security_groups:
+  - sg-6052731a #intel_nonprod_ops
+  - sg-7bc67806 # intel_acceptance_fronthaul
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1 
+
+tags:
+  customer: intel
+  stack_name: intel-acceptance
+
+release: xenial

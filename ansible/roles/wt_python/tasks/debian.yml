@@ -1,0 +1,90 @@
+---
+## python build needs testing - default is to not build ##
+- name: Install required system packages to build python
+  apt: name={{ item }} state=present cache_valid_time=3600 update_cache=yes
+  with_items:
+    - python-dev
+    - libncurses5-dev
+    - libreadline6-dev
+    - libgdbm-dev
+    - libbz2-dev
+    - zlib1g-dev
+    - libsqlite3-dev
+    - libssl-dev
+    - tk-dev
+    #- libdb4.8-dev
+    - libdb-dev
+    - libexpat-dev
+    - build-essential
+  when: install_python == True
+  tags:
+    - python
+
+- name: Ensure unzip is installed
+  apt: name=unzip state=present
+
+- name: Ensure unarchive dir exists
+  file: path=/WT/python state=directory
+  when: install_python == True
+
+- name: Unarchive python from source
+  unarchive: src="Python-{{ python_version }}.tgz" dest=/WT/python
+  when: install_python == True
+  tags:
+    - python
+
+- name: Run Configure for build
+  shell: ./configure --prefix=/WT/python --with-threads --enable-unicode=ucs4
+  args:
+    chdir: "/WT/python/Python-{{ python_version }}"
+    executable: /bin/bash
+  when: install_python == True
+  tags:
+    - python
+
+- name: Run make
+  shell: make
+  args:
+    chdir: "/WT/python/Python-{{ python_version }}"
+    executable: /bin/bash
+  when: install_python == True
+  tags:
+    - python
+
+- name: Run make install
+  shell: make install
+  args:
+    chdir: "/WT/python/Python-{{ python_version }}"
+    executable: /bin/bash
+  when: install_python == True
+  tags:
+    - python
+
+- name: Touch local-lib.conf
+  file: path=/etc/ld.so.conf.d/local-lib.conf state=touch
+  when: install_python == True
+  tags:
+    - python
+
+- name: Add /usr/local/lib line to local-lib.conf
+  lineinfile: dest=/etc/ld.so.conf.d/local-lib.conf line="/usr/local/lib"
+  when: install_python == True
+  tags:
+    - python
+
+- name: Run ldconfig
+  shell: /bin/bash ldconfig
+  when: install_python == True
+  tags:
+    - python
+
+- name: Install pip
+  apt: name=python-pip
+
+- name: Install Global Python packages
+  pip:  name={{ item }}
+  with_items:
+    - virtualenv
+    - virtualenvwrapper
+    - pyyaml
+  environment: "{{ env_vars }}"

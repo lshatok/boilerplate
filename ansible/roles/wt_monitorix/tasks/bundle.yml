@@ -1,0 +1,35 @@
+---
+
+- name: Gem install bundler
+  shell: "/WT/.rbenv/shims/gem install bundler"
+  args:
+    chdir: "{{ telemetrix_jruby_path }}"
+  sudo_user: wtuser
+  register: bundler
+
+- name: Run rbenv rehash
+  shell: "/WT/.rbenv/bin/rbenv rehash executable=/bin/bash chdir=/home/webtelemetry"
+  sudo_user: wtuser
+  when: bundler.changed
+
+- name: Gem install activesupport
+  gem: name=activesupport state=present executable=/WT/.rbenv/shims/gem
+  sudo_user: wtuser
+  register: activesupport
+
+- name: Run rbenv rehash
+  shell: "/WT/.rbenv/bin/rbenv rehash executable=/bin/bash chdir=/home/webtelemetry"
+  sudo_user: wtuser
+
+- name: Install dependencies (bundle install)
+  shell: "/WT/.rbenv/versions/jruby-1.7.5/bin/bundle install"
+  args:
+    chdir: "{{ telemetrix_jruby_path }}"
+    executable: /bin/bash
+  sudo_user: wtuser
+  register: bundled
+
+- name: Run rbenv rehash
+  shell: "/WT/.rbenv/bin/rbenv rehash executable=/bin/bash chdir=/home/webtelemetry"
+  sudo_user: wtuser
+  when: bundled.changed

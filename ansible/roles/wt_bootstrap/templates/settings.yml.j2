@@ -1,0 +1,172 @@
+open_adr2:
+  # Current telemetrix attributes
+  vtn:
+    uuid: a5009710-f39b-012e-d8ae-480aa926194a
+    name: WebTelemetry SELENA 2.0b telemetrix
+    # telemetrix XMPP configuration
+    xmpp:
+      jid: vtn1@localhost/vtn1
+      password: 'Set vtn XMPP password in config/settings.local.yml'
+      host: localhost
+      port: 5222
+
+  # Current VEN attributes
+  # (used mostly for tests)
+  ven:
+    uuid: 0f9cd580-34e4-012f-c536-746d0459cf2d
+    name: WebTelemetry VEN
+    # VEN XMPP configuration
+    xmpp:
+      jid: ven1@localhost/ven1
+      password: 'Set ven XMPP password in config/settings.local.yml'
+      host: localhost
+      port: 5222
+
+  poll_frequency: 5
+
+  default_vendor: standard
+  vendor_presets:
+    # Standard settings from SELENA 2.0 specification
+    standard:
+      preset_name: Generic device
+      # By default priority is set by event
+      priority:
+      # Omit testEvent property for non-test events
+      test_event:
+      # randomization is off by default, unless specific value given
+      start_after:
+      target:
+        need_ven_id: true
+    # Special tweaks for NetFlow devices
+    energy_hub:
+      preset_name: Energy Hub
+      # Priority: always send 4, since no Austin events are mandatory
+      priority: 4
+      # testEvent: always send false
+      test_event: false
+      # send the event randomization value (Austin indicated that this should always be 15 minutes for now)
+      # 15 minutes = 900 seconds
+      start_after: 900
+      # signalType: always send DELTA
+      # AS: 'DELTA' is not valid value by schema, 'delta' is valid
+      signal_type: delta
+      target:
+        need_ven_id: false
+
+  debugging:
+    log_xml_requests: {{ webtelemetry.debugging.log_xml_requests }}
+    log_xml_responses: {{ webtelemetry.debugging.log_xml_responses }}
+    log_worker: {{ webtelemetry.debugging.log_worker }}
+
+  transport:
+    simple_http:
+      read_timeout: 30
+
+  services:
+    ei_report:
+      known_reports:
+        - METADATA_TELEMETRY_STATUS
+        - METADATA_TELEMETRY_USAGE
+        - METADATA_HISTORY_USAGE
+        - METADATA_HISTORY_GREENBUTTON
+      supported_reports:
+        - METADATA_TELEMETRY_STATUS
+        - METADATA_TELEMETRY_USAGE
+        #- METADATA_HISTORY_USAGE
+        #- METADATA_HISTORY_GREENBUTTON
+      templates:
+        default:
+          duration: 3600
+          description:
+            min_period: 300
+            max_period: 900
+            on_change: false
+            dashboard_type: usage
+            reading_type: Direct Load
+        METADATA_TELEMETRY_STATUS:
+          description:
+            dashboard_type: x-resourceStatus
+            reading_type: x-notApplicable
+
+  enable_default_tenant: false
+
+# Messaging configuration - RabbitMQ
+# In development, use local RabbitMQ server
+# In clustered production deployment each Rails cluster node should be configured for a
+# single external RabbitMQ server
+# Default credentials for RabbitMQ are guest/guest,
+# Provide different in config/settings.local.yml if needed
+:rabbit_mq:
+  :server_host: '{{ webtelemetry.influxdb.host }}'
+  :server_port: '5672'
+  :username: '{{ webtelemetry.influxdb.user }}'
+  :password: '{{ webtelemetry.influxdb.password }}'
+  :virtual_host: '{{ webtelemetry.influxdb.vhost }}'
+
+mirwais:
+  host: '{{ webtelemetry.analytics.host }}'
+  port: 6379
+  password: '{{ webtelemetry.analytics.password }}'
+  resque_namespace: 'open_adr2.0b:resque'
+  db: 0
+
+mirwais:
+  host: '{{ webtelemetry.analytics.host }}'
+  port: 6379
+  password: '{{ webtelemetry.analytics.password }}'
+
+hbase:
+  host: {{ snmp.host }}
+  port: 8080
+  path:
+    base: '/snmp'
+    meter_data: '/api/telemetrix/collector/device_data/snmp'
+  mirwais:
+    namespace: 'open_adr2.0b:snmp'
+    queue: 'dashboard_interval_ids'
+
+logging:
+  level: INFO
+
+webtelemetry:
+  # Configuration used for integration with grafana
+  integration:
+    url: '{{ grafana.url }}'
+    username: '{{ grafana.internal_api.user }}'
+    password: '{{ grafana.internal_api.pass }}'
+    secret_key: 'Set integration password in settings.local.yml'
+    read_timeout: 10
+
+security:
+  enabled: true
+  ca_path: /etc/ssl/certs
+  ecc:
+    ciphers: ECDHE-ECDSA-AES128-SHA
+    cert: data/certs/ecc.pem
+    private:
+      class: !ruby/class 'OpenSSL::PKey::EC'
+      name: data/certs/ecc.key
+  rsa:
+    ciphers: AES128-SHA256
+    cert: data/certs/rsa.pem
+    private:
+      class: !ruby/class 'OpenSSL::PKey::RSA'
+      name: data/certs/rsa.key
+  untrusted:
+    ciphers: AES128-SHA256
+    cert: data/certs/rsa_untrusted.pem
+    private:
+      class: !ruby/class 'OpenSSL::PKey::RSA'
+      name: data/certs/rsa_untrusted.key
+
+multitenant:
+  application: 'oadr2b'
+  environment: 'production'
+
+logstash:
+  host: localhost
+  port: 6379
+  application: webtelemetry_selena
+  key: logstash
+
+device_offline_after: {{ webtelemetry.device_offline_after }} #in seconds

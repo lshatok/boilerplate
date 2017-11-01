@@ -1,0 +1,6 @@
+---
+dependencies:
+  - { role: wt_ruby_rbenv }
+  - { role: wt_webserver }
+  - { role: wt_filebeat }
+  - { role: wt_redis, when: data_collector.local is defined and data_collector.local == "True" }

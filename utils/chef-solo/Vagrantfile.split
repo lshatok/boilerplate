@@ -1,0 +1,110 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+
+  deployment_id = "vagrant_split"
+  hosts = {
+    :grafana => "10.0.0.2",
+    :postgresql    => "10.0.0.3",
+    :redis    => "10.0.0.4",
+    :influxdb => "10.0.0.5"
+  }
+
+  # --------- postgresql box --------- #
+  config.vm.define :postgresql do |postgresql_config|
+    postgresql_config.vm.box = "xenial64"
+    postgresql_config.vm.box_url = "http://files.vagrantup.com/xenial64.box"
+    postgresql_config.vm.network :hostonly, hosts[:postgresql]
+
+    postgresql_config.vm.customize ["modifyvm", :id, "--memory", "512", "--cpus", "2"]
+
+    postgresql_config.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "cookbooks"
+      chef.roles_path = "roles"
+      chef.add_role("postgresql")
+      chef.json = {
+        :postgresql => {
+          :bind_address => hosts[:postgresql],
+          :webtelemetry_host => "%"
+        }
+      }
+    end
+  end
+
+  # --------- redis box --------- #
+  config.vm.define :redis do |redis_config|
+    redis_config.vm.box = "xenial64"
+    redis_config.vm.box_url = "http://files.vagrantup.com/xenial64.box"
+    redis_config.vm.network :hostonly, hosts[:redis]
+
+    redis_config.vm.customize ["modifyvm", :id, "--memory", "512", "--cpus", "2"]
+
+    redis_config.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "cookbooks"
+      chef.roles_path = "roles"
+      chef.add_role("redis")
+      chef.json = {
+        :redis => {
+          :bind => hosts[:redis],
+          :port => 6379
+        }
+      }
+    end
+  end
+
+  # --------- influxdb box --------- #
+  config.vm.define :influxdb do |influxdb_config|
+    influxdb_config.vm.box = "xenial64"
+    influxdb_config.vm.box_url = "http://files.vagrantup.com/xenial64.box"
+    influxdb_config.vm.network :hostonly, hosts[:influxdb]
+
+    influxdb_config.vm.customize ["modifyvm", :id, "--memory", "512", "--cpus", "2"]
+
+    influxdb_config.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "cookbooks"
+      chef.roles_path = "roles"
+      chef.add_role("influxdb")
+      chef.json = {
+        :influxdb => {
+          :address => hosts[:influxdb],
+          :port => 5672
+        }
+      }
+    end
+  end
+
+  # --------- cluster + master box --------- #
+  config.vm.define :grafana do |webtelemetry_config|
+    webtelemetry_config.vm.box = "xenial64"
+    webtelemetry_config.vm.box_url = "http://files.vagrantup.com/xenial64.box"
+    webtelemetry_config.vm.network :hostonly, hosts[:grafana]
+
+    webtelemetry_config.vm.customize ["modifyvm", :id, "--memory", "2048", "--cpus", "2"]
+
+    webtelemetry_config.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "cookbooks"
+      chef.roles_path = "roles"
+      chef.add_role("grafana")
+      chef.json = {
+        :grafana => {
+          :deployment_id => deployment_id,
+          :web_server_fqdn => "demo03.dev.{{ product.url }}",
+          :runlist => ["cluster", "master"]
+        },
+        :postgresql => {
+          :host => hosts[:postgresql],
+          :port => 3306
+        },
+        :redis => {
+          :host => hosts[:redis],
+          :port => 6379
+        },
+        :influxdb => {
+          :address => hosts[:influxdb],
+          :port => 5672
+        }
+      }
+    end
+  end
+end

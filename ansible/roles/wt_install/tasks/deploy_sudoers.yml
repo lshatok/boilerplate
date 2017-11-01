@@ -1,0 +1,9 @@
+---
+- name: Deploy sudoers
+  template: src=sudoers.j2 dest=/etc/sudoers.d/{{ product.tinyname}}-sudoers
+        owner=root
+        group=root
+        mode=0640
+        force=true
+  become: yes
+  register: rc

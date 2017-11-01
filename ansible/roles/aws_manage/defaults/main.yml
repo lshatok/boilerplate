@@ -1,0 +1,3 @@
+aws_manage:
+  region: us-west-2
+  ec2_ids: i-AAAAAA,i-BBBBBB

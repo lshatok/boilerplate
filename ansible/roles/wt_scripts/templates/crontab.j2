@@ -1,0 +1,5 @@
+MAILTO=""
+TERM=xterm
+
+# m h dom mon dow user command
+5 {{ item.hour }}   * * *   webtelemetry  bash -lc "/WT/.rbenv/shims/ruby {{ custom.path }}/{{ item.path }} {{ custom.configs}}/{{ item.config }}"

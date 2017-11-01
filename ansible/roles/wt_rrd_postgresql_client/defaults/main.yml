@@ -1,0 +1,4 @@
+rdbms:
+  default:
+    host: localhost
+    user: root

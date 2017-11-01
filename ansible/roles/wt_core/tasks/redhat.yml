@@ -1,0 +1,54 @@
+---
+- name: Install EPEL repo
+  yum: name=https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm state=installed
+  ignore_errors: yes
+
+
+- name: Install required system packages
+  yum: name={{ item }} state=present
+  become: yes
+  with_items:
+    - ntp
+    - vim
+    - htop
+    - sysstat
+    - uuid-devel
+    - xfsprogs
+    - xfsdump
+    - unzip
+    - lvm2
+    - curl
+    - facter
+    - gettext
+    - openssl-devel
+    - python-devel
+    - nethogs
+    - gnutls-devel
+    - zlib-devel
+    - libX11-devel
+    - acl
+    - s3cmd
+    - tree
+    - readline
+    - readline-devel
+    - bzip2-devel
+    - sqlite
+    - sqlite-devel
+    - zlib-devel
+    - libxml2
+    - libxml2-devel
+    - mailx
+    - emacs
+    - traceroute
+    - fdupes
+    - libffi-devel
+
+
+- name: Files | Create /etc/vim
+  file: path=/etc/vim state=directory mode=0755 owner=root group=root
+
+- name: Copy | Copy /etc/vimrc for CentOS
+  copy: src=vimrc.redhat dest=/etc/vimrc owner=root group=root mode=0755 backup=yes
+
+- name: Disable Selinux
+  selinux: state=disabled

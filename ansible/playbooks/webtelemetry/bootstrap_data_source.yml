@@ -1,0 +1,24 @@
+## PlayBook to Bootstrap webtelemetry Instance ##
+
+---
+- name: Playbook bootstrap webtelemetry
+  hosts: "{{ target }}"
+  sudo: true
+
+  # read vars from host_vars
+  vars:
+    rubyver: 2.3.5
+
+  #vars_prompt:
+  #  - name: "branch"
+  #    prompt: "Which grafana branch to clone"
+  #    default: "master"
+  #    private: no
+
+  roles:
+    - wt_webserver
+    - wt_redis
+    - wt_influxdb
+    - wt_ruby_rbenv_prebuilt
+    - wt_nginx
+    - wt_bootstrap

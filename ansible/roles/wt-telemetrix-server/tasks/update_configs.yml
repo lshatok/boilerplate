@@ -1,0 +1,3 @@
+---
+- name: Update web server configuration
+  template: src=webserver.yml.j2 dest="{{ telemetrix_home }}"/webserver.yml owner=wtuser group=wtgroup

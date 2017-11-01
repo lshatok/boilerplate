@@ -1,0 +1,26 @@
+network_name: Websnmp Test BackHaul
+
+subnet: subnet-de3ff8f3 # intel_test_backhaul_1c - 172.19.4.192/27
+
+application: telemetrix
+
+security_groups:
+  - sg-6052731a #intel_nonprod_ops
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 80
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 80
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1
+
+tags:
+  customer: intel
+  stack_name: intel-test
+
+release: xenial

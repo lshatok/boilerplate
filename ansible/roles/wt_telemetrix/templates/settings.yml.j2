@@ -1,0 +1,72 @@
+:deployment_id: '{{ grafana.deployment_id }}'
+
+:interact:
+  :gmail:
+    :username: '{{ grafana.interact.gmail_username }}'
+    :password: '{{ grafana.interact.gmail_password }}'
+
+:kamaishi:
+  :gmail:
+    :username: 'eco.kamaishi@webtelemetry.us'
+    :password: '{{ grafana.kamaishi.gmail_password }}'
+
+:newrelic:
+  :license_key: {{ grafana.new_relic_key }}
+
+:system:
+  :name: 'Demand Side Optimizer'
+  :short_name: 'TELEMETRIX'
+  :version: 1.0.0
+  :enforce_polling: {{ grafana.enforce_polling }}
+
+:telemetrix:
+  :endpoint_url: 'http://{{ telemetrix.host }}:3000'
+
+:smtp_settings:
+  :default_options:
+    :from: 'ECO <grafana@webtelemetry.us>'
+    :reply-to: 'no-reply <no-reply@webtelemetry.us>'
+  :default_url_options:
+    :host: 'http://localhost:3000/'
+  :smtp_settings:
+    :user_name: "{{ grafana.smtp.username }}"
+    :password: '{{ grafana.smtp.password }}'
+    :domain: "{{ product.url }}"
+    :address: "smtp.sendgrid.net"
+    :port: 587
+    :authentication: :plain
+    :enable_starttls_auto: true
+
+:sms_settings:
+  :credentials:
+    :account_sid: '{{ grafana.sms.account_sid }}'
+    :auth_token: '{{ grafana.sms.auth_token }}'
+    :number: '{{ grafana.sms.number }}'
+    :friendly_name: 'WebTelemetry US'
+    :base_url: '{{ grafana.sms.base_url }}'
+
+:resque:
+  :url: localhost
+  :namespace: 'dso1'
+
+:melrok:
+  :api:
+    :endpoint_url: 'http://energisaas.com/'
+  :max_interval_hours: 12
+
+:meter_data:
+  :interval_in_seconds: 900
+  :store: 'hbase'
+  :hbase:
+    :endpoint_url: 'http://{{ snmp.host }}:8080/snmp'
+  :pull_data:
+    :group_size: 10
+    :lookback_time: 172800 # 2 days in seconds
+  :pull_coefficients:
+    :max_attempts: 5
+
+:logstash:
+  :enable: true
+  :host: '{{ logstash.host }}'
+  :key: 'logstash'
+  :application: TELEMETRIX

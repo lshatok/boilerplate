@@ -1,0 +1,15 @@
+---
+  local_action:
+    module: ec2
+    state: 'stopped'
+    region: "{{ aws_manage.region }}"
+    instance_ids: "{{ aws_manage.ec2_ids }}"
+  tags: stop
+
+- name: Starting instances
+  local_action:
+    module: ec2
+    state: 'running'
+    region: "{{ aws_manage.region }}"
+    instance_ids: "{{ aws_manage.ec2_ids }}"
+  tags: start

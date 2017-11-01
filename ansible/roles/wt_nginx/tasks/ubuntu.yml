@@ -1,0 +1,12 @@
+---
+- name: Debian | Add nginx repo to apt
+  apt_repository: repo='ppa:nginx/stable'
+
+- name: Debian | Run apt-get update
+  apt: update_cache=yes
+
+- name: Debian | Install nginx
+  apt: name=nginx
+
+- name: Debian | Start nginx
+  service: name=nginx state=started

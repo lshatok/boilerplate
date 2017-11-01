@@ -1,0 +1,13 @@
+---
+- name: Playbook deploy telemetrix-data-collector
+  hosts: "telemetrix-data-collector"
+  gather_facts: true
+  sudo: true
+  vars:
+    cluster_name: webtelemetry
+    masternode: "true"
+    datanode: "false"
+
+  roles:
+    - wt_elasticsearch
+    - wt_telemetrix-data-collector

@@ -1,0 +1,36 @@
+---
+- name: Create .ruby-version file
+  template: src=ruby-version.j2 dest="{{ snmp.path }}/jruby/.ruby-version"
+  become_user: "{{ product.user }}"
+
+- name: Gem install bundler
+  shell: "/WT/.rbenv/shims/gem install bundler --version '1.9.9'"
+  args:
+    chdir: "{{ telemetrix.jruby_path }}"
+  become_user: "{{ product.user }}"
+  register: bundler
+
+- name: Checks for /WT/.rbenv/shims/.rbenv-shim
+  shell: "[ -f /WT/.rbenv/shims/.rbenv-shim ]"
+  register: rbenvshim
+  ignore_errors:  True
+  changed_when: False
+
+- name: Remove rbenv-shim
+  # https://webtelemetry().atlassian.net/wiki/topics/automation/How+to+deploy+grafana+to+a+remote+development+environment+via+Ansible
+  file: path=/WT/.rbenv/shims/.rbenv-shim state=absent
+  when: "rbenvshim.rc == 0"
+
+- name: Run rbenv rehash
+  shell: "/WT/.rbenv/bin/rbenv rehash executable=/bin/bash chdir=/home/webtelemetry"
+  become_user: "{{ product.user }}"
+  when: bundler.changed
+
+- name: Gem install activesupport
+  gem: name=activesupport state=present executable=/WT/.rbenv/shims/gem version=4.0.13
+  become_user: "{{ product.user }}"
+  register: activesupport
+
+- name: Run rbenv rehash
+  shell: "/WT/.rbenv/bin/rbenv rehash executable=/bin/bash chdir=/home/webtelemetry"
+  become_user: "{{ product.user }}"

@@ -1,0 +1,27 @@
+network_name: CPS Fronthaul
+
+# CPS prod fronthaul 1c
+subnet: subnet-d90693f3
+
+application: grafana
+
+security_groups:
+  - sg-93090beb # walmart_ops
+  - sg-54e3272f #	walmart_prod_fronthaul
+  - sg-2605c15d #	walmart_prod_fronthaul_webtelemetry
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 50
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1 
+
+tags:
+  customer: walmart-prod
+  stack_name: walmart-prod

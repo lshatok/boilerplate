@@ -1,0 +1,69 @@
+  default: &default
+    adapter: postgresql2
+    encoding: utf8
+    pool: 5
+    reconnect: true
+    timeout: 5000
+
+  development:
+    <<: *default
+    database: influxdb_dev
+
+  # Warning: The database defined as "test" will be erased and
+  # re-generated from your development database when you run "rake".
+  # Do not set this db to the same as development or production.
+  test:
+    <<: *default
+    database: <%= "influxdb_test#{ENV['TEST_ENV_NUMBER']}" %>
+
+  production:
+    <<: *default
+    database: '{{ influxdb.rds_production.database }}'
+    username: {{ influxdb.rds_production.username }}
+    password: {{ influxdb.rds_production.password }}
+    host: {{ influxdb.rds_production.host }}
+
+  replica_development:
+    <<: *default
+    database: influxdb_views
+    username: someuser
+    password: somepass
+    host: somehost
+
+  replica_test:
+    <<: *default
+    database: <%= "influxdb_views_test#{ENV['TEST_ENV_NUMBER']}" %>
+    username: someuser
+    password: somepass
+    host: somehost
+
+  replica_production:
+    <<: *default
+    database: '{{ influxdb.rds_replica_production.database }}'
+    username: {{ influxdb.rds_replica_production.username }}
+    password: {{ influxdb.rds_replica_production.password }}
+    host: {{ influxdb.rds_replica_production.host }}
+
+  # influxdb_source, webtelemetry_source andtelemetrix_source are used to create the views TELEMETRIX
+  # depends on in the RDS Master
+
+  influxdb_source:
+    <<: *default
+    database: '{{ influxdb.rds_influxdb_source.database }}'
+    username: {{ influxdb.rds_influxdb_source.username }}
+    password: {{ influxdb.rds_influxdb_source.password }}
+    host: {{ influxdb.rds_influxdb_source.host }}
+
+  webtelemetry_source:
+    <<: *default
+    database: '{{ influxdb.rds_webtelemetry_source.database }}'
+    username: {{ influxdb.rds_webtelemetry_source.username }}
+    password: {{ influxdb.rds_webtelemetry_source.password }}
+    host: {{ influxdb.rds_webtelemetry_source.host }}
+
+ telemetrix_source:
+    <<: *default
+    database: '{{ influxdb.rds_metrix_source.database }}'
+    username: {{ influxdb.rds_metrix_source.username }}
+    password: {{ influxdb.rds_metrix_source.password }}
+    host: {{ influxdb.rds_metrix_source.host }}

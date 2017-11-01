@@ -1,0 +1,34 @@
+---
+- name: Apt-get Update
+  apt:  cache_valid_time=3600 update_cache=yes
+  become: yes
+
+- name: Apply DB migrations
+  command: "{{ virtualenv_path }}/bin/python -m {{ server_root }}.manage migrate --settings {{ server_root }}.conf.settings"
+  become: yes
+  become_user: "{{ product.user }}"
+  environment:
+    TELEMETRIX_HOME: "{{ telemetrix_home }}"
+
+- name:  Install pexpect
+  pip: name=pexpect state=present
+
+- name: Create Django super user
+  expect:
+    command: "{{ virtualenv_path }}/bin/python -m {{ server_root }}.manage createsuperuser --username {{ webserver.admin_user }} --email '' --settings {{ server_root }}.conf.settings"
+    echo: yes
+    responses:
+      (?i)password: "{{ webserver.admin_password }}"
+  # If superuser already exists, ignore the resulting errors.
+  ignore_errors: true
+  environment:
+    TELEMETRIX_HOME: "{{ telemetrix_home }}"
+
+- name: Collect static files
+  expect:
+    command: "{{ virtualenv_path }}/bin/python -m {{ server_root }}.manage collectstatic --settings {{ server_root }}.conf.settings"
+    echo: yes
+    responses:
+      "Are you sure?": "yes"
+  environment:
+    TELEMETRIX_HOME: "{{ telemetrix_home }}"

@@ -1,0 +1,5 @@
+:snmp:
+  :round_datetime: false
+  :meter_data_interval: 15
+  :store_to_db: false
+  :data_timezone: "Central Time (US & Canada)"

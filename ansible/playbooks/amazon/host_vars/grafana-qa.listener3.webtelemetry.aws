@@ -1,0 +1,22 @@
+network_name: WebTelemetry Dev Public
+
+subnet: subnet-426f726d
+
+application:  telemetrix-qa-listener
+
+security_groups:
+  - sg-6i2s3y76 # webtelemetry-devops-west
+  - sg-1c8d6b79 # fronthaul-webtelemetry-dev
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1
+
+tags:
+  customer:  eng
+  stack_name: telemetrix-qa

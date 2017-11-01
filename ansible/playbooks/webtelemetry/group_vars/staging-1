@@ -1,0 +1,15 @@
+---
+selena_version: "{{ product.version }}"
+env_vars: {}
+data_collector:
+    port: 6379
+
+#Grafana apt package is located here
+product_repo_ip: 10.0.0.11
+
+rrd_path: "/WT/rrdtool"
+
+
+log_mode: local
+analytics_model: default
+

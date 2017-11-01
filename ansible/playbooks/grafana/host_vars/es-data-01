@@ -1,0 +1,5 @@
+---
+node_name: webtelemetry-telemetrix-data-01
+masternode: "false"
+datanode: "true"
+discovery_hosts: "ip-10-81-1-141.us-west-2.compute.internal"

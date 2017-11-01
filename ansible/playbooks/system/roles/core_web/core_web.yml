@@ -1,0 +1,16 @@
+required_roles:  [ core_os ]
+
+tasks:
+    - nginx_server
+    - directories
+
+directories:
+    /usr/local/ssl/certs:
+        owner:  root
+        group:  root
+        mode:   755
+    /usr/local/ssl/private:
+        owner:  root
+        group:  root
+        mode:   755
+

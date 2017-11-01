@@ -1,0 +1,163 @@
+---
+
+- name: version
+  template: src=version.vm.j2 dest="{{ item }}" owner=root group=root mode=644
+  with_items:
+    - /WT/appserver/webapps/wt-portal/WEB-INF/templates/vm/navigations/html/version.vm
+  ignore_errors: true
+  tags: version
+
+- name: Replace years 1
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/2013-2015/"{{ product.years }}"/g' {}"
+  with_items:
+    - "*.jsp"
+    - "*.js"
+    - "*.htm"
+    - "*.html"
+    - "*.vm"
+    - "*.nak"
+    - "*.css"
+    - "*.properties"
+    - "*.txt"
+    - "*.sh"
+    - "*.pl"
+  tags:  product_years_1
+
+
+- name: Replace years 2
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/2014-2016/"{{ product.years }}"/g' {}"
+  with_items:
+    - "*.jsp"
+    - "*.js"
+    - "*.htm"
+    - "*.html"
+    - "*.vm"
+    - "*.nak"
+    - "*.css"
+    - "*.properties"
+    - "*.txt"
+    - "*.sh"
+    - "*.pl"
+  tags:  product_years_2
+
+
+- name: Replace years 2
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/2006-2008/"{{ product.years }}"/g' {}"
+  with_items:
+    - "*.jsp"
+    - "*.js"
+    - "*.htm"
+    - "*.html"
+    - "*.vm"
+    - "*.nak"
+    - "*.css"
+    - "*.properties"
+    - "*.txt"
+    - "*.sh"
+    - "*.pl"
+  tags:  product_years_2
+
+
+
+- name: Replace 2
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/WatchTower/WebTelemetry/g' {}"
+  with_items:
+    - "*.jsp"
+    - "*.js"
+    - "*.htm"
+    - "*.html"
+    - "*.vm"
+    - "*.nak"
+    - "*.css"
+    - "*.properties"
+    - "*.txt"
+    - "*.sh"
+    - "*.pl"
+  tags:  brand
+
+
+- name: Replace 3
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/Cittio/WebTelemetry/g' {}"
+  with_items:
+    - "*.jsp"
+    - "*.js"
+    - "*.htm"
+    - "*.html"
+    - "*.vm"
+    - "*.nak"
+    - "*.css"
+    - "*.properties"
+    - "*.txt"
+    - "*.sh"
+    - "*.pl"
+  tags:  brand
+
+
+
+- name: Replace 3
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/CITTIO/WEBTELEMETRY/g' {}"
+  with_items:
+    - "*.jsp"
+    - "*.js"
+    - "*.htm"
+    - "*.html"
+    - "*.vm"
+    - "*.nak"
+    - "*.css"
+    - "*.properties"
+    - "*.txt"
+    - "*.sh"
+    - "*.pl"
+  tags:  brand
+
+
+- name: Replace 3
+
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/ WATCHTOWER / WEBTELEMETRY /g' {}"
+  with_items:
+    - "*.jsp"
+    - "*.js"
+    - "*.htm"
+    - "*.html"
+    - "*.vm"
+    - "*.nak"
+    - "*.css"
+    - "*.properties"
+    - "*.txt"
+    - "*.sh"
+    - "*.pl"
+  tags:  brand
+
+
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/WEBTELEMETRYDB/WATCHTOWERDB/g' {}"
+  with_items:
+    - "*.jsp"
+    - "*.js"
+    - "*.htm"
+    - "*.html"
+    - "*.vm"
+    - "*.nak"
+    - "*.css"
+    - "*.properties"
+    - "*.txt"
+    - "*.sh"
+    - "*.pl"
+  tags:  brand
+
+
+
+
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/LLC/INC/g' {}"
+  with_items:
+    - "*.jsp"
+    - "*.js"
+    - "*.htm"
+    - "*.html"
+    - "*.vm"
+    - "*.nak"
+    - "*.css"
+    - "*.properties"
+    - "*.txt"
+    - "*.sh"
+    - "*.pl"
+  tags:  brand

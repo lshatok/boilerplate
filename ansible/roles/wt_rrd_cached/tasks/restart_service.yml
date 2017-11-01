@@ -1,0 +1,6 @@
+---
+- name: Start RTCC
+  service: name=rtcc state=restarted
+
+- name: Start RTCC
+  service: name=celery_rtcc state=restarted

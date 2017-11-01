@@ -1,0 +1,49 @@
+---
+- name: Install depende
+  apt: name="{{ item }}" state=latest
+  with_items:
+    - libyaml-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - python-dev
+    - python-setuptools
+
+- name: Install PIP
+  easy_install: name=pip
+
+- name: Install virtualenv
+  pip: name=virtualenv
+
+- name: Check for existing virtualenv
+  shell: "[ -d {{ grafana.venv_path }} ]"
+  register: venv
+  ignore_errors: true
+  changed_when: False
+
+- name: Create virtualenv
+  shell: virtualenv "{{ grafana.venv_path }}"
+  become_user: "{{ grafana.user }}"
+  when: "venv.rc != 0"
+
+- name: Upgrade pip
+  shell: "{{ grafana.venv_path }}/bin/pip install --upgrade pip"
+  environment: env_vars
+
+- name: Upgrade setuptools
+  shell: "{{ grafana.venv_path }}/bin/pip install --upgrade setuptools"
+  environment: env_vars
+
+- name: Install Dashboards Requirements
+  pip:
+    requirements: "{{ grafana.path }}/requirements.txt"
+    virtualenv: "{{ grafana.venv_path }}"
+    extra_args: "--allow-all-external --extra-index-url {{ gemfury_url }}"
+  become_user: "{{ grafana.user }}"
+  tags:
+    - pip
+
+- name: Install python dependencies (telemetrix-core)
+  shell: cat {{ grafana.venv_path }}/wt_config/telemetrix-core/requirements.txt | xargs -L 1 {{ grafana.venv_path }}/bin/pip install --extra-index-url {{ gemfury_url }}
+  shell: rm -rf {{ grafana.venv_path }}/wt_config/telemetrix-core
+  become_user: "{{ grafana.user }}"
+  environment: env_vars

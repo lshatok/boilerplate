@@ -1,0 +1,57 @@
+#instance_uuid: eaf1c986-88a9-4950-8d4c-5de993b1ebb6
+instance_uuid: {{ rtcc.tenant_uid }}
+
+mirwais:
+    host: localhost
+
+kafka:
+    host: {{ kafka.host }}
+    port: 9092
+    enabled: {{ kafka.enabled }}
+
+
+mode: dev
+debug: true
+
+postgresql:
+   dev:
+      username: {{ postgresql.user }}
+      password: {{ postgresql.password }}
+      host: {{ postgresql.host }}
+      port: 3306
+      database: 'rtcc'
+   prod:
+      username: {{ postgresql.user }}
+      password: {{ postgresql.password }}
+      host: {{ postgresql.host }}
+      port: 3306
+      database: 'rtcc'
+
+server:
+   host: {{ server.host }}
+   port: 9000
+
+socketio:
+   host: '127.0.0.1'
+   port: 9001
+
+ampq:
+   host: {{ influxdb.host }}
+   port: 5672
+   username: fam
+   password: password
+   vhost: wt.telemetrix
+   enabled: {{ influxdb.enabled }}
+
+tenant_uid : {{ rtcc.tenant_uid }}
+
+
+csv_data:
+  delimeter: ','
+  quotechar: "'"
+  delay_in_ms: 100
+  header_present: true
+  column_offset: 50
+  date_format: "%Y-%m-%dT%H:%M:%SZ"
+
+device_data_refresh: {{ rtcc.device_data_refresh }}

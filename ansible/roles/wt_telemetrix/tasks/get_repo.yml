@@ -1,0 +1,7 @@
+#role: wt_rrd
+#task: get_repo
+---
+- name: Pull from github repo
+  git: repo={{ grafana.repo }} dest={{ grafana.path }} version="{{ grafana.branch }}"
+       key_file="/home/{{ grafana.user }}/.ssh/gitro_id_rsa" accept_hostkey=yes
+  sudo_user: "{{ grafana.user }}"

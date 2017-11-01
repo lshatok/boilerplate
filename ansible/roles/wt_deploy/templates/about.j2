@@ -1,0 +1,11 @@
+<%@page language="java" import="com.jjlabs.wt.tools.WTProperties" %>
+<%
+	WTProperties singleton = WTProperties.getInstance();
+	String brand = singleton.getProperty("app.name.ref");
+	String aboutPage = "about_";
+	if( brand == null || brand.equals("") )
+		aboutPage += "webtelemetry.jsp";
+	else
+		aboutPage += brand + ".jsp";
+%>
+<jsp:forward page="<%= aboutPage %>" />

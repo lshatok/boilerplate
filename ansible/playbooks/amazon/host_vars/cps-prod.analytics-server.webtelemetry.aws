@@ -1,0 +1,27 @@
+network_name: WALMART BackHaul
+
+# WALMART prod backhaul 1d
+subnet: subnet-a20d68ed
+
+application: telemetrix-server
+
+security_groups:
+  - sg-a7e521dc # walmart_prod_backhaul
+  - sg-93090beb # walmart_ops
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 50
+    delete_on_termination: false
+
+
+assign_eip: false
+
+count: 1
+
+tags:
+  customer: walmart-prod
+  stack_name: walmart-prod

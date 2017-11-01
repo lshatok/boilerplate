@@ -1,0 +1,6 @@
+---
+branch: master
+chrootpath: /bpa
+scp_user: bpa_sftp
+scp_pass: Eitiesh9pheeWa7k
+domain: dev.{{ product.url }}

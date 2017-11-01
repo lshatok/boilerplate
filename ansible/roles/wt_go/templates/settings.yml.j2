@@ -1,0 +1,38 @@
+:webtelemetry:
+  :protocol:    '{{ grafana.protocol }}'
+  :hostname:    '{{ grafana.domain }}'
+  :port:        '{{ grafana.port }}'
+  :ws_username: '{{ grafana.internal_api.user }}'
+  :ws_password: '{{ grafana.internal_api.pass }}'
+
+:snmp:
+  :mirwais:
+    :host: '{{ snmp.analytics.host }}'
+    :port: 6379
+    :password: '{{ snmp.analytics.password}}'
+    :env_name: '{{ snmp.analytics.env_name}}'
+  :device_data:
+    :host: '{{ influxdb.snmp.device_data.host }}'
+    :port: '{{ influxdb.snmp.device_data.port }}'
+    :path: '{{ influxdb.snmp.device_data.path }}'
+
+
+:rabbit_mq:
+  :server_host:  '{{ influxdb.influxdb.host }}'
+  :server_port:  '5672'
+  :username:     '{{ influxdb.influxdb.user }}'
+  :password:     '{{ influxdb.influxdb.password }}'
+  :virtual_host: '{{ influxdb.influxdb.vhost }}'
+
+:temporary:
+  :encryption_key: 'z'
+
+:s3:
+  :access_key_id: {{ influxdb.s3.access_key_id }}
+  :secret_access_key: {{ influxdb.s3.secret_access_key }}
+  :bucket: {{ influxdb.s3.bucket }}
+  :s3_protocol: '{{ influxdb.s3.s3_protocol }}'
+
+:cascade:
+  :url: 'https://{{ cascade.domain }}/assets/cascade.js'
+  :token: '{{ influxdb.revolver.token }}'

@@ -1,0 +1,5 @@
+metrix_home: /WT/configs
+appserver_home: /WT/appserver
+
+ec2:
+  mount_path: /WT

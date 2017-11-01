@@ -1,0 +1,11 @@
+metrix_home: /WT/configs
+
+denali:
+#  version:
+  wt_data_importer:
+    virtualenv_path: /WT/virtualenvs/denali
+    path: /WT/telemetrix-data-processing/data_importer
+
+    iso_data:
+      shell_script: pjm_ercot_import.sh
+      da_shell_script: dayahead_lmp_import.sh

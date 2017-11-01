@@ -1,0 +1,16 @@
+---
+- name: Install Fx
+  include: pip_install.yml
+  tags: [ update,pipup ]
+
+- name: Create services
+  include: create_service.yml
+  tags: [ configs ]
+
+- name: Update configs
+  include: update_configs.yml
+  tags: [ configs ]
+
+- name: Restart services
+  include: restart_service.yml
+  tags: [ restart ]

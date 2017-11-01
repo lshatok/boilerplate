@@ -1,0 +1,101 @@
+---
+- name: update_documentation
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/WatchTower/WebTelemetry/g' {}"
+  tags:  update_documentation
+
+- name: update_documentation1
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/WATCHTOWER/WEBTELEMETRY/g' {}"
+  tags:  update_documentation1
+
+- name: update_documentation2
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/CITTIO/WEBTELEMETRY/g' {}"
+  tags:  update_documentation2
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/Cittio/WebTelemetry/g' {}"
+  tags:  brand2
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/Tomcat 4.0/Tomcat 8.0/g' {}"
+  tags:  brand2
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/WinNT/Windows/' {}"
+  tags:  brand2
+
+
+- name: update_documentation2
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/Windows 2000/Windows 10/g' {}"
+  tags:  update_documentation2
+
+
+- name: update_documentation2
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/Windows NT/Windows 2016/g' {}"
+  tags:  update_documentation2
+
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/Windows 2000/Windows 10/g' {}"
+  tags:  brand
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/SNMP4NT-Std.exe/SNMP4WIN-WT.exe/g' {}"
+  tags:  brand2
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/watchtowerdb.dmp/webtelemetrydb.dmp/g' {}"
+  tags:  brand2
+
+
+#################################################################################################################################
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/RedHatEnterprise4.0/RedHatEnterprise7.0/g' {}"
+  tags:  brand2
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/psql -U watchtower/psql -U webtelemetry/g' {}"
+  tags:  brand2
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/watchtower/webtelemetry/g' {}"
+  tags:  brand2
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/cittio.com/webtelemetry.us/g' {}"
+  tags:  brand2
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/Watchtower/WebTelemetry/g' {}"
+  tags:  brand2
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/RedHat Enterprise Linux 2.1/RedHat Enterprise Linux 6/g' {}"
+  tags:  brand2
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/Enterprise Linux 4/Enterprise Linux 7/g' {}"
+  tags:  brand2
+
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.txt'  | xargs -I {}  sed -i 's/WATCHTOWER/WEBTELEMETRY/g' {}"
+  tags:  brand2
+
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.txt'  | xargs -I {}  sed -i 's/WatchTower/WebTelemetry/g' {}"
+  tags:  brand2
+
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.txt'  | xargs -I {}  sed -i 's/watchTower/webwelemetry/g' {}"
+  tags:  brand2
+
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.txt'  | xargs -I {}  sed -i 's/CITTIO/WEBTELEMETRY/g' {}"
+  tags:  brand2
+
+- name: Replace 4
+  shell: "find /WT/htdocs  -name '*.txt'  | xargs -I {}  sed -i 's/Enterprise Linux 4/Enterprise Linux 7/g' {}"
+  tags:  brand2

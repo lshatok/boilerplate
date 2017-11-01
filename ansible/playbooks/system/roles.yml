@@ -1,0 +1,118 @@
+
+# ROLE NAME:
+#     Role_Path :  Role_Yaml Config
+
+# If no roles are specified, default is used #
+default:
+    role_path: roles/default
+    config:  default.yml
+
+core_os:
+    # tested: passed
+    role_path: roles/core_os
+    config:  core_os.yml
+    # optional
+    #file_repo:  roles/core_os/files
+
+#ecore_os-test:
+#    roles/core_os:  test.yml
+
+core_webtelemetry:
+    # tested: passed
+    role_path: roles/core_webtelemetry
+    config:  core_webtelemetry.yml
+
+core_web:
+    # prereqs: core_os
+    role_path:  roles/core_web
+    config:  core_web.yml
+
+web_webtelemetrydev:
+    # prereqs: core_web
+    role_path:  roles/core_web
+    config:  webtelemetrydev.yml
+
+web_webtelemetry():
+    # prereqs: core_web
+    role_path:  roles/core_web
+    config:  webtelemetrysystems.yml
+
+webtelemetry_ruby:
+    role_path: roles/core_webtelemetry
+    config:  webtelemetry_ruby.yml
+
+grafana:
+    # tested: no
+    role_path: roles/grafana
+    config: grafana.yml
+
+hbase_master:
+    # tested: passed
+    role_path:  roles/cloudera_hbase
+    config: hbase_master.yml
+
+hbase_worker:
+    # tested: no
+    role_path:  roles/cloudera_hbase
+    config: hbase_worker.yml
+
+wt_core:
+    # tested: no
+    role_path:  roles/telemetrix
+    config:  core.yml
+
+wt_core_ruby:
+    # tested: no
+    role_path:  roles/telemetrix
+    config:  wt_core_ruby.yml
+
+wt_core_python:
+    # tested: no
+    role_path:  roles/telemetrix
+    config:  wt_core_python.yml
+
+wt_core_jruby:
+    # tested: no
+    role_path:  roles/telemetrix
+    config:  wt_core_jruby.yml
+
+telemetrix:
+    # tested: no
+    role_path:  roles/telemetrix
+    config:  telemetrix.yml
+
+wt_telemetrix:
+    # tested: no
+    role_path:  roles/wt_telemetrix
+    config:  wt_telemetrix.yml
+
+wt_telemetrix_pip:
+    # tested: no
+    role_path:  roles/wt_telemetrix
+    config:  wt_telemetrix_pip.yml
+
+newrelic_hostagent:
+    # tested:  host_agent passed
+    role_path:  roles/newrelic
+    config:  newrelic_hostagent.yml
+
+postgresql_server:
+    # tested: no
+    role_path:   roles/postgresql_server
+    config:  postgresql_server.yml
+
+dtech_web:
+    role_path:   roles/dtech
+    config:  dtech_web.yml
+
+jenkins_slave:
+    role_path:  roles/jenkins_slave
+    config:  jenkins_slave.yml
+
+fluxe_openssl:
+    role_path:  roles/fluxe
+    config:  fluxe-openssl.yml
+
+webtelemetry:
+    role_path:  roles/webtelemetry
+    config:  webtelemetry.yml

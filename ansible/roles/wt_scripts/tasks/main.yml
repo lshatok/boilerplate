@@ -1,0 +1,4 @@
+---
+- include: all.yml tags=update,telemetrix,pge,nhec,repo_update #should include all available tags
+- include: telemetrix.yml tags=update,telemetrix
+- include: pge_nhec.yml tags=update,pge,nhec

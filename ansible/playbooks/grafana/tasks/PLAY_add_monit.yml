@@ -1,0 +1,9 @@
+---
+- name: Playbook Add Metrix Monitoring
+  hosts: "{{ target }}"
+  sudo: true
+  vars:
+    mnagios_host: 10.0.0.171
+
+  roles:
+    - role: nagios

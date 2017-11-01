@@ -1,0 +1,16 @@
+description "Dashboards"
+    start on runlevel [2345]
+    stop on runlevel [!2345]
+    respawn
+
+    # run as non privileged user
+    setuid {{ grafana.user }}
+    setgid {{ grafana.group }}
+
+    chdir {{ grafana.path }}
+
+    env PYTHONPATH="{{ grafana.path }}"
+    env TELEMETRIX_HOME={{ grafana.path }}/config
+
+pre-start exec {{ grafana.venv_path }}/bin/python jobs/DashboardsFileMonitor.py start
+post-stop exec {{ grafana.venv_path }}/bin/python jobs/DashboardsFileMonitor.py stop

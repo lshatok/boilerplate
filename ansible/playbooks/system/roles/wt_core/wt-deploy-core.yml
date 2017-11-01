@@ -1,0 +1,112 @@
+## ROLE: base system setup for WebTelemetry systems
+
+# Required Roles #
+required_roles: [ core_os ]
+
+# Execute tasks in order #
+tasks:
+    - apt_update
+    - apt_upgrade
+    - packages
+    - reboot
+    - groups
+    - sudoers
+    - accounts
+    - lvm_diskgroups
+    - mounts
+    - directories
+    - files
+    - java7
+    - nodejs
+
+
+# Config Section #
+packages: [
+    libpostgresqlclient-dev, postgresql-client-core-5.5, libbz2-dev, sqlite3, libsqlite3-dev, libreadline6-dev,
+    libreadline6, zlib1g-dev,
+    ]
+
+groups:
+    - wtuser
+    - {{ product.admin }}
+
+accounts:
+    webtelemetry :
+        uid:    900
+        shell:  /bin/bash
+        group:  {{ product.admin }}
+        groups:
+            - tty
+        comment:  WebTelemetry User
+        home:   /home/webtelemetry
+        email:  ai@webtelemetry.us
+        add_profile:
+            - /WT/profiles/profile-webtelemetry_core.sh
+
+directories:
+    /WT:
+        owner:  webtelemetry
+        group:  {{ product.admin }}
+        mode:   755
+    /WT/profiles:
+        owner:  webtelemetry
+        group:  {{ product.admin }}
+        mode:   755
+    /WT/profiles/profiles.d:
+        owner:  webtelemetry
+        group:  {{ product.admin }}
+        mode:   755
+    /WT/files:
+        owner:  webtelemetry
+        group:  {{ product.admin }}
+        mode:   755
+    /WT:
+        owner:  webtelemetry
+        group:  {{ product.admin }}
+        mode:   755
+    /WT/virtenv:
+        owner:  webtelemetry
+        group:  {{ product.admin }}
+        mode:   755
+
+
+
+# lvm tasks will be skipped if device doesn't exist #
+lvm_diskgroups:
+    # disk group for Amazon AWS EBS volumes
+    ebsdg:
+        device: /dev/xvdf
+        volumes:
+            lv_optag: 100%
+
+# mounts will be skipped if device doesn't exist #
+mounts:
+    /dev/mapper/ebsdg-lv_optag:  [ /WT, xfs, "defaults,nobootwait" ]
+
+
+files:
+    /WT/profiles/profile-webtelemetry_core.sh :
+        source: profile-webtelemetry_core.sh
+        owner:  webtelemetry
+        group:  {{ product.admin }}
+        mode:  0755
+    # webtelemetry github read only key #
+    /WT/.ssh/gitro_id_rsa:
+        source: gitro_id_rsa
+        owner:  webtelemetry
+        group:  {{ product.admin }}
+        mode:  0600
+    /WT/.ssh/config:
+        source: webtelemetry-ssh_config
+        owner:  webtelemetry
+        group:  {{ product.admin }}
+        mode:  0644
+    /WT/files/postgresql-db-init.sh:
+        source:  postgresql-db-init.sh
+        owner:  webtelemetry
+        group:  {{ product.admin }}
+        mode:  0755
+
+sudoers:
+    - wt-sudoers
+

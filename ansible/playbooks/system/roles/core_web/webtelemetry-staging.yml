@@ -1,0 +1,22 @@
+required_roles:  [ core_web ]
+
+
+tasks:
+    - run_commands:get_sslcerts
+    - run_commands:make_ssl_links
+
+
+run_commands:
+    get_sslcerts:
+        - [ root, /usr/local/ssl/certs,
+            'curl -u ai:AGdev0ps -O http://10.0.0.11/sslcerts/webtelemetry.us/webtelemetry.us.ca-chain.crt' ]
+        - [ root, /usr/local/ssl/certs,
+            'curl -u ai:AGdev0ps -O http://10.0.0.11/sslcerts/webtelemetry.us/webtelemetry.us.crt' ]
+        - [ root, /usr/local/ssl/private,
+            'curl -u ai:AGdev0ps -O http://10.0.0.11/sslcerts/webtelemetry.us/webtelemetry.us.key' ]
+        - [ root, /usr/local/ssl/private, 'chmod 600 webtelemetry.us.key' ]
+
+    make_ssl_links:
+        - [ root, /usr/local/ssl/certs, 'ln -s webtelemetry.us.ca-chain.crt webtelemetry_star.crt']
+        - [ root, /usr/local/ssl/private, 'ln -s webtelemetry.us.key webtelemetry_star.key']
+

@@ -1,0 +1,5 @@
+---
+dependencies:
+  - { role: wt_core }
+  - { role: wt_webserver }
+  - { role: wt_nodejs }

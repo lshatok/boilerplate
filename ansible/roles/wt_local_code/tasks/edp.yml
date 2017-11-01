@@ -1,0 +1,56 @@
+---
+- name: remove current telemetrix-core
+  local_action: shell rm telemetrix*.gz
+  args:
+    chdir: "{{ local_code.paths.wt_core }}/dist"
+  sudo: False
+
+- name: compile wt_core
+  local_action: shell python -m compileall -f . && python setup.py sdist
+  sudo: False
+  args:
+    chdir: "{{ local_code.paths.wt_core }}"
+    ansible_python_interpreter: "{{ local_code.python_interpreter }}"
+
+- name: rename telemetrix-core
+  local_action: shell mv grafana*.gz grafana-core.tar.gz
+  args:
+    chdir: "{{ local_code.paths.wt_core }}/dist"
+  sudo: False
+
+- copy: src="{{ local_code.paths.wt_core }}/dist/grafana-core.tar.gz" dest=/tmp/local-grafana-core.tar.gz owner=wtuser group=wtgroup
+
+- name: Install telemetrix-core
+  pip: name='file:///tmp/local-telemetrix-core.tar.gz'
+       virtualenv="{{ virtualenv_path }}"
+  environment: env_vars
+
+- name: create tmp dir
+  local_action: "shell mkdir {{ local_code.paths.wt_data_processing }}/tmp"
+  sudo: False
+  ignore_errors: true
+
+- name: remove current denali
+  local_action: shell rm local-denali.tar.gz
+  args:
+    chdir: "{{ local_code.paths.wt_data_processing }}/tmp"
+  sudo: False
+  ignore_errors: true
+
+- name: compile denali
+  local_action: shell tar -zvcf tmp/local-denali.tar.gz denali
+  sudo: False
+  args:
+    chdir: "{{ local_code.paths.wt_data_processing }}"
+
+- copy: src="{{ local_code.paths.wt_data_processing }}/tmp/local-denali.tar.gz" dest=/tmp/local-denali.tar.gz owner=wtuser group=wtgroup
+
+- command: "rm -r {{ denali.path }}/denali"
+  ignore_errors: true
+
+- unarchive: src=/tmp/local-denali.tar.gz dest="{{ denali.path }}" copy=no owner=wtuser group=wtgroup
+
+
+
+
+

@@ -1,0 +1,4 @@
+metrix_home: /WT/configs
+dashboard:
+  beat:
+    app: webtelemetry.telemetrix.messaging.celerybeatdriver

@@ -1,0 +1,111 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    config.vm.box = "hashicorp/xenial64"
+    config.vm.provider "virtualbox" do |config|
+        config.memory = 2048
+        config.cpus = 2
+    end
+
+    config.vm.define :grafana do |grafana|
+        grafana.vm.network :private_network, ip: '10.0.0.91'
+        grafana.vm.hostname = 'grafana'
+        grafana.vm.provision 'ansible' do |ansible|
+            ansible.limit = 'all'
+            ansible.playbook = 'grafana-app.yml'
+            ansible.inventory_path = 'inventory/local'
+            ansible.sudo = true
+            ansible.extra_vars = 'group_vars/local'
+            # ansible.tags = ['update', 'configs']
+        end
+    end
+
+    config.vm.define :snmp do |telemetrix|
+        telemetrix.vm.network :private_network, ip: '10.0.0.93'
+        telemetrix.vm.hostname = 'snmp'
+        telemetrix.vm.provision 'ansible' do |ansible|
+            ansible.limit = 'all'
+            ansible.playbook = 'snmp.yml'
+            ansible.inventory_path = 'inventory/local'
+            ansible.sudo = true
+            ansible.extra_vars = 'group_vars/local'
+            # ansible.tags = ['configs']
+        end
+    end
+
+    config.vm.define :checkpoint do |checkpoint|
+        checkpoint.vm.network :private_network, ip: '10.0.0.94'
+        checkpoint.vm.hostname = 'checkpoint'
+        checkpoint.vm.provision 'ansible' do |ansible|
+            ansible.limit = 'all'
+            ansible.playbook = './playbooks/checkpoint.yml'
+            ansible.inventory_path = 'inventory/local'
+            ansible.sudo = true
+            ansible.extra_vars = 'group_vars/local'
+            # ansible.tags = ['configs']
+        end
+    end
+
+    config.vm.define :hbase_master do |hbase_master|
+        hbase_master.vm.network :private_network, ip: '10.0.0.95'
+        hbase_master.vm.hostname = 'hbasemaster'
+        hbase_master.vm.provision 'ansible' do |ansible|
+            ansible.limit = 'all'
+            ansible.playbook = './playbooks/hbase-master.yml'
+            ansible.inventory_path = 'inventory/local'
+            ansible.sudo = true
+            ansible.extra_vars = 'group_vars/hbase_master'
+            # ansible.tags = ['configs']
+        end
+    end
+
+    config.vm.define :hbase_worker do |hbase_worker|
+        hbase_worker.vm.network :private_network, ip: '10.0.0.96'
+        hbase_worker.vm.hostname = 'hbaseworker'
+        hbase_worker.vm.provision 'ansible' do |ansible|
+            ansible.limit = 'all'
+            ansible.playbook = './playbooks/hbase-worker.yml'
+            ansible.inventory_path = 'inventory/local'
+            ansible.sudo = true
+            ansible.extra_vars = 'group_vars/hbase_worker'
+            # ansible.tags = ['configs']
+        end
+    end
+
+    config.vm.define :kibana do |kibana|
+        kibana.vm.hostname = 'kibana'
+        kibana.vm.network :private_network, ip: '10.0.0.51'
+        kibana.vm.provision 'ansible' do |ansible|
+            ansible.playbook = 'kibana.yml'
+            ansible.inventory_path = 'inventory/local'
+            ansible.sudo = true
+        end
+    end
+
+    config.vm.define :esmaster do |esmaster|
+        esmaster.vm.network :private_network, ip: '10.0.0.52'
+        esmaster.vm.hostname = 'esmaster'
+        esmaster.vm.provision 'ansible' do |ansible|
+            ansible.playbook = 'elasticsearch_master.yml'
+            ansible.inventory_path = 'inventory/local'
+            ansible.sudo = true
+        end
+    end
+
+    config.vm.define :esdata do |esdata|
+        esdata.vm.network :private_network, ip: '10.0.0.53'
+        esdata.vm.hostname = 'esdata'
+        esdata.vm.provision 'ansible' do |ansible|
+            ansible.playbook = 'elasticsearch_data.yml'
+            ansible.inventory_path = 'inventory/local'
+            ansible.sudo = true
+        end
+    end
+
+    #TODO: nagios
+
+end

@@ -1,0 +1,21 @@
+#role: wt_go
+#task: migrate
+---
+
+- name: Migrate the database
+  command: "/WT/.rbenv/shims/rake db:migrate APP_ENV={{ influxdb.rails_env }}"
+  args:
+    chdir: "{{ influxdb.path }}"
+  environment:
+    APP_KEY: "{{ app_environment.APP_KEY }}"
+  sudo_user: "{{ influxdb.user }}"
+  run_once: true
+
+- name: Seed database
+  command: "/WT/.rbenv/shims/rake db:seed APP_ENV={{ influxdb.rails_env }}"
+  args:
+    chdir: "{{ influxdb.path }}"
+  environment:
+    APP_KEY: "{{ app_environment.APP_KEY }}"
+  sudo_user: "{{ influxdb.user }}"
+  run_once: true

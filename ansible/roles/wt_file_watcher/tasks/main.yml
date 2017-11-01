@@ -1,0 +1,8 @@
+---
+- name: Copy upstart script
+  template: src=upstart.conf.j2 dest=/etc/init/file-observer.conf
+  tags:
+    - configs
+
+- name: Start file-observer service
+  service: name=file-observer state=restarted enabled=yes

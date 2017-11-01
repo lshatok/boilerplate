@@ -1,0 +1,16 @@
+[Unit]
+Description=Celery Beat
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Environment="TELEMETRIX_HOME="{{ telemetrix_home }}"" "C_FORCE_ROOT=true" "{% if scheduler_id is defined %} SCHEDULER_ID={{ scheduler_id }}
+{% endif %}"
+ExecStart={{ virtualenv_path }}/bin/dashboard beat \
+    --logfile={{ telemetrix.logger.logdir }}/celery_beat.log \
+    --loglevel={{ dashboard.loglevel }} \
+    --schedule={{ dashboard.run_dir }}/celerybeat_schedule.db \
+    --pidfile={{ dashboard.run_dir }}/celerybeat.pid \
+    -A {{ dashboard.beat.app }}
+
+[Install]
+WantedBy=multi-user.target

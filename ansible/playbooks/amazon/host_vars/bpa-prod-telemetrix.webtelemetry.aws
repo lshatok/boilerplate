@@ -1,0 +1,23 @@
+network_name: BPA Test Fronthaul
+
+subnet: subnet-34102640
+
+application: snmp
+
+security_groups:
+  - sg-725q02bz  #WebTelemetry Office
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+
+assign_eip: no
+
+count: 1
+
+tags:
+  customer: SFBART

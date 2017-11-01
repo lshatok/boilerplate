@@ -1,0 +1,26 @@
+rds_subnets:
+  - subnet-e40a588d # walmart_test_backhaul_2a - 171.112.10.96/27
+  - subnet-e3f266ae # walmart_test_backhaul_2c - 171.112.10.64/27
+
+region: ap-northeast-2
+
+zone: ap-northeast-2a
+
+subnetgroup_name: WALMART-test-group
+
+description:  WALMART Test RDS subnet group
+
+type: db.m3.medium
+
+instance_name: walmart-test-influxdb
+size: 10
+
+admin_user: {{ product.admin }}
+admin_pass: XXXXXXXXXXX
+
+# Backup retention days [0-35]
+backup_retention: 7
+count: 1
+vpc_security_groups: 'sg-ca1de1a2' # walmart_test_rds
+
+

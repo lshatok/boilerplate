@@ -1,0 +1,9 @@
+---
+dependencies:
+  - { role: wt_git }
+  - { role: wt_core }
+  - { role: wt_java9 }
+  - { role: wt_redis }
+  - { role: wt_apache_tomcat }
+  - { role: wt_jruby, jrubyver: "{{ snmp.rubyver }}" }
+  - { role: wt_apache_ant }

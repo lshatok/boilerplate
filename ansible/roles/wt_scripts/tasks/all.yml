@@ -1,0 +1,17 @@
+---
+- name: Pull from github repo
+  git:
+    repo: "ssh://git@github.com/webtelemetry-custom.git"
+    dest: "{{ custom.path }}"
+    version: "{{ custom.branch }}"
+    key_file: "/WT/.ssh/gitro_id_rsa"
+    accept_hostkey: yes
+    force: yes
+  become_user: "{{ custom.user }}"
+
+- name: Ensure that logs dir exists
+  file:
+    path: "{{ custom.log.path }}"
+    state: directory
+    mode: 0755
+    owner: "{{ custom.user }}"

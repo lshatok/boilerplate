@@ -1,0 +1,66 @@
+##<!-- begin jetspeed-tab.vm -->
+#if (! $data.Customized )
+  #if ( ! $tabs )
+    #parse ("jetspeed.vm")
+  #else
+            <div align="right">
+            <table class="topNav" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+    #foreach ( $tab in $tabs )
+      #if ($tab.isSelected() )
+        #set ($bgcolor = $!{skin.HighlightBackgroundColor} )
+        #set ($color = $!{skin.HighlightTextColor} )
+        #set ($titleclass = $!{skin.HighlightTitleStyleClass} )
+      #else
+        #set ($bgcolor = $!{skin.TitleBackgroundColor} )
+        #set ($color = $!{skin.TitleTextColor} )
+        #set ($titleclass = $!{skin.TitleStyleClass} )
+      #end
+
+      #if (${bgcolor})
+        #if (${color})
+          #set ($titlestyle = "background-color: $bgcolor; color: $color;" )
+        #else
+          #set ($titlestyle = "background-color: $bgcolor;" )
+        #end
+      #else
+        #if (${color})
+          #set ($titlestyle = "color: $color;" )
+        #else
+          #set ($titlestyle = "" )
+        #end
+      #end
+		
+		#if ($velocityCount <= 1)
+		#else
+                    <td class="topNav_sep" align="center" valign="bottom"><img src="/wt-portal/images/spacers/spacer.gif" height="14" width="14" border="0" alt=""{{ product.capital_logo_name }}"" ></td>
+		#end
+                    <td align="center" valign="bottom">
+            #if ($tab.Link && ($tab.isSelected() == false))
+<a href="$tab.Link" class="topNav">$tab.Title</a>
+            #else
+<a href="$tab.Link" class="topNav_on">$tab.Title</a>
+            #end
+                    </td>
+    #end
+                    <td>&nbsp; &nbsp; &nbsp;</td>
+                </tr>
+            </table>
+            </div>
+            <!-- END TOP NAV LINKS --></td>
+        <td bgcolor="{{ product.wt_black }}">&nbsp;</td>
+    </tr>
+    <tr>
+    <td colspan="4" bgcolor="{{ product.wt_white }}"><img src="/wt-portal/images/spacers/spacer.gif" height="3" width="228" border="0" alt="{{ product.capital_logo_name }}" ></td>
+    </tr>
+</table>
+<!-- END LOGO & LOGIN TABLE: opening table tags in /wt-portal/WEB-INF/templates/vm/layouts/html/default.vm -->
+<!-- PLACE IN /WT/appserver/webapps/wt-portal/WEB-INF/templates/vm/controls/html/jetspeed-tab.vm
+<!-- BEGIN TABLE AROUND jetspeed-tab.vm content -->
+            $portlet.getContent($data)
+<!-- END TABLE AROUND jetspeed-tab.vm content -->
+  #end
+  #else
+    $portlet.getContent($data)
+#end
+##<!-- end jetspeed-tab.vm -->

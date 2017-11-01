@@ -1,0 +1,30 @@
+---
+- name: Check if database exists
+  command: "/WT/.rbenv/shims/rake db:version APP_ENV={{ snmp.rails_env }}"
+  args:
+    chdir: "/WT/appserver/webapps/snmp/WEB-INF"
+  become_user: "{{ product.user }}"
+  ignore_errors: true
+  register: rake_db_version_result
+
+- name: Check if reporting database exists
+  command: "/WT/.rbenv/shims/rake db:version APP_ENV=dashboard_{{ snmp.rails_env }}"
+  args:
+    chdir: "/WT/appserver/webapps/snmp/WEB-INF"
+  become_user: "{{ product.user }}"
+  ignore_errors: true
+  register: rake_product_db_version_result
+
+- name: Setup database
+  shell: "/WT/.rbenv/shims/rake db:setup APP_ENV={{ snmp.rails_env }}"
+  args:
+    chdir: "/WT/appserver/webapps/snmp/WEB-INF"
+  become_user: "{{ product.user }}"
+  when: rake_db_version_result|failed
+
+- name: Setup reporting database
+  shell: "/WT/.rbenv/shims/rake db:setup APP_ENV=dashboard_{{ snmp.rails_env }}"
+  args:
+    chdir: "/WT/appserver/webapps/snmp/WEB-INF"
+  become_user: "{{ product.user }}"
+  when: rake_product_db_version_result|failed

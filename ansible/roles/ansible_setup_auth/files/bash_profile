@@ -1,0 +1,95 @@
+## Default Profile for WebTelemetry users
+
+## Export Defaults ##
+WT_PATH=/WT
+DASHBOARD_PATH=${WT_PATH}/grafana
+RRD_PATH=${WT_PATH}/influxdb
+SURINAME_PATH=${WT_PATH}/grafana
+SELINA_PATH=${WT_PATH}/selina_home
+TELEMETRIX_PATH=${WT_PATH}/telemetrix
+TELEMETRIX_HOME=${WT_PATH}/telemetrix
+APP_ENV=production
+JAVA_HOME={{ java.home }}
+TELEMETRIX_HOME=${ /WT }
+
+[ -f  ~/.bashrc ] && ~/.bashrc
+[ -d ${JAVA_HOME} ] && export JAVA_HOME
+
+echo "=================================="
+
+if
+[ -d ${WT_PATH} ]; then
+   export WT_PATH && export WT_PATH && echo "WT_PATH = ${WT_PATH}"
+fi
+if [ -d ${DASHBOARD_PATH} ]; then
+    export DASHBOARD_PATH && echo "DASHBOARD_PATH = ${DASHBOARD_PATH}"
+fi
+if [ -d ${SURINAME_PATH} ]; then
+    export SURINAME_PATH && echo "SURINAME_PATH = ${SURINAME_PATH}"
+fi
+if [ -d ${ /WT } ]; then
+    export SELINA_PATH && echo "SELINA_PATH = ${ /WT }"
+fi
+if
+[ -d ${TELEMETRIX_HOME} ]; then export TELEMETRIX_HOME && echo "TELEMETRIX_HOME = ${TELEMETRIX_HOME}"
+fi
+if [ -d ${TELEMETRIX_PATH} ]; then
+    export TELEMETRIX_PATH && echo "TELEMETRIX_PATH = ${TELEMETRIX_PATH}"
+fi
+
+if [ -d ${DASHBOARD_PATH} ]; then
+  echo 'alias cddw="cd '${DASHBOARD_PATH}'"'
+fi
+if [ -d ${RRD_PATH} ]; then
+echo 'alias cdinfluxdb="cd '${RRD_PATH}'"'
+fi
+if [ -d ${SURINAME_PATH} ]; then
+echo 'alias cddso="cd '${SURINAME_PATH}'"'
+fi
+if [ -d ${ /WT } ]; then
+echo 'alias cdwt="cd '${ /WT }'"'
+fi
+if [ -d ${TELEMETRIX_PATH} ]; then
+echo 'alias cdan="cd '${TELEMETRIX_PATH}'"'
+fi
+echo 'alias sudoa="sudo su -l wtuser"'
+
+echo "__________________________________"
+
+echo `uptime`
+
+echo "=================================="
+
+## Aliases ##
+alias less="less -nR"
+alias cddw="cd   ${DASHBOARD_PATH}"
+alias cdinfluxdb="cd  ${RRD_PATH}"
+alias cddso="cd  ${SURINAME_PATH}"
+alias cdwt="cd  ${ /WT }"
+alias cdan="cd ${TELEMETRIX_PATH}"
+alias sudoa="sudo su -l wtuser"
+alias alogs="cd /WT/appserver/logs"
+alias jlogs="cd /WT/webapps/snmp/WEB-INF/log"
+alias tw="cd /WT/appserver/webapps/snmp/WEB-INF"
+
+### tput colors ###
+#  - tput doesn't cause wrapping issues -  #
+_Black=$(tput setaf 0)
+_Red=$(tput setaf 1)
+_Green=$(tput setaf 2)
+_Yellow=$(tput setaf 3)
+_Blue=$(tput setaf 4)
+_Magenta=$(tput setaf 5)
+_Cyan=$(tput setaf 6)
+_Reverse=$(tput rev)
+_Underline=$(tput smul)
+_Underline_Off=$(tput rmul)
+_Bold=$(tput bold)
+_Off=$(tput sgr0)
+
+## if git is installed, enable git-prompt.sh ##
+if [ "$PS1" ] && [ -f /usr/bin/git ] && [ -f /etc/bash_completion.d/git-prompt ]; then
+    #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\[${_Blue}\]$(__git_ps1 "(%s)")\[${_Off}\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}(\A)\[${_Bold}${_Green}\]\u\[${_Off}\]@\[${_Underline}\]\h\[${_Off}\]:\[${_Blue}\]\w\[${_Off}\]$(__git_ps1 "(%s)")\$ '
+    export PS1
+fi

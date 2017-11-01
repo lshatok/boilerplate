@@ -1,0 +1,7 @@
+#role: wt_go
+#task: get_repo
+---
+- name: Pull from github repo
+  git: repo={{ influxdb.repo }} dest={{ influxdb.path }} version="{{ influxdb.branch }}"
+       key_file="/home/{{ influxdb.user }}/.ssh/gitro_id_rsa" accept_hostkey=yes force=yes
+  sudo_user: "{{ influxdb.user }}"

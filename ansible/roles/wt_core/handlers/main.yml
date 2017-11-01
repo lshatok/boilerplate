@@ -1,0 +1,8 @@
+# handlers file
+
+- name: reboot
+  command:  /sbin/shutdown -r now "reboot triggered by ansible"
+  notify:  post shutdown pause
+
+- name: post shutdown pause
+  pause:  seconds=60

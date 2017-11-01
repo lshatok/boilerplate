@@ -1,0 +1,22 @@
+[main]
+# The path we want to snmp for new SOAP documents
+# path: /sftp/telemetrix/qse_ers_in
+path:  {{ custom.telemetrix.path }}
+#
+# The path to archive processed files to
+# archive_path: /sftp/telemetrix/qse_ers_archived
+archive_path: {{ custom.telemetrix.archive_path }}
+#
+# The host processing the grafana API calls
+tenant_base_url: {{ custom.telemetrix.tenant_base_url }}
+tenant_username: {{ custom.telemetrix.tenant_username }}
+tenant_password: {{ custom.telemetrix.tenant_password }}
+#
+# Utility Program UID
+utility_program_uid: {{ custom.telemetrix.utility_program_uid }}
+#
+# The number of seconds to create the events for (ERS creations do not include a stop time or length)
+default_event_length: {{ custom.telemetrix.default_event_length }}
+#
+# The name of the QSE to filter on
+qse_name: {{ custom.telemetrix.qse_name }}

@@ -1,0 +1,9 @@
+## PlayBook to manage wt  ##
+---
+- name: Playbook deploy wt 
+  hosts: "{{ target }}"
+  sudo: true
+
+  roles:
+    - wt_clean_wt
+

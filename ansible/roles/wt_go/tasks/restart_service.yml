@@ -1,0 +1,11 @@
+#role: wt_go
+#task: restart_service
+---
+- name: Stop nginx
+  service: name=nginx state=stopped
+
+- name: Restart Ceep service
+  service: name=influxdb state=restarted
+
+- name: Start nginx
+  service: name=nginx state=started

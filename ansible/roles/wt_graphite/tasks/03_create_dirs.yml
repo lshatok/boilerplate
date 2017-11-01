@@ -1,0 +1,8 @@
+---
+- name: Create log dirs
+  file: path={{ grafana.path }}/log state=directory mode=0755 owner={{ grafana.user }} group={{ grafana.group}}
+
+- name: Create tmp dirs
+  file: path={{ grafana.path }}/tmp state=directory mode=0755 owner={{ grafana.user }} group={{ grafana.group}}
+
+

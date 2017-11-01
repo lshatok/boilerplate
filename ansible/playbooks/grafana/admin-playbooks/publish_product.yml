@@ -1,0 +1,117 @@
+#Builds {{ product.name }} apt package and rpm packages, then publishes them to to apt-repo and rpm-repos respectively
+#Usage - pass three params 1. product.version, 2. branch 3. env_type
+---
+- name: Playbook Build and Publish Product War
+  hosts: "wtadmin-repo"
+  sudo: true
+
+  tasks:
+    - name: Pull from github repo
+      git: repo=ssh://git@github.com/webtelemetry.git dest=/WT/appserver/{{ product.version }}
+           key_file="/WT/.ssh/webtelemetry_gitro_id_rsa" accept_hostkey=yes
+      sudo_user: wtuser
+
+    - name: Gem install bundler
+      gem: name=bundler state=present executable=/WT/.rbenv/shims/gem
+      sudo_user: wtuser
+      register: bundler
+
+    - name: Gem install bundle
+      gem: name=bundle state=present executable=/WT/.rbenv/shims/gem
+      sudo_user: wtuser
+      register: bundle
+
+    - name: Gem install activesupport
+      gem: name=activesupport state=present executable=/WT/.rbenv/shims/gem
+      sudo_user: wtuser
+      register: activesupport
+
+    - name: rbenv rehash
+      shell: "/WT/.rbenv/bin/rbenv rehash executable=/bin/bash chdir="{{ product.home }}""
+      sudo_user: wtuser
+
+    - name: Install dependencies (bundle install)
+      shell: "/WT/.rbenv/shims/bundle install"
+      args:
+        chdir: "/WT/build"
+        executable: /bin/bash
+      sudo_user: wtuser
+      register: bundled
+
+    - name: rbenv rehash
+      shell: "/WT/.rbenv/bin/rbenv rehash executable=/bin/bash chdir="{{ product.home }}""
+      sudo_user: wtuser
+
+    - name: Remove snmp jar
+      file: path=/WT/java/build/jar/snmp.jar state=absent
+
+    - name: Build jar
+      shell: 'ant clean-build'
+      args:
+        chdir: "/WT/java"
+
+    - name: move jar
+      shell: 'find java/lib -name *\.jar > /tmp/jars; while read line; do cp $line jruby/lib; done < /tmp/jars'
+
+    - name: Remove snmp jar
+      file: path=/WT/build/lib/snmp.jar state=absent
+
+    - name: Copy jar
+      shell: 'cp java/build/jar/snmp.jar jruby/lib'
+      args:
+        chdir: "/WT/appserver"
+
+    - name: Build war
+      shell: '/WT/.rbenv/shims/bundle exec warble'
+      args:
+        chdir: "/WT/build"
+
+    - name: Create tomcat webapp directory path
+      file: path=/WT/appserver/webapps state=directory recurse=yes owner=wtuser group=wtuser
+
+    - name: Remove old snmp.war
+      file: path=/WT/appserver/webapps/snmp.war state=absent
+
+    - name: Stat war file
+      stat: path=/WT/appserver/snmp.war
+      register: wt_stat
+
+    - name: Move war file
+      command: mv /WT/appserver/snmp.war /WT/appserver/webapps/snmp.war
+      when: wt_stat.stat.exists
+
+    - name: Create wt directory
+      file: path=/WT/install state=directory
+
+    - name: Check if current apk {{ product.version }} exists
+      stat: path=/WT/install/{{ product.version }}_amd64.apk
+      register: wt_stat
+
+    - name: Check if {{ product.name }} backup exists
+      stat: path=/WT/install/{{ product.version }}_amd64.apk.bak
+      register: backup_stat
+      when: wt_stat.stat.exists
+
+    - name: Remove backup
+      command: rm /WT/install/{{ product.version }}_amd64.apk.bak
+      register: backup_stat
+      when: wt_stat.stat.exists and backup_stat.stat.exists
+
+    - name: Backup {{ product.name }}
+      command: mv /WT/install/{{ product.version }}_amd64.apk /WT/install/{{ product.version }}_amd64.apk.bak
+      when: wt_stat.stat.exists
+
+    - name: Create apt package
+      shell: "/home/wtadmin/.rbenv/shims/fpm -s dir -t wt -n 'snmp' -v '{{ product.version }}' /WT/appserver/webapps/snmp.war"
+      args:
+        chdir: "/WT/install"
+      sudo_user: wtadmin
+
+    - name: Publish to webtelemetry apt-repo
+      shell: "wtadmin add {{ product.version }}_amd64.apk apt/xenial"
+      args:
+        chdir: "/WT/install"
+
+    - name: Update  repo
+      shell: 'sudo wtadmin cache'
+      sudo_user: wtadmin

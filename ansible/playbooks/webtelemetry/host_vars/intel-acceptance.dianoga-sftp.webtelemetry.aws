@@ -1,0 +1,5 @@
+---
+branch: master
+webtelemetry_home: /WT
+
+domain: dev.{{ product.url }}

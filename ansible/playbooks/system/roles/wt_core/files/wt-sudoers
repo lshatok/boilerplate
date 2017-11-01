@@ -1,0 +1,7 @@
+## WebTelemetry Sudoer's List ##
+%devops     ALL=(ALL)       NOPASSWD:ALL
+%{{ product.admin }}    ALL=(webtelemetry)  NOPASSWD:ALL
+
+
+webtelemetry    ALL=NOPASSWD:  /usr/bin/service
+

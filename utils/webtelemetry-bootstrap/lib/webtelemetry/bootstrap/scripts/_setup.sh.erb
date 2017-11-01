@@ -1,0 +1,133 @@
+#!/bin/bash
+
+set -e
+
+## as sudoer
+
+next_step "Checking git, curl, and acl installed"
+installed git && installed curl && installed setfacl || install -y git curl acl
+
+next_step "Checking user $APP_USER"
+if ! quiet id -u $APP_USER; then
+  fancy_echo "Creating user $APP_USER"
+
+  sudo useradd --create-home --shell /bin/bash $APP_USER
+fi
+
+next_step "Checking $WT_ROOT"
+if [ ! -d $WT_ROOT ]; then
+  successfully sudo mkdir -p $WT_ROOT/$APP_NAME
+  successfully sudo mkdir -p $WT_ROOT/backup
+fi
+successfully sudo chown -R $APP_USER:$COMMON_GROUP $WT_ROOT
+
+## as APP user
+
+next_step "Checking $APP_ROOT"
+if [ ! -d "$REPO_ROOT/.git" ]; then
+  TMP_REPO="/tmp/$APP_NAME-$RANDOM"
+  sudo -u $APP_USER git clone -b $BRANCH $REPO $REPO_ROOT
+  cd $REPO_ROOT
+  git submodule init
+  git submodule update
+  cd -
+fi
+
+## Update
+#cd $APP_ROOT
+#as_app_user $APP_USER git pull
+#as_app_user $APP_USER git checkout $BRANCH
+
+next_step "Checking rbenv installed"
+export RBENV_ROOT="$APP_USER_HOME/.rbenv"
+if [ ! -d $RBENV_ROOT ]; then
+  as_app_user git clone https://github.com/sstephenson/rbenv.git $RBENV_ROOT
+fi
+
+next_step "Enabling ${APP_USER}'s ruby for $USER user"
+if ! grep -qs "rbenv init" ~/.profile; then
+  echo "export RBENV_ROOT=\"$RBENV_ROOT\"" | tee -a ~/.profile
+  echo "export PATH=\"\$RBENV_ROOT/bin:\$PATH\"" | tee -a ~/.profile
+  echo 'eval "$(rbenv init -)"' | tee -a ~/.profile
+fi
+
+next_step "Checking ruby-build installed"
+RUBY_BUILD_ROOT="$APP_USER_HOME/.rbenv/plugins/ruby-build"
+if [ ! -d $RUBY_BUILD_ROOT ]; then
+  as_app_user git clone https://github.com/sstephenson/ruby-build.git $RUBY_BUILD_ROOT
+fi
+
+next_step "Checking rbenv set up"
+APP_BASH_PROFILE="$APP_USER_HOME/.profile"
+if ! grep -qs "rbenv init" $APP_BASH_PROFILE; then
+  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' | as_app_user tee -a $APP_BASH_PROFILE
+  echo 'eval "$(rbenv init -)"' | as_app_user tee -a $APP_BASH_PROFILE
+fi
+
+next_step "Checking ruby installed"
+RUBY_VERSION=`cat $APP_ROOT/.ruby-version`
+
+if [[ ! -d "$RBENV_ROOT/versions/$RUBY_VERSION" ]]
+then
+  next_step "Installing ruby $RUBY_VERSION"
+  install build-essential tklib zlib1g-dev libssl-dev libreadline-gplv2-dev libxml2 libxml2-dev libxslt1-dev
+  as_app_user $RBENV_ROOT/bin/rbenv install -k $RUBY_VERSION
+  as_app_user $RBENV_ROOT/bin/rbenv global $RUBY_VERSION
+  as_app_user $RBENV_ROOT/shims/gem install bundler --no-ri --no-rdoc
+  as_app_user $RBENV_ROOT/bin/rbenv rehash
+  cd $APP_ROOT
+else
+  next_step "$RUBY_VERSION is installed"
+fi
+
+if ! quiet which rbenv; then
+  export PATH="$RBENV_ROOT/shims:$RBENV_ROOT/bin:${PATH}"
+  source "$RBENV_ROOT/libexec/../completions/rbenv.bash" || echo "Ouch"
+fi
+
+next_step "Checking babushka installed"
+if ! installed babushka; then
+  sudo mkdir -p /usr/local/babushka
+  sudo chown $USER /usr/local/babushka
+  sudo touch /usr/local/bin/babushka
+  sudo chown $USER /usr/local/bin/babushka
+  curl https://babushka.me/up > babushka.sh
+  [[ -f /usr/local/bin/ruby ]] || sudo ln -s $RBENV_ROOT/shims/ruby
+  sudo -E bash babushka.sh
+fi
+
+next_step "Installing current version of WebTelemetry Bootstrap"
+BOOTSTRAP_PATH="$HOME/.webtelemetry-bootstrap"
+rm -rf $BOOTSTRAP_PATH
+if [[ ! -d "$BOOTSTRAP_PATH" ]]
+then
+  gem unpack "$HOME/<%= app.bootstrap_gem %>" --target=/tmp
+  mv /tmp/webtelemetry-bootstrap-* "$BOOTSTRAP_PATH"
+fi
+
+next_step "Set up default babushka dep sources"
+
+DEPS_PATH="$HOME/.babushka/deps"
+if [[ ! -d "$DEPS_PATH" ]]
+then
+  mkdir -p "$HOME/.babushka"
+  successfully ln -s $BOOTSTRAP_PATH/babushka-deps $DEPS_PATH
+fi
+
+APP_DEPS_PATH="$APP_USER_HOME/.babushka/deps"
+if [[ ! -d "$APP_DEPS_PATH" ]]
+then
+  sudo -u $APP_USER mkdir -p "$APP_USER_HOME/.babushka"
+  successfully sudo ln -s $BOOTSTRAP_PATH/babushka-deps $APP_DEPS_PATH
+fi
+
+next_step "Checking previous configuration"
+BOOTSTRAP_CONFIG="$APP_ROOT/config/settings/bootstrap.local.yml"
+if [[ -f $BOOTSTRAP_CONFIG ]]
+then
+  sudo chown $USER:$COMMON_GROUP $BOOTSTRAP_CONFIG
+  sudo chmod u+rw $BOOTSTRAP_CONFIG
+  sudo chmod o+rw $BOOTSTRAP_CONFIG
+fi
+
+set -e

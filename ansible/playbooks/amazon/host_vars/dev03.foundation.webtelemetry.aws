@@ -1,0 +1,23 @@
+network_name: Devops - Grafana - Backend
+
+subnet: subnet-5659a93c
+application:  snmp
+
+security_groups:
+  - sg-c8ca6bad
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+
+assign_eip: no
+
+count: 1
+
+tags:
+  customer:  eng
+

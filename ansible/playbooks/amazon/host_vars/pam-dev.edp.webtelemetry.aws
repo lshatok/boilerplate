@@ -1,0 +1,22 @@
+network_name: WebTelemetry Dev Private
+
+subnet: subnet-426f726d
+
+application:  dev-telemetrix
+
+security_groups:
+  - sg-6i2s3y76 #webtelemetry_ops
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 100
+    delete_on_termination: false
+
+assign_eip: false
+
+image: ami-d440a6e7 # CentOS 7
+
+count: 1
+
+tags:
+  customer:  eng

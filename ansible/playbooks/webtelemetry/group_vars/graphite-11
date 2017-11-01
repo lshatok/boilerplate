@@ -1,0 +1,66 @@
+#TELEMETRIX default variables
+---
+branch: staging/ntt
+rubyver: 2.1.2
+enforce_polling: false
+app_env: production
+
+#settings.yml
+deployment_id: dso1
+
+interact_gmail_username: talkbalk@webtelemetry.us
+interact_gmail_password: VBK8CDgn
+
+metrix_host: 10.0.0.22
+
+smtp_username: gordoncavendish
+smtp_password: xcd281cvdcb736gt5ge0
+
+sms_account_sid: ACed0e24fcdfbfbda71458bb38689ee9c0
+sms_auth_token: ec76b7a8950649123a8ad9fb7f748509
+sms_number: +16505294794
+sms_base_url: https://{{ product.url }}
+
+metrix_host: 10.0.0.72
+
+
+
+nagios_checks:
+  - name: os
+  - name: nginx
+  - name: unicorn
+  - name: https
+  - name: redis
+  - name: resque
+
+
+influxdb_user: no-user
+influxdb_pass: not-used
+influxdb_host: not-used
+
+hbase_thriftserver: 10.0.0.82
+analytics_model: marsb
+
+hadoop_zookeeper: 10.0.0.82
+hdfs_namenode: 10.0.0.82
+
+metrix_host: localhost
+metrix_user: internal_api
+metrix_pass: reduce
+
+
+#settings.yml
+data_collection_schema_url: localhost
+data_collection_schema_user: internal_api
+data_collection_schema_pass: reduce
+
+virtualenv: "/WT/virtualenvs/telemetrix"
+redis_host: localhost
+cache_env: XXX
+ssn_amm_user: XXX
+ssn_amm_pass: XXX
+ssn_amm_url: XXX
+
+ssn_hcm_user: XXX
+ssn_hcm_pass: XXX
+ssn_hcm_url: XXX

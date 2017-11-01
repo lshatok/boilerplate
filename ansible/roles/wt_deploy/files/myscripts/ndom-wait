@@ -1,0 +1,2760 @@
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+--2016-03-06 19:15:16--  http://%E2%80%93limit-rate=50k/
+Resolving –limit-rate=50k (–limit-rate=50k)... failed: Name or service not known.
+wget: unable to resolve host address ‘–limit-rate=50k’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+--2016-03-06 19:15:16--  http://%E2%80%93wait=10/
+Resolving –wait=10 (–wait=10)... failed: Name or service not known.
+wget: unable to resolve host address ‘–wait=10’
+--2016-03-06 19:15:16--  http://no-http-keep-alive/
+Resolving no-http-keep-alive (no-http-keep-alive)... failed: No address associated with hostname.
+wget: unable to resolve host address ‘no-http-keep-alive’
+--2016-03-06 19:15:16--  http://dabuttonfactory.com/
+Resolving dabuttonfactory.com (dabuttonfactory.com)... 104.28.16.60, 104.28.17.60, 2400:cb00:2048:1::681c:113c, ...
+Connecting to dabuttonfactory.com (dabuttonfactory.com)|104.28.16.60|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... .......... ..........                        337K=0.09s
+
+2016-03-06 19:15:16 (337 KB/s) - ‘btn_ack.gif’ saved [31027]
+
+--2016-03-06 19:15:16--  http://dabuttonfactory.com/apple-touch-icon-120x120.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4376 (4.3K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100% 8151G=0s
+
+2016-03-06 19:15:16 (8151 GB/s) - ‘btn_ack.gif’ saved [4376/4376]
+
+--2016-03-06 19:15:16--  http://dabuttonfactory.com/apple-touch-icon.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 7052 (6.9K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ......                                                100%  689K=0.01s
+
+2016-03-06 19:15:17 (689 KB/s) - ‘btn_ack.gif’ saved [7052/7052]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/apple-touch-icon-76x76.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2817 (2.8K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100% 5247G=0s
+
+2016-03-06 19:15:17 (5247 GB/s) - ‘btn_ack.gif’ saved [2817/2817]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/s/1/i/favicon-96x96.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3698 (3.6K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 12.3G=0s
+
+2016-03-06 19:15:17 (12.3 GB/s) - ‘btn_ack.gif’ saved [3698/3698]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/s/1/i/favicon-192x192.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 8389 (8.2K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ........                                              100% 28.0G=0s
+
+2016-03-06 19:15:17 (28.0 GB/s) - ‘btn_ack.gif’ saved [8389/8389]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/favicon.ico
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/x-icon]
+Saving to: ‘btn_ack.gif’
+
+     0K .....                                                   565K=0.009s
+
+2016-03-06 19:15:17 (565 KB/s) - ‘btn_ack.gif’ saved [5430]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/manifest.json
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘btn_ack.gif’
+
+     0K                                                        1201G=0s
+
+2016-03-06 19:15:17 (1201 GB/s) - ‘btn_ack.gif’ saved [645]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/yandex-tableau.json
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 107 [application/json]
+Saving to: ‘btn_ack.gif’
+
+     0K                                                       100%  199G=0s
+
+2016-03-06 19:15:17 (199 GB/s) - ‘btn_ack.gif’ saved [107/107]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/s/2/f/fa.eot
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/vnd.ms-fontobject]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                   16.1G=0s
+
+2016-03-06 19:15:17 (16.1 GB/s) - ‘btn_ack.gif’ saved [4828]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/s/2/f/fa.eot?
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/vnd.ms-fontobject]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                    467K=0.01s
+
+2016-03-06 19:15:17 (467 KB/s) - ‘btn_ack.gif’ saved [4828]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/s/2/f/fa.woff2
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2548 (2.5K) [font/woff2]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100%  967M=0s
+
+2016-03-06 19:15:17 (967 MB/s) - ‘btn_ack.gif’ saved [2548/2548]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/s/2/f/fa.woff
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3352 (3.3K) [font/woff]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100%  545M=0s
+
+2016-03-06 19:15:17 (545 MB/s) - ‘btn_ack.gif’ saved [3352/3352]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/s/2/f/fa.ttf
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [font/ttf]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                    464K=0.01s
+
+2016-03-06 19:15:17 (464 KB/s) - ‘btn_ack.gif’ saved [4684]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/s/2/f/fa.svg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/svg+xml]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... ..                                           612K=0.02s
+
+2016-03-06 19:15:17 (612 KB/s) - ‘btn_ack.gif’ saved [12599]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/s/1/i/chrome-webstore.svg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/svg+xml]
+Saving to: ‘btn_ack.gif’
+
+     0K .                                                      2727G=0s
+
+2016-03-06 19:15:17 (2727 GB/s) - ‘btn_ack.gif’ saved [1464]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/examples
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... ...                                         1.35M=0.01s
+
+2016-03-06 19:15:17 (1.35 MB/s) - ‘btn_ack.gif’ saved [14179]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/info
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... .....                                       1.56M=0.01s
+
+2016-03-06 19:15:17 (1.56 MB/s) - ‘btn_ack.gif’ saved [16022]
+
+--2016-03-06 19:15:17--  http://dabuttonfactory.com/api
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... ...idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+--2016-03-06 19:15:18--  http://%E2%80%93limit-rate=50k/
+Resolving –limit-rate=50k (–limit-rate=50k)...                                          1.36M=0.01s
+
+2016-03-06 19:15:18 (1.36 MB/s) - ‘btn_ack.gif’ saved [14297]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/contact
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack.gif’
+
+     0K .......                                                 722K=0.01s
+
+2016-03-06 19:15:18 (722 KB/s) - ‘btn_ack.gif’ saved [7407]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/s/23/app.js
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/javascript]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... .......... .......... .......... .......... 1.21M
+    50K .......... .......... .....                             861K=0.07s
+
+2016-03-06 19:15:18 (1.05 MB/s) - ‘btn_ack.gif’ saved [77574]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=Sign+up+now&f=Roboto-Bold&ts=24&tc=000&tshs=1&tshc=dbfa75&hp=24&vp=12&c=3&bgt=gradient&bgc=d6f962&ebgc=99bc39&bs=1&bc=99bc39
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3818 (3.7K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 2.55G=0s
+
+2016-03-06 19:15:18 (2.55 GB/s) - ‘btn_ack.gif’ saved [3818/3818]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=View+the+demo&f=Open+Sans&ts=18&tc=000&tshs=1&tshc=f3f3f3&hp=25&vp=10&c=round&bgt=gradient&bgc=fff&ebgc=ccc&bs=1&bc=ccc&shs=2&shc=666&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4183 (4.1K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100%  446M=0s
+
+2016-03-06 19:15:18 (446 MB/s) - ‘btn_ack.gif’ saved [4183/4183]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=Get+started++%C2%BB&f=Droid+Serif-Bold-Italic&ts=22&tc=fff&tshs=1&tshc=444&hp=22&vp=11&c=6&bgt=two-colors&bgc=4c77c1&ebgc=3660aa
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4005 (3.9K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...failed: Name or service not known.
+wget: unable to resolve host address ‘–limit-rate=50k’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+--2016-03-06 19:15:18--  http://%E2%80%93wait=10/
+Resolving –wait=10 (–wait=10)...                                                    100% 7460G=0s
+
+2016-03-06 19:15:18 (7460 GB/s) - ‘btn_ack.gif’ saved [4005/4005]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=Donate+to+kids+in+need&f=Pacifico&ts=18&tc=003365&hp=25&vp=10&c=round&bgt=gradient&bgc=fee1a9&ebgc=ff8d1c&be=1&bs=1&bc=ff8d1c
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 5348 (5.2K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K .....                                                 100% 9961G=0s
+
+2016-03-06 19:15:18 (9961 GB/s) - ‘btn_ack.gif’ saved [5348/5348]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=Get+the+free+ebook&f=Bellota-Bold&ts=22&tc=fff&tshs=2&tshc=1f3a13&hp=16&vp=12&c=4&bgt=gradient&bgc=67ae55&ebgc=578843&bs=1&bc=3b6e22
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4630 (4.5K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100% 15.4G=0s
+
+2016-03-06 19:15:18 (15.4 GB/s) - ‘btn_ack.gif’ saved [4630/4630]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=See+on+a+map&f=Overlock&ts=24&tc=fff&tshs=1&tshc=ab140a&hp=20&vp=9&c=9&bgt=gradient&bgc=fb7064&ebgc=e74438&shs=3&shc=ab140a&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3958 (3.9K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 1.48M=0.003s
+
+2016-03-06 19:15:18 (1.48 MB/s) - ‘btn_ack.gif’ saved [3958/3958]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=Add+to+cart&f=Noto+Sans-Bold&ts=14&tc=222&tshs=1&tshc=ccc&hp=20&vp=10&c=5&bgt=gradient&bgc=ccc&ebgc=777
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1913 (1.9K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K .                                                     100%  187K=0.01s
+
+2016-03-06 19:15:18 (187 KB/s) - ‘btn_ack.gif’ saved [1913/1913]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=Contact+us&f=Ubuntu&ts=22&tc=fff&tshs=1&tshc=600&hp=24&vp=3&c=round&bgt=gradient&bgc=ab00ab&ebgc=f0f&shs=1&shc=222&sho=sw
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3262 (3.2K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 6076G=0s
+
+2016-03-06 19:15:18 (6076 GB/s) - ‘btn_ack.gif’ saved [3262/3262]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=Show+me+how&f=Caviar-Bold&ts=18&tc=994828&hp=10&vp=5&c=3&bgt=pyramid&bgc=fede40&ebgc=fff9c1&bs=1&bc=ecc101
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1794 (1.8K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K .                                                     100% 3342G=0s
+
+2016-03-06 19:15:18 (3342 GB/s) - ‘btn_ack.gif’ saved [1794/1794]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=Find+out+more&f=Roboto&ts=24&tc=0ff&hp=24&vp=12&c=4&bgt=unicolored&bgc=422&bs=2&bc=0ff
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2418 (2.4K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100% 4504G=0s
+
+2016-03-06 19:15:18 (4504 GB/s) - ‘btn_ack.gif’ saved [2418/2418]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=Free+trial!&f=Playfair+Display-Bold-Italic&ts=26&tc=00f&tshs=1&tshc=fff&hp=15&vp=20&c=5&bgt=gradient&bgc=ffffd3&ebgc=ff0&be=1&bs=1&bc=ccc&shs=2&shc=999&sho=se
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4832 (4.7K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100% 9000G=0s
+
+2016-03-06 19:15:18 (9000 GB/s) - ‘btn_ack.gif’ saved [4832/4832]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=DOWNLOAD&f=Arvo&ts=20&tc=ff0&tshs=2&tshc=0b5394&hp=20&vp=10&c=7&bgt=pyramid&bgc=f6b26b&ebgc=b45f06&bs=2&bc=0b5394
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3919 (3.8K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100%  576K=0.007s
+
+2016-03-06 19:15:18 (576 KB/s) - ‘btn_ack.gif’ saved [3919/3919]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=Follow+me+on+Twitter&f=Komika-Bold&ts=18&tc=fff&tshs=2&tshc=0b5394&hp=30&vp=7&c=round&bgt=pyramid&bgc=55acee&ebgc=0b5394&be=1&bs=1&bc=0b5394
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4825 (4.7K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100% 8.04G=0s
+
+2016-03-06 19:15:18 (8.04 GB/s) - ‘btn_ack.gif’ saved [4825/4825]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=OK&f=Calibri-Bold&ts=28&tc=f5f5f5&w=50&h=50&c=round&bgt=unicolored&bgc=351c75&bs=2&bc=f5f5f5&shs=1&shc=999&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3379 (3.3K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100%  549M=0s
+
+2016-03-06 19:15:18 (549 MB/s) - ‘btn_ack.gif’ saved [3379/3379]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=%E2%86%90+Back+to+homepage&f=Pagella&ts=16&tc=fff&tshs=1&tshc=666&hp=10&vp=10&c=12&bgt=pyramid&bgc=62b529&ebgc=51961d
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4047 (4.0K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100%  395K=0.01s
+
+2016-03-06 19:15:18 (395 KB/s) - ‘btn_ack.gif’ saved [4047/4047]
+
+--2016-03-06 19:15:18--  http://dabuttonfactory.com/button.png?t=Accept+conditions&f=Open+Sans-Bold&ts=16&tc=000&hp=14&vp=16&c=5&bgt=gradient&bgc=64ffda&ebgc=1de9b6&bs=2&bc=1de9b6
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2872 (2.8K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100% 52.7M=0s
+
+2016-03-06 19:15:19 (52.7 MB/s) - ‘btn_ack.gif’ saved [2872/2872]
+
+--2016-03-06 19:15:19--  http://dabuttonfactory.com/button.png?t=Show+prices&f=Lobster+Two-Bold&ts=24&tc=007aff&hp=25&vp=10&c=5&bgt=unicolored&bgc=fff&bs=1&bc=007aff&shs=1&shc=bce&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2587 (2.5K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100% 4819G=0s
+
+2016-03-06 19:15:19 (4819 GB/s) - ‘btn_ack.gif’ saved [2587/2587]
+
+--2016-03-06 19:15:19--  http://dabuttonfactory.com/button.png?t=Buy+online&f=Calibri-Italic&ts=22&tc=fff&tshs=2&tshc=880e4f&hp=35&vp=10&c=round&bgt=pyramid&bgc=e91e63&ebgc=c2185b&be=1&shs=1&shc=880e4f&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4830 (4.7K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100%  474K=0.01s
+
+2016-03-06 19:15:19 (474 KB/s) - ‘btn_ack.gif’ saved [4830/4830]
+
+--2016-03-06 19:15:19--  http://dabuttonfactory.com/s/1/i/button-in-windows-image-viewer.jpg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 10200 (10.0K) [image/jpeg]
+Saving to: ‘btn_ack.gif’
+
+     0K .........                                             100%  971K=0.01s
+
+2016-03-06 19:15:19 (971 KB/s) - ‘btn_ack.gif’ saved [10200/10200]
+
+--2016-03-06 19:15:19--  http://dabuttonfactory.com/s/1/i/button-in-ubuntu-image-viewer.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 15876 (16K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... .....                                      100% 1.50M=0.01s
+
+2016-03-06 19:15:19 (1.50 MB/s) - ‘btn_ack.gif’ saved [15876/15876]
+
+--2016-03-06 19:15:19--  http://dabuttonfactory.com/button.png?t=Your+text+here&f=Calibri-Bold&ts=24&tc=fff&tshs=1&tshc=000&hp=20&vp=8&c=round&bgt=gradient&bgc=3d85c6&ebgc=073763
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4079 (4.0K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 6.80G=0s
+
+2016-03-06 19:15:19 (6.80 GB/s) - ‘btn_ack.gif’ saved [4079/4079]
+
+--2016-03-06 19:15:19--  http://dabuttonfactory.com/button.png?t=Hello,+API!&ts=24&bgt=gradient&bgc=afa&ebgc=5e5&c=5&bs=1
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2782 (2.7K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100% 5182G=0s
+
+2016-03-06 19:15:19 (5182 GB/s) - ‘btn_ack.gif’ saved [2782/2782]
+
+--2016-03-06 19:15:19--  http://dabuttonfactory.com/button.gif
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 67 [image/gif]
+Saving to: ‘btn_ack.gif’
+
+     0K                                                       100%  125G=0s
+
+2016-03-06 19:15:19 (125 GB/s) - ‘btn_ack.gif’ saved [67/67]
+
+rror: No such file or directory
+No URLs found in rror.
+FINISHED --2016-03-06 19:15:19--
+Total wall clock time: 3.9s
+Downloaded: 44 files, 319K in 0.3s (1001 KB/s)
+failed: Name or service not known.
+wget: unable to resolve host address ‘–wait=10’
+--2016-03-06 19:15:19--  http://no-http-keep-alive/
+Resolving no-http-keep-alive (no-http-keep-alive)... failed: No address associated with hostname.
+wget: unable to resolve host address ‘no-http-keep-alive’
+--2016-03-06 19:15:19--  http://dabuttonfactory.com/
+Resolving dabuttonfactory.com (dabuttonfactory.com)... 104.28.17.60, 104.28.16.60, 2400:cb00:2048:1::681c:103c, ...
+Connecting to dabuttonfactory.com (dabuttonfactory.com)|104.28.17.60|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack_all.gif’
+
+     0K .......... .......... ..........                        505K=0.06s
+
+2016-03-06 19:15:20 (505 KB/s) - ‘btn_ack_all.gif’ saved [31027]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/apple-touch-icon-120x120.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4376 (4.3K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ....                                                  100%  427K=0.01s
+
+2016-03-06 19:15:20 (427 KB/s) - ‘btn_ack_all.gif’ saved [4376/4376]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/apple-touch-icon.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 7052 (6.9K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ......                                                100% 23.5G=0s
+
+2016-03-06 19:15:20 (23.5 GB/s) - ‘btn_ack_all.gif’ saved [7052/7052]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/apple-touch-icon-76x76.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2817 (2.8K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ..                                                    100% 5247G=0s
+
+2016-03-06 19:15:20 (5247 GB/s) - ‘btn_ack_all.gif’ saved [2817/2817]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/s/1/i/favicon-96x96.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3698 (3.6K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ...                                                   100% 3.08G=0s
+
+2016-03-06 19:15:20 (3.08 GB/s) - ‘btn_ack_all.gif’ saved [3698/3698]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/s/1/i/favicon-192x192.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 8389 (8.2K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ........                                              100%  774K=0.01s
+
+2016-03-06 19:15:20 (774 KB/s) - ‘btn_ack_all.gif’ saved [8389/8389]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/favicon.ico
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/x-icon]
+Saving to: ‘btn_ack_all.gif’
+
+     0K .....                                                  18.1G=0s
+
+2016-03-06 19:15:20 (18.1 GB/s) - ‘btn_ack_all.gif’ saved [5430]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/manifest.json
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘btn_ack_all.gif’
+
+     0K                                                        1.07G=0s
+
+2016-03-06 19:15:20 (1.07 GB/s) - ‘btn_ack_all.gif’ saved [645]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/yandex-tableau.json
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 107 [application/json]
+Saving to: ‘btn_ack_all.gif’
+
+     0K                                                       100%  199G=0s
+
+2016-03-06 19:15:20 (199 GB/s) - ‘btn_ack_all.gif’ saved [107/107]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/s/2/f/fa.eot
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/vnd.ms-fontobject]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ....                                                    454K=0.01s
+
+2016-03-06 19:15:20 (454 KB/s) - ‘btn_ack_all.gif’ saved [4828]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/s/2/f/fa.eot?
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/vnd.ms-fontobject]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ....                                                    470K=0.01s
+
+2016-03-06 19:15:20 (470 KB/s) - ‘btn_ack_all.gif’ saved [4828]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/s/2/f/fa.woff2
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2548 (2.5K) [font/woff2]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ..                                                    100% 1.13M=0.002s
+
+2016-03-06 19:15:20 (1.13 MB/s) - ‘btn_ack_all.gif’ saved [2548/2548]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/s/2/f/fa.woff
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3352 (3.3K) [font/woff]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ...                                                   100%  327K=0.01s
+
+2016-03-06 19:15:20 (327 KB/s) - ‘btn_ack_all.gif’ saved [3352/3352]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/s/2/f/fa.ttf
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [font/ttf]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ....                                                   2.60G=0s
+
+2016-03-06 19:15:20 (2.60 GB/s) - ‘btn_ack_all.gif’ saved [4684]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/s/2/f/fa.svg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/svg+xml]
+Saving to: ‘btn_ack_all.gif’
+
+     0K .......... ..                                          1.20M=0.01s
+
+2016-03-06 19:15:20 (1.20 MB/s) - ‘btn_ack_all.gif’ saved [12599]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/s/1/i/chrome-webstore.svg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/svg+xml]
+Saving to: ‘btn_ack_all.gif’
+
+     0K .                                                       161M=0s
+
+2016-03-06 19:15:20 (161 MB/s) - ‘btn_ack_all.gif’ saved [1464]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/examples
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack_all.gif’
+
+     0K .......... ...                                          695K=0.02s
+
+2016-03-06 19:15:20 (695 KB/s) - ‘btn_ack_all.gif’ saved [14179]
+
+--2016-03-06 19:15:20--  http://dabuttonfactory.com/info
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack_all.gif’
+
+     0K .......... .....                                       1.53M=0.01s
+
+2016-03-06 19:15:21 (1.53 MB/s) - ‘btn_ack_all.gif’ saved [16022]
+
+--2016-03-06 19:15:21--  http://dabuttonfactory.com/api
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack_all.gif’
+
+     0K .......... ...                                         1.36M=0.01s
+
+2016-03-06 19:15:21 (1.36 MB/s) - ‘btn_ack_all.gif’ saved [14297]
+
+--2016-03-06 19:15:21--  http://dabuttonfactory.com/contact
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack_all.gif’
+
+     0K .......                                                 720K=0.01s
+
+2016-03-06 19:15:21 (720 KB/s) - ‘btn_ack_all.gif’ saved [7407]
+
+--2016-03-06 19:15:21--  http://dabuttonfactory.com/s/23/app.js
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/javascript]
+Saving to: ‘btn_ack_all.gif’
+
+     0K .......... .......... .......... .......... ..........  454K
+    50K .......... .......... .....                             859K=0.1s
+
+2016-03-06 19:15:21 (541 KB/s) - ‘btn_ack_all.gif’ saved [77574]
+
+--2016-03-06 19:15:21--  http://dabuttonfactory.com/button.png?t=Sign+up+now&f=Roboto-Bold&ts=24&tc=000&tshs=1&tshc=dbfa75&hp=24&vp=12&c=3&bgt=gradient&bgc=d6f962&ebgc=99bc39&bs=1&bc=99bc39
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3818 (3.7K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ...                                                   100%  352M=0s
+
+2016-03-06 19:15:21 (352 MB/s) - ‘btn_ack_all.gif’ saved [3818/3818]
+
+--2016-03-06 19:15:21--  http://dabuttonfactory.com/button.png?t=View+the+demo&f=Open+Sans&ts=18&tc=000&tshs=1&tshc=f3f3f3&hp=25&vp=10&c=round&bgt=gradient&bgc=fff&ebgc=ccc&bs=1&bc=ccc&shs=2&shc=666&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4183 (4.1K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ....                                                  100% 14.0G=0s
+
+2016-03-06 19:15:21 (14.0 GB/s) - ‘btn_ack_all.gif’ saved [4183/4183]
+
+--2016-03-06 19:15:21--  http://dabuttonfactory.com/button.png?t=Get+started++%C2%BB&f=Droid+Serif-Bold-Italic&ts=22&tc=fff&tshs=1&tshc=444&hp=22&vp=11&c=6&bgt=two-colors&bgc=4c77c1&ebgc=3660aa
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4005 (3.9K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ...                                                   100% 13.4G=0s
+
+2016-03-06 19:15:21 (13.4 GB/s) - ‘btn_ack_all.gif’ saved [4005/4005]
+
+--2016-03-06 19:15:21--  http://dabuttonfactory.com/button.png?t=Donate+to+kids+in+need&f=Pacifico&ts=18&tc=003365&hp=25&vp=10&c=round&bgt=gradient&bgc=fee1a9&ebgc=ff8d1c&be=1&bs=1&bc=ff8d1c
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 5348 (5.2K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K .....                                                 100% 17.8G=0s
+
+2016-03-06 19:15:21 (17.8 GB/s) - ‘btn_ack_all.gif’ saved [5348/5348]
+
+--2016-03-06 19:15:21--  http://dabuttonfactory.com/button.png?t=Get+the+free+ebook&f=Bellota-Bold&ts=22&tc=fff&tshs=2&tshc=1f3a13&hp=16&vp=12&c=4&bgt=gradient&bgc=67ae55&ebgc=578843&bs=1&bc=3b6e22
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4630 (4.5K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ....                                                  100%  452K=0.01s
+
+2016-03-06 19:15:21 (452 KB/s) - ‘btn_ack_all.gif’ saved [4630/4630]
+
+--2016-03-06 19:15:21--  http://dabuttonfactory.com/button.png?t=See+on+a+map&f=Overlock&ts=24&tc=fff&tshs=1&tshc=ab140a&hp=20&vp=9&c=9&bgt=gradient&bgc=fb7064&ebgc=e74438&shs=3&shc=ab140a&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3958 (3.9K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ...                                                   100% 13.2G=0s
+
+2016-03-06 19:15:21 (13.2 GB/s) - ‘btn_ack_all.gif’ saved [3958/3958]
+
+--2016-03-06 19:15:21--  http://dabuttonfactory.com/button.png?t=Add+to+cart&f=Noto+Sans-Bold&ts=14&tc=222&tshs=1&tshc=ccc&hp=20&vp=10&c=5&bgt=gradient&bgc=ccc&ebgc=777
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1913 (1.9K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K .                                                     100% 3563G=0s
+
+2016-03-06 19:15:21 (3563 GB/s) - ‘btn_ack_all.gif’ saved [1913/1913]
+
+--2016-03-06 19:15:21--  http://dabuttonfactory.com/button.png?t=Contact+us&f=Ubuntu&ts=22&tc=fff&tshs=1&tshc=600&hp=24&vp=3&c=round&bgt=gradient&bgc=ab00ab&ebgc=f0f&shs=1&shc=222&sho=sw
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3262 (3.2K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ...                                                   100%  319K=0.01s
+
+2016-03-06 19:15:21 (319 KB/s) - ‘btn_ack_all.gif’ saved [3262/3262]
+
+--2016-03-06 19:15:21--  http://dabuttonfactory.com/button.png?t=Show+me+how&f=Caviar-Bold&ts=18&tc=994828&hp=10&vp=5&c=3&bgt=pyramid&bgc=fede40&ebgc=fff9c1&bs=1&bc=ecc101
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1794 (1.8K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K .                                                     100% 3342G=0s
+
+2016-03-06 19:15:21 (3342 GB/s) - ‘btn_ack_all.gif’ saved [1794/1794]
+
+--2016-03-06 19:15:21--  http://dabuttonfactory.com/button.png?t=Find+out+more&f=Roboto&ts=24&tc=0ff&hp=24&vp=12&c=4&bgt=unicolored&bgc=422&bs=2&bc=0ff
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2418 (2.4K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ..                                                    100% 4504G=0s
+
+2016-03-06 19:15:21 (4504 GB/s) - ‘btn_ack_all.gif’ saved [2418/2418]
+
+--2016-03-06 19:15:21--  http://dabuttonfactory.com/button.png?t=Free+trial!&f=Playfair+Display-Bold-Italic&ts=26&tc=00f&tshs=1&tshc=fff&hp=15&vp=20&c=5&bgt=gradient&bgc=ffffd3&ebgc=ff0&be=1&bs=1&bc=ccc&shs=2&shc=999&sho=se
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4832 (4.7K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ....                                                  100%  472K=0.01s
+
+2016-03-06 19:15:21 (472 KB/s) - ‘btn_ack_all.gif’ saved [4832/4832]
+
+--2016-03-06 19:15:21--  http://dabuttonfactory.com/button.png?t=DOWNLOAD&f=Arvo&ts=20&tc=ff0&tshs=2&tshc=0b5394&hp=20&vp=10&c=7&bgt=pyramid&bgc=f6b26b&ebgc=b45f06&bs=2&bc=0b5394
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3919 (3.8K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ...idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+--2016-03-06 19:15:22--  http://%E2%80%93limit-rate=50k/
+Resolving –limit-rate=50k (–limit-rate=50k)...                                                    100%  383K=0.01s
+
+2016-03-06 19:15:22 (383 KB/s) - ‘btn_ack_all.gif’ saved [3919/3919]
+
+--2016-03-06 19:15:22--  http://dabuttonfactory.com/button.png?t=Follow+me+on+Twitter&f=Komika-Bold&ts=18&tc=fff&tshs=2&tshc=0b5394&hp=30&vp=7&c=round&bgt=pyramid&bgc=55acee&ebgc=0b5394&be=1&bs=1&bc=0b5394
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4825 (4.7K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ....                                                  100% 8.05G=0s
+
+2016-03-06 19:15:22 (8.05 GB/s) - ‘btn_ack_all.gif’ saved [4825/4825]
+
+--2016-03-06 19:15:22--  http://dabuttonfactory.com/button.png?t=OK&f=Calibri-Bold&ts=28&tc=f5f5f5&w=50&h=50&c=round&bgt=unicolored&bgc=351c75&bs=2&bc=f5f5f5&shs=1&shc=999&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3379 (3.3K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ...                                                   100%  380K=0.009s
+
+2016-03-06 19:15:22 (380 KB/s) - ‘btn_ack_all.gif’ saved [3379/3379]
+
+--2016-03-06 19:15:22--  http://dabuttonfactory.com/button.png?t=%E2%86%90+Back+to+homepage&f=Pagella&ts=16&tc=fff&tshs=1&tshc=666&hp=10&vp=10&c=12&bgt=pyramid&bgc=62b529&ebgc=51961d
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4047 (4.0K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ...                                                   100%  512M=0s
+
+2016-03-06 19:15:22 (512 MB/s) - ‘btn_ack_all.gif’ saved [4047/4047]
+
+--2016-03-06 19:15:22--  http://dabuttonfactory.com/button.png?t=Accept+conditions&f=Open+Sans-Bold&ts=16&tc=000&hp=14&vp=16&c=5&bgt=gradient&bgc=64ffda&ebgc=1de9b6&bs=2&bc=1de9b6
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2872 (2.8K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ..                                                    100% 5350G=0s
+
+2016-03-06 19:15:22 (5350 GB/s) - ‘btn_ack_all.gif’ saved [2872/2872]
+
+--2016-03-06 19:15:22--  http://dabuttonfactory.com/button.png?t=Show+prices&f=Lobster+Two-Bold&ts=24&tc=007aff&hp=25&vp=10&c=5&bgt=unicolored&bgc=fff&bs=1&bc=007aff&shs=1&shc=bce&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2587 (2.5K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ..                                                    100%  248K=0.01s
+
+2016-03-06 19:15:22 (248 KB/s) - ‘btn_ack_all.gif’ saved [2587/2587]
+
+--2016-03-06 19:15:22--  http://dabuttonfactory.com/button.png?t=Buy+online&f=Calibri-Italic&ts=22&tc=fff&tshs=2&tshc=880e4f&hp=35&vp=10&c=round&bgt=pyramid&bgc=e91e63&ebgc=c2185b&be=1&shs=1&shc=880e4f&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4830 (4.7K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ....                                                  100% 16.1G=0s
+
+2016-03-06 19:15:22 (16.1 GB/s) - ‘btn_ack_all.gif’ saved [4830/4830]
+
+--2016-03-06 19:15:22--  http://dabuttonfactory.com/s/1/i/button-in-windows-image-viewer.jpg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 10200 (10.0K) [image/jpeg]
+Saving to: ‘btn_ack_all.gif’
+
+     0K .........                                             100% 1005K=0.01s
+
+2016-03-06 19:15:22 (1005 KB/s) - ‘btn_ack_all.gif’ saved [10200/10200]
+
+--2016-03-06 19:15:22--  http://dabuttonfactory.com/s/1/i/button-in-ubuntu-image-viewer.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 15876 (16K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K .......... .....                                      100%  674K=0.02s
+
+2016-03-06 19:15:22 (674 KB/s) - ‘btn_ack_all.gif’ saved [15876/15876]
+
+--2016-03-06 19:15:22--  http://dabuttonfactory.com/button.png?t=Your+text+here&f=Calibri-Bold&ts=24&tc=fff&tshs=1&tshc=000&hp=20&vp=8&c=round&bgt=gradient&bgc=3d85c6&ebgc=073763
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4079 (4.0K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ...                                                   100%  398K=0.01s
+
+2016-03-06 19:15:22 (398 KB/s) - ‘btn_ack_all.gif’ saved [4079/4079]
+
+--2016-03-06 19:15:22--  http://dabuttonfactory.com/button.png?t=Hello,+API!&ts=24&bgt=gradient&bgc=afa&ebgc=5e5&c=5&bs=1
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2782 (2.7K) [image/png]
+Saving to: ‘btn_ack_all.gif’
+
+     0K ..                                                    100%  792M=0s
+
+2016-03-06 19:15:22 (792 MB/s) - ‘btn_ack_all.gif’ saved [2782/2782]
+
+--2016-03-06 19:15:22--  http://dabuttonfactory.com/button.gif
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 67 [image/gif]
+Saving to: ‘btn_ack_all.gif’
+
+     0K                                                       100%  125G=0s
+
+2016-03-06 19:15:22 (125 GB/s) - ‘btn_ack_all.gif’ saved [67/67]
+
+rror: No such file or directory
+No URLs found in rror.
+FINISHED --2016-03-06 19:15:22--
+Total wall clock time: 4.6s
+Downloaded: 44 files, 319K in 0.4s (769 KB/s)
+failed: Name or service not known.
+wget: unable to resolve host address ‘–limit-rate=50k’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+--2016-03-06 19:15:23--  http://%E2%80%93wait=10/
+Resolving –wait=10 (–wait=10)... failed: Name or service not known.
+wget: unable to resolve host address ‘–wait=10’
+--2016-03-06 19:15:24--  http://no-http-keep-alive/
+Resolving no-http-keep-alive (no-http-keep-alive)... failed: No address associated with hostname.
+wget: unable to resolve host address ‘no-http-keep-alive’
+--2016-03-06 19:15:24--  http://dabuttonfactory.com/
+Resolving dabuttonfactory.com (dabuttonfactory.com)... 104.28.16.60, 104.28.17.60, 2400:cb00:2048:1::681c:113c, ...
+Connecting to dabuttonfactory.com (dabuttonfactory.com)|104.28.16.60|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack_events.gif’
+
+     0K .......... .......... ..........                        606K=0.05s
+
+2016-03-06 19:15:24 (606 KB/s) - ‘btn_ack_events.gif’ saved [31027]
+
+--2016-03-06 19:15:24--  http://dabuttonfactory.com/apple-touch-icon-120x120.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4376 (4.3K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ....                                                  100%  427K=0.01s
+
+2016-03-06 19:15:24 (427 KB/s) - ‘btn_ack_events.gif’ saved [4376/4376]
+
+--2016-03-06 19:15:24--  http://dabuttonfactory.com/apple-touch-icon.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 7052 (6.9K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ......                                                100% 23.5G=0s
+
+2016-03-06 19:15:24 (23.5 GB/s) - ‘btn_ack_events.gif’ saved [7052/7052]
+
+--2016-03-06 19:15:24--  http://dabuttonfactory.com/apple-touch-icon-76x76.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2817 (2.8K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ..                                                    100%  119M=0s
+
+2016-03-06 19:15:24 (119 MB/s) - ‘btn_ack_events.gif’ saved [2817/2817]
+
+--2016-03-06 19:15:24--  http://dabuttonfactory.com/s/1/i/favicon-96x96.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3698 (3.6K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ...                                                   100%  361K=0.01s
+
+2016-03-06 19:15:24 (361 KB/s) - ‘btn_ack_events.gif’ saved [3698/3698]
+
+--2016-03-06 19:15:24--  http://dabuttonfactory.com/s/1/i/favicon-192x192.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 8389 (8.2K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ........                                              100%  819K=0.01s
+
+2016-03-06 19:15:24 (819 KB/s) - ‘btn_ack_events.gif’ saved [8389/8389]
+
+--2016-03-06 19:15:24--  http://dabuttonfactory.com/favicon.ico
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/x-icon]
+Saving to: ‘btn_ack_events.gif’
+
+     0K .....                                                  18.1G=0s
+
+2016-03-06 19:15:24 (18.1 GB/s) - ‘btn_ack_events.gif’ saved [5430]
+
+--2016-03-06 19:15:24--  http://dabuttonfactory.com/manifest.json
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘btn_ack_events.gif’
+
+     0K                                                        1201G=0s
+
+2016-03-06 19:15:24 (1201 GB/s) - ‘btn_ack_events.gif’ saved [645]
+
+--2016-03-06 19:15:24--  http://dabuttonfactory.com/yandex-tableau.json
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 107 [application/json]
+Saving to: ‘btn_ack_events.gif’
+
+     0K                                                       100%  199G=0s
+
+2016-03-06 19:15:24 (199 GB/s) - ‘btn_ack_events.gif’ saved [107/107]
+
+--2016-03-06 19:15:24--  http://dabuttonfactory.com/s/2/f/fa.eot
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/vnd.ms-fontobject]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ....                                                    375M=0s
+
+2016-03-06 19:15:24 (375 MB/s) - ‘btn_ack_events.gif’ saved [4828]
+
+--2016-03-06 19:15:24--  http://dabuttonfactory.com/s/2/f/fa.eot?
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/vnd.ms-fontobject]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ....                                                    471K=0.01s
+
+2016-03-06 19:15:24 (471 KB/s) - ‘btn_ack_events.gif’ saved [4828]
+
+--2016-03-06 19:15:24--  http://dabuttonfactory.com/s/2/f/fa.woff2
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2548 (2.5K) [font/woff2]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ..                                                    100%  249K=0.01s
+
+2016-03-06 19:15:24 (249 KB/s) - ‘btn_ack_events.gif’ saved [2548/2548]
+
+--2016-03-06 19:15:24--  http://dabuttonfactory.com/s/2/f/fa.woff
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3352 (3.3K) [font/woff]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ...                                                   100% 11.2G=0s
+
+2016-03-06 19:15:24 (11.2 GB/s) - ‘btn_ack_events.gif’ saved [3352/3352]
+
+--2016-03-06 19:15:24--  http://dabuttonfactory.com/s/2/f/fa.ttf
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [font/ttf]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ....                                                    457K=0.01s
+
+2016-03-06 19:15:25 (457 KB/s) - ‘btn_ack_events.gif’ saved [4684]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/s/2/f/fa.svg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/svg+xml]
+Saving to: ‘btn_ack_events.gif’
+
+     0K .......... ..                                          1.21M=0.01s
+
+2016-03-06 19:15:25 (1.21 MB/s) - ‘btn_ack_events.gif’ saved [12599]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/s/1/i/chrome-webstore.svg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/svg+xml]
+Saving to: ‘btn_ack_events.gif’
+
+     0K .                                                       833M=0s
+
+2016-03-06 19:15:25 (833 MB/s) - ‘btn_ack_events.gif’ saved [1464]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/examples
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack_events.gif’
+
+     0K .......... ...                                         1.35M=0.01s
+
+2016-03-06 19:15:25 (1.35 MB/s) - ‘btn_ack_events.gif’ saved [14179]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/info
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack_events.gif’
+
+     0K .......... .....                                       1.52M=0.01s
+
+2016-03-06 19:15:25 (1.52 MB/s) - ‘btn_ack_events.gif’ saved [16022]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/api
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack_events.gif’
+
+     0K .......... ...                                          697K=0.02s
+
+2016-03-06 19:15:25 (697 KB/s) - ‘btn_ack_events.gif’ saved [14297]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/contact
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack_events.gif’
+
+     0K .......                                                 723K=0.01s
+
+2016-03-06 19:15:25 (723 KB/s) - ‘btn_ack_events.gif’ saved [7407]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/s/23/app.js
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/javascript]
+Saving to: ‘btn_ack_events.gif’
+
+     0K .......... .......... .......... .......... ..........  710K
+    50K .......... .......... .....                             516K=0.1s
+
+2016-03-06 19:15:25 (630 KB/s) - ‘btn_ack_events.gif’ saved [77574]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/button.png?t=Sign+up+now&f=Roboto-Bold&ts=24&tc=000&tshs=1&tshc=dbfa75&hp=24&vp=12&c=3&bgt=gradient&bgc=d6f962&ebgc=99bc39&bs=1&bc=99bc39
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3818 (3.7K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ...                                                   100% 12.7G=0s
+
+2016-03-06 19:15:25 (12.7 GB/s) - ‘btn_ack_events.gif’ saved [3818/3818]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/button.png?t=View+the+demo&f=Open+Sans&ts=18&tc=000&tshs=1&tshc=f3f3f3&hp=25&vp=10&c=round&bgt=gradient&bgc=fff&ebgc=ccc&bs=1&bc=ccc&shs=2&shc=666&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4183 (4.1K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ....                                                  100% 96.5M=0s
+
+2016-03-06 19:15:25 (96.5 MB/s) - ‘btn_ack_events.gif’ saved [4183/4183]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/button.png?t=Get+started++%C2%BB&f=Droid+Serif-Bold-Italic&ts=22&tc=fff&tshs=1&tshc=444&hp=22&vp=11&c=6&bgt=two-colors&bgc=4c77c1&ebgc=3660aa
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4005 (3.9K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ...                                                   100%  391K=0.01s
+
+2016-03-06 19:15:25 (391 KB/s) - ‘btn_ack_events.gif’ saved [4005/4005]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/button.png?t=Donate+to+kids+in+need&f=Pacifico&ts=18&tc=003365&hp=25&vp=10&c=round&bgt=gradient&bgc=fee1a9&ebgc=ff8d1c&be=1&bs=1&bc=ff8d1c
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 5348 (5.2K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K .....                                                 100% 17.8G=0s
+
+2016-03-06 19:15:25 (17.8 GB/s) - ‘btn_ack_events.gif’ saved [5348/5348]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/button.png?t=Get+the+free+ebook&f=Bellota-Bold&ts=22&tc=fff&tshs=2&tshc=1f3a13&hp=16&vp=12&c=4&bgt=gradient&bgc=67ae55&ebgc=578843&bs=1&bc=3b6e22
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4630 (4.5K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ....                                                  100% 15.4G=0s
+
+2016-03-06 19:15:25 (15.4 GB/s) - ‘btn_ack_events.gif’ saved [4630/4630]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/button.png?t=See+on+a+map&f=Overlock&ts=24&tc=fff&tshs=1&tshc=ab140a&hp=20&vp=9&c=9&bgt=gradient&bgc=fb7064&ebgc=e74438&shs=3&shc=ab140a&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3958 (3.9K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ...                                                   100% 7372G=0s
+
+2016-03-06 19:15:25 (7372 GB/s) - ‘btn_ack_events.gif’ saved [3958/3958]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/button.png?t=Add+to+cart&f=Noto+Sans-Bold&ts=14&tc=222&tshs=1&tshc=ccc&hp=20&vp=10&c=5&bgt=gradient&bgc=ccc&ebgc=777
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1913 (1.9K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K .                                                     100%  192M=0s
+
+2016-03-06 19:15:25 (192 MB/s) - ‘btn_ack_events.gif’ saved [1913/1913]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/button.png?t=Contact+us&f=Ubuntu&ts=22&tc=fff&tshs=1&tshc=600&hp=24&vp=3&c=round&bgt=gradient&bgc=ab00ab&ebgc=f0f&shs=1&shc=222&sho=sw
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3262 (3.2K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ...                                                   100%  141M=0s
+
+2016-03-06 19:15:25 (141 MB/s) - ‘btn_ack_events.gif’ saved [3262/3262]
+
+--2016-03-06 19:15:25--  http://dabuttonfactory.com/button.png?t=Show+me+how&f=Caviar-Bold&ts=18&tc=994828&hp=10&vp=5&c=3&bgt=pyramid&bgc=fede40&ebgc=fff9c1&bs=1&bc=ecc101
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1794 (1.8K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K .                                                     100%  175K=0.01s
+
+2016-03-06 19:15:26 (175 KB/s) - ‘btn_ack_events.gif’ saved [1794/1794]
+
+--2016-03-06 19:15:26--  http://dabuttonfactory.com/button.png?t=Find+out+more&f=Roboto&ts=24&tc=0ff&hp=24&vp=12&c=4&bgt=unicolored&bgc=422&bs=2&bc=0ff
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2418 (2.4K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ..                                                    100% 4504G=0s
+
+2016-03-06 19:15:26 (4504 GB/s) - ‘btn_ack_events.gif’ saved [2418/2418]
+
+--2016-03-06 19:15:26--  http://dabuttonfactory.com/button.png?t=Free+trial!&f=Playfair+Display-Bold-Italic&ts=26&tc=00f&tshs=1&tshc=fff&hp=15&vp=20&c=5&bgt=gradient&bgc=ffffd3&ebgc=ff0&be=1&bs=1&bc=ccc&shs=2&shc=999&sho=se
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4832 (4.7K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ....                                                  100%  467K=0.01s
+
+2016-03-06 19:15:26 (467 KB/s) - ‘btn_ack_events.gif’ saved [4832/4832]
+
+--2016-03-06 19:15:26--  http://dabuttonfactory.com/button.png?t=DOWNLOAD&f=Arvo&ts=20&tc=ff0&tshs=2&tshc=0b5394&hp=20&vp=10&c=7&bgt=pyramid&bgc=f6b26b&ebgc=b45f06&bs=2&bc=0b5394
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3919 (3.8K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ...                                                   100% 47.6M=0s
+
+2016-03-06 19:15:26 (47.6 MB/s) - ‘btn_ack_events.gif’ saved [3919/3919]
+
+--2016-03-06 19:15:26--  http://dabuttonfactory.com/button.png?t=Follow+me+on+Twitter&f=Komika-Bold&ts=18&tc=fff&tshs=2&tshc=0b5394&hp=30&vp=7&c=round&bgt=pyramid&bgc=55acee&ebgc=0b5394&be=1&bs=1&bc=0b5394
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4825 (4.7K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ....                                                  100% 16.1G=0s
+
+2016-03-06 19:15:26 (16.1 GB/s) - ‘btn_ack_events.gif’ saved [4825/4825]
+
+--2016-03-06 19:15:26--  http://dabuttonfactory.com/button.png?t=OK&f=Calibri-Bold&ts=28&tc=f5f5f5&w=50&h=50&c=round&bgt=unicolored&bgc=351c75&bs=2&bc=f5f5f5&shs=1&shc=999&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3379 (3.3K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ...                                                   100%  329K=0.01s
+
+2016-03-06 19:15:26 (329 KB/s) - ‘btn_ack_events.gif’ saved [3379/3379]
+
+--2016-03-06 19:15:26--  http://dabuttonfactory.com/button.png?t=%E2%86%90+Back+to+homepage&f=Pagella&ts=16&tc=fff&tshs=1&tshc=666&hp=10&vp=10&c=12&bgt=pyramid&bgc=62b529&ebgc=51961d
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4047 (4.0K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ...                                                   100% 13.5G=0s
+
+2016-03-06 19:15:26 (13.5 GB/s) - ‘btn_ack_events.gif’ saved [4047/4047]
+
+--2016-03-06 19:15:26--  http://dabuttonfactory.com/button.png?t=Accept+conditions&f=Open+Sans-Bold&ts=16&tc=000&hp=14&vp=16&c=5&bgt=gradient&bgc=64ffda&ebgc=1de9b6&bs=2&bc=1de9b6
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2872 (2.8K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ..                                                    100% 5350G=0s
+
+2016-03-06 19:15:26 (5350 GB/s) - ‘btn_ack_events.gif’ saved [2872/2872]
+
+--2016-03-06 19:15:26--  http://dabuttonfactory.com/button.png?t=Show+prices&f=Lobster+Two-Bold&ts=24&tc=007aff&hp=25&vp=10&c=5&bgt=unicolored&bgc=fff&bs=1&bc=007aff&shs=1&shc=bce&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2587 (2.5K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ..                                                    100% 4819G=0s
+
+2016-03-06 19:15:26 (4819 GB/s) - ‘btn_ack_events.gif’ saved [2587/2587]
+
+--2016-03-06 19:15:26--  http://dabuttonfactory.com/button.png?t=Buy+online&f=Calibri-Italic&ts=22&tc=fff&tshs=2&tshc=880e4f&hp=35&vp=10&c=round&bgt=pyramid&bgc=e91e63&ebgc=c2185b&be=1&shs=1&shc=880e4f&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4830 (4.7K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ....                                                  100%  749M=0s
+
+2016-03-06 19:15:26 (749 MB/s) - ‘btn_ack_events.gif’ saved [4830/4830]
+
+--2016-03-06 19:15:26--  http://dabuttonfactory.com/s/1/i/button-in-windows-image-viewer.jpg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 10200 (10.0K) [image/jpeg]
+Saving to: ‘btn_ack_events.gif’
+
+     0K .........                                             100%  996K=0.01s
+
+2016-03-06 19:15:26 (996 KB/s) - ‘btn_ack_events.gif’ saved [10200/10200]
+
+--2016-03-06 19:15:26--  http://dabuttonfactory.com/s/1/i/button-in-ubuntu-image-viewer.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 15876 (16K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K .......... .....                                      100%  310K=0.05s
+
+2016-03-06 19:15:26 (310 KB/s) - ‘btn_ack_events.gif’ saved [15876/15876]
+
+--2016-03-06 19:15:26--  http://dabuttonfactory.com/button.png?t=Your+text+here&f=Calibri-Bold&ts=24&tc=fff&tshs=1&tshc=000&hp=20&vp=8&c=round&bgt=gradient&bgc=3d85c6&ebgc=073763
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4079 (4.0K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ...                                                   100%  315K=0.01s
+
+2016-03-06 19:15:26 (315 KB/s) - ‘btn_ack_events.gif’ saved [4079/4079]
+
+--2016-03-06 19:15:26--  http://dabuttonfactory.com/button.png?t=Hello,+API!&ts=24&bgt=gradient&bgc=afa&ebgc=5e5&c=5&bs=1
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2782 (2.7K) [image/png]
+Saving to: ‘btn_ack_events.gif’
+
+     0K ..                                                    100%  275K=0.01s
+
+2016-03-06 19:15:26 (275 KB/s) - ‘btn_ack_events.gif’ saved [2782/2782]
+
+--2016-03-06 19:15:26--  http://dabuttonfactory.com/button.gif
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 67 [image/gif]
+Saving to: ‘btn_ack_events.gif’
+
+     0K                                                       100%  125G=0s
+
+2016-03-06 19:15:26 (125 GB/s) - ‘btn_ack_events.gif’ saved [67/67]
+
+rror: No such file or directory
+No URLs found in rror.
+FINISHED --2016-03-06 19:15:26--
+Total wall clock time: 4.9s
+Downloaded: 44 files, 319K in 0.4s (773 KB/s)
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+--2016-03-06 19:15:28--  http://%E2%80%93limit-rate=50k/
+Resolving –limit-rate=50k (–limit-rate=50k)... failed: Name or service not known.
+wget: unable to resolve host address ‘–limit-rate=50k’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+--2016-03-06 19:15:28--  http://%E2%80%93wait=10/
+Resolving –wait=10 (–wait=10)... failed: Name or service not known.
+wget: unable to resolve host address ‘–wait=10’
+--2016-03-06 19:15:28--  http://no-http-keep-alive/
+Resolving no-http-keep-alive (no-http-keep-alive)... failed: No address associated with hostname.
+wget: unable to resolve host address ‘no-http-keep-alive’
+--2016-03-06 19:15:28--  http://dabuttonfactory.com/
+Resolving dabuttonfactory.com (dabuttonfactory.com)... 104.28.17.60, 104.28.16.60, 2400:cb00:2048:1::681c:103c, ...
+Connecting to dabuttonfactory.com (dabuttonfactory.com)|104.28.17.60|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K .......... .......... ..........                        382K=0.08s
+
+2016-03-06 19:15:28 (382 KB/s) - ‘btn_ack_notices.gif’ saved [31027]
+
+--2016-03-06 19:15:28--  http://dabuttonfactory.com/apple-touch-icon-120x120.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4376 (4.3K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ....                                                  100%  399K=0.01s
+
+2016-03-06 19:15:28 (399 KB/s) - ‘btn_ack_notices.gif’ saved [4376/4376]
+
+--2016-03-06 19:15:28--  http://dabuttonfactory.com/apple-touch-icon.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 7052 (6.9K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ......                                                100%  345K=0.02s
+
+2016-03-06 19:15:29 (345 KB/s) - ‘btn_ack_notices.gif’ saved [7052/7052]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/apple-touch-icon-76x76.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2817 (2.8K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ..                                                    100%  256K=0.01s
+
+2016-03-06 19:15:29 (256 KB/s) - ‘btn_ack_notices.gif’ saved [2817/2817]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/s/1/i/favicon-96x96.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3698 (3.6K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ...                                                   100%  361K=0.01s
+
+2016-03-06 19:15:29 (361 KB/s) - ‘btn_ack_notices.gif’ saved [3698/3698]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/s/1/i/favicon-192x192.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 8389 (8.2K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ........                                              100%  818K=0.01s
+
+2016-03-06 19:15:29 (818 KB/s) - ‘btn_ack_notices.gif’ saved [8389/8389]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/favicon.ico
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/x-icon]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K .....                                                  18.1G=0s
+
+2016-03-06 19:15:29 (18.1 GB/s) - ‘btn_ack_notices.gif’ saved [5430]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/manifest.json
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K                                                        1201G=0s
+
+2016-03-06 19:15:29 (1201 GB/s) - ‘btn_ack_notices.gif’ saved [645]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/yandex-tableau.json
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 107 [application/json]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K                                                       100%  199G=0s
+
+2016-03-06 19:15:29 (199 GB/s) - ‘btn_ack_notices.gif’ saved [107/107]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/s/2/f/fa.eot
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/vnd.ms-fontobject]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ....                                                    229M=0s
+
+2016-03-06 19:15:29 (229 MB/s) - ‘btn_ack_notices.gif’ saved [4828]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/s/2/f/fa.eot?
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/vnd.ms-fontobject]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ....                                                    471K=0.01s
+
+2016-03-06 19:15:29 (471 KB/s) - ‘btn_ack_notices.gif’ saved [4828]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/s/2/f/fa.woff2
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2548 (2.5K) [font/woff2]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ..                                                    100% 2.83G=0s
+
+2016-03-06 19:15:29 (2.83 GB/s) - ‘btn_ack_notices.gif’ saved [2548/2548]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/s/2/f/fa.woff
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3352 (3.3K) [font/woff]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ...                                                   100%  330K=0.01s
+
+2016-03-06 19:15:29 (330 KB/s) - ‘btn_ack_notices.gif’ saved [3352/3352]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/s/2/f/fa.ttf
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [font/ttf]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ....                                                   15.6G=0s
+
+2016-03-06 19:15:29 (15.6 GB/s) - ‘btn_ack_notices.gif’ saved [4684]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/s/2/f/fa.svg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/svg+xml]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K .......... ..                                           410K=0.03s
+
+2016-03-06 19:15:29 (410 KB/s) - ‘btn_ack_notices.gif’ saved [12599]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/s/1/i/chrome-webstore.svg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/svg+xml]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K .                                                      4.87G=0s
+
+2016-03-06 19:15:29 (4.87 GB/s) - ‘btn_ack_notices.gif’ saved [1464]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/examples
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K .......... ...                                          691K=0.02s
+
+2016-03-06 19:15:29 (691 KB/s) - ‘btn_ack_notices.gif’ saved [14179]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/info
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K .......... .....                                        782K=0.02s
+
+2016-03-06 19:15:29 (782 KB/s) - ‘btn_ack_notices.gif’ saved [16022]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/api
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K .......... ...                                          689K=0.02s
+
+2016-03-06 19:15:29 (689 KB/s) - ‘btn_ack_notices.gif’ saved [14297]
+
+--2016-03-06 19:15:29--  http://dabuttonfactory.com/contact
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K .......                                                24.6G=0s
+
+2016-03-06 19:15:30 (24.6 GB/s) - ‘btn_ack_notices.gif’ saved [7407]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/s/23/app.js
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/javascript]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K .......... .......... .......... .......... ..........  416K
+    50K .......... .......... .....                             644K=0.2s
+
+2016-03-06 19:15:30 (473 KB/s) - ‘btn_ack_notices.gif’ saved [77574]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/button.png?t=Sign+up+now&f=Roboto-Bold&ts=24&tc=000&tshs=1&tshc=dbfa75&hp=24&vp=12&c=3&bgt=gradient&bgc=d6f962&ebgc=99bc39&bs=1&bc=99bc39
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3818 (3.7K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ...                                                   100% 12.7G=0s
+
+2016-03-06 19:15:30 (12.7 GB/s) - ‘btn_ack_notices.gif’ saved [3818/3818]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/button.png?t=View+the+demo&f=Open+Sans&ts=18&tc=000&tshs=1&tshc=f3f3f3&hp=25&vp=10&c=round&bgt=gradient&bgc=fff&ebgc=ccc&bs=1&bc=ccc&shs=2&shc=666&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4183 (4.1K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ....                                                  100%  408K=0.01s
+
+2016-03-06 19:15:30 (408 KB/s) - ‘btn_ack_notices.gif’ saved [4183/4183]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/button.png?t=Get+started++%C2%BB&f=Droid+Serif-Bold-Italic&ts=22&tc=fff&tshs=1&tshc=444&hp=22&vp=11&c=6&bgt=two-colors&bgc=4c77c1&ebgc=3660aa
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4005 (3.9K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ...                                                   100%  391K=0.01s
+
+2016-03-06 19:15:30 (391 KB/s) - ‘btn_ack_notices.gif’ saved [4005/4005]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/button.png?t=Donate+to+kids+in+need&f=Pacifico&ts=18&tc=003365&hp=25&vp=10&c=round&bgt=gradient&bgc=fee1a9&ebgc=ff8d1c&be=1&bs=1&bc=ff8d1c
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 5348 (5.2K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K .....                                                 100%  528K=0.01s
+
+2016-03-06 19:15:30 (528 KB/s) - ‘btn_ack_notices.gif’ saved [5348/5348]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/button.png?t=Get+the+free+ebook&f=Bellota-Bold&ts=22&tc=fff&tshs=2&tshc=1f3a13&hp=16&vp=12&c=4&bgt=gradient&bgc=67ae55&ebgc=578843&bs=1&bc=3b6e22
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4630 (4.5K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ....                                                  100%  442K=0.01s
+
+2016-03-06 19:15:30 (442 KB/s) - ‘btn_ack_notices.gif’ saved [4630/4630]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/button.png?t=See+on+a+map&f=Overlock&ts=24&tc=fff&tshs=1&tshc=ab140a&hp=20&vp=9&c=9&bgt=gradient&bgc=fb7064&ebgc=e74438&shs=3&shc=ab140a&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3958 (3.9K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ...                                                   100%  387K=0.01s
+
+2016-03-06 19:15:30 (387 KB/s) - ‘btn_ack_notices.gif’ saved [3958/3958]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/button.png?t=Add+to+cart&f=Noto+Sans-Bold&ts=14&tc=222&tshs=1&tshc=ccc&hp=20&vp=10&c=5&bgt=gradient&bgc=ccc&ebgc=777
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1913 (1.9K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K .                                                     100%  159M=0s
+
+2016-03-06 19:15:30 (159 MB/s) - ‘btn_ack_notices.gif’ saved [1913/1913]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/button.png?t=Contact+us&f=Ubuntu&ts=22&tc=fff&tshs=1&tshc=600&hp=24&vp=3&c=round&bgt=gradient&bgc=ab00ab&ebgc=f0f&shs=1&shc=222&sho=sw
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3262 (3.2K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ...                                                   100%  484M=0s
+
+2016-03-06 19:15:30 (484 MB/s) - ‘btn_ack_notices.gif’ saved [3262/3262]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/button.png?t=Show+me+how&f=Caviar-Bold&ts=18&tc=994828&hp=10&vp=5&c=3&bgt=pyramid&bgc=fede40&ebgc=fff9c1&bs=1&bc=ecc101
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1794 (1.8K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K .                                                     100%  383M=0s
+
+2016-03-06 19:15:30 (383 MB/s) - ‘btn_ack_notices.gif’ saved [1794/1794]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/button.png?t=Find+out+more&f=Roboto&ts=24&tc=0ff&hp=24&vp=12&c=4&bgt=unicolored&bgc=422&bs=2&bc=0ff
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2418 (2.4K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ..                                                    100% 4504G=0s
+
+2016-03-06 19:15:30 (4504 GB/s) - ‘btn_ack_notices.gif’ saved [2418/2418]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/button.png?t=Free+trial!&f=Playfair+Display-Bold-Italic&ts=26&tc=00f&tshs=1&tshc=fff&hp=15&vp=20&c=5&bgt=gradient&bgc=ffffd3&ebgc=ff0&be=1&bs=1&bc=ccc&shs=2&shc=999&sho=se
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4832 (4.7K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ....                                                  100% 9000G=0s
+
+2016-03-06 19:15:30 (9000 GB/s) - ‘btn_ack_notices.gif’ saved [4832/4832]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/button.png?t=DOWNLOAD&f=Arvo&ts=20&tc=ff0&tshs=2&tshc=0b5394&hp=20&vp=10&c=7&bgt=pyramid&bgc=f6b26b&ebgc=b45f06&bs=2&bc=0b5394
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3919 (3.8K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ...                                                   100%  385K=0.01s
+
+2016-03-06 19:15:30 (385 KB/s) - ‘btn_ack_notices.gif’ saved [3919/3919]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/button.png?t=Follow+me+on+Twitter&f=Komika-Bold&ts=18&tc=fff&tshs=2&tshc=0b5394&hp=30&vp=7&c=round&bgt=pyramid&bgc=55acee&ebgc=0b5394&be=1&bs=1&bc=0b5394
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4825 (4.7K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ....                                                  100%  374M=0s
+
+2016-03-06 19:15:30 (374 MB/s) - ‘btn_ack_notices.gif’ saved [4825/4825]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/button.png?t=OK&f=Calibri-Bold&ts=28&tc=f5f5f5&w=50&h=50&c=round&bgt=unicolored&bgc=351c75&bs=2&bc=f5f5f5&shs=1&shc=999&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3379 (3.3K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ...                                                   100% 11.3G=0s
+
+2016-03-06 19:15:30 (11.3 GB/s) - ‘btn_ack_notices.gif’ saved [3379/3379]
+
+--2016-03-06 19:15:30--  http://dabuttonfactory.com/button.png?t=%E2%86%90+Back+to+homepage&f=Pagella&ts=16&tc=fff&tshs=1&tshc=666&hp=10&vp=10&c=12&bgt=pyramid&bgc=62b529&ebgc=51961d
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4047 (4.0K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ...                                                   100%  395K=0.01s
+
+2016-03-06 19:15:31 (395 KB/s) - ‘btn_ack_notices.gif’ saved [4047/4047]
+
+--2016-03-06 19:15:31--  http://dabuttonfactory.com/button.png?t=Accept+conditions&f=Open+Sans-Bold&ts=16&tc=000&hp=14&vp=16&c=5&bgt=gradient&bgc=64ffda&ebgc=1de9b6&bs=2&bc=1de9b6
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2872 (2.8K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ..                                                    100%  280K=0.01s
+
+2016-03-06 19:15:31 (280 KB/s) - ‘btn_ack_notices.gif’ saved [2872/2872]
+
+--2016-03-06 19:15:31--  http://dabuttonfactory.com/button.png?t=Show+prices&f=Lobster+Two-Bold&ts=24&tc=007aff&hp=25&vp=10&c=5&bgt=unicolored&bgc=fff&bs=1&bc=007aff&shs=1&shc=bce&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2587 (2.5K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ..                                                    100%  253K=0.01s
+
+2016-03-06 19:15:31 (253 KB/s) - ‘btn_ack_notices.gif’ saved [2587/2587]
+
+--2016-03-06 19:15:31--  http://dabuttonfactory.com/button.png?t=Buy+online&f=Calibri-Italic&ts=22&tc=fff&tshs=2&tshc=880e4f&hp=35&vp=10&c=round&bgt=pyramid&bgc=e91e63&ebgc=c2185b&be=1&shs=1&shc=880e4f&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4830 (4.7K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ....                                                  100%  472K=0.01s
+
+2016-03-06 19:15:31 (472 KB/s) - ‘btn_ack_notices.gif’ saved [4830/4830]
+
+--2016-03-06 19:15:31--  http://dabuttonfactory.com/s/1/i/button-in-windows-image-viewer.jpg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 10200 (10.0K) [image/jpeg]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K .........                                             100%  498K=0.02s
+
+2016-03-06 19:15:31 (498 KB/s) - ‘btn_ack_notices.gif’ saved [10200/10200]
+
+--2016-03-06 19:15:31--  http://dabuttonfactory.com/s/1/i/button-in-ubuntu-image-viewer.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 15876 (16K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K .......... .....                                      100% 1.51M=0.01s
+
+2016-03-06 19:15:31 (1.51 MB/s) - ‘btn_ack_notices.gif’ saved [15876/15876]
+
+--2016-03-06 19:15:31--  http://dabuttonfactory.com/button.png?t=Your+text+here&f=Calibri-Bold&ts=24&tc=fff&tshs=1&tshc=000&hp=20&vp=8&c=round&bgt=gradient&bgc=3d85c6&ebgc=073763
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4079 (4.0K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ...                                                   100% 1.02M=0.004s
+
+2016-03-06 19:15:31 (1.02 MB/s) - ‘btn_ack_notices.gif’ saved [4079/4079]
+
+--2016-03-06 19:15:31--  http://dabuttonfactory.com/button.png?t=Hello,+API!&ts=24&bgt=gradient&bgc=afa&ebgc=5e5&c=5&bs=1
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2782 (2.7K) [image/png]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K ..                                                    100% 9.29G=0s
+
+2016-03-06 19:15:31 (9.29 GB/s) - ‘btn_ack_notices.gif’ saved [2782/2782]
+
+--2016-03-06 19:15:31--  http://dabuttonfactory.com/button.gif
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 67 [image/gif]
+Saving to: ‘btn_ack_notices.gif’
+
+     0K                                                       100% 6.18M=0s
+
+2016-03-06 19:15:31 (6.18 MB/s) - ‘btn_ack_notices.gif’ saved [67/67]
+
+rror: No such file or directory
+No URLs found in rror.
+FINISHED --2016-03-06 19:15:31--
+Total wall clock time: 3.5s
+Downloaded: 44 files, 319K in 0.5s (586 KB/s)
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+--2016-03-06 19:15:53--  http://%E2%80%93limit-rate=50k/
+Resolving –limit-rate=50k (–limit-rate=50k)... failed: Name or service not known.
+wget: unable to resolve host address ‘–limit-rate=50k’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+--2016-03-06 19:15:54--  http://%E2%80%93wait=10/
+Resolving –wait=10 (–wait=10)... failed: Name or service not known.
+wget: unable to resolve host address ‘–wait=10’
+--2016-03-06 19:15:54--  http://no-http-keep-alive/
+Resolving no-http-keep-alive (no-http-keep-alive)... failed: No address associated with hostname.
+wget: unable to resolve host address ‘no-http-keep-alive’
+--2016-03-06 19:15:54--  http://dabuttonfactory.com/
+Resolving dabuttonfactory.com (dabuttonfactory.com)... 104.28.16.60, 104.28.17.60, 2400:cb00:2048:1::681c:113c, ...
+Connecting to dabuttonfactory.com (dabuttonfactory.com)|104.28.16.60|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... .......... ..........                        505K=0.06s
+
+2016-03-06 19:15:54 (505 KB/s) - ‘btn_ack.gif’ saved [31027]
+
+--2016-03-06 19:15:54--  http://dabuttonfactory.com/apple-touch-icon-120x120.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4376 (4.3K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100%  436K=0.01s
+
+2016-03-06 19:15:54 (436 KB/s) - ‘btn_ack.gif’ saved [4376/4376]
+
+--2016-03-06 19:15:54--  http://dabuttonfactory.com/apple-touch-icon.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 7052 (6.9K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ......                                                100%  689K=0.01s
+
+2016-03-06 19:15:54 (689 KB/s) - ‘btn_ack.gif’ saved [7052/7052]
+
+--2016-03-06 19:15:54--  http://dabuttonfactory.com/apple-touch-icon-76x76.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2817 (2.8K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100% 5247G=0s
+
+2016-03-06 19:15:54 (5247 GB/s) - ‘btn_ack.gif’ saved [2817/2817]
+
+--2016-03-06 19:15:54--  http://dabuttonfactory.com/s/1/i/favicon-96x96.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3698 (3.6K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 5.46M=0.001s
+
+2016-03-06 19:15:54 (5.46 MB/s) - ‘btn_ack.gif’ saved [3698/3698]
+
+--2016-03-06 19:15:54--  http://dabuttonfactory.com/s/1/i/favicon-192x192.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 8389 (8.2K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ........                                              100%  408K=0.02s
+
+2016-03-06 19:15:54 (408 KB/s) - ‘btn_ack.gif’ saved [8389/8389]
+
+--2016-03-06 19:15:54--  http://dabuttonfactory.com/favicon.ico
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/x-icon]
+Saving to: ‘btn_ack.gif’
+
+     0K .....                                                   530K=0.01s
+
+2016-03-06 19:15:54 (530 KB/s) - ‘btn_ack.gif’ saved [5430]
+
+--2016-03-06 19:15:54--  http://dabuttonfactory.com/manifest.json
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘btn_ack.gif’
+
+     0K                                                        1201G=0s
+
+2016-03-06 19:15:54 (1201 GB/s) - ‘btn_ack.gif’ saved [645]
+
+--2016-03-06 19:15:54--  http://dabuttonfactory.com/yandex-tableau.json
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 107 [application/json]
+Saving to: ‘btn_ack.gif’
+
+     0K                                                       100% 9.13M=0s
+
+2016-03-06 19:15:54 (9.13 MB/s) - ‘btn_ack.gif’ saved [107/107]
+
+--2016-03-06 19:15:54--  http://dabuttonfactory.com/s/2/f/fa.eot
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/vnd.ms-fontobject]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                   8993G=0s
+
+2016-03-06 19:15:54 (8993 GB/s) - ‘btn_ack.gif’ saved [4828]
+
+--2016-03-06 19:15:54--  http://dabuttonfactory.com/s/2/f/fa.eot?
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/vnd.ms-fontobject]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                    471K=0.01s
+
+2016-03-06 19:15:55 (471 KB/s) - ‘btn_ack.gif’ saved [4828]
+
+--2016-03-06 19:15:55--  http://dabuttonfactory.com/s/2/f/fa.woff2
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2548 (2.5K) [font/woff2]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100% 4746G=0s
+
+2016-03-06 19:15:55 (4746 GB/s) - ‘btn_ack.gif’ saved [2548/2548]
+
+--2016-03-06 19:15:55--  http://dabuttonfactory.com/s/2/f/fa.woff
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3352 (3.3K) [font/woff]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100%  327K=0.01s
+
+2016-03-06 19:15:55 (327 KB/s) - ‘btn_ack.gif’ saved [3352/3352]
+
+--2016-03-06 19:15:55--  http://dabuttonfactory.com/s/2/f/fa.ttf
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [font/ttf]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                    237K=0.02s
+
+2016-03-06 19:15:55 (237 KB/s) - ‘btn_ack.gif’ saved [4684]
+
+--2016-03-06 19:15:55--  http://dabuttonfactory.com/s/2/f/fa.svg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/svg+xml]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... ..                                          1.13M=0.01s
+
+2016-03-06 19:15:55 (1.13 MB/s) - ‘btn_ack.gif’ saved [12599]
+
+--2016-03-06 19:15:55--  http://dabuttonfactory.com/s/1/i/chrome-webstore.svg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/svg+xml]
+Saving to: ‘btn_ack.gif’
+
+     0K .                                                      4.89G=0s
+
+2016-03-06 19:15:55 (4.89 GB/s) - ‘btn_ack.gif’ saved [1464]
+
+--2016-03-06 19:15:55--  http://dabuttonfactory.com/examples
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... ...                                          462K=0.03s
+
+2016-03-06 19:15:55 (462 KB/s) - ‘btn_ack.gif’ saved [14179]
+
+--2016-03-06 19:15:55--  http://dabuttonfactory.com/info
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... .....                                        519K=0.03s
+
+2016-03-06 19:15:55 (519 KB/s) - ‘btn_ack.gif’ saved [16022]
+
+--2016-03-06 19:15:55--  http://dabuttonfactory.com/api
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... ...                                          455K=0.03s
+
+2016-03-06 19:15:55 (455 KB/s) - ‘btn_ack.gif’ saved [14297]
+
+--2016-03-06 19:15:55--  http://dabuttonfactory.com/contact
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack.gif’
+
+     0K .......                                                24.6G=0s
+
+2016-03-06 19:15:55 (24.6 GB/s) - ‘btn_ack.gif’ saved [7407]
+
+--2016-03-06 19:15:55--  http://dabuttonfactory.com/s/23/app.js
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/javascript]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... .......... .......... .......... ..........  836K
+    50K .......... .......... .....                             641K=0.1s
+
+2016-03-06 19:15:55 (758 KB/s) - ‘btn_ack.gif’ saved [77574]
+
+--2016-03-06 19:15:55--  http://dabuttonfactory.com/button.png?t=Sign+up+now&f=Roboto-Bold&ts=24&tc=000&tshs=1&tshc=dbfa75&hp=24&vp=12&c=3&bgt=gradient&bgc=d6f962&ebgc=99bc39&bs=1&bc=99bc39
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3818 (3.7K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 7112G=0s
+
+2016-03-06 19:15:55 (7112 GB/s) - ‘btn_ack.gif’ saved [3818/3818]
+
+--2016-03-06 19:15:55--  http://dabuttonfactory.com/button.png?t=View+the+demo&f=Open+Sans&ts=18&tc=000&tshs=1&tshc=f3f3f3&hp=25&vp=10&c=round&bgt=gradient&bgc=fff&ebgc=ccc&bs=1&bc=ccc&shs=2&shc=666&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4183 (4.1K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100%  317M=0s
+
+2016-03-06 19:15:55 (317 MB/s) - ‘btn_ack.gif’ saved [4183/4183]
+
+--2016-03-06 19:15:55--  http://dabuttonfactory.com/button.png?t=Get+started++%C2%BB&f=Droid+Serif-Bold-Italic&ts=22&tc=fff&tshs=1&tshc=444&hp=22&vp=11&c=6&bgt=two-colors&bgc=4c77c1&ebgc=3660aa
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4005 (3.9K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100%  390K=0.01s
+
+2016-03-06 19:15:55 (390 KB/s) - ‘btn_ack.gif’ saved [4005/4005]
+
+--2016-03-06 19:15:55--  http://dabuttonfactory.com/button.png?t=Donate+to+kids+in+need&f=Pacifico&ts=18&tc=003365&hp=25&vp=10&c=round&bgt=gradient&bgc=fee1a9&ebgc=ff8d1c&be=1&bs=1&bc=ff8d1c
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 5348 (5.2K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K .....                                                 100% 17.9G=0s
+
+2016-03-06 19:15:56 (17.9 GB/s) - ‘btn_ack.gif’ saved [5348/5348]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=Get+the+free+ebook&f=Bellota-Bold&ts=22&tc=fff&tshs=2&tshc=1f3a13&hp=16&vp=12&c=4&bgt=gradient&bgc=67ae55&ebgc=578843&bs=1&bc=3b6e22
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4630 (4.5K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100%  451K=0.01s
+
+2016-03-06 19:15:56 (451 KB/s) - ‘btn_ack.gif’ saved [4630/4630]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=See+on+a+map&f=Overlock&ts=24&tc=fff&tshs=1&tshc=ab140a&hp=20&vp=9&c=9&bgt=gradient&bgc=fb7064&ebgc=e74438&shs=3&shc=ab140a&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3958 (3.9K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 6.59G=0s
+
+2016-03-06 19:15:56 (6.59 GB/s) - ‘btn_ack.gif’ saved [3958/3958]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=Add+to+cart&f=Noto+Sans-Bold&ts=14&tc=222&tshs=1&tshc=ccc&hp=20&vp=10&c=5&bgt=gradient&bgc=ccc&ebgc=777
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1913 (1.9K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K .                                                     100%  187K=0.01s
+
+2016-03-06 19:15:56 (187 KB/s) - ‘btn_ack.gif’ saved [1913/1913]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=Contact+us&f=Ubuntu&ts=22&tc=fff&tshs=1&tshc=600&hp=24&vp=3&c=round&bgt=gradient&bgc=ab00ab&ebgc=f0f&shs=1&shc=222&sho=sw
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3262 (3.2K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 10.8G=0s
+
+2016-03-06 19:15:56 (10.8 GB/s) - ‘btn_ack.gif’ saved [3262/3262]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=Show+me+how&f=Caviar-Bold&ts=18&tc=994828&hp=10&vp=5&c=3&bgt=pyramid&bgc=fede40&ebgc=fff9c1&bs=1&bc=ecc101
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1794 (1.8K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K .                                                     100% 3342G=0s
+
+2016-03-06 19:15:56 (3342 GB/s) - ‘btn_ack.gif’ saved [1794/1794]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=Find+out+more&f=Roboto&ts=24&tc=0ff&hp=24&vp=12&c=4&bgt=unicolored&bgc=422&bs=2&bc=0ff
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2418 (2.4K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100% 8.04G=0s
+
+2016-03-06 19:15:56 (8.04 GB/s) - ‘btn_ack.gif’ saved [2418/2418]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=Free+trial!&f=Playfair+Display-Bold-Italic&ts=26&tc=00f&tshs=1&tshc=fff&hp=15&vp=20&c=5&bgt=gradient&bgc=ffffd3&ebgc=ff0&be=1&bs=1&bc=ccc&shs=2&shc=999&sho=se
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4832 (4.7K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100% 16.1G=0s
+
+2016-03-06 19:15:56 (16.1 GB/s) - ‘btn_ack.gif’ saved [4832/4832]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=DOWNLOAD&f=Arvo&ts=20&tc=ff0&tshs=2&tshc=0b5394&hp=20&vp=10&c=7&bgt=pyramid&bgc=f6b26b&ebgc=b45f06&bs=2&bc=0b5394
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3919 (3.8K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 7300G=0s
+
+2016-03-06 19:15:56 (7300 GB/s) - ‘btn_ack.gif’ saved [3919/3919]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=Follow+me+on+Twitter&f=Komika-Bold&ts=18&tc=fff&tshs=2&tshc=0b5394&hp=30&vp=7&c=round&bgt=pyramid&bgc=55acee&ebgc=0b5394&be=1&bs=1&bc=0b5394
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4825 (4.7K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100% 16.1G=0s
+
+2016-03-06 19:15:56 (16.1 GB/s) - ‘btn_ack.gif’ saved [4825/4825]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=OK&f=Calibri-Bold&ts=28&tc=f5f5f5&w=50&h=50&c=round&bgt=unicolored&bgc=351c75&bs=2&bc=f5f5f5&shs=1&shc=999&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3379 (3.3K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 11.3G=0s
+
+2016-03-06 19:15:56 (11.3 GB/s) - ‘btn_ack.gif’ saved [3379/3379]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=%E2%86%90+Back+to+homepage&f=Pagella&ts=16&tc=fff&tshs=1&tshc=666&hp=10&vp=10&c=12&bgt=pyramid&bgc=62b529&ebgc=51961d
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4047 (4.0K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100%  294M=0s
+
+2016-03-06 19:15:56 (294 MB/s) - ‘btn_ack.gif’ saved [4047/4047]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=Accept+conditions&f=Open+Sans-Bold&ts=16&tc=000&hp=14&vp=16&c=5&bgt=gradient&bgc=64ffda&ebgc=1de9b6&bs=2&bc=1de9b6
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2872 (2.8K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100% 5350G=0s
+
+2016-03-06 19:15:56 (5350 GB/s) - ‘btn_ack.gif’ saved [2872/2872]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=Show+prices&f=Lobster+Two-Bold&ts=24&tc=007aff&hp=25&vp=10&c=5&bgt=unicolored&bgc=fff&bs=1&bc=007aff&shs=1&shc=bce&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2587 (2.5K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100% 8.60G=0s
+
+2016-03-06 19:15:56 (8.60 GB/s) - ‘btn_ack.gif’ saved [2587/2587]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=Buy+online&f=Calibri-Italic&ts=22&tc=fff&tshs=2&tshc=880e4f&hp=35&vp=10&c=round&bgt=pyramid&bgc=e91e63&ebgc=c2185b&be=1&shs=1&shc=880e4f&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4830 (4.7K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100%  472K=0.01s
+
+2016-03-06 19:15:56 (472 KB/s) - ‘btn_ack.gif’ saved [4830/4830]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/s/1/i/button-in-windows-image-viewer.jpg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 10200 (10.0K) [image/jpeg]
+Saving to: ‘btn_ack.gif’
+
+     0K .........                                             100%  333K=0.03s
+
+2016-03-06 19:15:56 (333 KB/s) - ‘btn_ack.gif’ saved [10200/10200]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/s/1/i/button-in-ubuntu-image-viewer.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 15876 (16K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... .....                                      100%  392K=0.04s
+
+2016-03-06 19:15:56 (392 KB/s) - ‘btn_ack.gif’ saved [15876/15876]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=Your+text+here&f=Calibri-Bold&ts=24&tc=fff&tshs=1&tshc=000&hp=20&vp=8&c=round&bgt=gradient&bgc=3d85c6&ebgc=073763
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4079 (4.0K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100%  417K=0.01s
+
+2016-03-06 19:15:56 (417 KB/s) - ‘btn_ack.gif’ saved [4079/4079]
+
+--2016-03-06 19:15:56--  http://dabuttonfactory.com/button.png?t=Hello,+API!&ts=24&bgt=gradient&bgc=afa&ebgc=5e5&c=5&bs=1
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2782 (2.7K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100% 9.29G=0s
+
+2016-03-06 19:15:57 (9.29 GB/s) - ‘btn_ack.gif’ saved [2782/2782]
+
+--2016-03-06 19:15:57--  http://dabuttonfactory.com/button.gif
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 67 [image/gif]
+Saving to: ‘btn_ack.gif’
+
+     0K                                                       100%  125G=0s
+
+2016-03-06 19:15:57 (125 GB/s) - ‘btn_ack.gif’ saved [67/67]
+
+rror: No such file or directory
+No URLs found in rror.
+FINISHED --2016-03-06 19:15:57--
+Total wall clock time: 3.2s
+Downloaded: 44 files, 319K in 0.5s (679 KB/s)
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+--2016-03-06 19:16:53--  http://%E2%80%93limit-rate=50k/
+Resolving –limit-rate=50k (–limit-rate=50k)... failed: Name or service not known.
+wget: unable to resolve host address ‘–limit-rate=50k’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+idn_encode failed (3): ‘Non-digit/letter/hyphen in input’
+--2016-03-06 19:16:53--  http://%E2%80%93wait=10/
+Resolving –wait=10 (–wait=10)... failed: Name or service not known.
+wget: unable to resolve host address ‘–wait=10’
+--2016-03-06 19:16:53--  http://no-http-keep-alive/
+Resolving no-http-keep-alive (no-http-keep-alive)... failed: No address associated with hostname.
+wget: unable to resolve host address ‘no-http-keep-alive’
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/
+Resolving dabuttonfactory.com (dabuttonfactory.com)... 104.28.17.60, 104.28.16.60, 2400:cb00:2048:1::681c:103c, ...
+Connecting to dabuttonfactory.com (dabuttonfactory.com)|104.28.17.60|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... .......... ..........                        612K=0.05s
+
+2016-03-06 19:16:54 (612 KB/s) - ‘btn_ack.gif’ saved [31027]
+
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/apple-touch-icon-120x120.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4376 (4.3K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100% 3.65G=0s
+
+2016-03-06 19:16:54 (3.65 GB/s) - ‘btn_ack.gif’ saved [4376/4376]
+
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/apple-touch-icon.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 7052 (6.9K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ......                                                100% 13135G=0s
+
+2016-03-06 19:16:54 (13135 GB/s) - ‘btn_ack.gif’ saved [7052/7052]
+
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/apple-touch-icon-76x76.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2817 (2.8K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100% 4.69G=0s
+
+2016-03-06 19:16:54 (4.69 GB/s) - ‘btn_ack.gif’ saved [2817/2817]
+
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/s/1/i/favicon-96x96.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3698 (3.6K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100%  361K=0.01s
+
+2016-03-06 19:16:54 (361 KB/s) - ‘btn_ack.gif’ saved [3698/3698]
+
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/s/1/i/favicon-192x192.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 8389 (8.2K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ........                                              100%  819K=0.01s
+
+2016-03-06 19:16:54 (819 KB/s) - ‘btn_ack.gif’ saved [8389/8389]
+
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/favicon.ico
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/x-icon]
+Saving to: ‘btn_ack.gif’
+
+     0K .....                                                   265K=0.02s
+
+2016-03-06 19:16:54 (265 KB/s) - ‘btn_ack.gif’ saved [5430]
+
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/manifest.json
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘btn_ack.gif’
+
+     0K                                                        1201G=0s
+
+2016-03-06 19:16:54 (1201 GB/s) - ‘btn_ack.gif’ saved [645]
+
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/yandex-tableau.json
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 107 [application/json]
+Saving to: ‘btn_ack.gif’
+
+     0K                                                       100% 6.41M=0s
+
+2016-03-06 19:16:54 (6.41 MB/s) - ‘btn_ack.gif’ saved [107/107]
+
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/s/2/f/fa.eot
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/vnd.ms-fontobject]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                    470K=0.01s
+
+2016-03-06 19:16:54 (470 KB/s) - ‘btn_ack.gif’ saved [4828]
+
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/s/2/f/fa.eot?
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/vnd.ms-fontobject]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                   2.68G=0s
+
+2016-03-06 19:16:54 (2.68 GB/s) - ‘btn_ack.gif’ saved [4828]
+
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/s/2/f/fa.woff2
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2548 (2.5K) [font/woff2]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100%  249K=0.01s
+
+2016-03-06 19:16:54 (249 KB/s) - ‘btn_ack.gif’ saved [2548/2548]
+
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/s/2/f/fa.woff
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3352 (3.3K) [font/woff]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 99.5M=0s
+
+2016-03-06 19:16:54 (99.5 MB/s) - ‘btn_ack.gif’ saved [3352/3352]
+
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/s/2/f/fa.ttf
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [font/ttf]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                    457K=0.01s
+
+2016-03-06 19:16:54 (457 KB/s) - ‘btn_ack.gif’ saved [4684]
+
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/s/2/f/fa.svg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/svg+xml]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... ..                                          1.20M=0.01s
+
+2016-03-06 19:16:54 (1.20 MB/s) - ‘btn_ack.gif’ saved [12599]
+
+--2016-03-06 19:16:54--  http://dabuttonfactory.com/s/1/i/chrome-webstore.svg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [image/svg+xml]
+Saving to: ‘btn_ack.gif’
+
+     0K .                                                      2727G=0s
+
+2016-03-06 19:16:55 (2727 GB/s) - ‘btn_ack.gif’ saved [1464]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/examples
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... ...                                          692K=0.02s
+
+2016-03-06 19:16:55 (692 KB/s) - ‘btn_ack.gif’ saved [14179]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/info
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... .....                                        782K=0.02s
+
+2016-03-06 19:16:55 (782 KB/s) - ‘btn_ack.gif’ saved [16022]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/api
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... ...                                          466K=0.03s
+
+2016-03-06 19:16:55 (466 KB/s) - ‘btn_ack.gif’ saved [14297]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/contact
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘btn_ack.gif’
+
+     0K .......                                                 721K=0.01s
+
+2016-03-06 19:16:55 (721 KB/s) - ‘btn_ack.gif’ saved [7407]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/s/23/app.js
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/javascript]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... .......... .......... .......... ..........  714K
+    50K .......... .......... .....                             858K=0.1s
+
+2016-03-06 19:16:55 (757 KB/s) - ‘btn_ack.gif’ saved [77574]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/button.png?t=Sign+up+now&f=Roboto-Bold&ts=24&tc=000&tshs=1&tshc=dbfa75&hp=24&vp=12&c=3&bgt=gradient&bgc=d6f962&ebgc=99bc39&bs=1&bc=99bc39
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3818 (3.7K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100%  370K=0.01s
+
+2016-03-06 19:16:55 (370 KB/s) - ‘btn_ack.gif’ saved [3818/3818]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/button.png?t=View+the+demo&f=Open+Sans&ts=18&tc=000&tshs=1&tshc=f3f3f3&hp=25&vp=10&c=round&bgt=gradient&bgc=fff&ebgc=ccc&bs=1&bc=ccc&shs=2&shc=666&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4183 (4.1K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100% 4.65G=0s
+
+2016-03-06 19:16:55 (4.65 GB/s) - ‘btn_ack.gif’ saved [4183/4183]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/button.png?t=Get+started++%C2%BB&f=Droid+Serif-Bold-Italic&ts=22&tc=fff&tshs=1&tshc=444&hp=22&vp=11&c=6&bgt=two-colors&bgc=4c77c1&ebgc=3660aa
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4005 (3.9K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 6.67G=0s
+
+2016-03-06 19:16:55 (6.67 GB/s) - ‘btn_ack.gif’ saved [4005/4005]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/button.png?t=Donate+to+kids+in+need&f=Pacifico&ts=18&tc=003365&hp=25&vp=10&c=round&bgt=gradient&bgc=fee1a9&ebgc=ff8d1c&be=1&bs=1&bc=ff8d1c
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 5348 (5.2K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K .....                                                 100%  522K=0.01s
+
+2016-03-06 19:16:55 (522 KB/s) - ‘btn_ack.gif’ saved [5348/5348]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/button.png?t=Get+the+free+ebook&f=Bellota-Bold&ts=22&tc=fff&tshs=2&tshc=1f3a13&hp=16&vp=12&c=4&bgt=gradient&bgc=67ae55&ebgc=578843&bs=1&bc=3b6e22
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4630 (4.5K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100%  454K=0.01s
+
+2016-03-06 19:16:55 (454 KB/s) - ‘btn_ack.gif’ saved [4630/4630]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/button.png?t=See+on+a+map&f=Overlock&ts=24&tc=fff&tshs=1&tshc=ab140a&hp=20&vp=9&c=9&bgt=gradient&bgc=fb7064&ebgc=e74438&shs=3&shc=ab140a&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3958 (3.9K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100%  367K=0.01s
+
+2016-03-06 19:16:55 (367 KB/s) - ‘btn_ack.gif’ saved [3958/3958]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/button.png?t=Add+to+cart&f=Noto+Sans-Bold&ts=14&tc=222&tshs=1&tshc=ccc&hp=20&vp=10&c=5&bgt=gradient&bgc=ccc&ebgc=777
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1913 (1.9K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K .                                                     100%  176M=0s
+
+2016-03-06 19:16:55 (176 MB/s) - ‘btn_ack.gif’ saved [1913/1913]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/button.png?t=Contact+us&f=Ubuntu&ts=22&tc=fff&tshs=1&tshc=600&hp=24&vp=3&c=round&bgt=gradient&bgc=ab00ab&ebgc=f0f&shs=1&shc=222&sho=sw
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3262 (3.2K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 6076G=0s
+
+2016-03-06 19:16:55 (6076 GB/s) - ‘btn_ack.gif’ saved [3262/3262]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/button.png?t=Show+me+how&f=Caviar-Bold&ts=18&tc=994828&hp=10&vp=5&c=3&bgt=pyramid&bgc=fede40&ebgc=fff9c1&bs=1&bc=ecc101
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 1794 (1.8K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K .                                                     100% 1.50G=0s
+
+2016-03-06 19:16:55 (1.50 GB/s) - ‘btn_ack.gif’ saved [1794/1794]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/button.png?t=Find+out+more&f=Roboto&ts=24&tc=0ff&hp=24&vp=12&c=4&bgt=unicolored&bgc=422&bs=2&bc=0ff
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2418 (2.4K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100%  238K=0.01s
+
+2016-03-06 19:16:55 (238 KB/s) - ‘btn_ack.gif’ saved [2418/2418]
+
+--2016-03-06 19:16:55--  http://dabuttonfactory.com/button.png?t=Free+trial!&f=Playfair+Display-Bold-Italic&ts=26&tc=00f&tshs=1&tshc=fff&hp=15&vp=20&c=5&bgt=gradient&bgc=ffffd3&ebgc=ff0&be=1&bs=1&bc=ccc&shs=2&shc=999&sho=se
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4832 (4.7K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100% 5.65M=0.001s
+
+2016-03-06 19:16:56 (5.65 MB/s) - ‘btn_ack.gif’ saved [4832/4832]
+
+--2016-03-06 19:16:56--  http://dabuttonfactory.com/button.png?t=DOWNLOAD&f=Arvo&ts=20&tc=ff0&tshs=2&tshc=0b5394&hp=20&vp=10&c=7&bgt=pyramid&bgc=f6b26b&ebgc=b45f06&bs=2&bc=0b5394
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3919 (3.8K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 7300G=0s
+
+2016-03-06 19:16:56 (7300 GB/s) - ‘btn_ack.gif’ saved [3919/3919]
+
+--2016-03-06 19:16:56--  http://dabuttonfactory.com/button.png?t=Follow+me+on+Twitter&f=Komika-Bold&ts=18&tc=fff&tshs=2&tshc=0b5394&hp=30&vp=7&c=round&bgt=pyramid&bgc=55acee&ebgc=0b5394&be=1&bs=1&bc=0b5394
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4825 (4.7K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100% 16.1G=0s
+
+2016-03-06 19:16:56 (16.1 GB/s) - ‘btn_ack.gif’ saved [4825/4825]
+
+--2016-03-06 19:16:56--  http://dabuttonfactory.com/button.png?t=OK&f=Calibri-Bold&ts=28&tc=f5f5f5&w=50&h=50&c=round&bgt=unicolored&bgc=351c75&bs=2&bc=f5f5f5&shs=1&shc=999&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3379 (3.3K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100% 6294G=0s
+
+2016-03-06 19:16:56 (6294 GB/s) - ‘btn_ack.gif’ saved [3379/3379]
+
+--2016-03-06 19:16:56--  http://dabuttonfactory.com/button.png?t=%E2%86%90+Back+to+homepage&f=Pagella&ts=16&tc=fff&tshs=1&tshc=666&hp=10&vp=10&c=12&bgt=pyramid&bgc=62b529&ebgc=51961d
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4047 (4.0K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100%  389K=0.01s
+
+2016-03-06 19:16:56 (389 KB/s) - ‘btn_ack.gif’ saved [4047/4047]
+
+--2016-03-06 19:16:56--  http://dabuttonfactory.com/button.png?t=Accept+conditions&f=Open+Sans-Bold&ts=16&tc=000&hp=14&vp=16&c=5&bgt=gradient&bgc=64ffda&ebgc=1de9b6&bs=2&bc=1de9b6
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2872 (2.8K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100% 9.55G=0s
+
+2016-03-06 19:16:56 (9.55 GB/s) - ‘btn_ack.gif’ saved [2872/2872]
+
+--2016-03-06 19:16:56--  http://dabuttonfactory.com/button.png?t=Show+prices&f=Lobster+Two-Bold&ts=24&tc=007aff&hp=25&vp=10&c=5&bgt=unicolored&bgc=fff&bs=1&bc=007aff&shs=1&shc=bce&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2587 (2.5K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100% 23.3M=0s
+
+2016-03-06 19:16:56 (23.3 MB/s) - ‘btn_ack.gif’ saved [2587/2587]
+
+--2016-03-06 19:16:56--  http://dabuttonfactory.com/button.png?t=Buy+online&f=Calibri-Italic&ts=22&tc=fff&tshs=2&tshc=880e4f&hp=35&vp=10&c=round&bgt=pyramid&bgc=e91e63&ebgc=c2185b&be=1&shs=1&shc=880e4f&sho=s
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4830 (4.7K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ....                                                  100%  591K=0.008s
+
+2016-03-06 19:16:56 (591 KB/s) - ‘btn_ack.gif’ saved [4830/4830]
+
+--2016-03-06 19:16:56--  http://dabuttonfactory.com/s/1/i/button-in-windows-image-viewer.jpg
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 10200 (10.0K) [image/jpeg]
+Saving to: ‘btn_ack.gif’
+
+     0K .........                                             100%  501K=0.02s
+
+2016-03-06 19:16:56 (501 KB/s) - ‘btn_ack.gif’ saved [10200/10200]
+
+--2016-03-06 19:16:56--  http://dabuttonfactory.com/s/1/i/button-in-ubuntu-image-viewer.png
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 15876 (16K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K .......... .....                                      100%  388K=0.04s
+
+2016-03-06 19:16:56 (388 KB/s) - ‘btn_ack.gif’ saved [15876/15876]
+
+--2016-03-06 19:16:56--  http://dabuttonfactory.com/button.png?t=Your+text+here&f=Calibri-Bold&ts=24&tc=fff&tshs=1&tshc=000&hp=20&vp=8&c=round&bgt=gradient&bgc=3d85c6&ebgc=073763
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 4079 (4.0K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ...                                                   100%  516M=0s
+
+2016-03-06 19:16:56 (516 MB/s) - ‘btn_ack.gif’ saved [4079/4079]
+
+--2016-03-06 19:16:56--  http://dabuttonfactory.com/button.png?t=Hello,+API!&ts=24&bgt=gradient&bgc=afa&ebgc=5e5&c=5&bs=1
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2782 (2.7K) [image/png]
+Saving to: ‘btn_ack.gif’
+
+     0K ..                                                    100% 9.29G=0s
+
+2016-03-06 19:16:56 (9.29 GB/s) - ‘btn_ack.gif’ saved [2782/2782]
+
+--2016-03-06 19:16:56--  http://dabuttonfactory.com/button.gif
+Reusing existing connection to dabuttonfactory.com:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 67 [image/gif]
+Saving to: ‘btn_ack.gif’
+
+     0K                                                       100%  125G=0s
+
+2016-03-06 19:16:56 (125 GB/s) - ‘btn_ack.gif’ saved [67/67]
+
+rror: No such file or directory
+No URLs found in rror.
+FINISHED --2016-03-06 19:16:56--
+Total wall clock time: 3.2s
+Downloaded: 44 files, 319K in 0.4s (727 KB/s)

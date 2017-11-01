@@ -1,0 +1,9 @@
+---
+- include: go-get-repo.yml tags=update
+- include: bundle.yml tags=update
+- include: update_configs.yml tags=configs
+- include: setup_database.yml
+- include: migrate.yml tags=update
+- include: go-get-assets.yml tags=update
+- include: create_service.yml tags=service
+- include: restart_service.yml tags=update,configs,service,restart

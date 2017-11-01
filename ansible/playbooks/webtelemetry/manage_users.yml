@@ -1,0 +1,8 @@
+## PlayBook to manage users ##
+---
+- name: Playbook manage_user_accounts
+  hosts: "{{ target }}"
+  sudo: true
+
+  roles:
+    - wt_users

@@ -1,0 +1,47 @@
+# DRAM VPC
+
+key_name: snmp-forwardrers
+region: us-west-2
+vpcid: vpc-d1a599b5
+subnets:
+  -
+    az: a
+    cidr: 10.81.6.0/26
+    name: prod_snmp_fronthaul_2a
+  -
+    az: b
+    cidr: 10.81.6.128/26
+    name: prod_snmp_fronthaul_2b
+  -
+    az: a
+    cidr: 10.81.6.64/26
+    name: prod_snmp_backhaul_2a
+  -
+    az: b
+    cidr: 10.81.6.192/26
+    name: prod_snmp_backhaul_2b
+  -
+    az: a
+    cidr: 10.81.7.0/27
+    name: test_snmp_fronthaul_2a
+  -
+    az: b
+    cidr: 10.81.7.64/27
+    name: test_snmp_fronthaul_2b
+  -
+    az: a
+    cidr: 10.81.7.32/27
+    name: test_snmp_backhaul_2a
+  -
+    az: b
+    cidr: 10.81.7.96/27
+    name: test_snmp_backhaul_2b
+  -
+    az: a
+    cidr: 10.81.7.128/28
+    name: snmp_internet_2a
+  -
+    az: b
+    cidr: 10.81.7.144/28
+    name: snmp_internet_2b
+

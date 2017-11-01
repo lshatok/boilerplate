@@ -1,0 +1,12 @@
+---
+- name: Playbook deploy cloudera manager, hbase master
+  hosts: "hbase-master"
+  gather_facts: true
+  sudo: true
+
+  vars:
+    cloudera_manager: true
+    cdh_version: 5
+
+  roles:
+    - wt_hbase_master

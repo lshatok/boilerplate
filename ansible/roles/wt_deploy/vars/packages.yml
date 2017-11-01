@@ -1,0 +1,7 @@
+package:
+ - libyaml-dev
+ - libxml2-dev
+ - libxslt1-dev
+ - python-dev
+ - python-setuptools
+ - python2-pip

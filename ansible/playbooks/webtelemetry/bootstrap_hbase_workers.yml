@@ -1,0 +1,8 @@
+## Default Common role for every instance ##
+---
+- name: WebTelemetry | Playbook Bootstrap hbase-workers
+  hosts: '{{ target }}'
+  sudo: true
+
+  roles:
+    - wt_hbase_workers

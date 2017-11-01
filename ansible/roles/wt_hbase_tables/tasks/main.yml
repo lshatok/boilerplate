@@ -1,0 +1,8 @@
+---
+#TODO: update this so that schema is stored in group_vars or somewhere that makes sense.
+- name: Create tables script
+  template: src=hbase_schema.sh.j2 dest=/root/hbase_schema.sh owner=root group=root mode=755
+  become: true
+
+- name: Create tables from txt file
+  shell: 'hbase shell /root/hbase_schema.sh'

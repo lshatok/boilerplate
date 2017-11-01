@@ -1,0 +1,5 @@
+---
+- name: Migrate the database
+  command: "/WT/.rbenv/shims/rake db:migrate APP_ENV={{telemetrix_rails_env }}"
+  args:
+    chdir: "{{ telemetrix_jruby_path }}"

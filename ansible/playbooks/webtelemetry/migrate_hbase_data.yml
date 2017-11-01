@@ -1,0 +1,10 @@
+## Default Common role for every instance ##
+---
+- name: Migrate hbase data between clusters
+  hosts: "telemetrix"
+  sudo: true
+  vars:
+    source_host: 10.0.0.110
+
+  tasks:
+

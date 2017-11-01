@@ -1,0 +1,12 @@
+/var/log/webtelemetry/*.log
+{
+   daily
+   missingok
+   notifempty
+   size 100M
+   rotate 20
+   compress
+   delaycompress
+   copytruncate
+   create 644 webtelemetry wtuser
+}

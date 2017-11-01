@@ -1,0 +1,24 @@
+network_name: Prod04 fronthaul
+
+subnet: subnet-b5dbfaf3
+
+application: sftp-grafana
+
+security_groups:
+  - sg-002fdb65
+  - sg-d37699b6
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 50
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 100
+    delete_on_termination: false
+
+assign_eip: true
+
+count: 1
+
+tags:
+  customer: prod04

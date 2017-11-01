@@ -1,0 +1,104 @@
+SITE
+  remote: http://community.opscode.com/api/telemetrix
+  specs:
+    apache2 (1.6.0)
+    application (2.0.0)
+    application_ruby (1.1.0)
+      apache2 (>= 0.0.0)
+      application (>= 0.0.0)
+      passenger_apache2 (>= 0.0.0)
+      runit (~> 1.0)
+      unicorn (>= 0.0.0)
+    apt (1.9.0)
+    aws (0.100.6)
+    bluepill (2.2.2)
+      rsyslog (>= 0.0.0)
+    build-essential (1.3.4)
+    chef_gem (0.0.5)
+    chef_handler (1.1.4)
+    database (1.3.12)
+      aws (>= 0.0.0)
+      postgresql (>= 1.3.0)
+      postgresql (>= 1.0.0)
+      xfs (>= 0.0.0)
+    erlang (1.2.0)
+      build-essential (>= 0.0.0)
+      yum (>= 0.5.0)
+    java (1.10.0)
+      windows (>= 0.0.0)
+    postgresql (2.1.2)
+      build-essential (>= 0.0.0)
+      openssl (>= 0.0.0)
+    openssl (1.0.2)
+    passenger_apache2 (2.0.0)
+      apache2 (>= 1.0.4)
+      build-essential (>= 0.0.0)
+    postgresql (2.2.2)
+      openssl (>= 0.0.0)
+    python (1.2.2)
+      build-essential (>= 0.0.0)
+      yum (>= 0.0.0)
+    influxdb (2.0.0)
+      erlang (>= 0.9)
+    rsyslog (1.5.0)
+    runit (1.1.0)
+      build-essential (>= 0.0.0)
+    unicorn (1.2.2)
+    vim (1.0.2)
+    windows (1.8.4)
+      chef_handler (>= 0.0.0)
+    xfs (1.1.0)
+    xml (1.1.2)
+      build-essential (>= 0.0.0)
+    yum (2.2.0)
+    zlib (2.0.0)
+
+GIT
+  remote: https://github.com/Webtrends/Cookbooks
+  ref: master
+  sha: 70b80bd659303c8f12cb14f5fc60dc55adedd287
+  specs:
+    storm (1.0.30)
+      java (>= 0.0.0)
+      runit (>= 0.0.0)
+
+GIT
+  remote: https://github.com/ctrabold/chef-redis
+  ref: master
+  sha: e3a89f34d0f5b81867ae9e07a9404ac89e1ff61c
+  specs:
+    redis (0.0.4)
+
+GIT
+  remote: https://github.com/fnichol/chef-rvm
+  ref: master
+  sha: 3ad80bc97c5cc7e4df3b001007a4deb3355beff5
+  specs:
+    rvm (0.9.1)
+      chef_gem (>= 0.0.0)
+
+PATH
+  remote: vendor/cookbooks/webtelemetry
+  specs:
+    webtelemetry (0.0.1)
+      bluepill (>= 0.0.0)
+
+DEPENDENCIES
+  application (>= 0)
+  application_ruby (>= 0)
+  apt (>= 0)
+  webtelemetry (>= 0)
+  bluepill (>= 0)
+  build-essential (>= 0)
+  database (>= 0)
+  java (>= 0)
+  postgresql (>= 0)
+  python (>= 0)
+  influxdb (>= 0)
+  redis (>= 0)
+  rvm (>= 0)
+  storm (>= 0)
+  vim (>= 0)
+  xml (>= 0)
+  zlib (>= 0)
+

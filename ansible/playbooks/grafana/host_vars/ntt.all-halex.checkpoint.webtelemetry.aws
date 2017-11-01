@@ -1,0 +1,6 @@
+nagios:
+  checks:
+    - name: nginx
+    - name: unicorn
+
+    - name: halex_data

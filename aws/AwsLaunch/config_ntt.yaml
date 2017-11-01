@@ -1,0 +1,78 @@
+defaults:
+      domain:   metrixdata.amazon.{{ product.url }}
+      # Define AWS IAM keys here to override env vars if desired
+      #AWS_ACCESS_KEY_ID:
+      #AWS_SECRET_ACCESS_KEY:
+
+
+dev_fronthaul_metrixdata:
+      vpcid:    vpc-ee0a9c85
+      region:   us-west-2
+      rootkey:  metrix-dataflow-rsa
+      default_group:  sg-44f90d2b
+      subnet:
+           subnet-e70a9c8c :  10.81.0.0/25
+      security_groups:
+            - sg-2bf90d44  # Fronthaul-vpc10-81-0
+      rootvol_size:  16
+      eip:  yes
+
+dev_backhaul_metrixdata:
+      vpcid:    vpc-ee0a9c85
+      region:   us-west-2
+      rootkey:  metrix-dataflow-rsa
+      default_group:  sg-44f90d2b
+      subnet:
+            subnet-e40a9c8f :  10.0.0.0/25
+      rootvol_size:  16
+      security_groups:
+            - sg-0ef90d61  # Backhaul-vpc10-81-0
+
+prod_fronthaul_metrixdata:
+      vpcid:    vpc-ee0a9c85
+      region:   us-west-2
+      rootkey:  id_rsa.pub
+      default_group:   sg-c2923ea7  # Prod Backhaul
+      subnet:
+            subnet-70e32415 : 10.0.0.0/28
+      security_groups:
+            - sg-ea923e8f  # Prod Fronthaul
+      rootvol_size:  30
+      eip:  yes
+
+prod_backhaul_metrixdata:
+      vpcid:    vpc-ee0a9c85
+      region:   us-west-2
+      rootkey:  id_rsa.pub
+      default_group:  sg-c2923ea7  # Prod Backhaul
+      subnet:
+            subnet-59e3243c : 10.0.0.16/28
+      rootvol_size:  100
+
+
+
+EBS_profiles:
+      30GB:
+          type: standard
+          devices:
+              sdf:  30
+
+      100GB:
+          type: standard
+          devices:
+              sdf:  100
+
+
+      400GB_hbase:
+          type: standard
+          devices:
+              sdf:  70
+              sdi:  50
+              sdj:  50
+              sdk:  50
+              sdl:  50
+              sdm:  50
+              sdn:  50
+              sdo:  50
+              sdp:  50
+

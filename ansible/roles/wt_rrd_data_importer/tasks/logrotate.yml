@@ -1,0 +1,8 @@
+---
+- name: Copy logrotation config
+  copy: src=ps_iso dest=/etc/logrotate.d/ owner=root group=root mode=644
+  sudo: true
+
+- name: Enable log rotation
+  shell: logrotate /etc/logrotate.d/ps_iso
+  sudo: true

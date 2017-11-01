@@ -1,0 +1,39 @@
+APP_ROOT = File.expand_path('../..', __FILE__)
+puts "Starting unicorn process from app root #{APP_ROOT}"
+ENV['BUNDLE_GEMFILE'] = File.expand_path('../Gemfile', File.dirname(__FILE__))
+require 'bundler/setup'
+
+worker_processes {{ webtelemetry.workers }}
+working_directory APP_ROOT
+
+preload_app true
+GC.copy_on_write_friendly = true if GC.respond_to?(:copy_on_write_friendly=)
+
+timeout 30
+
+listen APP_ROOT + '/tmp/sockets/unicorn.sock', :backlog => 64
+# listen 3000
+
+pid APP_ROOT + '/tmp/pids/unicorn.pid'
+
+stderr_path APP_ROOT + '/log/unicorn.stderr.log'
+stdout_path APP_ROOT + '/log/unicorn.stdout.log'
+
+before_fork do |server, worker|
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.connection.disconnect!
+
+  old_pid = APP_ROOT + '/tmp/pids/unicorn.pid.oldbin'
+  if File.exists?(old_pid) && server.pid != old_pid
+    begin
+      Process.kill('QUIT', File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH
+      puts 'Old master already dead'
+    end
+  end
+end
+
+after_fork do |server, worker|
+  defined?(ActiveRecord::Base) && ActiveRecord::Base.establish_connection
+  defined?(Resque) && Resque.analytics.client.reconnect
+end
+puts 'Unicorn Started!!!'

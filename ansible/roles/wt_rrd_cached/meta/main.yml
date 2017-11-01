@@ -1,0 +1,11 @@
+---
+dependencies:
+  - { role: wt_core }
+  - { role: wt_python }
+  - { role: wt_virtualenv }
+  - { role: wt_rrd_core }
+  - { role: wt_rrd_cache_client }
+  - { role:wt_kafka_listener }
+  - { role: wt_rrd_hbase_client }
+  - { role: wt_rrd_postgresql.client }
+  - { role:wt_denali }

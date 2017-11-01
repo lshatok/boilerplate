@@ -1,0 +1,9 @@
+---
+- name: Clean-up webtelemetry .rrd files
+  shell: rm -Rf {{ item }}
+  with_items:
+    - /WT/snmp/webtelemetry/snmp
+    - /WT/snmp/webtelemetry/response
+  ignore_errors: true
+  when: wt.rrd_cleanup == "true"
+  tags: rrd_cleanup

@@ -1,0 +1,8 @@
+nagios:
+  checks:
+    - name: os
+    - name: nginx
+    - name: unicorn
+    - name: https
+    - name: redis
+    - name: resque

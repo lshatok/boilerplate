@@ -1,0 +1,1 @@
+unicorn: /WT/.rbenv/shims/unicorn -c config/unicorn.rb -E {{ influxdb.rails_env }}  >> /var/log/influxdb/web.log 2>&1

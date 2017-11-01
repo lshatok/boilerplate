@@ -1,0 +1,5 @@
+## WebTelemetry Sudoer's List ##
+%{{ product.admin }}  ALL=(ALL)  NOPASSWD:ALL
+%eng  ALL=(ALL)  NOPASSWD:/bin/su -l wtuser
+%telemetrix  ALL=(ALL)  NOPASSWD:/bin/su hdfs
+wtuser  ALL=(ALL)  NOPASSWD:/bin/service

@@ -1,0 +1,4 @@
+---
+- name: Update configs
+  include: update_configs.yml
+  tags: [ update, configs ]

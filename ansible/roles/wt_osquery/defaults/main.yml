@@ -1,0 +1,5 @@
+osquery:
+  schedule:
+    info:
+      query: "SELECT * FROM osquery_info"
+      interval: 3600

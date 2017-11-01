@@ -1,0 +1,47 @@
+---
+- name: Create log directory
+  file: path={{ wt_core.logger.logdir }} state=directory mode=777 owner=wtuser group=wtgroup
+
+- name: Create log file
+  file: path={{ wt_core.logger.logdir }}/{{ wt_core.logger.logfile }} state=touch mode=777 owner=wtuser group=wtgroup
+  when: wt_core.logger.logfile is defined
+
+- name: Create error log file
+  file: path={{ wt_core.logger.logdir }}/{{ wt_core.logger.errlogfile }} state=touch mode=777 owner=wtuser group=wtgroup
+  when: wt_core.logger.errlogfile is defined
+
+- name: Create TELEMETRIX_HOME directory
+  file: path="{{ telemetrix_home }}" state=directory mode=0755 owner=wtuser group=wtgroup
+
+- name: Update logger configuration
+  template: src=logger.yml.j2 dest="{{ telemetrix_home }}"/logger.yml owner=wtuser group=wtgroup
+
+- name: Update syslog configuration
+  template: src=syslog_webtelemetry.conf.j2 dest=/etc/rsyslog.d/webtelemetry.conf owner=wtuser group=wtgroup
+  when: wt_core.logger.syslog is defined
+
+- name: Remove syslog configuration if not defined
+  file: state=absent path=/etc/rsyslog.d/webtelemetry.conf
+  when: wt_core.logger.syslog is not defined
+
+- name: Allow write access to syslog files
+  file: state=touch path={{ item.value }} mode=0646 owner=wtuser group=wtgroup
+  with_dict: "{{ wt_core.logger.syslog }}"
+  when: wt_core.logger.syslog is defined
+
+- name: Configure logrotate
+  template: src=logrotate.j2 dest=/etc/logrotate.d/{{ wt_core.logger.logrotate.app }} owner=root group=root mode=644
+  become: true
+  when: wt_core.logger.logrotate is defined
+
+- name: Enable log rotation
+  shell: logrotate /etc/logrotate.d/{{ wt_core.logger.logrotate.app }}
+  become: true
+  when: wt_core.logger.logrotate is defined
+
+- name: Update logrotate frequency
+  copy:
+    remote_src: true
+    src: /etc/cron.daily/logrotate
+    dest: /etc/cron.{{ wt_core.logger.logrotate.frequency }}/logrotate
+  when: wt_core.logger.logrotate.frequency is defined

@@ -1,0 +1,28 @@
+network_name: WALMART Fronthaul
+
+subnet: subnet-e70a9c8c
+# 10.81.0.0/25
+
+application:  webtelemetry
+
+security_groups:
+  - sg-2bf90d44  #Fronthaul
+  - sg-44f90d2b  #default
+  - sg-d7a657b8  #devops-west
+  - sg-d6f90db9  #WebTelemetry Office
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1
+
+tags:
+  customer:  devops-offsite
+

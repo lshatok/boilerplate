@@ -1,0 +1,53 @@
+network_name: FPL Backhaul
+
+subnet: subnet-f2efd89d
+
+application: hbase
+
+security_groups:
+  - sg-cee734a1 #webtelemetry_ops
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 100
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 200
+    delete_on_termination: false
+  - device_name: /dev/sdi
+    volume_size: 200
+    delete_on_termination: false
+  - device_name: /dev/sdj
+    volume_size: 200
+    delete_on_termination: false
+  - device_name: /dev/sdk
+    volume_size: 200
+    delete_on_termination: false
+  - device_name: /dev/sdl
+    volume_size: 200
+    delete_on_termination: false
+  - device_name: /dev/sdm
+    volume_size: 200
+    delete_on_termination: false
+  - device_name: /dev/sdn
+    volume_size: 200
+    delete_on_termination: false
+  - device_name: /dev/sdo
+    volume_size: 200
+    delete_on_termination: false
+  - device_name: /dev/sdp
+    volume_size: 200
+    delete_on_termination: false
+  - device_name: /dev/sds
+    volume_size: 200
+    delete_on_termination: false
+  - device_name: /dev/sdr
+    volume_size: 200
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1
+
+tags:
+  customer:  eng

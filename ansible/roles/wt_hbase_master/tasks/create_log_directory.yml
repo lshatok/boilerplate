@@ -1,0 +1,9 @@
+---
+- name: Create log directory
+  file: path={{ grafana.logger.logdir }} state=directory owner=wtuser group={{ product.admin }}
+
+- name: Create log file (TODO  permissions may want to be changed)
+  file: path={{ grafana.logger.logdir }}/grafana.log state=touch owner=wtuser group={{ product.admin }} mode=0777
+
+- name: Create error log directory (TODO permissions may want to be changed)
+  file: path={{ grafana.logger.logdir }}/metrix_error.log state=touch owner=wtuser group={{ product.admin }} mode=0777

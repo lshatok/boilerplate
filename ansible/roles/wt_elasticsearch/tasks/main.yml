@@ -1,0 +1,15 @@
+---
+- include: ubuntu.yml
+  when: ansible_os_family == 'Debian'
+
+- include: redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Create elasticsearch config file
+  template: src=elasticsearch.yml.j2 dest=/etc/elasticsearch/elasticsearch.yml
+
+- name: Create elasticsearch service settings file
+  template: src=elasticsearch.j2 dest=/etc/default/elasticsearch
+
+- name: Start elasticsearch service
+  service: name=elasticsearch state=restarted

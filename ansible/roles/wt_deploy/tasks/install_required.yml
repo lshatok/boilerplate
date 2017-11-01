@@ -1,0 +1,17 @@
+---
+#####################################################################################################
+- name: Install required system packages
+  yum: "name={{ item }} state=installed"
+  with_items:
+    - python-dev
+    - python-setuptools
+    - python2-pip
+    - openssl
+    - openssl-devel
+    - webmin
+    - fdupes
+    - localpurge
+    - yum-plugin-remove-with-leaves
+  ignore_errors: true
+  when: packages.install == "true" or packages.reinstall == "true" or packages.reinstall is undefined
+  tags: packages_install

@@ -1,0 +1,77 @@
+Vagrant
+=======
+
+# install VirtualBox from Oracle
+
+# install vagrant ( https://groups.google.com/forum/#!msg/vagrant-up/kX_wvn7wcds/luwNur4kgDEJ )
+http://downloads.vagrantup.com/
+
+# install gems
+$ bundle
+
+# install external recipes
+$ librarian-chef install
+
+# Vagrant will be slow the first time as it will across the base box image (around 300 MB)
+
+# symlink Vagrantfile to Vagrantfile.{single,split}
+# e.g for single
+$ ln -sf Vagrantfile.single Vagrantfile
+# Then bring start the VM running. Vagrant will automatically run Chef
+$ vagrant up
+# You can rerun Chef without stopping/starting the VM:
+$ vagrant provision
+# You can ssh to the VM:
+$ vagrant ssh
+# Destroy the VM with:
+$ vagrant destroy
+
+# When multiple VMs are defined you need to specify the box for most actions, e.g.
+$ ln -sf Vagrantfile.split Vagrantfile
+# Start all VMs
+$ vagrant up
+# Or, start a single VM
+$ vagrant up redis
+# Rerun Chef on one box
+$ vagrant provision redis
+
+CloudFormation
+==============
+Install the CloudFormation API tools and configure your environment variables
+
+# create a stack from a template, e.g. split with rds, replacing XXX with a suitable identifying name
+$ cfn-create-stack XXX -f CloudFormation.split_with_rds.template
+# You can watch the stack resources come online from the AWS web console
+# destroy a stack (deletes everything!)
+$ cfn-delete-stack XXX
+
+SSL certs
+=========
+The webtelemetry_cluster recipe currently generates some self-signed certs for
+nginx. You should change this for production to use your actual certs. Just
+place the key and certificate in /etc/ssl/private and /etc/ssl/certs after
+fetching from your s3.
+
+Chef development
+================
+librarian-chef manages the entire cookbooks directory; you should *not* modify
+anything in there! Make changes to the webtelemetry cookbook in vendor/ and then
+either re-run librarian-chef (which will update) or manually update the
+cookbooks:
+$ rm -r cookbooks/webtelemetry && cp -r vendor/cookbooks/webtelemetry cookbooks
+and then run chef with:
+$ vagrant provision
+
+Pushing roles and cookbooks to S3
+=================================
+Modify (to use your s3 bucket) and use the push_to_s3 script.
+
+things to change
+================
++ move the java bin file to your own s3 bucket and update
+  vendor/cookbooks/webtelemetry/attributes/default.rb
++ change the KeyName to match one of your ssh keys in the CloudFormation templates
++ change instance types in CloudFormation templates (currently all are m1.large)
++ change the RDS instance type (currently db.m1.small), storage size and passwords
++ change to use your own s3 bucket for roles and cookbooks (both in the
+  CloudFormation templates and in the push_to_s3.sh script)

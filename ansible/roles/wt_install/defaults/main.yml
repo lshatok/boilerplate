@@ -1,0 +1,200 @@
+---
+filters:
+  datetimeformat: "%b %e %l:%M %p"
+
+vm:
+  dirty_background_ratio: 10
+  dirty_ratio: 80
+  swappiness:  0
+
+net:
+  core:
+    wmem_max: "4194304"
+    rmem_max: "6291456"
+
+packages:
+  install:   "true"
+  reinstall: "true"
+  upgrade:   "true"
+  remove:    "true"
+
+vbox_additions:
+  install:   "true"
+  reinstall: "true"
+  remove:    "false"
+  version:   "5.1-5.1.36_117224"
+
+
+vbox_server:
+  install:    "true"
+  reinstall:  "false"
+  remove:     "false"
+  version:    "5.1-5.1.36_117224"
+
+
+vbox:
+  urlpath:     "http://download.virtualbox.org/virtualbox/5.1.36/VirtualBox-{{ vbox_server.version }}_el7-1.x86_64.rpm"
+
+os:
+  rebootme:    "true"
+  upgrademe:   "true"
+  optimize:    "true"
+  clean-up:    "true"
+  name:        "uname -a"
+
+
+wt:
+  db:
+    optimize:  "true"
+    clean-up:  "true"
+    clone:     "true"
+    backup:    "false"
+  jvm:
+    optimize:      "true"
+    clean-up:      "true"
+    xmx:           "1024"
+    xms:           "512"
+  archive_cleanup: "true"
+  fs_cleanup:      "true"
+  log_cleanup:     "true"
+  rrd_cleanup:     "true"
+  yum_cleanup:     "true"
+
+
+catalina:
+  home:   "/WT/appserver"
+  base:   "/WT/appserver"
+  tmpdir: "/WT/appserver/temp"
+
+java:
+  home: "/WT/java/jdk"
+  opts: "-server -Xms512m -Xmx1024m"
+
+
+product:
+  color:
+    wt_navy:   "072233"
+    wt_blue:   "0D384E"
+    wt_skye:   "3DA0D5"
+    wt_orange: "E6600E"
+    wt_white:  "FFFFFF"
+  corp: "Inc"
+  name: "WebTelemetry"
+  capitalname: "WEBTELEMETRY"
+  smallname: "webtelemetry"
+  shortname: "WT"
+  hostname: "webtelemetry"
+  unique_hostname: "WTuniqueHostName"
+  capitalname: "WEBTELEMETRY"
+  email: "support@webtelemetry.us"
+  user:  "wtuser"
+  admin: "wtuser"
+  packages: "files/packages.yml"
+  os_name: "Linux CentOS"
+  nickname: "Selena"
+  codename: "Selena"
+  parent:   "WebTelemetry US Inc"
+  path: "/WT"
+  home: "/WT"
+  services: "WTdb,WTappl,WTmon,WThttpd"
+  years: "2013-2017"
+  init_path: /etc/init.d
+  build:
+    number: 11039201_1836
+  copyright: 2017
+  copyright:
+    year: 2017
+  pid:
+    dir:   /var/run
+    group: WTOSPROCESS
+  license:
+    path: "/WT/.WebTelemetry.license"
+    type: unlimited
+    licensor: webtelemetry
+    licensee: webtelemetry
+    customer: webtelemetry
+    type: perpetual
+  version:    "1.8.6.7"
+  install:
+    isvagrant:  "false"
+
+yum_latest_cache_time: "86400"
+yum_latest_cache_path: "/tmp/ansible-yum-latest-"
+
+selinux:
+  config: "disabled"
+  type:   "minimum"
+
+
+
+# Aditional disks that need to be formated and mounted.
+# See README for syntax and usage.
+
+disk_repartition: 'false'
+disk_package_use: 'auto'
+
+disk_additional_disks:
+ - disk: /dev/sda1
+   fstype: xfs
+   mount_options: 'noatime,nodiratime,logbufs=8,logbsize=256k,largeio,inode64,swalloc,allocsize=131072k'
+   mount: /
+   user: root
+   group: root
+   disable_periodic_fsck: false
+
+os_additional_fsutils:
+  - xfsprogs     # package for mkfs.xfs on RedHat / Ubuntu
+  - btrfs-progs  # package for mkfs.btrfs on CentOS / Debian
+
+
+
+disk_additional_fsutils: []
+disk_mount_options: 'noatime,nodiratime,logbufs=8,logbsize=256k,largeio,inode64,swalloc,allocsize=131079k'
+
+codename:
+  1.8.6: "Selena"
+  1.8.7: "Allegra"
+  1.8.8: "Octavia"
+  1.8.9: "Roxanna"
+  1.9.1: "Vincenza"
+  1.9.2: "Bianca"
+  1.9.3: "Francesca"
+  1.9.4: "Giuseppina"
+  1.9.5: "Tiziana"
+  2.0.0: "Livia"
+  2.2.2: "Lucrezia"
+  2.3.1: "Federica"
+  2.4.4: "Vittoria"
+  2.5.3: "Celestina"
+  2.6.9: "Alessandra"
+  2.7.7: "Viridiana"
+  2.7.8: "Donatella"
+
+
+snmp:
+  path: "/WT/snmp"
+  name: "wtsnmp"
+
+appserver:
+  path: "/WT/appserver"
+  home:   "/WT/appserver"
+  base:   "/WT/appserver"
+  tmpdir: "/WT/appserver/temp"
+  type: "CATALINA"
+  name: "TOMCAT"
+
+dbserver:
+  path: "/WT/dbserver"
+  username: "watchtower"
+  password: "watchtower"
+
+webserver:
+  path:  "/WT/httpd"
+
+rrdtool:
+  bit:      "32"
+  convert:  "64"
+  optimize: "true"
+  remove:   "true"
+  keep:     "false"
+  path:     "/WT/rrdtool"

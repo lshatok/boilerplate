@@ -1,0 +1,8 @@
+---
+# Role to deploy grafana stack
+- include: bootstrap_dashboard.yml
+- include: bootstrap_telemetrix.yml
+- include: bootstrap_telemetrix-telemetrix-jruby.yml
+- include: bootstrap_data_source.yml
+- include: bootstrap_hbase.yml
+#- include: bootstrap_nagios.yml

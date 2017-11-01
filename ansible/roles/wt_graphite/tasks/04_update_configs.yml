@@ -1,0 +1,30 @@
+---
+- name: Copy grafana.yml
+  template: src=grafana.yml.j2 dest={{ grafana.path }}/config/grafana.yml owner={{ grafana.user }} group={{ grafana.group }} mode=755
+  tags:
+    - configs
+
+- name: Copy Dashboards upstart script
+  template: src=grafana.conf.j2 dest=/etc/init/grafana.conf
+  tags:
+    - configs
+
+- name: Update Basalt.yml
+  template: src=Basalt.yml.j2 dest={{ grafana.path }}/config/shared/Basalt.yml owner=wtuser group=wtgroup
+  become_user: "{{ product.user }}"
+
+- name: Update logger.yml
+  template: src=logger.yml.j2 dest={{ grafana.path }}/config/shared/logger.yml owner=wtuser group=wtgroup
+  become_user: "{{ product.user }}"
+
+# dashboard config, used for multiprocessing: true
+- name: Celery config
+  template: src=celeryconfig.py.j2 dest={{ grafana.path }}/celeryconfig.py owner={{ grafana.user }} group={{ grafana.group }} mode=755
+  when: grafana.multiprocessing
+
+# create logs directory if it doesn't exist
+- file: path=/WT/logs state=directory mode=0777
+
+# touch log files if they don't exist
+- file: path=/WT/logs/telemetrix.log state=touch mode=0777
+- file: path=/WT/logs/metrix_error.log state=touch mode=0777

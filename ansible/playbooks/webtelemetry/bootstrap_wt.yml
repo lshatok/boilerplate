@@ -1,0 +1,19 @@
+## PlayBook to Setup wt Instance ##
+
+---
+- name: WebTelemetry | Playbook wt
+  hosts: "{{ target }}"
+  sudo: true
+
+  # read vars from host_vars
+  vars:
+    rubyver: 2.3.5
+
+  #vars_prompt:
+  #  - name: "branch"
+  #    prompt: "Which wt branch to clone"
+  #    default: "master"
+  #    private: no
+
+  roles:
+    - wt

@@ -1,0 +1,19 @@
+## Default Common role for every instance ##
+---
+- name: WebTelemetry | Playbook bootstrap
+  hosts: "{{ target }}"
+  sudo: true
+  remote_user: ubuntu
+
+
+  roles:
+#    - wt_common
+    -wt_aws_dhclient_patch
+    - wt_python
+    - os_reboot
+    - wt_git
+    - wt_core
+    - wt_java8
+    - wt_nodejs
+    #- ruby_rbenv
+    #- ruby_rbenv_prebuilt

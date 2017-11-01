@@ -1,0 +1,32 @@
+rds_subnets:
+  - subnet-3b25b350
+  - subnet-e40a9c8f
+  - subnet-e70a9c8c
+
+region: us-west-2
+
+zone: us-west-2b
+
+subnetgroup_name: metrixdata-dev
+
+description:  RDS for DevOps Offsite
+
+type: db.m1.small
+
+instance_name: test-rds
+size: 20
+
+admin_user:  {{ product.admin }}
+admin_pass:  wt123
+
+# Backup retention days [0-35]
+backup_retention: 3
+
+vpc_security_groups:
+   - sg-44f90d2b  # VPC default
+   - sg-0ef90d61  # Comcast Data backhaul
+
+tags:
+  customer:  devops-offsite
+
+

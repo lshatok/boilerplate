@@ -1,0 +1,69 @@
+---
+- name: Copy | Copy webtelemetry sudoers
+  copy: src=wt-sudoers dest=/etc/sudoers.d/wt-sudoers owner=root group=root mode=0440 backup=yes
+        validate='visudo -cf %s'
+
+- name: create user groups
+  group: name="{{ item }}" state=present
+  with_items:
+    - admin
+    - {{ product.admin }}
+
+- name: "Add user {{ common.deploy_user_name }}"
+  user: name="{{ common.deploy_user_name }}"
+        comment="{{ common.deploy_user_name }}"
+        shell="{{ common.deploy_user_shell }}"
+        groups="{{ common.deploy_user_groups }}"
+        createhome="yes"
+        append="yes"
+
+- name: copy bash_profile.j2
+  copy: src=bash_profile.j2 dest=/home/{{ common.deploy_user_name }}/.bash_profile.j2 owner={{ common.deploy_user_name }} group=wtgroup mode=0644 backup=yes
+  with_items: common.deploy_public_keys
+  register: add_bash_profile
+  tags: bash_profile.j2
+
+- name: Deploy ssh keys
+  authorized_key: user="{{ item.user }}"
+                  key="{{ item.pubkey }}"
+                  path="{{ item.home }}/.ssh/id_rsa.pub"
+                  manage_dir=yes
+  with_flattened:
+    - root: root
+      user: root
+      home: /root
+      append: no
+      pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDc+SPKRgKsNc9ea1iSO/uL/b2XAS1ZzUXhmuc/idIiWD4H+lpbnYMe/DQjmcNt69OLhs8n6ZaPi8+nxY6NJSg1QC1KltI+cOiG9lvvFQCJchSPXCbvQdmV9uUVMOn+FhWhioEtRbMn5SLTBgPwzSk1Iak+y8PZ6Kzwujy+nwnJIyoKbOjGifk/XzHArx5ES+mmuD4teBok7lgfJqXdazv3dg4a5GR4cdGs3v66yIc12UP58FO57G66l+9gB/ESVKF3dI8bmN9paWzYz6pKnckfRBwjmri13RDd+eU6980bzo7T/7ONDKDO5YrsjBuYyTFK6q2Zn3kmBEiGftAXKs3JzYiXgYMkUAOXk0hrumJ9kBZ8TEz/fk/+defX8gyyR+S4MMaDRGaUwEASEQzjFR5Kr/MCNwVh7qmCCHrxvAxmRqnE/QZlfM6fToVmPHVB9ERzrZgMjLHWaFkWEufcLMR9yxSjnC+ODmWtBAfrzBiA1xTj9pzF6Fnn08IlX/QzZJK1ZD8Kn+Z/CMpzg6ZX+xhrb8EJDpSJSnEJ6WJ9H3TjjcQ7C01x2Gfwt3azI7vbensIZV2lE8uC25ywLjYXIpNQzJ4MKezcFd9McZyIIusylD+4gZXnsgQHrKwLRu+S5I+mhp95d1QXC0e39xhVnPFJxP3Csx7e38mRgNfYtsGZbw== root@webtelemetry.us
+
+    - {{ product.admin }}: {{ product.admin }}
+      user:  {{ product.admin }}
+      home:  /home/{{ product.admin }}
+      append: no
+      pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC9qTmrXHht9sGJyNsM7Xw9rfaE8jtPmftRa6KBOG12NqG4vRDjcV1OGMiYebhSYYJZe5Wk3Y0w0YARFhCZOXAjA6YqikhuhBlwnhQ2BNEdmi27rphh7WfD1yEU4E4Oe7kYK0H3328qRK3V8beQoyYkNaexDlrs7Id6OeKOK+NDmYaMwcNG3qQXtFG2r3dLuYfdm7rB6Wdbvzy9EscUkwG+bPEvAx1hd0Srm94xUY91U2PBFjHCcq90TBnjS3dKqBv1Ng40jh8rLapMd4Ch+idY7exaESs0PRCwoY1Z6Lh+26wP7lOx4nqcQGcBvCQN4VMT/1x6PHsdejHFT4e83DRvwWrHCEULJ1P+rPe9fZJT/63Q/V0oc3xADOI+Ob/uGfvBK641QSIF3OW/p56GWGjHOk6pZaXVQOCosnV+ETnmLdcvqev2GCBVFAbAlw5gnFYf9TON/FS62/QLijltVARw+9kabyqENW+4ARb+WFLuD5sl7/JbsxgPii9OhEtY4EYuYGT58hXg0+tpQpxa+TVakBC0RVP38tY8LXZzm8aUmimme2NJ8dm/g6tw+fuRB0A+wTZnLYqfNeVnVRfyjIhPWOMCg4YOKC3BTUQ9qWshtkMQEzKKa1r97lzDYDio139n1FktBVez6yc11sfCy/guXFrx9PcUuteEz2ss+jIgRQ== {{ product.admin }}@webtelemetry.us
+  register: add_identity_key
+  become: true
+
+
+- name: Disable password login
+  lineinfile: dest={{ common.deploy_sshd_config  }} regexp="^#?PasswordAuthentication" line="PasswordAuthentication no"
+  when: add_identity_key|success and not add_identity_key|skipped
+
+- name: Disable empty password login
+  lineinfile: dest={{ common.deploy_sshd_config  }} regexp="^#?PermitEmptyPasswords" line="PermitEmptyPasswords no"
+
+- name: Disable remote root login
+  lineinfile: dest={{ common.deploy_sshd_config  }} regexp="^#?PermitRootLogin" line="PermitRootLogin no"
+
+- name: Enable SAU
+  lineinfile: dest={{ common.deploy_sshd_config  }} regexp="^#?UsePAM" line="UsePAM yes"
+
+- name: Restart host
+  shell: sleep 2 && shutdown -r now "Host {{ ansible_default_ipv4.address }} rebooted"
+  async: 1
+  poll:  0
+  sudo: true
+  ignore_errors: true
+
+- name: Waiting for host to come back up
+  local_action: wait_for host={{ ansible_default_ipv4.address }} port=22 delay=15 timeout=500
+  sudo: false

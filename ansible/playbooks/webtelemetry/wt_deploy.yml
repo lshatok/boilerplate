@@ -1,0 +1,7 @@
+---
+- name: wt_deploy
+  hosts: "{{ target }}"
+  become: true
+
+  roles:
+  - wt_deploy

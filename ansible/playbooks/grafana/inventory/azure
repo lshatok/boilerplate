@@ -1,0 +1,9 @@
+[telemetrix-app]
+telemetrix-app-01 ansible_ssh_host=10.16.128.5
+
+[snmp]
+snmp-01 ansible_ssh_host=10.16.192.6
+
+[azure:children]
+snmp
+telemetrix-app

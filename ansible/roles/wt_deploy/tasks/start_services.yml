@@ -1,0 +1,13 @@
+---
+- name: Start services
+  service:
+    name: "{{ item }}"
+    state: started
+  with_items:
+    - WTdb
+    - WTmon
+    - WTappl
+    - WThttpd
+  register: services_stop
+  ignore_errors: true
+  tags: start_services

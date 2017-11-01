@@ -1,0 +1,6 @@
+---
+- name: Update hbase configuration
+  template: src=hbase.yml.j2
+            dest="{{ telemetrix_home }}"/hbase.yml
+            owner=wtuser
+            group=wtgroup

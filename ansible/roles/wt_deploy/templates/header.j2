@@ -1,0 +1,149 @@
+<%--
+  This page is included by other JSPs to create a uniform header.
+  It expects that a <base> tag has been set in the including page
+  that directs all URLs to be relative to the servlet context.
+
+  This include JSP takes two parameters:
+    title (required): used in the middle of the header bar
+    location (optional): used to "dull out" the item in the menu bar
+      that has a link to the location given  (for example, on the
+      outage/index.jsp, give the location "outages")
+--%>
+
+<%@page language="java" contentType="text/html" session="true" import="java.text.DateFormat,org.opennms.web.authenticate.Authentication,org.opennms.netmgt.config.NotifdConfigFactory"%>
+
+<%@ page import = "com.jjlabs.wt.tools.WTTools"
+         import="com.jjlabs.wt.security.manager.WTAccountCredentials"
+         import="java.util.*" %>
+
+<%!
+    static DateFormat dateFormatter = DateFormat.getDateInstance( DateFormat.LONG );
+    static DateFormat timeFormatter = DateFormat.getTimeInstance( DateFormat.LONG );
+
+    public void init() throws ServletException {
+        try {
+            NotifdConfigFactory.init();
+        }
+        catch( Exception e ) {/*notice status will be unknown if the factory can't be initialized*/}
+    }
+%>
+
+<%
+    if (! WTTools.isLicenseValid()) {
+    %><script>
+        if (location.href.indexOf("/wt-core/license/") == -1) {
+          parent.location.href="/wt-core/license/manager.do";
+        }
+      </script><%
+    }
+    String title = request.getParameter( "title" );
+    String location = request.getParameter( "location" );
+    String strHelpURL = request.getParameter("help");
+    String strRefresh = request.getParameter("refresh");
+    String strNoPopOut = request.getParameter("noPopOut");
+    String strPopOutURL = request.getParameter("popOutURL");
+    String strPopOutRedirectMain = request.getParameter("popOutRedirectMain");
+
+    String[] breadcrumbs = request.getParameterValues( "breadcrumb" );
+
+    if( breadcrumbs == null )
+    	breadcrumbs = new String[0];
+
+    java.util.Date now = new java.util.Date();
+    String date = dateFormatter.format( now );
+    String time = timeFormatter.format( now );
+%>
+
+<!-- BEGIN HEADER -->
+  <link rel="stylesheet" type="text/css" href="/wt-portal/css/default.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="/wt-portal/css/print.css" media="print" />
+<script>
+function popWin(url, name, width, height) {
+    name=name.substring(name.lastIndexOf("/")+1); //IE doesn't like window names with periods or slashes. Using URL, so truncating appropriately
+    name=name.substring(0,name.indexOf("."));
+    var popUpWin = window.open(url,name,'status=yes,resizable=yes,scrollbars=yes,height='+height+',width='+width);
+    popUpWin.focus();
+    var mainRedirect = "<%=strPopOutRedirectMain%>";
+    if (mainRedirect != "" && mainRedirect != "null") {
+        top.sysmonMotherFrame.mainContentsFrame.location.href=mainRedirect;
+    }
+}
+</script>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr class="sysmonTitleBar">
+		<td class="sysmonTitleBar" width="10"><img src="/wt-portal/images/spacers/spacer.gif" height="28" width="10" border="0" alt="WebTelemetry"></td>
+		<td class="sysmonTitleBar" align="left"><%=title%>&nbsp;&nbsp;</td>
+		<td valign="bottom" height="28" class="sysmonTitleBar"><img src="/wt-portal/images/spacers/spacer.gif" height="28" width="50" border="0" alt="WebTelemetry"></td>
+		<td align="right" valign="middle" class="sysmonTitleBar">
+			<% if( strRefresh != null && strRefresh.equals("1") ) { %>
+				<a href="javascript: window.location.replace(window.location.href)">
+				<img src="/wt-portal/images/icons/16x16/Refresh.gif" alt="Refresh Window" border="0"></a>
+            <% } %>
+            <% if( strNoPopOut == null || strNoPopOut.trim().equals("") ) { %>
+                <script>
+                if (top.location.href != location.href) { //only show popout link if we're in a frameset
+                <% if (strPopOutURL != null && strPopOutURL.trim().length() > 0) { %>
+                    document.write("<input type=\"image\" onClick=\"popWin('<%=strPopOutURL%>','',800,600)\"");
+                <% } else { %>
+                    document.write("<input type=\"image\" onClick=\"popWin(location.href,'',800,600)\"");
+                <% } %>
+                    document.write(" src='/wt-portal/images/icons/16x16/PopOutWindow.gif' alt='Popout Window' border='0'>");
+                }
+                </script>
+            <% } %>
+
+            <% if( strHelpURL != null ) { %>
+                <input type="image" onClick="popWin('<%=WTTools.getHelpURL(request) + strHelpURL%>','helpWin-'+escape('<%=strHelpURL%>'),970,600)" src="/wt-portal/images/icons/16x16/Help_Book.gif" alt="Help" border="0">
+            <% } %>&nbsp;&nbsp;&nbsp;</td>
+	</tr>
+	<tr>
+	    <td bgcolor="#000000"><img src="/wt-portal/images/spacers/spacer.gif" height="1" width="5" border="0" alt="WebTelemetry"></td>
+	    <td bgcolor="#000000"><img src="/wt-portal/images/spacers/spacer.gif" height="1" width="5" border="0" alt="WebTelemetry"></td>
+	    <td bgcolor="#000000"><img src="/wt-portal/images/spacers/spacer.gif" height="1" width="5" border="0" alt="WebTelemetry"></td>
+	    <td bgcolor="#000000"><img src="/wt-portal/images/spacers/spacer.gif" height="1" width="5" border="0" alt="WebTelemetry"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" width=100%">
+        <tr>
+	    <td><img src="/wt-portal/images/spacers/spacer.gif" height="5" width="5" border="0" alt="WebTelemetry"></td>
+        </tr>
+<!--
+        <tr>
+        <td>
+            Thread.currentThread().getName():&nbsp;<%=Thread.currentThread().getName()%><br>
+            Thread.currentThread().getId():&nbsp;<%=Thread.currentThread().getId()%><br>
+            request.getRequestURL().toString():&nbsp;<%=request.getRequestURL().toString()%><br>
+            request.getSession().getId():&nbsp;<%=request.getSession().getId()%><br>
+            WTAccountCredentials.current().getCurrentManagedId():&nbsp;<%=WTAccountCredentials.current().getCurrentManagedId()%>
+        </td>
+        </tr>
+-->
+	<tr>
+	    <td align="left" class="tableText" nowrap id="timeCell"><b><%= date %> <%= time %></b></td>
+	    <td class="tableText"><b><%
+        int days = WTTools.getLicenseDaysLeft();
+	    if (WTTools.isLicenseValid()) {
+	        if (days < 30 && days > 9) {
+	          %>License Expires in <u><%= days %></u> days.&nbsp;&nbsp;<%
+	        } else if (days > 0) {
+	          %>License Expires in <u><span class="error"><%= days %></span></u> days.&nbsp;&nbsp;<%
+            }
+
+	        boolean compliant = ((Boolean) getServletContext().getAttribute("licenseCompliant")).booleanValue();
+	        if (!compliant) {
+	            int maxAllowed = WTTools.getLicenseMaxNodes();
+	            TreeSet compliantIds = (TreeSet) getServletContext().getAttribute("licenseCompliantNodeIds");
+	            TreeSet nonCompliantIds = (TreeSet) getServletContext().getAttribute("licenseNonCompliantNodeIds");
+	            int totalNodes = compliantIds.size() + nonCompliantIds.size();
+			if(totalNodes >0 && maxAllowed > 0 && totalNodes > maxAllowed){			
+          %><span class="error">Out of Compliance:</span> Discovered <span class="error"><%=totalNodes%></span> nodes. <%=maxAllowed%> allowed.<%
+          }
+	        }
+	    }
+%>	        </b></td>
+	</tr>
+        <tr>
+	    <td><img src="/wt-portal/images/spacers/spacer.gif" height="5" width="5" border="0" alt="WebTelemetry"></td>
+        </tr>
+</table>

@@ -1,0 +1,12 @@
+---
+- name: Install telemetrix-core
+  include: pip_install.yml
+  tags: [ update, pipup ]
+
+- name: Update configs
+  include: update_configs.yml
+  tags: [ update, configs ]
+
+- name: Restart services
+  include: restart_services.yml
+  tags: [ restart ]

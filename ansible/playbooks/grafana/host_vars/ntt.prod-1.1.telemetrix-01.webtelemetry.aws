@@ -1,0 +1,5 @@
+nagios:
+  checks:
+    - name: os
+    - name: tomcat
+    - name: tomcat-snmp-api

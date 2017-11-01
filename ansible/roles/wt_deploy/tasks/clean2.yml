@@ -1,0 +1,39 @@
+---
+#####################################################################################################
+- name: Clean-up miscellaneous rpms and archives
+  shell: 'ionice -10 find / -name {{ item }} | xargs rm -rf &'
+  with_items:
+    - "*.rpm"
+    - "*.rpm.2"
+    - "*.deb"
+    - "*.bak"
+    - "*.bak2"
+    - "*.bak3"
+    - "*.2bak"
+    - "*.bak3"
+    - "*.3bak"
+    - "BAK*"
+    - "bak.*"
+    - "*.exe"
+    - "*.bat"
+    - "*_jsp.java"
+    - "*_jsp.class"
+    - "*.rrd"
+    - "*bak.*"
+    - "bak.*"
+  ignore_errors: true
+  register: archive_cleanup
+  when: wt.archive_cleanup == "true"
+  tags: cleanup_archives
+
+####################################################################################################
+
+- name: Clean-up old and stale system logs
+  shell: 'nice -n - 16 rm -Rf {{ item }} &'
+  with_items:
+    - /var/log/*
+    - /tmp/*
+  ignore_errors: true
+  register: log_cleanup
+  when: wt.log_cleanup == "true"
+  tags: cleanup_logs

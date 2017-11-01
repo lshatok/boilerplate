@@ -1,0 +1,10 @@
+- name: Restart Dashboards service
+  service: name=grafana state=restarted enabled=yes
+
+- name: Start dashboard workers
+  shell: "source {{ grafana.venv_path }}/bin/activate && {{grafana.path}}/celeryd restart"
+  args:
+     executable: /bin/bash
+  become_user: "{{ grafana.user }}"
+  ignore_errors: true
+  when: grafana.multiprocessing

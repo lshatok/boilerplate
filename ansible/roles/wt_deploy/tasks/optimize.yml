@@ -1,0 +1,27 @@
+---
+#####################################################################################################
+# default /etc/fstab
+- name: /etc/fstab config
+  template: src=fstab.j2 dest=/etc/fstab owner=root group=root mode=644
+  ignore_errors: true
+  tags: etc_fstab
+
+#####################################################################################################
+# default /etc/sysctl.conf
+- name: /etc/sysctl.conf config
+  template: src=sysctl.j2 dest=/etc/sysctl.conf owner=root group=root mode=644
+  ignore_errors: true
+  tags: etc_sysctl
+
+#####################################################################################################
+# Reboot the  host
+- name: restart machine
+  shell: sleep 2 && shutdown -r now "Host {{ ansible_default_ipv4.address }} rebooted"
+  async: 1
+  poll:  0
+  sudo: true
+  ignore_errors: true
+
+- name: waiting for host to come back up
+  local_action: wait_for host={{ ansible_default_ipv4.address }} port=22 delay=15 timeout=500
+  sudo: false

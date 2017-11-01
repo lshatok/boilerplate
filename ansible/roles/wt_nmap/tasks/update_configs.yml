@@ -1,0 +1,7 @@
+---
+- name: Update Fx default configuration files
+  template: src=defaults_parallel.yml.j2
+            dest="{{ telemetrix_home }}"/mars_{{ item.key }}.yml
+            owner=wtuser
+            group=wtgroup
+  with_dict: '{{ mars_configs }}'

@@ -1,0 +1,26 @@
+network_name: WebTelemetry Dev Public
+
+subnet: subnet-0729ae63
+
+application: cascade
+
+security_groups:
+  - sg-6i2s3y76 #webtelemetry_ops
+  - sg-1c8d6b79 #fronthaul-webtelemetry-dev
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 60
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 60
+    delete_on_termination: false
+
+assign_eip: true
+release: xenial
+
+count: 1
+
+tags:
+  customer:  eng
+  stack_name: Demo3

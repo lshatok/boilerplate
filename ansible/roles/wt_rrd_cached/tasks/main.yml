@@ -1,0 +1,4 @@
+---
+- include: pip_install.yml tags=rtcc,update,pipup
+- include: configure_rtcc.yml tags=update,pipup
+- include: restart_service.yml tags=restart,update

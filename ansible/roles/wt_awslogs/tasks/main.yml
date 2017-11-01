@@ -1,0 +1,35 @@
+---
+- name: Apt-get Update
+  apt:  cache_valid_time=3600 update_cache=yes
+
+- name: Create /root/.amazon/ directory
+  file: >
+    path=/root/.aws/
+    state=directory
+
+- name: Create credentials
+  template: >
+    src=credentials.j2
+    dest=/root/.aws/credentials
+
+- name: Create temp file
+  shell: touch /tmp/awslogs.conf
+
+- name: Get awslogs agent setup script
+  get_url: >
+    url=https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py
+    dest=/tmp/awslogs-agent-setup.py
+    mode=0755
+
+- name: Install awslogs agent script
+  shell: python /tmp/awslogs-agent-setup.py --region {{ region }} -n -c /tmp/awslogs.conf
+
+- name: Create awslogs.conf
+  template: >
+    src=awslogs.conf.j2
+    dest=/var/awslogs/etc/awslogs.conf
+
+- name: Restart AWSLogs
+  service: >
+    name=awslogs
+    state=restarted

@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+  deployment_id = "vagrant_test"
+
+  config.vm.box = "xenial64"
+  config.vm.box_url = "http://files.vagrantup.com/xenial64.box"
+
+  config.vm.network :hostonly, "10.0.0.3"
+
+  config.vm.provision :chef_solo do |chef|
+    chef.log_level = :debug
+    chef.cookbooks_path = "cookbooks"
+    chef.roles_path = "roles"
+    chef.add_role("storm")
+  end
+
+  config.vm.customize ["modifyvm", :id, "--memory", "3072", "--cpus", "2", "--name", "Storm Test"]
+end

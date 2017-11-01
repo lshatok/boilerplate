@@ -1,0 +1,10 @@
+---
+- shell: apt-mark unhold ant
+  ignore_errors: yes
+
+- name: install ant
+  apt: name=ant=1.8.2-4build1
+
+- shell: apt-mark hold ant
+  ignore_errors: yes
+

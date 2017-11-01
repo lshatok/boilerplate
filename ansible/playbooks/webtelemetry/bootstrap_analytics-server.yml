@@ -1,0 +1,8 @@
+---
+- name: Playbook Bootstrap Analytics
+  hosts: "{{ target }}"
+  sudo: true
+
+
+  roles:
+    - wt_telemetrix_server

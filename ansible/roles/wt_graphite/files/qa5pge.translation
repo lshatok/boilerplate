@@ -1,0 +1,21 @@
+# Types of data tenant is allowed to load
+[datatype]
+meterdata=meterdata
+
+[meterdata]
+parser=DelimiterParser
+mapped_columns=SDP_CODE,UOM_CODE,INTERVAL_LENGTH,END_TIMESTAMP,USAGE_VALUE
+headers=datatype,tenant,filename,meter_id,unit,duration,end_time,usage_value
+
+preprocessor=IntelLoader
+preprocessor_mapped_columns=device_identifier,datetime,value_kwh
+preprocessor_headers=datatype,tenant,filename,device_identifier,datetime,value_kwh
+
+# Data will be split into these target_meter_interval gaps by splitting rows
+target_meter_interval=15
+timezone=US/Pacific
+
+# Format has double %% because ConfigParser uses % in interpolation.
+datetime_format=%%Y-%%m-%%d %%H:%%M:%%S
+delimiter=,
+

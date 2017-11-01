@@ -1,0 +1,7 @@
+---
+- name: Install telemetrix-data-processing
+  pip: name=telemetrix-data-processing{{ denali.version }}
+       extra_args="--upgrade --extra-index-url {{ gemfury_url }}"
+       virtualenv="{{ denali.wt_data_importer.virtualenv_path }}"
+  environment: "{{ env_vars }}"
+  become_user: "{{ product.user }}"

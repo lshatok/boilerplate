@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "<invoke.sh>"
+
+<%= render 'common.sh' %>
+<%= render 'setup.sh' %>
+
+cd $APP_PATH
+sudo -u $APP_USER -i "cd $APP_ROOT && <%= app.invoke_command %>"
+
+echo "</invoke.sh>"

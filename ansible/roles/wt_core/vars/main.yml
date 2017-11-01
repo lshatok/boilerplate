@@ -1,0 +1,5 @@
+---
+
+# defaults if not specified
+webtelemetry_home:  /WT
+virtualenv:  "{{ webtelemetry_home }}/virtualenvs/virtenv"

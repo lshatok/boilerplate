@@ -1,0 +1,16 @@
+---
+- name: Copy logrotation config
+  copy: src=tomcat dest=/etc/logrotate.d/ owner=root group=root mode=644
+  become: true
+
+- name: Enable log rotation
+  shell: logrotate /etc/logrotate.d/tomcat
+  become: true
+
+- name: Enable run logrotate every hour
+  cron:
+    name: "Grafana logrotate"
+    job: "logrotate -f /etc/logrotate.d/tomcat"
+    hour: "*"
+    minute: "0"
+    user: root

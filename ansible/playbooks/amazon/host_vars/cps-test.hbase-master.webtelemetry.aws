@@ -1,0 +1,35 @@
+network_name: WALMART BackHaul
+
+# CPS test backhaul 1c
+subnet: subnet-c036a3ea
+
+application: hbase-master
+
+security_groups:
+  - sg-20595b58 # walmart_test_backhaul
+  - sg-93090beb # walmart_ops
+  - sg-80dcd3f8 # walmart_ops_cdh
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 250
+    delete_on_termination: false
+    volume_type: gp2
+  - device_name: /dev/sdh
+    volume_size: 100
+    delete_on_termination: false
+    volume_type: gp2
+  - device_name: /dev/sdi
+    volume_size: 100
+    delete_on_termination: false
+    volume_type: gp2
+
+ebs_optimized: true
+assign_eip: false
+release: xenial
+
+count: 1
+
+tags:
+  customer: ffx-test
+  stack_name: ffx-test

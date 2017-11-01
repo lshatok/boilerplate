@@ -1,0 +1,32 @@
+
+
+## For network name description ##
+network_name: Websnmp Internet
+
+## Add VPC Subnet ID ##
+subnet: subnet-143ef939 # intel nonprod_internet_1c - 172.19.4.64/26
+
+application: IPSEC
+
+
+security_groups:
+  - sg-6052731a #intel_nonprod_ops
+  - sg-d46473b4 #intel_nonprod_ipsec
+
+volumes:
+  # /dev/sda1 = rootvol (default is 30gb)
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+
+tags:
+  customer: intel
+  stack_name: wt_devops
+
+# assign eip true or false
+assign_eip: true
+
+# How many instances to create
+count: 1
+release: xenial
+

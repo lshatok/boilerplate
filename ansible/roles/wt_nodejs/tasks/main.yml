@@ -1,0 +1,23 @@
+---
+
+#- name: Check for nodejs
+- shell: "[ -f /usr/bin/nodejs ] || [ -f /usr/local/bin/nodejs ]"
+  register: nodejs
+  ignore_errors: true
+  changed_when: False
+
+- name: Add nodesource gpg key
+  shell: 'wget -qO- https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -'
+  when: "nodejs.rc != 0"
+
+- name: Add nodejs repository
+  shell: 'echo "deb https://deb.nodesource.com/node_0.12 $(lsb_release -sc) main" > /etc/apt/sources.list.d/nodesource.list'
+  when: "nodejs.rc != 0"
+
+- name: Add nodejs repository
+  shell: 'echo "deb-src https://deb.nodesource.com/node_0.12 $(lsb_release -sc) main" >> /etc/apt/sources.list.d/nodesource.list'
+  when: "nodejs.rc != 0"
+
+- name: Apt-get Update
+  apt: name=nodejs update_cache=yes state=latest
+  when: "nodejs.rc != 0"

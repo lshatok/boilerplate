@@ -1,0 +1,32 @@
+---
+# git clone telemetrix #
+
+- name: clone telemetrix from github
+  git: repo=ssh://git@github.com/webtelemetrytelemetrix.git version="{{ snmp.branch }}"
+       dest="{{ snmp.path }}" key_file=/WT/.ssh/gitro_id_rsa
+       accept_hostkey=yes force=yes
+  become_user: "{{ product.user }}"
+
+- name: check if github-push remote needs to be created
+  shell: "git remote | grep github-push"
+  args:
+    chdir: "{{ webtelemetry_home }}/telemetrix"
+    executable: /bin/bash
+  become_user: "{{ product.user }}"
+  register: remote
+  ignore_errors: true
+  changed_when: False
+
+- name: Add github-push remote
+  shell: "git remote add github-push https://github.com/webtelemetrytelemetrix.git"
+  args:
+    chdir: "{{ webtelemetry_home }}/telemetrix"
+  become_user: "{{ product.user }}"
+  when: remote.rc != 0
+
+- name: pip install telemetrix from gemfury
+  pip: name=telemetrix
+       virtualenv="{{ virtualenv }}"
+       extra_args="--upgrade --extra-index-url {{ gemfury_url }}"
+  become: true
+  #become_user: "{{ product.user }}"

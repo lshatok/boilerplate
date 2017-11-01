@@ -1,0 +1,139 @@
+---
+## cloudera manager installer does not work with ansible (requires a tty for UI)
+## visit www.cloudera.com to playbooks_supplemental the manual steps and convert to ansible
+
+- name: Update system limits
+  lineinfile: dest=/etc/security/limits.conf
+              line="{{ item }}"
+  with_items: limits_lines
+
+- name: Disable swap
+  sysctl: name=vm.swappiness value=0 state=present
+
+- name: Create FileSystems
+  filesystem: fstype=xfs dev="{{ item.device_name }}" force=yes
+  with_items: hbase_mounts
+  ignore_errors: yes
+
+- name: Create directories
+  file: path="{{ item.mount_point }}" state=directory
+  with_items: hbase_mounts
+  ignore_errors: yes
+
+- name: Mount FileSystems
+  mount: name="{{ item.mount_point }}" src="{{ item.device_name }}" fstype=xfs
+         opts=defaults,nobootwait,noatime
+         state=mounted
+  with_items: hbase_mounts
+  ignore_errors: yes
+
+- name: Copy Cloudera Manager Installer v4
+  copy: src=../files/cloudera-manager-installer-v4.bin dest=/WT/files/cloudera-manager-installer.bin
+        owner=wtuser group={{ product.admin }} mode=755
+  when: cloudera_manager and cdh_version == 4
+
+- name: Copy Cloudera Manager Installer v5
+  copy: src=../files/cloudera-manager-installer-v5.bin dest=/WT/files/cloudera-manager-installer.bin
+        owner=wtuser group={{ product.admin }} mode=755
+  when: cloudera_manager and cdh_version == 5
+
+#- name: Copy Cloudera Manager Installer v5.1.3
+#  copy: src=../files/cloudera-manager-installer-v5.1.3.bin dest=/WT/files/cloudera-manager-installer.bin
+ #       owner=wtuser group={{ product.admin }} mode=755
+ # when: cloudera_manager and cdh_version == 5.1.3
+
+- name: Installation instructions
+  pause: prompt="Install manually with cloudera-manager-installer.bin --i-agree-to-all-licenses --noprompt --noreadme --nooptions"
+
+# To Install CDH manager with ansible, follow steps from
+# http://www.cloudera.com/content/cloudera-content/cloudera-docs/CM5/latest/Cloudera-Manager-Installation-Guide/cm5ig_install_path_B.html
+
+- name: Check for /user path
+  shell: "hadoop fs -ls /user"
+  args:
+    executable: /bin/bash
+  sudo_user: hdfs
+  register: hdfs_user
+  ignore_errors: true
+  changed_when: False
+
+- name: Create /user dir
+  shell: "hadoop fs -mkdir /user"
+  args:
+    executable: /bin/bash
+  sudo_user: hdfs
+  when: hdfs_user.rc != 0
+
+- name: chmod /user
+  shell: "hadoop fs -chmod go+rx /user"
+  sudo_user: hdfs
+  when: hdfs_user.rc != 0
+
+- name: Check for /user/webtelemetry path
+  shell: "hadoop fs -ls /user/webtelemetry"
+  args:
+    executable: /bin/bash
+  sudo_user: hdfs
+  register: hdfs_webtelemetry
+  ignore_errors: true
+  changed_when: False
+
+- name: Create /user/webtelemetry dir
+  shell: "hadoop fs -mkdir /user/webtelemetry"
+  args:
+    executable: /bin/bash
+  sudo_user: hdfs
+  when: hdfs_webtelemetry.rc != 0
+
+- name: chown to webtelemetry
+  shell: "hadoop fs -chown webtelemetry:{{ product.admin }} /user/webtelemetry"
+  args:
+    executable: /bin/bash
+  sudo_user: hdfs
+  when: hdfs_webtelemetry.rc != 0
+
+- name: Check for /user/hbase path
+  shell: "hadoop fs -ls /user/hbase"
+  args:
+    executable: /bin/bash
+  sudo_user: hdfs
+  register: hdfs_hbase
+  ignore_errors: true
+  changed_when: False
+
+- name: Create /user/hbase dir
+  shell: "hadoop fs -mkdir /user/hbase"
+  args:
+    executable: /bin/bash
+  sudo_user: hdfs
+  when: hdfs_hbase.rc != 0
+
+- name: chown to hbase
+  shell: "hadoop fs -chown hbase:hbase /user/hbase"
+  args:
+    executable: /bin/bash
+  sudo_user: hdfs
+  when: hdfs_hbase.rc != 0
+
+- name: Check for /user/yarn path
+  shell: "hadoop fs -ls /user/yarn"
+  args:
+    executable: /bin/bash
+  sudo_user: yarn
+  register: hdfs_yarn
+  ignore_errors: true
+  changed_when: False
+
+- name: Create /user/yarn dir
+  shell: "hadoop fs -mkdir /user/yarn"
+  args:
+    executable: /bin/bash
+  sudo_user: hdfs
+  when: hdfs_yarn.rc != 0
+
+- name: chown to yarn
+  shell: "hadoop fs -chown yarn:yarn /user/yarn"
+  args:
+    executable: /bin/bash
+  sudo_user: hdfs
+  when: hdfs_yarn.rc != 0

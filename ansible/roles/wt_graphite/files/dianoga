@@ -1,0 +1,9 @@
+/WT/grafana/log/*.log
+{
+        size 500M
+        rotate 100
+        compress
+        missingok
+        copytruncate
+        create 0644 webtelemetry wtuser
+}

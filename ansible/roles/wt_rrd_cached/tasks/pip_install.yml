@@ -1,0 +1,17 @@
+---
+- name: Install dependencies
+  apt: name="{{ item }}" state=latest
+  with_items:
+    - python-pymodbus
+
+- name: Install telemetrix
+  pip: name=telemetrix-scanner version={{ scanner.version }}
+       extra_args="--upgrade --extra-index-url {{ gemfury_url }}"
+       virtualenv="{{ virtualenv_path }}"
+  environment: "{{ env_vars }}"
+  become_user: "{{ product.user }}"
+
+- name: Install python dependencies (telemetrix)
+  shell: cat {{ virtualenv_path }}/wt_config/telemetrix/requirements.txt | xargs -L 1 {{ virtualenv_path }}/bin/pip install --extra-index-url {{ gemfury_url }}
+  environment: "{{ env_vars }}"
+  become_user: "{{ product.user }}"

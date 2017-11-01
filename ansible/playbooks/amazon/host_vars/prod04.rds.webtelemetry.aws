@@ -1,0 +1,25 @@
+rds_subnets:
+  - subnet-b5dbfaf3
+  - subnet-74618311
+  - subnet-bedbfaf8
+
+region: us-west-2
+
+zone: us-west-2b
+
+subnetgroup_name: prod04
+
+description:  Prod04 Database
+
+type: db.t2.small
+
+instance_name: prod04
+size: 30
+
+admin_user:  {{ product.admin }}
+admin_pass:  eaH7ai8Yei8Cheej
+
+# Backup retention days [0-35]
+backup_retention: 3
+
+vpc_security_groups: "sg-002fdb65"

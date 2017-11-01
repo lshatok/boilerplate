@@ -1,0 +1,27 @@
+rds_subnets:
+  - subnet-426f726d  # 10.0.0.0/24  us-west-2b
+  - subnet-207a2366  # 10.0.0.0/24  us-west-2c
+  - subnet-64772e22  # 10.0.0.0/24  us-west-2c
+
+region: us-west-2
+
+zone: us-west-2b
+
+subnetgroup_name: grafana-dev-group
+
+description:  grafana-dev RDS subnet group
+
+type: db.m1.small
+
+instance_name: grafana-dev
+size: 30
+
+admin_user:  {{ product.admin }}
+admin_pass:  wt123
+
+# Backup retention days [0-35]
+backup_retention: 3
+
+vpc_security_groups: "sg-6i2s3y76"
+
+

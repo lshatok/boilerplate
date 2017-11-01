@@ -1,0 +1,5 @@
+---
+# 10.0.0.0/18 ai-main-west
+vpcid:  vpc-26c9b24d
+region:  us-west-2
+key_name:  walmart_demo3

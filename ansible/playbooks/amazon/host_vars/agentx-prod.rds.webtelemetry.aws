@@ -1,0 +1,28 @@
+rds_subnets:
+  - subnet-8ec6bef8 # snmp_prod_backhaul_2a
+  - subnet-91c6bee7 # snmp_prod_fronthaul_2a
+  - subnet-e48bab80 # snmp_prod_fronthaul_2b
+  - subnet-e18bab85 # snmp_prod_backhaul_2b
+
+region: us-west-2
+
+zone: us-west-2a
+
+subnetgroup_name: snmp-prod-group
+
+description:  SNMP_Prod RDS subnet group
+
+type: db.m4.large
+
+instance_name: snmp-prod
+size: 20
+
+admin_user:  {{ product.admin }}
+admin_pass:  843qhUE2kwztYKI
+
+# Backup retention days [0-35]
+backup_retention: 35
+count: 1
+vpc_security_groups: "sg-10e31d69" # snmp_test_rds
+
+key_name: snmp-forwardrers

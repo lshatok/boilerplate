@@ -1,0 +1,27 @@
+network_name: CPS Fronthaul
+
+# CPS prod fronthaul 1c
+subnet: subnet-d90693f3
+
+application: cascade
+
+security_groups:
+  - sg-93090beb # walmart_ops
+  - sg-54e3272f # walmart_prod_fronthaul
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size:  60
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 60
+    delete_on_termination: false
+
+assign_eip: false
+release: xenial
+
+count: 1 
+
+tags:
+  customer: walmart-prod
+  stack_name: walmart-prod

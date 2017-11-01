@@ -1,0 +1,18 @@
+---
+- name: my debug in check_results
+  debug:
+    msg: "Ansible task0 data {{ task0.ansible_job_id }}"
+  ignore_errors: true
+  tags: debug_main_1
+
+
+- name: Check Results
+  async_status: jid={{ task0.ansible_job_id }}
+  register: task_result
+  until: task_result.finished
+  retries: 120
+  delay: 30
+  failed_when: task_result.rc != 0
+  with_items:
+   - wait.results
+

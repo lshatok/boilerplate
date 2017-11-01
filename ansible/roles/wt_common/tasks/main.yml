@@ -1,0 +1,109 @@
+---
+# file: roles/core_os/tasks/main.yml
+#vars_files:
+#  - ../vars/main.yml
+
+- name: Apt-get Update
+  apt:  cache_valid_time=3600 update_cache=yes
+
+- name: Apt-get Upgrade
+  apt:  upgrade=dist
+
+- name: Install required system packages
+  apt: name={{ item }} state=present cache_valid_time=3600
+  with_items:
+    - ntp
+    - vim
+    - htop
+    - debconf-utils
+    - python-software-properties
+    - software-properties-common
+    - build-essential
+    - sysstat
+    - uuid-dev
+    - libtool
+    - pkg-config
+    - ntp
+    - xfsprogs
+    - xfsdump
+    - autoconf
+    - unzip
+    - lvm2
+    - curl
+    - facter
+    - ruby-json
+    - gettext
+    - libssl-dev
+    - python-dev
+    - libxt-dev
+    - nethogs
+    - libcurl4-gnutls-dev
+    - libexpat1-dev
+    - zlib1g-dev
+    - libx11-dev
+    - acl
+    - s3cmd
+    - postgresql-client
+    - apt-show-versions
+    - tree
+    - libreadline6
+    - libreadline6-dev
+    - libpostgresqlclient-dev
+    - postgresql-client-core-5.5
+    - libbz2-dev
+    - sqlite3
+    - libsqlite3-dev
+    - zlib1g-dev
+    - libxml2-utils
+    - bsd-mailx
+    - emacs
+    - traceroute
+
+# Create core paths and files
+- name: Files | Create /usr/local/ssl
+  file: path=/usr/local/ssl state=directory mode=0755 owner=root group=root
+- name: Files | Create /usr/local/ssl/certs
+  file: path=/usr/local/ssl/certs state=directory mode=0755 owner=root group=root
+- name: Files | Create /usr/local/ssl/private
+  file: path=/usr/local/ssl/private state=directory mode=0700 owner=root group=root
+
+
+# Copy common files
+- name: Copy | Copy global vimrc.local
+  copy: src=vimrc.local dest=/etc/vim/vimrc.local owner=root group=root mode=0644 backup=yes
+- name: Copy | Copy rc.local
+  copy: src=rc.local dest=/etc/rc.local owner=root group=root mode=0755 backup=yes
+- name: Copy | Copy webtelemetry sudoers
+  copy: src=wt-sudoers dest=/etc/sudoers.d/wt-sudoers owner=root group=root mode=0440 backup=yes
+        validate='visudo -cf %s'
+
+# Create groups
+- name: Group | Create groups
+  group: name={{ item }} state=present
+  with_items:
+    - ai
+    - {{ product.admin }}
+    - wtuser
+    - telemetrix
+    - datasources
+
+- name: Test if dhclient needs an AWS patch
+  shell: "host $(hostname)"
+  register: fix_dhclient
+  ignore_errors: true
+  changed_when: False
+  when: ansible_distribution == "Ubuntu"
+
+- name: Check if us-west-2 domain
+  shell: "host $(hostname).us-west-2.compute.internal"
+  register: us_west_2
+  ignore_errors: true
+  when: fix_dhclient.rc != 0 and ansible_distribution == "Ubuntu"
+
+- name: Patch dhclient.conf for AWS VPC us-west-2
+  lineinfile: dest=/etc/dhcp/dhclient.conf
+              line='supersede domain-name "us-west-2.compute.internal";'
+  when: us_west_2.changed
+
+- name: Display all variables/facts for host
+  debug: var=hostvars[inventory_hostname]

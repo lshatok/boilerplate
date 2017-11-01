@@ -1,0 +1,23 @@
+network_name: CPS Internet
+
+# CPS internet 1c
+subnet: subnet-8730a5ad
+
+application: proxy
+
+security_groups:
+  - sg-93090beb # walmart_ops
+  - sg-b2df1bc9 #	walmart_prod_proxy
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+
+assign_eip: true
+
+count: 1
+
+tags:
+  customer: walmart-prod
+  stack_name: walmart-prod

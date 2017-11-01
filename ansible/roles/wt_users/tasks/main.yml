@@ -1,0 +1,56 @@
+---
+- name: Copy | Copy webtelemetry sudoers
+  copy: src=wt-sudoers dest=/etc/sudoers.d/wt-sudoers owner=root group=root mode=0440 backup=yes
+        validate='visudo -cf %s'
+
+  #create user groups
+- name: create user groups
+  group: name="{{ item }}" state=present
+  with_items:
+    - telemetrix
+    - {{ product.admin }}
+    - ai
+    - wtuser
+    - dev
+    - qa
+    - pm
+    - ps
+
+# install user accounts from list
+- name: include vars from user_accounts.yml
+  include_vars: user_accounts.yml
+  tags:
+         - bash_profile.j2
+
+- name: add webtelemetry user accounts
+  user: name="{{ item.user }}"
+        comment="{{ item.comment | default(omit) }}"
+        shell="{{ item.shell | default('/bin/bash') }}"
+        groups="{{ item.groups }}"
+        createhome=yes
+        append="{{ item.append | default('yes') }}"
+  with_flattened:
+    - "{{ users }}"
+    - "{{ users_custom }}"
+
+# deploy ssh keys
+- name: copy user ssh keys
+  authorized_key: user="{{ item.user }}"
+                  key="{{ item.pubkey }}"
+                  manage_dir=yes
+  with_flattened:
+    - "{{ users }}"
+    - "{{ users_custom }}"
+
+
+- name: copy bash_profile.j2
+  copy: src=bash_profile.j2 dest=/home/{{ item.user }}/.bash_profile.j2 owner={{ item.user }} group=wtgroup mode=0644 backup=yes
+  with_flattened:
+    - "{{ users }}"
+    - "{{ users_custom }}"
+  tags:
+         - bash_profile.j2
+
+# Include ssh login notification framework if the host is in prod environment
+# - include: notify.yml
+#  when: environment_type is defined and environment_type == "prod" or environment_type == "bpa_prod"

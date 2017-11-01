@@ -1,0 +1,77 @@
+---
+- name: Replace 1
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/2013-2015/"{{ product.years }}"/g' {}"
+  with_items:
+    - "*.jsp"
+    - "*.js"
+    - "*.htm"
+    - "*.html"
+    - "*.vm"
+    - "*.nak"
+    - "*.bak"
+    - "*.css"
+    - "*.properties"
+    - "*.txt"
+  tags:  product_years
+
+
+
+- name: Replace 2
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/WatchTower/WebTelemetry/g' {}"
+  with_items:
+    - "*.jsp"
+    - "*.js"
+    - "*.htm"
+    - "*.html"
+    - "*.vm"
+    - "*.nak"
+    - "*.css"
+    - "*.properties"
+    - "*.txt"
+  tags:  brand
+
+
+- name: Replace 3
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/WebTelemetry LLC/WebTelemetry Inc./g' {}"
+  with_items:
+    - "*.jsp"
+    - "*.js"
+    - "*.htm"
+    - "*.html"
+    - "*.vm"
+    - "*.nak"
+    - "*.css"
+    - "*.properties"
+    - "*.txt"
+  tags:  brand
+
+- name: Replace 4
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/WebTelemetry INC/WebTelemetry US Inc/g' {}"
+  with_items:
+    - "*.jsp"
+    - "*.js"
+    - "*.htm"
+    - "*.html"
+    - "*.vm"
+    - "*.nak"
+    - "*.css"
+    - "*.properties"
+    - "*.txt"
+  tags:  brand
+
+
+
+- name: Replace 7
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/WEBTELEMETRY US/WEBTELEMETRY US INC./g' {}"
+  with_items:
+    - "*.jsp"
+    - "*.js"
+    - "*.htm"
+    - "*.html"
+    - "*.vm"
+    - "*.nak"
+    - "*.css"
+    - "*.properties"
+    - "*.txt"
+  tags:  brand
+

@@ -1,0 +1,11 @@
+---
+- name: Deploy sudoers
+  template: src=wt-sudoers.j2 dest=/etc/sudoers.d/sudoers
+        owner=root
+        group=root
+        mode=0640
+        force=true
+  become: yes
+  register: rc
+
+

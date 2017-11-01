@@ -1,0 +1,5 @@
+start on starting grafana
+stop on stopping grafana
+respawn
+
+exec su - wtuser -c 'cd /WT/grafana; export PORT=4400; ./bin/resque-pool --environment $APP_ENV >> /WT/grafana/log/worker-pool-1.log 2>&1'

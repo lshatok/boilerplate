@@ -1,0 +1,36 @@
+---
+- name: Update apt repo
+  include: update_apt.yml
+  tags: [ update, snmp ]
+
+- name: Update local snmp repo
+  include: update_repo.yml
+  tags: [ update,snmp ]
+
+- name: Install initial gems
+  include: install_initial_gems.yml
+  tags: [ snmp ]
+
+- name: Install snmp
+  include: install_metrix.yml
+  tags: [ update, snmp ]
+
+- name: Update configs
+  include: update_configs.yml
+  tags: [ configs, update, snmp ]
+
+- name: Enable logrotate
+  include: enable_log_rotate.yml
+  tags: [ snmp, logs ]
+
+- name: Setup database
+  include: setup_database.yml
+  tags: [ snmp, database ]
+
+- name: Migrate the database
+  include: migrate.yml
+  tags: [ update, migrate, snmp ]
+
+- name: Restart TomCat
+  include: restart_tomcat.yml
+  tags: [ update, configs, restart, snmp ]

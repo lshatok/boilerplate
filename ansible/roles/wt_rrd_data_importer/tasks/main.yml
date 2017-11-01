@@ -1,0 +1,9 @@
+---
+#- include: pip_install.yml tags=iso_data,update
+- name: include configure.yml
+  include: configure.yml 
+  tags: [iso_data ,update]
+
+- name: Inclue Log rotate
+  include: logrotate.yml 
+  tags: [iso_data,logrotate]

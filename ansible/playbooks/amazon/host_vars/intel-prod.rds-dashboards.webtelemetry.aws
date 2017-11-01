@@ -1,0 +1,30 @@
+rds_subnets:
+  - subnet-cd9c86b5 # intel_prod_fronthaul_2b - 172.19.0.128/26
+  - subnet-68615a22 # intel_prod_fronthaul_2c - 172.19.0.192/26
+  - subnet-c19c86b9 # intel_prod_backhaul_2b - 172.19.1.0/26
+  - subnet-6f615a25 # intel_prod_backhaul_2c - 172.19.1.64/26
+
+region: us-east-2
+
+zone: us-east-2b
+
+subnetgroup_name: intel-prod-group
+
+description:  Websnmp Prod RDS subnet group
+
+type: db.m4.large
+
+instance_name: intel-prod-influxdb
+size: 20
+
+admin_user: {{ product.admin }}
+admin_pass: XXXXXXXXXXXXXXXX
+
+# Backup retention days [0-35]
+backup_retention: 35
+count: 1
+
+# intel-prod-rds
+vpc_security_groups: "sg-7e28e617"
+
+key_name: intel-devops

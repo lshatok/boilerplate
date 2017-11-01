@@ -1,0 +1,5 @@
+nagios:
+  mnagios_host: 10.0.0.171
+
+log:
+  logstash_host: 10.0.0.145

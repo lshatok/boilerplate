@@ -1,0 +1,25 @@
+network_name: HECO Test BackEnd
+
+subnet:  subnet-4721e022
+# 10.18.16.144/28   us-west-2c
+
+application:  snmp
+
+security_groups:
+  - sg-eee0488b  #webtelemetry_ops
+  - sg-34e04851  # heco_prod
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 30
+    delete_on_termination: false
+
+assign_eip: no
+
+count: 1
+
+tags:
+  customer:  heco

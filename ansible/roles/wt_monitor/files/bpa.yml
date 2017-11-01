@@ -1,0 +1,4 @@
+:snmp:
+  :round_datetime: true
+  :meter_data_interval: 1
+  :store_to_db: false

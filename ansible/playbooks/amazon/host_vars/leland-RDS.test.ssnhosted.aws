@@ -1,0 +1,23 @@
+rds_subnets:
+  - subnet-c4bcba82   # 10.18.16.112/28  us-west-2c HECO TEST BE
+  - subnet-4721e022   # 10.18.16.144/28  us-west-2b HECO PROD BE
+  - subnet-307fb855   # 10.18.16.16/28   us-west-2b DevOps Private
+
+zone: us-west-2c
+
+subnetgroup_name: walmart-test-group
+
+description: HECO Test RDS subnet group
+
+instance_name: walmart-test
+size: 100
+
+admin_user:  {{ product.admin }}
+admin_pass:  wt123
+
+# Backup retention days [0-35]
+backup_retention: 3
+
+vpc_security_groups: "sg-eee0488b,sg-faac189f,sg-d01fb5b5"
+
+

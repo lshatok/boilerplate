@@ -1,0 +1,52 @@
+defaults:
+    domain:  ssn.webtelemetry.amazon
+
+
+webtelemetry_ssx_dev-136:
+    vpcid:  vpc-c454a4ae
+    region:  us-east-1
+    rootkey:  id_rsa.pub
+    default_group:  sg-c8ca6bad  # webtelemetry-ssn-dev-group
+    subnet:
+        subnet-5659a93c : 10.77.136.0/22
+    #security_groups:
+    #   - add ssn dev security group
+    rootvol_size: 20
+
+webtelemetry_ssx_dev_hbase-136:
+    vpcid:  vpc-c454a4ae
+    region:  us-east-1
+    rootkey:  id_rsa.pub
+    default_group:  sg-c8ca6bad  # webtelemetry-ssn-dev-group
+    subnet:
+        subnet-5659a93c : 10.77.136.0/22
+    #security_groups:
+    #   - add ssn dev security group
+    rootvol_size: 70
+
+EBS_profiles:
+    30GB_opt:
+        type:  standard
+        devices:
+            sdf:  30
+
+    60GB_hbase:
+        type:  standard
+        devices:
+            sdi:  20
+            sdj:  20
+            sdk:  20
+
+    100GB_hbase:
+        type:  standard
+        devices:
+            sdi:  10
+            sdj:  10
+            sdk:  10
+            sdl:  10
+            sdm:  10
+            sdn:  10
+            sdo:  10
+            sdp:  10
+            sdq:  10
+            sdr:  10

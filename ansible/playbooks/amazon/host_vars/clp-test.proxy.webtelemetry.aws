@@ -1,0 +1,25 @@
+network_name: Walmart External
+
+subnet: subnet-e60a588f # walmart_internet_2a - 108.216.30.22/24
+
+application: proxy
+
+security_groups:
+  - sg-f31de19b #	walmart_test_proxy
+  - sg-4abd4222 #	walmart_ops
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+
+assign_eip: true
+
+count: 1
+
+tags:
+  customer: WALMART
+  stack_name: walmart-test
+
+release: xenial
+

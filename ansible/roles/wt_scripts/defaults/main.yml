@@ -1,0 +1,52 @@
+---
+virtualenv_path: "/WT/virtualenvs/telemetrix"
+
+custom.
+  bundler_ver: 1.10.6
+  path: /WT/ps-custom
+  branch: master
+  configs: /WT/configs
+  user: webtelemetry
+  group: wtgroup
+
+  source:
+    host: 127.0.0.1
+    account: admin
+    password: admin
+    source_path: /customerdata/outgoing
+    archive_path: /customerdata/archive
+    # 'filename_pattern' is a string fragment that must be present in ingested file filenames
+    filename_pattern: DQ_List
+
+  webtelemetry:
+    # 'host' format must include protocol; e.g., 'http://'; do not end with '/'
+    host: http://127.0.0.1
+    # Do not begin 'api_path' with '/'
+    api_path: api/v1/customer_data/accounts/csv
+    username: admin
+    password: admin
+    tenant_name: Intel
+
+  log:
+    path: /var/log/webtelemetry
+    filename: process_customer_csv_sftp.log
+
+  # Email non-functional as of 03-2016, email logged instead
+  email:
+    smtp_server:
+      host: <smtp host ip>
+      port: <smtp port>
+      sender_domain: <sender email domain>
+      username: <smtp username>
+      password: <smtp password>
+    from_address: <myname@mydomain.com>
+    to_address: vipul.gholap+pge_prod04_csv_processing@webtelemetry.us
+
+  telemetrix:
+    path: /tmp/telemetrixlistener
+    archive_path: /tmp/telemetrixlistener_archive
+    tenant_base_url: dev01-webtelemetry.dev.{{ product.url }}:443
+    tenant_username: username
+    tenant_password: password
+    utility_program_uid: telemetrix_ers
+    default_event_length: 7200

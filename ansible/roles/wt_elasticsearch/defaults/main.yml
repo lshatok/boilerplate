@@ -1,0 +1,21 @@
+---
+node_name: elasticsearch
+cluster_name: webtelemetry-dev
+masternode: "true"
+datanode: "true"
+http_enabled: "true"
+mlockall: "true"
+
+es_user: elasticsearch
+es_group: elasticsearch
+es_heap_size: 256m
+max_open_files: 65535
+
+es_log_dir: /var/log/elasticsearch
+es_data_dir: /var/lib/elasticsearch
+es_work_dir: /tmp/elasticsearch
+es_config_dir: /etc/elasticsearch
+es_config_file: /etc/elasticsearch/elasticsearch.yml
+es_java_opts:
+
+discovery_hosts: 127.0.0.1

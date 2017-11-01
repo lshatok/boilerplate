@@ -1,0 +1,160 @@
+#!/bin/sh
+#
+# Filename:     WTdb (init script)
+# chkconfig: 345 99 15
+# description:  Starts & stops the WebTelemetry database server (i.e. PostgreSQL
+#               backend daemon) which handles all database requests.
+# processname:  postgres
+# pidfile:      /var/run/WTdb.pid
+
+WTDB_VERSION=8.2
+if [ "$WEBTELEMETRY_HOME" = "" ]; then
+	WEBTELEMETRY_HOME=/WT
+fi
+WTDB=$WEBTELEMETRY_HOME/dbserver
+WTDB_BIN=$WTDB/bin
+WTDB_DATA=$WTDB/WTdb
+
+# Source function library
+INITD=/etc/rc.d/init.d
+. $INITD/functions
+
+# Get function listing for cross-distribution logic
+TYPESET=`typeset -f|grep "declare"`
+
+# Get config
+. /etc/sysconfig/network
+
+# Verify networking is up (required for binding WTdb daemon to interface)
+[ "${NETWORKING}" = "no" ] && exit 0
+
+# Verify WTdb control utility exists
+[ -f $WTDB_BIN/pg_ctl ] || exit 0
+
+
+start()
+{
+	WTDB_START=$"Starting WTdb service: "
+
+	# Check for the WTDB_DATA structure
+	if [ -f $WTDB_DATA/PG_VERSION ] && [ -d $WTDB_DATA/base ]; then
+
+		# Check version of existing WTDB_DATA
+		if [ `cat $WTDB_DATA/PG_VERSION` != "$WTDB_VERSION" ]; then
+			SYSDOCDIR="(Your System's documentation directory)"
+			echo
+			echo $"An old version of the database format was found."
+			echo $"You need to upgrade the data format before using WTdb."
+			echo $"See (Your System's documentation directory)/postgresql-$WTDB_VERSION/README.rpm-dist"
+			echo $"for more information."
+			exit 1
+		fi
+	# No existing WTDB_DATA! Initdb it.
+	else
+		echo -n $"Initializing database: "
+		if [ ! -d $WTDB_DATA ]; then
+			mkdir -p $WTDB_DATA
+			chown wtuser:wtgroup $WTDB_DATA
+		fi
+		# Make sure the locale from the initdb is preserved for later startups...
+		[ -f /etc/sysconfig/i18n ] && cp /etc/sysconfig/i18n $WTDB_DATA/../initdb.i18n
+		# Just in case no locale was set, use en_US
+		[ ! -f /etc/sysconfig/i18n ] && echo "LANG=en_US" > $WTDB_DATA/../initdb.i18n 
+		# Is expanded this early to be used in the command su runs
+		echo "export LANG LC_ALL LC_CTYPE LC_COLLATE LC_NUMERIC LC_CTYPE LC_TIME" >> $WTDB_DATA/../initdb.i18n
+		# Initialize the database
+		su -l wtuser -s /bin/sh -c "$WTDB_BIN/initdb --pgdata=$WTDB_DATA > /dev/null 2>&1" < /dev/null
+		[ -f $WTDB_DATA/PG_VERSION ] && echo_success
+		[ ! -f $WTDB_DATA/PG_VERSION ] && echo_failure
+		echo
+ 	fi
+
+	# Check for WTdb already running...
+	pid=`pidof -s $WTDB_BIN/postmaster`
+	if [ $pid ]; then
+		echo $"WTdb already running."
+	else
+		# Ready to start database, remove any stale lock files
+		rm -f /tmp/.s.PGSQL.* > /dev/null
+		echo -n "$WTDB_START"
+		su -l wtuser -s /bin/sh -c "$WTDB_BIN/pg_ctl start -D $WTDB_DATA -l $WTDB/log/pg.log -o \"-i\" & > /dev/null 2>&1" < /dev/null
+ 		sleep 1
+ 		pid=`pidof -s $WTDB_BIN/postmaster`
+ 		if [ $pid ]; then
+			if echo "$TYPESET"|grep "declare -f success ()" >/dev/null
+			then
+				success "$WTDB_START"
+			else
+				echo_success
+			fi
+			touch /var/lock/subsys/WTdb
+			echo $pid > /var/run/WTdb.pid
+			echo
+		else
+			if echo "$TYPESET"|grep "declare -f failure ()" >/dev/null
+			then
+				failure "$WTDB_START"
+			else
+				echo_failure
+			fi
+			echo
+		fi
+	fi
+}
+
+stop()
+{
+	# Check for WTdb already running... exit if this happens
+	pid=`pidof -s $WTDB_BIN/postmaster`
+	if [ "$pid" == "" ]; then
+	    rm -f /var/run/WTdb.pid
+	    rm -f /var/lock/subsys/WTdb
+	    exit 0;
+	fi
+	echo -n $"Stopping WTdb service: "
+	su -l wtuser -s /bin/sh -c "$WTDB_BIN/pg_ctl stop -D $WTDB_DATA -s -m fast" > /dev/null 2>&1
+        ret=$? # This will always be 0, as the return code doesn't propagate... Fix that some day.
+        if [ $ret -eq 0 ]; then
+	    echo_success
+        else
+            echo_failure
+        fi
+	echo
+	rm -f /var/run/WTdb.pid
+	rm -f /var/lock/subsys/WTdb
+}
+
+restart()
+{
+    stop
+    start
+}
+
+condrestart()
+{
+    [ -e /var/lock/subsys/WTdb ] && restart || :
+}
+
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  status)
+	status postgres
+	;;
+  restart)
+	restart
+	;;
+  condrestart)
+	condrestart
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|status|restart|condrestart}"
+	exit 1
+esac
+exit 0

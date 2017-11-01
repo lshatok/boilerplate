@@ -1,0 +1,4 @@
+---
+- include: telemetrix-snmp-drivers.yml
+- include: telemetrix-data-collector.yml
+- include: telemetrix-data.yml

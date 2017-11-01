@@ -1,0 +1,2 @@
+## WebTelemetry Sudoer's List ##
+%{{ product.admin }}  ALL=(ALL)  NOPASSWD:ALL

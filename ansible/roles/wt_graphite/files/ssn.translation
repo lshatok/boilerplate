@@ -1,0 +1,62 @@
+# Types of data tenant is allowed to load
+[datatype]
+amm=meterdata
+customer=customer
+meter=meter
+location=location
+#devices=devices
+
+# One on one mapping of all the data types defines up
+
+# exention is the supported file extension for given data type.
+# parser defines which parser to use. This is where we define if we have custom parser
+# base is the base element of the xml
+# parent is the parent tag of the xml
+# which child to loop over to get the data
+# meterid is the python expression to pull this data out of xml
+# time is the python expression to pull this data out of xml
+# kwh is the python expression to pull this data out of xml
+# kwhconvert is the conversion rate for the given data to kwh, this is needed as WT format is KWH
+# headers define what are the columns in the message placed on AMQP
+
+[meterdata]
+parser=XMLParser
+base=SSNExportDocument
+parent=MeterData
+child=IntervalReadData
+meterid=elem.get('MeterName')
+child=elem.findall(self._namespace(elem)+"IntervalReadData/")
+time=self.utils.convert_to_UTC_datetime(temp.get('EndTime'))  #temp.get('EndTime')
+kwh=temp.find(self._namespace(elem)+"Reading").get('Value')
+kwhconvert=1
+headers=datatype,tenant,filename,time,meterid,kwh
+
+
+[customer]
+parser=CustomSSNDelimiterParser
+mapped_columns=account number,address 1,address 2,address 3,city,state,zip code,service address,service city,service state,service zip code,rate category,device location,status flag,status date,dr enroll flag,rate effective date
+headers=datatype,tenant,filename,account_number,address_1,address_2,address_3,city,state,zip_code,service_address,service_city,service_state,service_zip_code,rate_category,device_location,status_flag,status_date,dr_enroll_flag,rate_effective_date
+delimiter=~
+clean_columns=rate category
+#cc_0=re.findall(r"[\w']+", data)[0]
+cc_0=data.upper()[:data.upper().find("V")]+"V"
+except_columns=dr enroll flag
+ec_0=0
+
+[meter]
+parser=DelimiterParser
+mapped_columns=Device_Util_ID,Action,Type,NIC_MAC_Address
+headers=datatype,tenant,filename,device_util_id,action,type,nic_mac_address
+delimiter=tab
+
+[location]
+parser=DelimiterParser
+mapped_columns=Device_Util_ID,Load_Device_Type,Load_Action,Device_Operational_Status,Cust_Account_No,Service_Point_Util_Id
+headers=datatype,tenant,filename,device_util_id,load_device_type,load_action,device_operational_status,cust_account_no,service_point_util_id
+delimiter=tab
+
+#[devices]
+#parser=DelimiterParser
+#mapped_columns=mac_id,service_point_id,device_type
+#headers=datatype,tenant,filename,mac_id,service_point_id,device_type
+#delimiter=,

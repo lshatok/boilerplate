@@ -1,0 +1,8 @@
+---
+- name: RedHat | Install dependencies
+  yum: name={{ item }}
+  with_items:
+    - cronie
+    - gzip
+    - python-boto
+    - s3cmd

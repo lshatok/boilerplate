@@ -1,0 +1,13 @@
+nagios:
+  hostname: ip-10-81-0-11
+  checks:
+    - name: os
+    - name: nginx
+    - name: unicorn
+    - name: redis
+    - name: resque
+
+    - name:telemetrix_error_script
+
+elasticsearch:
+    poll_cycles: 7

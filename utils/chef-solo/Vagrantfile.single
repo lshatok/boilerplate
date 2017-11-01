@@ -1,0 +1,42 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant::Config.run do |config|
+  deployment_id = "vagrant_single"
+
+  config.vm.box = "xenial64"
+  config.vm.box_url = "http://files.vagrantup.com/xenial64.box"
+
+  config.vm.network :hostonly, "10.0.0.2"
+
+  config.vm.provision :chef_solo do |chef|
+    chef.log_level = :debug
+    chef.cookbooks_path = "cookbooks"
+    chef.roles_path = "roles"
+    chef.add_role("postgresql")
+    chef.add_role("redis")
+    chef.add_role("influxdb")
+    chef.add_role("grafana")
+      chef.json = {
+        :grafana => {
+          :deployment_id => deployment_id,
+          :web_server_fqdn => "demo03.dev.{{ product.url }}",
+          :runlist => ["cluster", "master"]
+        },
+        :postgresql => {
+          :host => "localhost",
+          :port => 3306
+        },
+        :redis => {
+          :host => "localhost",
+          :port => 6379
+        },
+        :influxdb => {
+          :address => "localhost",
+          :port => 5672
+        }
+      }
+  end
+
+  config.vm.customize ["modifyvm", :id, "--memory", "3072", "--cpus", "2"]
+end

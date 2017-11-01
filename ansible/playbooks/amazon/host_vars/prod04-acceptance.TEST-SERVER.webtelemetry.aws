@@ -1,0 +1,22 @@
+network_name: Prod04Acc backhaul_2b
+
+subnet: subnet-109cb175
+
+application: "TEST SERVER"
+
+security_groups:
+  - sg-bd9be4d9
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+
+assign_eip: no
+
+count: 1
+
+tags:
+  customer:  webtelemetry
+  stack_name: prod04
+

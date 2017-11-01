@@ -1,0 +1,7 @@
+---
+- name: selinux config
+  template: src=selinux_config.j2 dest="{{ item }}" owner=root group=root mode=644
+  with_items:
+    - /etc/selinux/config
+  ignore_errors: true
+  tags: version

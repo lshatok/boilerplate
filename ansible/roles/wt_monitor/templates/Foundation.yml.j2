@@ -1,0 +1,175 @@
+##EDITS FOR THIS FILE SHOULD BE DONE IN roles/wt_grafana/templates/Basalt.yml.j2 -- this is a symlink
+
+rdbms:
+  telemetrix:
+    url: postgresql://{{ telemetrix.db_user }}:{{ telemetrix.db_pass }}@{{ telemetrix.db_host }}/{{ telemetrix.db_name }}
+    max_overflow: 2
+    pool_size: 1
+    pool_recycle: 3600
+  grafana:
+  #TODO: review
+    url: postgresql://root:root@localhost/grafana
+    max_overflow: 2
+    pool_size: 1
+    pool_recycle: 3600
+  snmp:
+    url: postgresql://{{ snmp.postgresql_db.user }}:{{ snmp.postgresql_db.pass }}@{{ snmp.postgresql_db.host }}:3306/wt_db
+    max_overflow: 2
+    pool_size: 1
+    pool_recycle: 3600
+
+parseconfig:
+  encoding: utf-8
+  msg_buffer_size: 20000
+  end_of_file_marker: _EOM #__EOM__
+
+ampq:
+  ampq_url: influxdb://{{ telemetrix.influxdb.user }}:{{ telemetrix.influxdb.password }}@{{ telemetrix.influxdb.host }}:5672/%2F
+
+cache:
+  host: {{ snmp.analytics.host }}
+{% if snmp.analytics.password is defined %}
+  password: {{ snmp.analytics.password }}
+{% endif %}
+  port: 6379
+  db: 0
+  max_connections: 2
+
+hbase:
+  host: {{ hbase.thriftserver_host }} # thrift server hostname
+  port: 9090 # thrift server port
+  timeout: 30000  # milliseconds
+  retry_count: 2
+  retry_pause_seconds: 1
+  num_connections_per_table: 5
+  device_data:
+    hbase_table_prefix: device_data_
+    column_families: [actual,ts]
+    default_charge: usage
+    shed_charge: shed
+    default_uom: kwh
+    default_column_family: actual
+    clean_raw_dup_write: true # For V1, incoming raw data gets auto duplicated into clean hbase table.
+  snmp_data:
+    hbase_table_name: snmp_data
+  transmission_system_data:
+    hbase_table: transmission_system_data
+    default_uom: mw
+    default_charge: usage
+  forecast:
+    hbase_table_prefix: fcst_
+    column_families: [current, dayahead]
+    default_charge: usage
+    default_uom: kwh
+    default_fcst_type: baseline_ld_fcst
+    curtailed_fcst_type: curtailed_ld_fcst
+    default_column_family: current
+    default_model: {{ telemetrix.forecast_model }}
+
+hadoop:
+  zookeeper_quorum: {{ hadoop.zookeeper_hosts }}
+  hdfs_name_node_url: hdfs://{{ hdfs.namenode_host }}:8020/hbase
+  hdfs_default_fs: hdfs://{{ hdfs.namenode_host }}:8020
+  mapred_job_tracker: {{ hdfs.namenode_host }}:8032
+  mapred_compression_codec: org.apache.hadoop.io.compress.SnappyCodec
+  demandcharge:
+    num_meters_per_task: {{ telemetrix.demandcharge.num_meters_per_task }}
+    mapred_job_reuse_jvm_num_tasks: {{ telemetrix.demandcharge.mapred_job_reuse_jvm_num_tasks }}
+    mapred_child_java_opts: {{ telemetrix.demandcharge.mapred_child_java_opts }}
+    mapred_task_timeout: {{ telemetrix.demandcharge.mapred_task_timeout_ms }}
+  training:
+    num_meters_per_task: {{ telemetrix.training.num_meters_per_task }}
+    mapred_job_reuse_jvm_num_tasks: {{ telemetrix.training.mapred_job_reuse_jvm_num_tasks }}
+    mapred_child_java_opts: {{ telemetrix.training.mapred_child_java_opts }}
+    mapred_task_timeout: {{ telemetrix.training.mapred_task_timeout_ms }}
+  evaluation:
+    num_meters_per_task: {{ telemetrix.evaluation.num_meters_per_task }}
+    mapred_job_reuse_jvm_num_tasks: {{ telemetrix.evaluation.mapred_job_reuse_jvm_num_tasks }}
+    mapred_child_java_opts: {{ telemetrix.evaluation.mapred_child_java_opts }}
+    mapred_task_timeout: {{ telemetrix.evaluation.mapred_task_timeout_ms }}
+  metrics:
+    num_meters_per_task: {{ telemetrix.metrics.num_meters_per_task }}
+    mapred_job_reuse_jvm_num_tasks: {{ telemetrix.metrics.mapred_job_reuse_jvm_num_tasks }}
+    mapred_child_java_opts: {{ telemetrix.metrics.mapred_child_java_opts }}
+    mapred_task_timeout: {{ telemetrix.metrics.mapred_task_timeout_ms }}
+  reporting:
+    num_meters_per_task: {{ telemetrix.reporting.num_meters_per_task }}
+    mapred_job_reuse_jvm_num_tasks: {{ telemetrix.reporting.mapred_job_reuse_jvm_num_tasks }}
+    mapred_child_java_opts: {{ telemetrix.reporting.mapred_child_java_opts }}
+    mapred_task_timeout: {{ telemetrix.reporting.mapred_task_timeout_ms }}
+
+spark:
+  master: {{ spark.master }}
+  app_name: {{ spark.app_name }}
+  settings:
+    spark.executor.memory: {{ spark.settings.spark_executor_memory }}
+
+metrics:
+  host: localhost
+  port: 2003
+  pickle_port: 2004
+  deployment_id: prospects
+
+webservices:
+  telemetrix:
+    url: https://{{ telemetrix.host }}
+    username: {{ grafana.internal_api.user }}
+    password: {{ grafana.internal_api.pass }}
+    max_redirects: 5
+  webtelemetry:
+    url: https://{{ grafana.host }}
+    username: {{ grafana.internal_api.user }}
+    password: {{ grafana.internal_api.pass }}
+    max_redirects: 5
+  snmp:
+    url: {{ grafana.snmp.url }}
+    username: admin
+    password: admin
+    max_redirects: 5
+
+logger:
+  mode: {{ log.mode }}
+  level: {{ log.level }}
+  log: /WT/logs/telemetrix.log
+  error_log: /WT/logs/metrix_error.log
+  remote_host: {{ log.logstash_host }}
+  remote_timeout: 5
+
+{% if incremental_job is defined%}
+incremental_job:
+  max_skip_count: {{ incremental_job.max_skip_count }}
+  past_cleaning_days: {{ incremental_job.past_cleaning_days }}
+  batch_size: {{ incremental_job.batch_size }}
+  duration: {{ incremental_job.duration }}
+{% endif %}
+
+{% if webtelemetry_callback is defined%}
+webtelemetry_callback:
+  participant_api:
+    eventlist_size_limit: {{ webtelemetry_callback.participant_api.eventlist_size_limit }}
+    accounts_details_batch_size: {{ webtelemetry_callback.participant_api.account_details_batch_size }}
+  event_api:
+    num_trailing_days: {{ webtelemetry_callback.event_api.num_trailing_days }}
+{% endif %}
+
+{% if full_load_job is defined%}
+full_load_job:
+  batch_size: {{ full_load_job.batch_size }}
+{% endif %}
+
+aggregation:
+  number_of_partitions: {{ telemetrix.aggregation.number_of_partitions }}
+  sliding_window_days: {{ telemetrix.aggregation.sliding_window_days }}
+  sliding_window_cycles: {{ telemetrix.aggregation.sliding_window_cycles }}
+  sliding_window_events: {{ telemetrix.aggregation.sliding_window_events }}
+  clean_type: {{ telemetrix.aggregation.clean_type }}
+  baseline_type: {{ telemetrix.aggregation.baseline_type }}
+  default_type: {{ telemetrix.aggregation.default_type }}
+
+event_meters_api:
+  method_name:
+    - regression_weather_based
+
+kafka:
+  host: {{ kafka.host }}
+  port: 9092

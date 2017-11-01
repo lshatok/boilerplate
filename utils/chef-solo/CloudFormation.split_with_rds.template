@@ -1,0 +1,254 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Description" : "WebTelemetry Web running on a single instance with a POSTGRESQL RDS server and separate Redis and RabbitMQ servers",
+
+  "Resources" : {
+    "DBServer" : {
+      "Type" : "AWS::RDS::DBInstance",
+      "Properties" : {
+        "Engine" : "POSTGRESQL",
+        "EngineVersion" : "5.5",
+        "AllocatedStorage" : "5",
+        "DBInstanceClass" : "db.m1.small",
+        "MasterUsername" : webtelemetry,
+        "MasterUserPassword" : "abc123"
+      }
+    },
+    "RedisServer": {
+      "Type" : "AWS::EC2::Instance",
+      "Metadata" : {
+        "AWS::CloudFormation::Init" : {
+          "config" : {
+            "packages" : {
+              "rubygems" : {
+                "chef" : []
+              },
+              "apt" : {
+                "ruby1.9.3" : [],
+                "rubygems" : []
+              }
+            },
+            "files": {
+              "/etc/gemrc" : {
+                "content" : {"Fn::Join": ["\n", [
+                  "install: --no-rdoc --no-ri",
+                  "update: --no-rdoc --no-ri"
+                ]] },
+                "mode" : "000644",
+                "owner" : "root",
+                "group" : "root"
+              },
+              "/etc/chef/solo.rb": {
+                "content" : {"Fn::Join": ["\n", [
+                  "cookbook_path \"/var/chef-solo/cookbooks\"",
+                  "role_path \"/var/chef-solo/roles\"",
+                  "json_attribs \"/etc/chef/node.json\"",
+                  "recipe_url \"https://s3.amazonaws.com/ubalo/webtelemetry/cookbooks.tar.gz\""
+                ]] },
+                "mode" : "000644",
+                "owner" : "root",
+                "group" : "root"
+              },
+              "/etc/chef/node.json" : {
+                "content" : {
+                  "grafana" : {
+                    "deployment_id" : "aws_split"
+                  },
+                  "run_list" : ["role[redis]"]
+                },
+                "mode" : "000644",
+                "owner" : "root",
+                "group" : "root"
+              }
+            }
+          }
+        }
+      },
+      "Properties" : {
+        "InstanceType" : "m1.large",
+        "ImageId" : "ami-0145d268",
+        "KeyName" : "development",
+        "SecurityGroups" : [{"Ref" : "WebtelemetrywebSecurityGroup"}],
+        "UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
+          "#!/usr/bin/env bash\n",
+          "apt-get -y install python-pip\n",
+          "pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n",
+          "cfn-init --region ", {"Ref" : "AWS::Region"}, " -s ", {"Ref" : "AWS::StackName"}, " -r RedisServer\n",
+          "mkdir /var/chef-solo\n",
+          "curl https://s3.amazonaws.com/ubalo/webtelemetry/roles.tar.gz | tar zx -C /var/chef-solo\n",
+          "chef-solo -c /etc/chef/solo.rb -j /etc/chef/node.json"
+        ]]}}
+      }
+    },
+    "RabbitmqServer": {
+      "Type" : "AWS::EC2::Instance",
+      "Metadata" : {
+        "AWS::CloudFormation::Init" : {
+          "config" : {
+            "packages" : {
+              "rubygems" : {
+                "chef" : []
+              },
+              "apt" : {
+                "ruby1.9.3" : [],
+                "rubygems" : []
+              }
+            },
+            "files": {
+              "/etc/gemrc" : {
+                "content" : {"Fn::Join": ["\n", [
+                  "install: --no-rdoc --no-ri",
+                  "update: --no-rdoc --no-ri"
+                ]] },
+                "mode" : "000644",
+                "owner" : "root",
+                "group" : "root"
+              },
+              "/etc/chef/solo.rb": {
+                "content" : {"Fn::Join": ["\n", [
+                  "cookbook_path \"/var/chef-solo/cookbooks\"",
+                  "role_path \"/var/chef-solo/roles\"",
+                  "json_attribs \"/etc/chef/node.json\"",
+                  "recipe_url \"https://s3.amazonaws.com/ubalo/webtelemetry/cookbooks.tar.gz\""
+                ]] },
+                "mode" : "000644",
+                "owner" : "root",
+                "group" : "root"
+              },
+              "/etc/chef/node.json" : {
+                "content" : {
+                  "grafana" : {
+                    "deployment_id" : "aws_split"
+                  },
+                  "run_list" : ["role[influxdb]"]
+                },
+                "mode" : "000644",
+                "owner" : "root",
+                "group" : "root"
+              }
+            }
+          }
+        }
+      },
+      "Properties" : {
+        "InstanceType" : "m1.large",
+        "ImageId" : "ami-0145d268",
+        "KeyName" : "development",
+        "SecurityGroups" : [{"Ref" : "WebtelemetrywebSecurityGroup"}],
+        "UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
+          "#!/usr/bin/env bash\n",
+          "apt-get -y install python-pip\n",
+          "pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n",
+          "cfn-init --region ", {"Ref" : "AWS::Region"}, " -s ", {"Ref" : "AWS::StackName"}, " -r RabbitmqServer\n",
+          "mkdir /var/chef-solo\n",
+          "curl https://s3.amazonaws.com/ubalo/webtelemetry/roles.tar.gz | tar zx -C /var/chef-solo\n",
+          "chef-solo -c /etc/chef/solo.rb -j /etc/chef/node.json"
+        ]]}}
+      }
+    },
+    "WebtelemetrywebServer" : {
+      "Type" : "AWS::EC2::Instance",
+      "Metadata" : {
+        "AWS::CloudFormation::Init" : {
+          "config" : {
+            "packages" : {
+              "rubygems" : {
+                "chef" : []
+              },
+              "apt" : {
+                "ruby1.9.3" : [],
+                "rubygems" : []
+              }
+            },
+            "files": {
+              "/etc/gemrc" : {
+                "content" : {"Fn::Join": ["\n", [
+                  "install: --no-rdoc --no-ri",
+                  "update: --no-rdoc --no-ri"
+                ]] },
+                "mode" : "000644",
+                "owner" : "root",
+                "group" : "root"
+              },
+              "/etc/chef/solo.rb": {
+                "content" : {"Fn::Join": ["\n", [
+                  "cookbook_path \"/var/chef-solo/cookbooks\"",
+                  "role_path \"/var/chef-solo/roles\"",
+                  "json_attribs \"/etc/chef/node.json\"",
+                  "recipe_url \"https://s3.amazonaws.com/ubalo/webtelemetry/cookbooks.tar.gz\""
+                ]] },
+                "mode" : "000644",
+                "owner" : "root",
+                "group" : "root"
+              },
+              "/etc/chef/node.json" : {
+                "content" : {
+                  "grafana" : {
+                    "deployment_id" : "aws_split",
+                    "runlist" : ["cluster", "master"]
+                  },
+                  "postgresql" : {
+                    "host" : { "Fn::GetAtt" : ["DBServer", "Endpoint.Address"] },
+                    "port" : { "Fn::GetAtt" : ["DBServer", "Endpoint.Port"] }
+                  },
+                  "redis" : {
+                    "host" : { "Fn::GetAtt" : ["RedisServer", "PrivateIp"] },
+                    "port" : "6379"
+                  },
+                  "influxdb" : {
+                    "address" : { "Fn::GetAtt" : ["RabbitmqServer", "PrivateIp"] },
+                    "port" : "5672"
+                  },
+                  "run_list" : ["role[influxdb]", "role[grafana]"]
+                },
+                "mode" : "000644",
+                "owner" : "root",
+                "group" : "root"
+              }
+            }
+          }
+        }
+      },
+      "Properties" : {
+        "InstanceType" : "m1.large",
+        "ImageId" : "ami-0145d268",
+        "KeyName" : "development",
+        "SecurityGroups" : [{"Ref" : "WebtelemetrywebSecurityGroup"}],
+        "UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
+          "#!/usr/bin/env bash\n",
+          "apt-get -y install python-pip\n",
+          "pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n",
+          "cfn-init --region ", {"Ref" : "AWS::Region"}, " -s ", {"Ref" : "AWS::StackName"}, " -r WebtelemetrywebServer\n",
+          "mkdir /var/chef-solo\n",
+          "curl https://s3.amazonaws.com/ubalo/webtelemetry/roles.tar.gz | tar zx -C /var/chef-solo\n",
+          "chef-solo -c /etc/chef/solo.rb -j /etc/chef/node.json"
+        ]]}}
+      }
+    },
+    "WebtelemetrywebSecurityGroup" : {
+      "Type" : "AWS::EC2::SecurityGroup",
+      "Properties" : {
+        "GroupDescription" : "Enable https and ssh access",
+        "SecurityGroupIngress" : [
+        {"IpProtocol" : "tcp", "FromPort" : "443", "ToPort" : "443", "CidrIp" : "0.0.0.0/0"},
+        {"IpProtocol" : "tcp", "FromPort" : "22", "ToPort" : "22", "CidrIp" : "0.0.0.0/0"}
+        ]
+      }
+    },
+    "DBSecurityGroup" : {
+      "Type" : "AWS::RDS::DBSecurityGroup",
+      "Properties" : {
+        "GroupDescription" : "Grant database access for WebTelemetry Web server",
+        "DBSecurityGroupIngress" : {
+          "EC2SecurityGroupName" : { "Ref" : "WebtelemetrywebSecurityGroup" }
+        }
+      }
+    }
+  },
+  "Outputs" : {
+    "WebsiteURL" : {
+      "Value" : { "Fn::Join" : ["", ["https://", {"Fn::GetAtt" : ["WebtelemetrywebServer", "PublicDnsName"]} ]]},
+      "Description" : "URL for WebTelemetry Web"
+    }
+  }
+}

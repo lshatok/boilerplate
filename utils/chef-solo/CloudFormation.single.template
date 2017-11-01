@@ -1,0 +1,77 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Description" : "WebTelemetry Web running on a single instance (including POSTGRESQL)",
+
+  "Resources" : {
+    "WebtelemetrywebServer" : {
+      "Type" : "AWS::EC2::Instance",
+      "Metadata" : {
+        "AWS::CloudFormation::Init" : {
+          "config" : {
+            "packages" : {
+              "rubygems" : {
+                "chef" : []
+              },
+              "apt" : {
+                "ruby1.9.3" : [],
+                "rubygems" : []
+              }
+            },
+            "files": {
+              "/etc/chef/solo.rb": {
+                "content" : {"Fn::Join": ["\n", [
+                  "cookbook_path \"/var/chef-solo/cookbooks\"",
+                  "role_path \"/var/chef-solo/roles\"",
+                  "json_attribs \"/etc/chef/node.json\"",
+                  "recipe_url \"https://s3.amazonaws.com/ubalo/webtelemetry/cookbooks.tar.gz\""
+                ]] },
+                "mode" : "000644",
+                "owner" : "root",
+                "group" : "root"
+              },
+              "/etc/chef/node.json" : {
+                "content" : {
+                  "grafana" : {
+                    "deployment_id" : "aws_single",
+                    "web_server_fqdn" : "demo03.dev.{{ product.url }}",
+                    "runlist" : ["cluster", "master"]
+                  },
+                  "postgresql" : {
+                    "host" : "localhost"
+                    "port" : "3306"
+                  },
+                  "redis" : {
+                    "host" : "localhost",
+                    "port" : "6379"
+                  },
+                  "influxdb" : {
+                    "address" : "localhost",
+                    "port" : "5672"
+                  },
+                  "run_list" : ["role[postgresql]", "role[redis]", "role[influxdb]", "role[grafana]"]
+                },
+                "mode" : "000644",
+                "owner" : "root",
+                "group" : "root"
+              }
+            }
+          }
+        }
+      },
+      "Properties" : {
+        "InstanceType" : "m1.large",
+        "ImageId" : "ami-0145d268",
+        "KeyName" : "development",
+        "UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
+          "#!/usr/bin/env bash\n",
+          "apt-get -y install python-pip\n",
+          "pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n",
+          "cfn-init --region ", {"Ref" : "AWS::Region"}, " -s ", {"Ref" : "AWS::StackName"}, " -r WebtelemetrywebServer\n",
+          "mkdir /var/chef-solo\n",
+          "curl https://s3.amazonaws.com/ubalo/webtelemetry/roles.tar.gz | tar zx -C /var/chef-solo\n",
+          "chef-solo -c /etc/chef/solo.rb -j /etc/chef/node.json"
+        ]]}}
+      }
+    }
+  }
+}

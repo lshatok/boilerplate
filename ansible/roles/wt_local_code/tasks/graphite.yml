@@ -1,0 +1,25 @@
+---
+- name: create tmp dir
+  local_action: "shell mkdir {{ local_code.paths.grafana }}/tmp"
+  sudo: False
+  ignore_errors: true
+
+- name: remove current 
+  local_action: shell rm local-grafana.tar.gz
+  args:
+    chdir: "{{ local_code.paths.grafana }}/tmp"
+  sudo: False
+  ignore_errors: true
+
+- name: compile grafana
+  local_action: shell tar -zvcf tmp/local-grafana.tar.gz grafana
+  sudo: False
+  args:
+    chdir: "{{ local_code.paths.grafana }}"
+
+- copy: src="{{ local_code.paths.grafana }}/tmp/local-grafana.tar.gz" dest=/tmp/local-grafana.tar.gz owner=wtuser group=wtgroup
+
+- command: "rm -r {{ grafana.path }}/grafana"
+  ignore_errors: true
+
+- unarchive: src=/tmp/local-grafana.tar.gz dest="{{ grafana.path }}" copy=no owner=wtuser group=wtgroup

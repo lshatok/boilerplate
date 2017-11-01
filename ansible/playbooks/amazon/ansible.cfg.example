@@ -1,0 +1,14 @@
+[defaults]
+host_key_checking = False
+remote_user         = ubuntu
+private_key_file    = <path to key file>
+roles_path =  ../../roles/
+ansible_managed = Ansible managed: {file} modified on %Y-%m-%d %H:%M:%S by {uid} on {host}
+display_skipped_hosts=True
+error_on_undefined_vars=True
+force_color = 1
+forks=50
+hostfile = inventory/hosts.yml
+log_path= ~/ansible.log
+system_warnings = True
+serial=50

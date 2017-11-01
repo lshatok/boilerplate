@@ -1,0 +1,64 @@
+################################### Cluster ###################################
+
+# Cluster name identifies your cluster for auto-discovery. If you're running
+# multiple clusters on the same network, make sure you're using unique names.
+#
+
+node.name: {{ node_name }}
+cluster.name: {{ cluster_name }}
+node.master: {{ masternode }}
+node.data: {{ datanode }}
+http.enabled: {{ http_enabled }}
+bootstrap.mlockall: {{ mlockall }}
+#script.disable_dynamic: true
+network.bind_host: 0.0.0.0
+
+discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.unicast.hosts: [{{ discovery_hosts }}]
+
+#################################### Node #####################################
+
+# Node names are generated dynamically on startup, so you're relieved
+# from configuring them manually. You can tie this node to a specific name:
+#
+
+# Every node can be configured to allow or deny being eligible as the master,
+# and to allow or deny to store the data.
+#
+# Allow this node to be eligible as a master node (enabled by default):
+#
+
+#
+# Allow this node to store data (enabled by default):
+#
+
+
+# You can exploit these settings to design advanced cluster topologies.
+#
+# 1. You want this node to never become a master node, only to hold data.
+#    This will be the "workhorse" of your cluster.
+#
+##################### Elasticsearch Configuration Example #####################
+
+# This file contains an overview of various configuration settings,
+# targeted at operations staff. Application developers should
+# consult the guide at <http://elasticsearch.org/guide>.
+#
+# The installation procedure is covered at
+# <http://elasticsearch.org/guide/en/elasticsearch/reference/current/setup.html>.
+#
+# Elasticsearch comes with reasonable defaults for most settings,
+# so you can try it out without bothering with configuration.
+#
+# Most of the time, these defaults are just fine for running a production
+# cluster. If you're fine-tuning your cluster, or wondering about the
+# effect of certain configuration option, please _do ask_ on the
+# mailing list or IRC channel [http://elasticsearch.org/community].
+
+# Any element in the configuration can be replaced with environment variables
+# by placing them in ${...} notation. For example:
+#
+# node.rack: ${RACK_ENV_VAR}
+
+# For information on supported formats and syntax for the config file, see
+# <http://elasticsearch.org/guide/en/elasticsearch/reference/current/setup-configuration.html>

@@ -1,0 +1,19 @@
+---
+cloudera_manager: true
+cdh_version: 5
+
+hbase_mounts:
+  - device_name: /dev/xvdc
+    mount_point: /hbase/vol01
+  - device_name: /dev/xvde
+    mount_point: /hbase/vol02
+  - device_name: /dev/xvdf
+    mount_point: /hbase/vol03
+  - device_name: /dev/xvdg
+    mount_point: /hbase/vol04
+
+## limits.conf settings ##
+
+limits_lines:
+  - "hdfs  -       nofile  32768"
+  - "hbase -       nofile  32768"

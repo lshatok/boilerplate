@@ -1,0 +1,42 @@
+---
+
+- name: Gather facts
+  action: ec2_facts
+
+- name: Starting instances
+  local_action:
+    module: ec2_vol
+    instance: "{{ ansible_ec2_instance_id }}"
+    region: "{{ aws_hdfs_datanode.region }}"
+    volume_size: "{{ item.volume_size }}"
+    volume_type: gp2
+    device_name: "/dev/sd{{ item.device_name }}"
+    delete_on_termination: "{{ item.delete_on_termination }}"
+  with_items: aws_hdfs_datanode.hdfs_mounts
+
+- name: Update system limits
+  lineinfile: dest=/etc/security/limits.conf
+              line="{{ item }}"
+  with_items: '{{ limits_lines }}'
+  become: true
+
+- name: Disable swap
+  sysctl: name=vm.swappiness value=0 state=present
+  become: true
+
+- name: Create FileSystems
+  filesystem: fstype=xfs dev="/dev/xvd{{ item.device_name }}" force=yes
+  with_items: '{{ aws_hdfs_datanode.hdfs_mounts }}'
+  become: true
+
+- name: Create directories
+  file: path="{{ item.mount_point }}" state=directory
+  with_items: '{{ aws_hdfs_datanode.hdfs_mounts }}'
+  become: true
+
+- name: Mount FileSystems
+  mount: name="{{ item.mount_point }}" src="/dev/xvd{{ item.device_name }}" fstype=xfs
+         opts=defaults,nobootwait,noatime
+         state=mounted
+  with_items: '{{ aws_hdfs_datanode.hdfs_mounts }}'
+  become: true

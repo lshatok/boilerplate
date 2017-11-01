@@ -1,0 +1,35 @@
+# Types of data tenant is allowed to load
+[datatype]
+meter=meter
+json=json
+meterdata=meterdata
+devices=devices
+
+[meter]
+parser=DelimiterParser
+mapped_columns=Time period (start),Time period (end),Usage (KWH)
+headers=datatype,tenant,filename,start,end,usage
+delimiter=,
+
+[json]
+parser=JsonParser
+base=meterdata
+mapped_columns=device_id,time,usage_kwh
+headers=datatype,tenant,filename,device_id,time,usage_kwh
+
+[meterdata]
+parser=XMLParser
+base=SSNExportDocument
+parent=MeterData
+child=IntervalReadData
+meterid=elem.get('MeterName')
+child=elem.findall(self._namespace(elem)+"IntervalReadData/")
+time=self.utils.convert_to_UTC_datetime(temp.get('EndTime'))  #temp.get('EndTime')
+kwh=temp.find(self._namespace(elem)+"Reading").get('Value')
+kwhconvert=1
+headers=datatype,tenant,filename,time,meterid,kwh
+
+[devices]
+parser=XlsParser
+mapped_columns=Time period (start),Time period (end),Usage (KWH)
+headers=datatype,tenant,filename,start,end,usage

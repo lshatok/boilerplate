@@ -1,0 +1,59 @@
+---
+- name: Create database.yml
+  template: src=database-jruby.yml.j2 dest=/WT/configs/database.yml
+  sudo_user: wtuser
+
+- name: Update settings.local.yml
+  template: src=settings-jruby.yml.j2 dest=/WT/configs/settings.local.yml owner=wtuser group=wtgroup
+  sudo_user: wtuser
+
+- name: Update Basalt.yml
+  template: src=Basalt.yml.j2 dest=/WT/configs/Basalt.yml owner=wtuser group=wtgroup
+  sudo_user: wtuser
+
+- name: Stat database.yml
+  stat: path=/WT/appserver/webapps/snmp/WEB-INF/config/database.yml
+  register: database
+  changed_when: true
+
+- name: Remove database.yml
+  command: rm /WT/appserver/webapps/snmp/WEB-INF/config/database.yml
+  when: database.stat.exists
+
+- name: Create symlink for database.yml
+  file: src=/WT/configs/database.yml dest=/WT/appserver/webapps/snmp/WEB-INF/config/database.yml
+  args:
+    owner: {{ product.admin }}
+    group: {{ product.admin }}
+    state: link
+    force: yes
+
+- name: Create symlink for settings.local.yml
+  file: src=/WT/configs/settings.local.yml dest=/WT/appserver/webapps/snmp/WEB-INF/config/settings.local.yml
+  args:
+    owner: {{ product.admin }}
+    group: {{ product.admin }}
+    state: link
+    force: yes
+
+- name: Create symlink for Basalt.yml
+  file: src=/WT/configs/Basalt.yml dest=/WT/shared/Basalt.yml
+  args:
+    owner: {{ product.admin }}
+    group: {{ product.admin }}
+    state: link
+    force: yes
+
+- name: Create log directory
+  file: dest=/WT/logs
+  args:
+    owner: {{ product.admin }}
+    group: {{ product.admin }}
+    state: directory
+
+- name: Touch grafana log
+  file: dest=/WT/logs/grafana.log
+  args:
+    owner: {{ product.admin }}
+    group: {{ product.admin }}
+    state: touch

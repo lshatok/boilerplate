@@ -1,0 +1,3 @@
+ansible/playbooks/webtelemetry/password_vars/dev01  diff=ansible-vault merge=binary
+ansible/playbooks/webtelemetry/password_vars/qa07 diff=ansible-vault merge=binary
+

@@ -1,0 +1,12 @@
+---
+- include: install_cdh_repository.yml
+
+- name: Install dependencies
+  apt: name="{{ item }}" state=latest
+  with_items:
+    - oracle-j2sdk1.7
+    - python-psycopg2
+    - libssl-dev
+
+- include: install_cloudera_manager.yml
+  when: cloudera_manager

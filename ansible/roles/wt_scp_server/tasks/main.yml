@@ -1,0 +1,69 @@
+## SCP Server Playbook ##
+---
+- name: apt-get rssh
+  apt: name=rssh state=present update_cache=yes cache_valid_time=3600
+
+- name: update rssh.conf template
+  template: src=rssh.conf.j2 dest=/etc/rssh.conf owner=root mode=644 backup=yes
+
+- name: make chroot paths
+  file: path="{{ chrootpath }}" state=directory owner=root group=root mode=755
+
+- name: copy script mkchroot.sh
+  copy: src=mkchroot.sh dest=/WT/files/mkchroot.sh owner=root group=root mode=755
+
+- name: check if mkchroot needs to be run
+  shell: "[ -d {{ chrootpath }}/dev ]] && [ -d {{ chrootpath }}/lib ]] && [ -d {{ chrootpath }}/usr ]]"
+  register: mkchroot
+  ignore_errors: true
+  changed_when: False
+
+- name: run mkchroot.sh script
+  shell: "/WT/files/mkchroot.sh {{ chrootpath }}"
+  args:
+    chdir: /WT/files
+    executable: /bin/bash
+  when: "mkchroot.rc != 0"
+
+- name: add rssh shell
+  lineinfile: dest=/etc/shells line="/usr/bin/rssh" state=present
+
+- name: make chroot home
+  file: path="{{ chrootpath }}/home" state=directory owner=root group=root mode=711
+
+- name: update rsyslog
+  template: src=rsyslog.j2 dest=/etc/default/rsyslog owner=root group=root mode=644 backup=yes
+  register: rsyslog
+
+- name: restart rsyslog
+  service: name=rsyslog state=restarted
+  when: rsyslog|changed
+
+- name: Add chroot user
+  user: name="{{ scp_user }}" home="{{ chrootpath }}//home/{{ scp_user }}"
+        shell=/usr/bin/rssh update_password=on_create
+        password="{{ scp_pass }}"
+
+- name: chmod rssh_chroot_helper to 4755
+  file: path=/usr/lib/rssh/rssh_chroot_helper mode=4755
+
+- name: chmod scp user home to 775
+  file: path="{{ chrootpath }}/home/{{ scp_user }}" mode=775
+
+
+- name: add sshd_config template
+  template: src=sshd_config.j2 dest=/etc/ssh/sshd_config owner=root group=root backup=yes
+  register: sshd_config
+
+- name: reload sshd
+  service: name=ssh state=reloaded
+  when: sshd_config|changed
+
+- name: add group to webtelemetry user
+  user: name=wtuser append=yes groups="{{ scp_user }}"
+
+- name: copy /etc/passwd to chroot
+  command: cp /etc/passwd "{{ chrootpath }}/etc/passwd"
+
+- name: update /chrooted/etc/passwd file
+  replace: dest="{{ chrootpath }}/etc/passwd" regexp='(/WT/chroot/)' backup=yes

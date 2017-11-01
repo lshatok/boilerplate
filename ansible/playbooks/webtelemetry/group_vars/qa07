@@ -1,0 +1,118 @@
+---
+selena_version: {{ product.version }}
+env_vars: {}
+data_collector:
+    port: 6379
+
+#Grafana apt package is located here
+product_repo_ip: 10.0.0.11
+
+rrd_path: /WT/rrdtool
+
+
+######################################
+######  Grafana database.yml  ##########
+######################################
+#TODO: create new user for wt_db
+metrix_db_host: dev07.seksejwlaqos.us-west-2.rds.amazonaws.com
+metrix_db_name: wt_db
+metrix_db_user: {{ product.admin }}
+metrix_db_pass: wt123
+
+#TODO: create new user for webtelemetry_dashboard_db
+webtelemetry_product_db_host: dev07.seksejwlaqos.us-west-2.rds.amazonaws.com
+webtelemetry_product_db_name: webtelemetry_dashboard_db
+webtelemetry_product_db_user: {{ product.admin }}
+webtelemetry_product_db_pass: wt123
+
+#################################
+######  Basalt.yml  ##########
+#################################
+#TODO: create new user for telemetrix
+telemetrix_db_host: dev07.seksejwlaqos.us-west-2.rds.amazonaws.com
+telemetrix_db_name: telemetrix_db
+telemetrix_db_user: {{ product.admin }}
+telemetrix_db_pass: wt123
+
+#TODO: decide how this should be used by grafana and telemetrix
+influxdb_user: influxdb_user
+influxdb_pass: rabbit_password
+influxdb_host: localhost
+
+grafana_host: 10.81.0.13
+
+#This is either 'grafana_host' or 'grafana_host'
+data_collection_schema_url: "{{ grafana_host }}"
+
+######################################
+####### Analytics configurations #####
+######################################
+hbase_master_host: 10.0.0.183
+
+#this must be overriden by host_vars
+hbase_thriftserver: 10.0.0.183
+
+#This should not have to change
+hadoop_zookeeper_host: "{{ hbase_master_host }}"
+hadoop_zookeeper: "{{ hbase_master_host }}"
+hdfs_namenode_host: "{{ hbase_master_host }}"
+hdfs_namenode:  "{{ hbase_master_host }}"
+
+metrix_host: localhost
+metrix_user: user
+metrix_pass: pass
+
+remote_timeout: 10
+
+log_mode: local
+analytics_model: default
+#######################################
+######  Grafana settings.yml  ##########
+#######################################
+
+redis_host: 10.0.0.160
+cache_env: webtelemetry-test
+
+webtelemetry_url: "https://{{ grafana_host }}"
+webtelemetry_base_url: "{{ webtelemetry_url }}/api/telemetrix"
+
+####################################
+#####grafana  Settings.yml     ##########
+###################################
+
+metrix_host: 10.0.0.160
+
+webtelemetry_url: "{{ product.url }}"
+wtuser: wtuser
+
+ro_community: public
+rw_community: private
+
+tenant_uid: tenant_uid
+##################################
+##### grafana database.yml     #######
+#################################
+webtelemetry_db_host: dev07.seksejwlaqos.us-west-2.rds.amazonaws.com
+webtelemetry_db_user: {{ product.admin }}
+webtelemetry_db_pass: wt123
+
+################################
+####### grafana passwords.yml ###
+##############################
+
+metrix_api: api
+admin_password: password
+
+# inventory/group_vars/GROUP_NAME
+disk_additional_disks:
+ - disk: /dev/sda1
+   fstype: xfs
+   mount_options: defaults
+   mount: /
+   user: root
+   group: root
+   disable_periodic_fsck: false
+
+os_additional_fsutils:
+  - xfsprogs     # package for mkfs.xfs on RedHat / Ubuntu
+  - btrfs-progs  # package for mkfs.btrfs on CentOS / Debian

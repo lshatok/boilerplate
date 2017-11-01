@@ -1,0 +1,28 @@
+network_name: CPS Fronthaul
+
+# CPS prod fronthaul 1c
+subnet: subnet-a20d68ed
+
+application: influxdb
+
+security_groups:
+  - sg-93090beb # walmart_ops
+  - sg-07e5217c #	walmart_prod_influxdb
+  - sg-d2fa3ea9 #	walmart_ops_influxdb
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 50
+    delete_on_termination: false
+
+
+assign_eip: false
+
+count: 1 
+
+tags:
+  customer: walmart-prod
+  stack_name: walmart-prod

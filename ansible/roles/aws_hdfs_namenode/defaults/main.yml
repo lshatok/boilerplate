@@ -1,0 +1,15 @@
+aws_hdfs_namenode:
+  region: us-west-2
+
+  hdfs_mounts:
+    - device_name: x
+      mount_point: /hdfs/nn
+      volume_size: 30
+      delete_on_termination: false
+    - device_name: y
+      mount_point: /hdfs/nn2
+      volume_size: 30
+      delete_on_termination: false
+
+limits_lines:
+  - "hdfs  -       nofile  32768"

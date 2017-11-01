@@ -1,0 +1,24 @@
+- name: Add OSquery repo
+  apt_repository: >
+    repo='deb [arch=amd64] https://osquery-packages.s3.amazonaws.com/xenial xenial main' state=present
+
+- name: Apt-get Update
+  apt: >
+    cache_valid_time=3600
+    update_cache=yes
+
+- name: Install OSquery
+  apt: >
+    name=osquery
+    state=present
+    force=yes
+
+- name: Update osquery.conf
+  template: >
+    src=osquery.conf.j2
+    dest=/etc/osquery/osquery.conf
+
+- name: Restart osquery
+  service: >
+    name=osqueryd
+    state=restarted

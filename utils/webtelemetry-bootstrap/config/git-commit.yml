@@ -1,0 +1,10 @@
+---
+commit_keyword: "grafana-748"
+copyright_owner: WebTelemetry US Inc.
+copyright_format: "Copyright (c) %{years} %{owner}"
+include_encoding: true
+patterns:
+- dedushka-deps/**/*.rb
+- bin/*.rb
+- lib/**/*.rb
+- spec/**/*.rb

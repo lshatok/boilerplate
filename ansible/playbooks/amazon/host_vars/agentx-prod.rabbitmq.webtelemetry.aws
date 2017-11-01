@@ -1,0 +1,27 @@
+network_name: SNMP_Prod BackHaul
+
+
+subnet: subnet-8ec6bef8 # snmp_prod_backhaul_2a
+
+application: influxdb
+
+security_groups:
+  - sg-ce9478b7 # snmp_ops
+  - sg-dce21ca5 # snmp_prod_influxdb
+
+volumes:
+  - device_name: /dev/sda1
+    volume_size: 30
+    delete_on_termination: false
+  - device_name: /dev/sdf
+    volume_size: 40
+    delete_on_termination: false
+
+assign_eip: false
+
+count: 1
+
+tags:
+  customer: WebTelemetry_SNMP
+  stack_name: snmp-prod
+

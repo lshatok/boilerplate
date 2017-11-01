@@ -1,0 +1,34 @@
+description "Apache Tomcat Server"
+
+    start on runlevel [2345]
+    stop on runlevel [!2345]
+    respawn
+    respawn limit 10 5
+
+    # run as non privileged user
+    setuid wtuser
+    setgid {{ product.admin }}
+
+    # adapt paths:
+    env JAVA_HOME="{{ java.home }}"
+    env CATALINA_HOME="{{ appserver.home }}"
+
+    # adapt java options to suit your needs:
+    {% if java_opts is defined %}
+        env JAVA_OPTS="{{ java_opts }}"
+    {% else %}
+        env JAVA_OPTS="-Djava.awt.headless=true -Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+    {% endif %}
+    # used for snmp:
+    #env JAVA_OPTS="-Dfile.encoding=UTF-8 -server -Xms512m -Xmx1024m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=256m -XX:+DisableExplicitGC"
+
+    {% if newrelic_jar is defined %}
+        env JAVA_OPTS="$JAVA_OPTS -javaagent:{{ newrelic_jar }}"
+    {% endif %}
+
+    exec $CATALINA_HOME/bin/catalina.sh run
+
+    # cleanup temp directory after stop
+    post-stop script
+    rm -rf $CATALINA_HOME/temp/*
+    end script

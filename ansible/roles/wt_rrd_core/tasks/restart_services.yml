@@ -1,0 +1,4 @@
+---
+- name: Restart The listener
+  service: name=rsyslog state=restarted
+  when: wt_core.logger.syslog is defined

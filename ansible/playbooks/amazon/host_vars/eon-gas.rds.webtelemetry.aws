@@ -1,0 +1,26 @@
+rds_subnets:
+  - subnet-f0df13a9
+  - subnet-040abc73
+
+vpc_security_groups: sg-15c4f270
+
+region: us-west-2
+
+zone: us-west-2b
+
+subnetgroup_name: eon
+
+description:  E.ON RDS subnet group
+
+type: db.m1.small
+
+instance_name: eon-gas
+size: 10
+
+admin_user:  {{ product.admin }}
+admin_pass:  iNg1luxeneishah6
+
+# Backup retention days [0-35]
+backup_retention: 3
+count: 1
+key_name: devops_eon

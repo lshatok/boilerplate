@@ -1,0 +1,68 @@
+---
+- name: Clean apt cache
+  command: rm -rf /var/lib/apt/lists/* 
+  become: yes 
+  tags: clean-cache
+
+- name: Apt-get Update
+  apt:  cache_valid_time=3600 update_cache=yes
+  become: yes
+
+#- name: Apt-get Upgrade
+#  apt:  upgrade=dist
+#  become: yes
+
+- name: Install required system packages
+  apt: name={{ item }} state=present cache_valid_time=3600
+  become: yes
+  with_items:
+    - ntp
+    - vim
+    - htop
+    - debconf-utils
+    - python-software-properties
+    - software-properties-common
+    - build-essential
+    - sysstat
+    - uuid-dev
+    - libtool
+    - pkg-config
+    - ntp
+    - xfsprogs
+    - xfsdump
+    - autoconf
+    - unzip
+    - lvm2
+    - curl
+    - facter
+    - ruby-json
+    - gettext
+    - libssl-dev
+    - python-dev
+    - libxt-dev
+    - nethogs
+    - libcurl4-gnutls-dev
+    - libexpat1-dev
+    - zlib1g-dev
+    - libx11-dev
+    - acl
+    - s3cmd
+    - postgresql-client
+    - apt-show-versions
+    - tree
+    - libreadline6
+    - libreadline6-dev
+    - libpostgresqlclient-dev
+    - postgresql-client-core-5.5
+    - libbz2-dev
+    - sqlite3
+    - libsqlite3-dev
+    - zlib1g-dev
+    - libxml2-utils
+    - bsd-mailx
+    - emacs
+    - traceroute
+    - ncdu
+    - git
+    - libevent-dev
+    - libffi-dev

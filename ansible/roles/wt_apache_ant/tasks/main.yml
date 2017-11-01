@@ -1,0 +1,6 @@
+---
+- include: apt_install.yml
+  when: ansible_distribution_version == '16.1'
+
+- include: source_install.yml
+  when: ansible_distribution_version == '14.04'

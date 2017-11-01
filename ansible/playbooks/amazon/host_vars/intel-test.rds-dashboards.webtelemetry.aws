@@ -1,0 +1,28 @@
+rds_subnets:
+  - subnet-de3ff8f3 # intel_test_backhaul_1c - 172.19.4.192/27
+  - subnet-1ea81e57 # intel_test_backhaul_1d - 172.19.4.224/27
+  - subnet-21ad1b68 # intel_test_fronthual_1d - 172.19.4.160/27
+  - subnet-033ef92e # intel_test_fronthaul_1c - 172.19.4.128/27
+
+region: us-east-1
+
+zone: us-east-1c
+
+subnetgroup_name: intel-test-group
+
+description:  Websnmp Test RDS subnet group
+
+type: db.m3.medium
+
+instance_name: intel-test-influxdb
+size: 10
+
+admin_user: {{ product.admin }}
+admin_pass: 2w8242sYCvGP3sxc9u
+
+# Backup retention days [0-35]
+backup_retention: 7
+count: 1
+vpc_security_groups: "sg-4c436036" #intel_test_rds
+
+key_name: intel-devops

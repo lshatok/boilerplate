@@ -1,0 +1,109 @@
+rdbms:
+  telemetrix:
+    url: postgresql://{{ telemetrix_db_user }}:{{ telemetrix_db_pass }}@{{ telemetrix_db_host }}/{{ telemetrix_db_name }}
+    max_overflow: 2
+    pool_size: 1
+    pool_recycle: 3600
+  grafana:
+    url: postgresql://root:root@localhost/grafana
+    max_overflow: 2
+    pool_size: 1
+    pool_recycle: 3600
+
+parseconfig:
+  encoding: utf-8
+  msg_buffer_size: 20000
+  end_of_file_marker: _EOM #__EOM__
+
+ampq:
+  ampq_url: influxdb://{{ influxdb_user }}:{{ influxdb_pass }}@{{ influxdb_host }}:5672/%2F
+
+cache:
+  host: localhost
+  port: 6379
+  db: 0
+  max_connections: 2
+
+hbase:
+  host: {{ hbase_thriftserver }} # thrift server hostname
+  port: 9090 # thrift server port
+  timeout: 30000  # milliseconds
+  retry_count: 2
+  retry_pause_seconds: 1
+  num_connections_per_table: 5
+  device_data:
+    hbase_table_prefix: device_data_
+    column_families: [actual]
+    default_charge: usage
+    default_uom: kwh
+    default_column_family: actual
+    clean_raw_dup_write: true # For V1, incoming raw data gets auto duplicated into clean hbase table.
+  snmp_data:
+    hbase_table_name: snmp_data
+  forecast:
+    hbase_table_prefix: fcst_
+    column_families: [current, dayahead]
+    default_charge: usage
+    default_uom: kwh
+    default_fcst_type: baseline_ld_fcst
+    curtailed_fcst_type: curtailed_ld_fcst
+    default_column_family: current
+    default_model: svrb
+
+hadoop:
+  zookeeper_quorum: {{ hadoop_zookeeper }}
+  hdfs_name_node_url: hdfs://{{ hdfs_namenode }}:8020/hbase
+  hdfs_default_fs: hdfs://{{ hdfs_namenode }}:8020
+  mapred_job_tracker: {{ hdfs_namenode }}:8021
+  mapred_compression_codec: org.apache.hadoop.io.compress.SnappyCodec
+  demandcharge:
+    num_meters_per_task: 1
+    mapred_job_reuse_jvm_num_tasks: 2
+    mapred_child_java_opts: -Xms200M -Xmx200M
+    mapred_task_timeout: 1200000
+  training:
+    num_meters_per_task: 1
+    mapred_job_reuse_jvm_num_tasks: 2
+    mapred_child_java_opts: -Xms200M -Xmx200M
+    mapred_task_timeout: 1200000
+  evaluation:
+    num_meters_per_task: 1
+    mapred_job_reuse_jvm_num_tasks: 2
+    mapred_child_java_opts: -Xms200M -Xmx200M
+    mapred_task_timeout: 1200000
+  metrics:
+    num_meters_per_task: 1
+    mapred_job_reuse_jvm_num_tasks: 2
+    mapred_child_java_opts: -Xms200M -Xmx200M
+    mapred_task_timeout: 1200000
+  reporting:
+    num_meters_per_task: 1
+    mapred_job_reuse_jvm_num_tasks: 2
+    mapred_child_java_opts: -Xms200M -Xmx200M
+    mapred_task_timeout: 1200000
+
+metrics:
+  host: localhost
+  port: 2003
+  pickle_port: 2004
+  deployment_id: prospects
+
+webservices:
+  telemetrix:
+    url: https://{{telemetrix_host }}
+    username: {{telemetrix_user }}
+    password: {{telemetrix_pass }}
+    max_redirects: 5
+  webtelemetry:
+    url: https://{{ grafana_host }}
+    username: {{ wtuser }}
+    password: {{ webtelemetry_pass }}
+    max_redirects: 5
+
+logger:
+  mode: local
+  level: info
+  log: /log/telemetrix.log
+  error_log: /log/metrix_error.log
+  remote_host: {{ logger_remote_host }}
+

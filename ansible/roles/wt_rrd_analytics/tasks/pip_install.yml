@@ -1,0 +1,30 @@
+---
+- name: Install Analytics
+  pip: name={{ telemetrix.artifact }}{{ telemetrix.version }}
+       extra_args="--upgrade --extra-index-url {{ gemfury_url }}"
+       virtualenv="{{ virtualenv_path }}"
+  environment: "{{ env_vars }}"
+
+- name: Add atlas base
+  shell: 'echo "/usr/lib/atlas-base" | sudo tee /etc/ld.so.conf.d/atlas-lib.conf'
+
+- name: Enable new config
+  shell: 'sudo ldconfig'
+
+- name: Create configs directory
+  file: path="{{ telemetrix_home }}" state=directory owner=wtuser group=wtgroup
+
+- name: Upgrade pip
+  shell: "{{ virtualenv_path }}/bin/pip install --upgrade pip"
+  environment: "{{ env_vars }}"
+  become_user: "{{ product.user }}"
+
+- name: Upgrade setuptools
+  shell: "{{ virtualenv_path }}/bin/pip install --upgrade setuptools"
+  environment: "{{ env_vars }}"
+  become_user: "{{ product.user }}"
+
+- name: Install python dependencies
+  shell: cat {{ virtualenv_path }}/wt_config/rrd-telemetrix/requirements.txt | xargs -L 1 {{ virtualenv_path }}/bin/pip install --extra-index-url {{ gemfury_url }}
+  environment: "{{ env_vars }}"
+  become_user: "{{ product.user }}"
