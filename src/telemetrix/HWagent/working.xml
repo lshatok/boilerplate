@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cittio-smbios-mib>
+<webtelemetry-smbios-mib>
   <oid>1.3.6.1.4.1.20541</oid>
   <mibElement name="smbios">
     <oid>1.3.6.1.4.1.20541.1</oid>
@@ -16,4 +16,4 @@
       <oid>1.3.6.1.4.1.20541.1.4</oid>
     </mibElement>
   </mibElement>
-</cittio-smbios-mib>
+</webtelemetry-smbios-mib>

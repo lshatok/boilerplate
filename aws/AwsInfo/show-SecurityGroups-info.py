@@ -38,9 +38,10 @@ __status__ = "Production"
 import boto
 import getopt
 import sys
-from WTboto.AwsSecurityGroups import *
 from boto import vpc
 from pprint import pprint
+
+from WTboto.AwsSecurityGroups import *
 
 
 def SecurityGroupList(VpcConn, Regions, VpcId=''):

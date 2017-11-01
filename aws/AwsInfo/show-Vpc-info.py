@@ -20,8 +20,9 @@ __email__ = "larry.sellars@webtelemetry.us"
 __status__ = "Production"
 
 import sys
-from WTboto.AwsVpcs import *
 from pprint import pprint
+
+from WTboto.AwsVpcs import *
 
 
 def main(VpcId, VpcRegion):

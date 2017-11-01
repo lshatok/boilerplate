@@ -1,4 +1,4 @@
-CITTIO-SMBIOS-MIB DEFINITIONS ::= BEGIN
+WEBTELEMETRY-SMBIOS-MIB DEFINITIONS ::= BEGIN
 
 IMPORTS
      MODULE-IDENTITY, OBJECT-IDENTITY, OBJECT-TYPE,
@@ -19,15 +19,15 @@ IMPORTS
 
 smbios    MODULE-IDENTITY
      LAST-UPDATED "0509131046Z"
-     ORGANIZATION "CITTIO, Inc."
+     ORGANIZATION "WEBTELEMETRY, Inc."
      CONTACT-INFO
           "Contact: Ross Fujii
-            Postal: CITTIO, Inc.
+            Postal: WEBTELEMETRY, Inc.
                     80 Tehama St.
                     San Francisco, CA 94105
                Tel: +1 415 222 6945
                Fax: +1 415 671 3806
-            E-mail: rfujii@cittio.com
+            E-mail: rfujii@webtelemetry.com
           "
      DESCRIPTION
           "This is the specification for low-level hardware information
@@ -36,9 +36,9 @@ smbios    MODULE-IDENTITY
      REVISION "0509131046Z"
      DESCRIPTION
           "Initial Draft"
-    ::= { cittio 1 }
+    ::= { webtelemetry 1 }
 
-cittio    OBJECT IDENTIFIER ::= { enterprises 20541 }
+webtelemetry    OBJECT IDENTIFIER ::= { enterprises 20541 }
 
 --
 -- MIB Module Organization

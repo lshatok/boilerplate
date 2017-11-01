@@ -37,9 +37,10 @@ __status__ = "Production"
 import boto
 import getopt
 import sys
-from WTboto.AwsRds import *
 from boto import rds
 from pprint import pprint
+
+from WTboto.AwsRds import *
 
 
 def RdsList(RdsConn, Regions, Vpcid=''):

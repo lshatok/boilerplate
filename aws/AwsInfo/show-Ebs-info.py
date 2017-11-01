@@ -38,9 +38,10 @@ __status__ = "Production"
 import boto
 import getopt
 import sys
-from WTboto.AwsEbs import *
 from boto import vpc
 from pprint import pprint
+
+from WTboto.AwsEbs import *
 
 
 def EbsList(VpcConn, Regions, instance=''):

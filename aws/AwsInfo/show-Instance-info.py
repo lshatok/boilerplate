@@ -38,9 +38,10 @@ __status__ = "Production"
 import boto
 import getopt
 import sys
-from WTboto.AwsInstances import *
 from boto import vpc
 from pprint import pprint
+
+from WTboto.AwsInstances import *
 
 
 def InstanceList(VpcConn, Regions, VpcId=''):

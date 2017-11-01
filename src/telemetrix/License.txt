@@ -1,6 +1,6 @@
-CITTIO SOFTWARE LICENSE AGREEMENT
+WEBTELEMETRY SOFTWARE LICENSE AGREEMENT
 
- This is a legal agreement between you, the user, & CITTIO, Inc. ("CITTIO").
+ This is a legal agreement between you, the user, & WEBTELEMETRY, Inc. ("WEBTELEMETRY").
  This agreement covers all software that is distributed with the computer,
  for which there is no separate license agreement between you and the
  manufacturer or owner of the software (collectively the "Software").  By
@@ -23,10 +23,10 @@ CITTIO SOFTWARE LICENSE AGREEMENT
  will exceed the number of licenses, you must purchase additional licenses
  until the number of licenses equals the number of users before allowing
  additional users to use the Software.  If you are a commercial customer of
- CITTIO or a CITTIO affiliate, you hereby grant CITTIO, or an agent selected
- by CITTIO, the right to perform an audit of your use of the Software during
- normal business hours, you agree to cooperate with CITTIO in such audit, and
- you agree to provide CITTIO with all records reasonably related to your use
+ WEBTELEMETRY or a WEBTELEMETRY affiliate, you hereby grant WEBTELEMETRY, or an agent selected
+ by WEBTELEMETRY, the right to perform an audit of your use of the Software during
+ normal business hours, you agree to cooperate with WEBTELEMETRY in such audit, and
+ you agree to provide WEBTELEMETRY with all records reasonably related to your use
  of the Software.  The audit will be limited to verification of your
  compliance with the terms of this agreement.
 
@@ -47,34 +47,34 @@ CITTIO SOFTWARE LICENSE AGREEMENT
 
 LIMITED WARRANTY
 
- CITTIO warrants that the Software disks will be free from defects in
+ WEBTELEMETRY warrants that the Software disks will be free from defects in
  materials and workmanship under normal use for ninety (90) days from the
  date you receive them.  This warranty is limited to you and is not
  transferable.  Any implied warranties are limited to ninety (90) days from
  the date you receive the Software.  Some jurisdictions do not allow limits
  on the duration of an implied warranty, so this limitation may not apply to
- you.  The entire liability of CITTIO and its suppliers, and your exclusive
+ you.  The entire liability of WEBTELEMETRY and its suppliers, and your exclusive
  remedy, shall be (a) return of the price paid for the Software or (b)
  replacement of any disk not meeting this warranty that is sent with a return
- authorization number to CITTIO, at your cost and risk.  This limited
+ authorization number to WEBTELEMETRY, at your cost and risk.  This limited
  warranty is void if any disk damage has resulted from accident, abuse,
- misapplication, or service or modification by someone other than CITTIO.
+ misapplication, or service or modification by someone other than WEBTELEMETRY.
  Any replacement disk is warranted for the remaining original warranty period
  or thirty (30) days, whichever is longer.
 
- CITTIO does NOT warrant that the functions of the Software will meet your
+ WEBTELEMETRY does NOT warrant that the functions of the Software will meet your
  requirements or that operation of the Software will be uninterrupted or
  error free.  You assume responsibility for selecting the Software to achieve
  your intended results and for the use and results obtained from the Software.
 
 
- CITTIO DISCLAIMS ALL OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT
+ WEBTELEMETRY DISCLAIMS ALL OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT
  NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITYAND FITNESS FOR A
  PARTICULAR PURPOSE, FOR THE SOFTWARE AND ALL ACCOMPANYING WRITTEN MATERIALS.
  This limited warranty gives you specific legal rights; you may have others,
  which vary from jurisdiction to jurisdiction.
 
- IN NO EVENT SHALL CITTIO OR ITS SUPPLIERS BE LIABLE FOR ANY DAMAGES
+ IN NO EVENT SHALL WEBTELEMETRY OR ITS SUPPLIERS BE LIABLE FOR ANY DAMAGES
  WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF BUSINESS
  PROFITS, BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, OR OTHER
  PECUNIARY LOSS) ARISING OUT OF USE OR INABILITY TO USE THE SOFTWARE, EVEN
@@ -92,7 +92,7 @@ U.S. GOVERNMENT RESTRICTED RIGHTS
  through 227.7202-4, all U.S. Government end users acquire the software and
  documentation with only those rights set forth herein.
 
- Contractor/manufacturer is CITTIO, Inc., 80 Tehama Street, San Francisco,
+ Contractor/manufacturer is WEBTELEMETRY, Inc., 80 Tehama Street, San Francisco,
  California 94105, USA.
 
 
@@ -106,17 +106,17 @@ GENERAL
  severable.  If a provision is found to be unenforceable, this finding does
  not affect the enforceability of the remaining provisions, terms, or
  conditions of this agreement. This agreement is binding on successors and
- assigns.  CITTIO agrees and you agree to waive, to the maximum extent
+ assigns.  WEBTELEMETRY agrees and you agree to waive, to the maximum extent
  permitted by law, any right to a jury trial with respect to the Software or
  this agreement.  Because this waiver may not be effective in some
  jurisdictions, this waiver may not apply to you.  You acknowledge that you
  have read this agreement, that you understand it, that you agree to be bound
  by its terms, and that this is the complete and exclusive statement of the
- agreement between you and CITTIO regarding the Software.
+ agreement between you and WEBTELEMETRY regarding the Software.
 
 
 CLOSING COMMENTS
 
  Should you have any questions concerning this license agreement, or if you
- desire to contact CITTIO for any reason please e-mail CITTIO, Inc. at
- support@cittio.com.
+ desire to contact WEBTELEMETRY for any reason please e-mail WEBTELEMETRY, Inc. at
+ support@webtelemetry.com.

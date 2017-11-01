@@ -95,7 +95,7 @@
 
 
 - name: Replace 3
-  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/CITTIO/WEBTELEMETRY/g' {}"
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/WEBTELEMETRY/WEBTELEMETRY/g' {}"
   with_items:
     - "*.jsp"
     - "*.js"
@@ -113,7 +113,7 @@
 
 - name: Replace 3
 
-  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/ WATCHTOWER / WEBTELEMETRY /g' {}"
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/ WATCHTOWER/WEBTELEMETRY/g' {}"
   with_items:
     - "*.jsp"
     - "*.js"

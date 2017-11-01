@@ -38,9 +38,10 @@ __status__ = "Production"
 import boto
 import getopt
 import sys
-from WTboto.AwsSubnets import *
 from boto import vpc
 from pprint import pprint
+
+from WTboto.AwsSubnets import *
 
 
 def SubnetList(VpcConn, Regions, VpcId='', Azone=''):
