@@ -1,0 +1,1581 @@
+CITTIO-SMBIOS-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+     MODULE-IDENTITY, OBJECT-IDENTITY, OBJECT-TYPE,
+     NOTIFICATION-TYPE
+          FROM SNMPv2-SMI
+
+     TEXTUAL-CONVENTION,
+     DisplayString
+          FROM SNMPv2-TC
+
+     OBJECT-GROUP, NOTIFICATION-GROUP,
+     MODULE-COMPLIANCE
+          FROM SNMPv2-CONF
+     
+     enterprises
+          FROM SNMPv2-SMI
+;
+
+smbios    MODULE-IDENTITY
+     LAST-UPDATED "0509131046Z"
+     ORGANIZATION "CITTIO, Inc."
+     CONTACT-INFO
+          "Contact: Ross Fujii
+            Postal: CITTIO, Inc.
+                    80 Tehama St.
+                    San Francisco, CA 94105
+               Tel: +1 415 222 6945
+               Fax: +1 415 671 3806
+            E-mail: rfujii@cittio.com
+          "
+     DESCRIPTION
+          "This is the specification for low-level hardware information
+           that will be retrieved via libSMBios. 
+          "
+     REVISION "0509131046Z"
+     DESCRIPTION
+          "Initial Draft"
+    ::= { cittio 1 }
+
+cittio    OBJECT IDENTIFIER ::= { enterprises 20541 }
+
+--
+-- MIB Module Organization
+--
+chassis              OBJECT IDENTIFIER ::= { smbios 1 }
+memory               OBJECT IDENTIFIER ::= { smbios 2 }
+port                 OBJECT IDENTIFIER ::= { smbios 3 }
+device               OBJECT IDENTIFIER ::= { smbios 4 }
+
+BiosEntry ::=
+    SEQUENCE {
+        biosVendor
+            DisplayString,
+        biosVersion
+            DisplayString,
+        biosStartingAddressSegmentRaw
+            INTEGER,
+        biosStartingAddressSegmentInterpreted
+            DisplayString,
+        biosReleaseDate
+            DisplayString,
+        biosROMSizeRaw
+            INTEGER,
+        biosROMSizeInterpreted
+            DisplayString
+    }
+
+biosVendor OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { bios 1 }
+       
+biosVersion OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { bios 2 }
+       
+biosStartingAddressSegmentRaw OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { bios 3 }
+       
+biosStartingAddressSegmentInterpreted OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { bios 4 }
+       
+biosReleaseDate OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { bios 5 }
+       
+biosROMSizeRaw OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { bios 6 }
+       
+biosROMSizeInterpreted OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { bios 7 }
+       
+bios OBJECT-TYPE
+    SYNTAX BiosEntry
+    MAX-ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { chassis 1 }
+
+SystemEntry ::=
+    SEQUENCE {
+        systemManufacturer
+            DisplayString,
+        systemProductName
+            DisplayString,
+        systemVersion
+            DisplayString,
+        systemSerialNumber
+            DisplayString,
+        systemWakeUpType
+            INTEGER
+    }
+
+systemManufacturer OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { system 1 }
+       
+systemProductName OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { system 2 }
+       
+systemVersion OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { system 3 }
+       
+systemSerialNumber OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { system 4 }
+       
+systemWakeUpType OBJECT-TYPE
+  SYNTAX INTEGER {
+              other(1),
+              unknown(2),
+              apmTimer(3),
+              modemRing(4),
+              lanRemote(5),
+              powerSwitch(6),
+              pciPME(7),
+              acPowerRestored(8)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { system 5 }
+
+system OBJECT-TYPE
+    SYNTAX SystemEntry
+    MAX-ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { chassis 2 }
+
+BaseBoardEntry ::=
+    SEQUENCE {
+        baseboardManufacturer
+            DisplayString,
+        baseboardProduct
+            DisplayString,
+        baseboardVersion
+            DisplayString,
+        baseboardSerialNumber
+            DisplayString
+    }
+
+baseboard OBJECT-TYPE
+    SYNTAX BaseBoardEntry
+    MAX-ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { chassis 3 }
+
+baseboardManufacturer OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { baseboard 1 }
+           
+baseboardProduct OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { baseboard 2 }
+           
+baseboardVersion OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { baseboard 3 }
+           
+baseboardSerialNumber OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { baseboard 4 }
+           
+EnclosureEntry ::=
+    SEQUENCE {
+        enclosureManufacturer
+            DisplayString,
+        enclosureType
+            INTEGER,
+        enclosureVersion
+            DisplayString,
+        enclosureSerialNumber
+            DisplayString,
+        enclosureAssetTag
+            DisplayString,
+        enclosureBootupState
+            INTEGER,
+        enclosureSecurityStatus
+			INTEGER
+    }
+
+enclosure OBJECT-TYPE
+    SYNTAX EnclosureEntry
+    MAX-ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { chassis 4 }
+
+enclosureManufacturer OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { enclosure 1 }
+       
+enclosureType OBJECT-TYPE
+  SYNTAX INTEGER {
+              other(1),
+              unknown(2),
+              desktop(3),
+              lowProfileDesktop(4),
+              pizzaBox(5),
+              miniTower(6),
+              tower(7),
+              portable(8),
+              laptop(9),
+              notebook(10),
+              handHeld(11),
+              dockingStation(12),
+              allInOne(13),
+              subNotebook(14),
+              spaceSaving(15),
+              lunchBox(16),
+              mainServerChassis(17),
+              expansionChassis(18),
+              subChassis(19),
+              busExpansionChassis(20),
+              peripheralChassis(21),
+              raidChassis(22),
+              rackMountChassis(23),
+              sealedCasePC(24),
+              otherWithChassisLock(129),
+              unknownWithChassisLock(130),
+              desktopWithChassisLock(131),
+              lowProfileDesktopWithChassisLock(132),
+              pizzaBoxWithChassisLock(133),
+              miniTowerWithChassisLock(134),
+              towerWithChassisLock(135),
+              portableWithChassisLock(136),
+              laptopWithChassisLock(137),
+              notebookWithChassisLock(138),
+              handHeldWithChassisLock(139),
+              dockingStationWithChassisLock(140),
+              allInOneWithChassisLock(141),
+              subNotebookWithChassisLock(142),
+              spaceSavingWithChassisLock(143),
+              lunchBoxWithChassisLock(144),
+              mainServerChassisWithChassisLock(145),
+              expansionChassisWithChassisLock(146),
+              subChassisWithChassisLock(147),
+              busExpansionChassisWithChassisLock(148),
+              peripheralChassisWithChassisLock(149),
+              raidChassisWithChassisLock(150),
+              rackMountChassisWithChassisLock(151),
+              sealedCasePCWithChassisLock(152)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { enclosure 2 }
+
+enclosureVersion OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { enclosure 3 }
+       
+enclosureSerialNumber OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { enclosure 4 }
+       
+enclosureAssetTag OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { enclosure 5 }
+       
+enclosureBootupState OBJECT-TYPE
+  SYNTAX INTEGER {
+              other(1),
+              unknown(2),
+              safe(3),
+              warning(4),
+              critical(5),
+              non-recoverable(6)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { enclosure 6 }
+
+enclosureSecurityState OBJECT-TYPE
+  SYNTAX INTEGER {
+			  other(1),
+              unknown(2),
+              none(3),
+              externalInterfaceLockedOut(4),
+              externalInterfaceEnabled(5)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { enclosure 7 }
+
+processorTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF ProcessorEntry
+    ACCESS  not-accessible
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { chassis 5 }
+    
+processor OBJECT-TYPE
+    SYNTAX ProcessorEntry
+    ACCESS not-accessible
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { processorTable 1 }
+    
+ProcessorEntry ::=
+    SEQUENCE {
+        processorSocketDesignation
+            DisplayString,
+        processorType
+            INTEGER,
+        processorFamily
+            INTEGER,
+        processorManufacturer
+            DisplayString,
+        processorId
+            DisplayString,
+        processorVersion
+            DisplayString,
+        processorSerialNumber
+            DisplayString,
+        processorAssetTag
+            DisplayString,
+        processorPartNumber
+            DisplayString,
+        processorUpgrade
+            INTEGER,
+        processorSpeed
+            INTEGER,
+		processorVoltageRaw
+			INTEGER,
+		processorVoltageInterpreted
+			DisplayString,
+		ProcessorExternalClock
+			INTEGER
+    }
+
+processorSocketDesignation OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { processor 1 }
+       
+processorType OBJECT-TYPE
+  SYNTAX INTEGER {
+			  other(1),
+              unknown(2),
+              cpu(3),
+              math(4),
+              dsp(5),
+              video(6)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { processor 2 }
+
+processorFamily OBJECT-TYPE
+  SYNTAX INTEGER {
+			  other(1),
+              unknown(2),
+              8086(3),
+              80286(4),
+              intel386(5),
+              intel486(6),
+              8087(7),
+              80287(8),
+              80387(9),
+              80487(10),
+              pentium(11),
+              pentiumPro(12),
+              pentiumII(13),
+              pentiumMMX(14),
+              celeron(15),
+              pentiumXeon(16),
+              pentiumIII(17),
+              m1(18),
+              m2(19),
+              amdDuron(24),
+              k5(25),
+              k6(26),
+              k6-2(27),
+              k6-3(28),
+              athlon(29),
+              amd2900(30),
+              k6-2Plus(31),
+              powerPC(32),
+              powerPC601(33),
+              powerPC603(34),
+              powerPC603Plus(35),
+              powerPC604(36),
+              powerPC620(37),
+              powerPC704(38),
+              powerPC750(39),
+              alpha(48),
+              alpha21064(49),
+              alpha21066(50),
+              alpha21164(51),
+              alpha21164PC(52),
+              alpha21164a(53),
+              alpha21264(54),
+              alpha21364(55),
+              mips(64),
+              mipsR4000(65),
+              mipsR4200(66),
+              mipsR4400(67),
+              mipsR4600(68),
+              mipsR10000(69),
+              sparc(80),
+              superSparc(81),
+              microSparcII(82),
+              microSparcIIep(83),
+              ultraSparc(84),
+              ultraSparcII(85),
+              ultraSparcII-i(86),
+              ultraSparcIII(87),
+              ultraSparcIII-i(88),
+              m68040(96),
+              m68xxx(97),
+              m68000(98),
+              m68010(99),
+              m68020(100),
+              m68030(101),
+              hobbit(112),
+              weitek(128),
+              itanium(130),
+              amdAthlon64(131),
+              amdOpteron(132),
+              paRisc(144),
+              paRisc8500(145),
+              paRisc8000(146),
+              paRisc7300LC(147),
+              paRisc7200(148),
+              paRisc7100LC(149),
+              paRisc7100(150),
+              v30(160),
+              pentiumIIIXeon(176),
+              pentiumIIISpeedStep(177),
+              pentium4(178),
+              intelXeon(179),
+              as400(180),
+              intelXeonMP(181),
+              amdAthlonXP(182),
+              amdAthlonMP(183),
+              intelItanium2(184),
+              intelPentiumM(185),
+              ibm390(200)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { processor 3 }
+
+processorManufacturer OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { processor 4 }
+       
+processorId OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { processor 5 }
+       
+processorVersion OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { processor 6 }
+       
+processorSerialNumber OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { processor 7 }
+       
+processorAssetTag OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { processor 8 }
+       
+processorPartNumber OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { processor 9 }
+       
+processorUpgrade OBJECT-TYPE
+  SYNTAX INTEGER {
+			  other(1),
+              unknown(2),
+              daughterBoard(3),
+              zifSocket(4),
+              replaceablePiggyBack(5),
+              none(6),
+              lifSocket(7),
+              slot1(8),
+              slot2(9),
+              pin370Socket(10),
+              slotA(11),
+              slotM(12),
+              socket423(13),
+              socket462(14),
+              socket478(15),
+              socket754(16),
+              socket940(17)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { processor 10 }
+
+processorSpeed OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { processor 11 }
+
+processorVoltageRaw OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { processor 12 }
+
+processorVoltageInterpreted OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { processor 13 }
+
+processorExternalClock OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "External clock frequency in MHz. 0 if unknown"
+    ::= { processor 14 }
+
+systemSlotTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF SystemSlotEntry
+    MAX-ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { chassis 10 }
+    
+systemSlot OBJECT-TYPE
+    SYNTAX SystemSlotEntry
+    MAX-ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { systemSlotTable 1 }
+    
+SystemSlotEntry ::=
+    SEQUENCE {
+        systemSlotDesignation
+            DisplayString,
+        systemSlotId
+            INTEGER,
+        systemSlotType
+            INTEGER
+    }
+
+systemSlotDesignation OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { systemSlot 1 }
+       
+systemSlotId OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { systemSlot 2 }
+       
+systemSlotType OBJECT-TYPE
+  SYNTAX INTEGER {
+              other(1),
+              unknown(2),
+              isa(3),
+              mca(4),
+              eisa(5),
+              pci(6),
+              pcmcia(7),
+              vl-vesa(8),
+              proprietary(9),
+              processor(10),
+              proprietaryMemoryCard(11),
+              ioRiserCard(12),
+              nuBus(13),
+              pci-66MHzCompatible(14),
+              agp(15),
+              agp2x(16),
+              agp4x(17),
+              pci-x(18),
+              agp8x(19),
+              pc98C20(20),
+              pc98C24(21),
+              pc98E(22),
+              pc98LocalBus(23),
+              pc98Card(24),
+              pciExpress(25)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { systemSlot 3 }
+
+cacheTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF CacheEntry
+    MAX-ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { chassis 8 }
+
+cache OBJECT-TYPE
+    SYNTAX CacheEntry
+    MAX-ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { cacheTable 1 }
+    
+CacheEntry ::=
+    SEQUENCE {
+        cacheSocketDesignation
+            DisplayString,
+        cacheSupportedSRAMType
+            INTEGER,
+        cacheCurrentSRAMType
+            INTEGER,
+        cacheConfigurationRaw
+            INTEGER,
+        cacheConfigurationInterpreted
+        	DisplayString,
+        cacheSize
+            INTEGER
+    }
+
+cacheSocketDesignation OBJECT-TYPE
+  SYNTAX DisplayString
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { cache 1 }
+
+cacheSupportedSRAMType OBJECT-TYPE
+  SYNTAX INTEGER {
+              unknown(2),
+              nonBurst(4),
+              burst(8),
+              pipelineBurst(16),
+              synchronous(32),
+              asynchronous(64)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { cache 2 }
+
+cacheCurrentSRAMType OBJECT-TYPE
+  SYNTAX INTEGER {
+              unknown(2),
+              nonBurst(4),
+              burst(8),
+              pipelineBurst(16),
+              synchronous(32),
+              asynchronous(64)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { cache 3 }
+
+cacheConfigurationRaw OBJECT-TYPE
+  SYNTAX INTEGER
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { cache 4 }
+
+cacheConfigurationInterpreted OBJECT-TYPE
+  SYNTAX DisplayString
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { cache 5 }
+
+cacheSize OBJECT-TYPE
+  SYNTAX INTEGER
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { cache 6 }
+
+BiosLanguageEntry ::=
+    SEQUENCE {
+        biosLanguageInstalled
+            DisplayString,
+        biosLanguageInstallable
+            DisplayString
+    }
+
+biosLanguage OBJECT-TYPE
+    SYNTAX BiosLanguageEntry
+    MAX-ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { chassis 14 }
+    
+biosLanguageInstalled OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { biosLanguage 1 }
+       
+biosLanguageInstallable OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { biosLanguage 2 }
+       
+systemPowerControls OBJECT-TYPE
+    SYNTAX SystemPowerControlsEntry
+    MAX-ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { chassis 26 }
+
+SystemPowerControlsEntry ::=
+    SEQUENCE {
+        systemPowerControlsNextPowerOnMonth
+            INTEGER,
+        systemPowerControlsNextPowerOnDayOfMonth
+            INTEGER,
+        systemPowerControlsNextPowerOnHour
+            INTEGER,
+        systemPowerControlsNextPowerOnMinute
+            INTEGER,
+        systemPowerControlsNextPowerOnSecond
+            INTEGER
+    }
+
+systemPowerControlsNextPowerOnMonth OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { systemPowerControls 1 }
+       
+systemPowerControlsNextPowerOnDayOfMonth OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { systemPowerControls 2 }
+       
+systemPowerControlsNextPowerOnHour OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { systemPowerControls 3 }
+       
+systemPowerControlsNextPowerOnMinute OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { systemPowerControls 4 }
+       
+systemPowerControlsNextPowerOnSecond OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { systemPowerControls 5 }
+       
+memoryDeviceTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF MemoryDeviceEntry
+    ACCESS not-accessible
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { memory 18 }
+
+memoryDevice OBJECT-TYPE
+    SYNTAX MemoryDeviceEntry
+    ACCESS not-accessible
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { memoryDeviceTable 1 }
+
+MemoryDeviceEntry ::=
+    SEQUENCE {
+        memoryDeviceLocator
+            DisplayString,
+        memoryBankLocator
+            DisplayString,
+        memoryManufacturer
+            DisplayString,
+        memorySerialNumber
+            DisplayString,
+        memoryAssetTag
+            DisplayString,
+        memoryPartNumber
+            DisplayString,
+        memoryDeviceFormFactor
+            INTEGER,
+        memoryDeviceType
+            INTEGER,
+        memorySize
+            INTEGER,
+        memorySpeed
+            INTEGER
+    }
+
+memoryDeviceLocator OBJECT-TYPE
+  SYNTAX DisplayString
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { memoryDevice 1 }
+
+memoryBankLocator OBJECT-TYPE
+  SYNTAX DisplayString
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { memoryDevice 2 }
+
+memoryManufacturer OBJECT-TYPE
+  SYNTAX DisplayString
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { memoryDevice 3 }
+
+memorySerialNumber OBJECT-TYPE
+  SYNTAX DisplayString
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { memoryDevice 4 }
+
+memoryAssetTag OBJECT-TYPE
+  SYNTAX DisplayString
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { memoryDevice 5 }
+
+memoryPartNumber OBJECT-TYPE
+  SYNTAX DisplayString
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { memoryDevice 6 }
+
+memoryDeviceFormFactor OBJECT-TYPE
+  SYNTAX INTEGER {
+              other(1),
+              unknown(2),
+              sim(3),
+              sip(4),
+              chip(5),
+              dip(6),
+              zip(7),
+              proprietary(8),
+              dimm(9),
+              tsop(10),
+              rowOfChips(11),
+              rimm(12),
+              sodimm(13),
+              srimm(14)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { memoryDevice 7 }
+
+memoryDeviceType OBJECT-TYPE
+  SYNTAX INTEGER {
+              other(1),
+              unknown(2),
+              dram(3),
+              edram(4),
+              vram(5),
+              sram(6),
+              ram(7),
+              rom(8),
+              flash(9),
+              eeprom(10),
+              feprom(11),
+              eprom(12),
+              cdram(13),
+              3dram(14),
+              sdram(15),
+              sgram(16),
+              rdram(17),
+              ddr(18),
+              ddr2(19)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { memoryDevice 8 }
+
+memorySize OBJECT-TYPE
+  SYNTAX INTEGER
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { memoryDevice 9 }
+
+memorySpeed OBJECT-TYPE
+  SYNTAX INTEGER
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { memoryDevice 10 }
+
+portConnectorTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF PortConnectoryEntry
+    ACCESS not-accessible
+    STATUS mandatory
+    DESCRIPTION
+        "Collection of non-specific port objects available on the system."
+    ::= { port 9 }
+
+portConnector OBJECT-TYPE
+    SYNTAX PortConnectorEntry
+    ACCESS not-accessible
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { portConnectorTable 1 }
+
+PortConnectorEntry ::=
+    SEQUENCE {
+        portConnectorInternalReferenceDesignator
+            DisplayString,
+        portConnectorExternalReferenceDesignator
+            DisplayString,
+        portInternalConnectorType
+            INTEGER,
+        portExternalConnectorType
+            INTEGER,
+        portType
+            INTEGER
+    }
+
+portConnectorInternalReferenceDesignator OBJECT-TYPE
+  SYNTAX DisplayString
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { portConnector 1 }
+
+portConnectorExternalReferenceDesignator OBJECT-TYPE
+  SYNTAX DisplayString
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { portConnector 2 }
+
+portInternalConnectorType OBJECT-TYPE
+  SYNTAX INTEGER {
+              centronics(1),
+              miniCentronics(2),
+              proprietary(3),
+              db25male(4),
+              db25female(5),
+              db15male(6),
+              db15female(7),
+              db9male(8),
+              db9female(9),
+              rj11(10),
+              rj45(11),
+              miniSCSI50Pin(12),
+              miniDIN(13),
+              microDIN(14),
+              ps2(15),
+              infrared(16),
+              hpHIL(17),
+              usbAccessBus(18),
+              ssaSCSCI(19),
+              circularDIN8male(20),
+              circularDIN8female(21),
+              onBoardIDE(22),
+              onBoardFloppy(23),
+              dualInline9Pin(24),
+              dualInline25Pin(25),
+              dualInline50Pin(26),
+              dualInline68Pin(27),
+              onBoardSoundInputFromCDROM(28),
+              miniCentronicsType14(29),
+              miniCentronicsType26(30),
+              miniJack(31),
+              bnc(32),
+              firewire(33),
+              pc98(34),
+              pc98Hireso(35),
+              pcH98(36),
+              pc98Note(37),
+              pc98Full(38),
+              other(255)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { portConnector 3 }
+
+portExternalConnectorType OBJECT-TYPE
+  SYNTAX INTEGER {
+              centronics(1),
+              miniCentronics(2),
+              proprietary(3),
+              db25male(4),
+              db25female(5),
+              db15male(6),
+              db15female(7),
+              db9male(8),
+              db9female(9),
+              rj11(10),
+              rj45(11),
+              miniSCSI50Pin(12),
+              miniDIN(13),
+              microDIN(14),
+              ps2(15),
+              infrared(16),
+              hpHIL(17),
+              usbAccessBus(18),
+              ssaSCSCI(19),
+              circularDIN8male(20),
+              circularDIN8female(21),
+              onBoardIDE(22),
+              onBoardFloppy(23),
+              dualInline9Pin(24),
+              dualInline25Pin(25),
+              dualInline50Pin(26),
+              dualInline68Pin(27),
+              onBoardSoundInputFromCDROM(28),
+              miniCentronicsType14(29),
+              miniCentronicsType26(30),
+              miniJack(31),
+              bnc(32),
+              firewire(33),
+              pc98(34),
+              pc98Hireso(35),
+              pcH98(36),
+              pc98Note(37),
+              pc98Full(38),
+              other(255)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { portConnector 4 }
+
+portType OBJECT-TYPE
+  SYNTAX INTEGER {
+              parallelXTATCompatible(1),
+              parallelPS2(2),
+              parallelECP(3),
+              parallelEPP(4),
+              parallelECPEPP(5),
+              serialXTATCompatible(6),
+              serial16450(7),
+              serial16550(8),
+              serial16550A(9),
+              scsi(10),
+              midi(11),
+              joystick(12),
+              keyboard(13),
+              mouse(14),
+              ssaSCSI(15),
+              usb(16),
+              firewire(17),
+              pcmciaII(18),
+              pcmciaII-a(19),
+              pcmciaIII(20),
+              cardbus(21),
+              accessBus(22),
+              scsiII(23),
+              scsiWide(24),
+              pc98(25),
+              pc98Hireso(26),
+              pcH98(27),
+              video(28),
+              audio(29),
+              modem(30),
+              network(31),
+              8251(32),
+              8251-FIFO(33),
+              other(255)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { portConnector 5 }
+
+parallelPortTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF ParallelPortEntry
+    ACCESS not-accessible
+    STATUS mandatory
+    DESCRIPTION
+        "Collection of objects specifically designated as Parallel Ports from Hardware Manufacturer"
+    ::= { port 210 }
+
+parallelPort OBJECT-TYPE
+    SYNTAX ParallelPortEntry
+    ACCESS not-accessible
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { parallelPortTable 1 }
+
+ParallelPortEntry ::=
+    SEQUENCE {
+        parallelPortBaseIOAddress
+            DisplayString,
+        parallelPortIRQ
+            INTEGER,
+        parallelPortConnectorType
+            INTEGER,
+        parallelPortConnectorPinOut
+            INTEGER
+    }
+
+parallelPortBaseIOAddress OBJECT-TYPE
+    SYNTAX DisplayString
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { parallelPort 1 }
+       
+parallelPortIRQ OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { parallelPort 2 }
+       
+parallelPortConnectorType OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { parallelPort 3 }
+       
+parallelPortConnectorPinOut OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { parallelPort 4 }
+       
+serialPortTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF SerialPortEntry
+    ACCESS not-accessible
+    STATUS mandatory
+    DESCRIPTION
+        "Collection of objects specifically designated as Serial Ports from Hardware Manufacturer"
+    ::= { port 211 }
+
+serialPort OBJECT-TYPE
+    SYNTAX SerialPortEntry
+    ACCESS not-accessible
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { serialPortTable 1 }
+
+SerialPortEntry ::=
+    SEQUENCE {
+        serialPortBaseIOAddress
+            INTEGER,
+        serialPortIRQ
+            INTEGER
+    }
+
+serialPortBaseIOAddress OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { serialPort 1 }
+       
+serialPortIRQ OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { serialPort 2 }
+       
+onBoardDeviceTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF OnBoardDeviceEntry
+    ACCESS not-accessible
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { device 11 }
+
+onBoardDevice OBJECT-TYPE
+    SYNTAX OnBoardDeviceEntry
+    ACCESS not-accessible
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { onBoardDeviceTable 1 }
+
+OnBoardDeviceEntry ::=
+    SEQUENCE {
+        onBoardDeviceDescriptionString
+            DisplayString,
+        onBoardDeviceType
+            INTEGER
+    }
+
+onBoardDeviceDescriptionString OBJECT-TYPE
+  SYNTAX DisplayString
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { onBoardDevice 1 }
+
+onBoardDeviceType OBJECT-TYPE
+  SYNTAX INTEGER {
+              other-disabled(1),
+              unknown-disabled(2),
+              video-disabled(3),
+              scsi-disabled(4),
+              ethernet-disabled(5),
+              tokenring-disabled(6),
+              sound-disabled(7),
+              other-enabled(129),
+              unknown-enabled(130),
+              video-enabled(131),
+              scsi-enabled(132),
+              ethernet-enabled(133),
+              tokenring-enabled(134),
+              sound-enabled(135)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { onBoardDevice 2 }
+
+builtInPointingDeviceTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF BuiltInPointingDeviceEntry 
+    ACCESS not-accessible
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { device 22 }
+
+builtInPointingDevice OBJECT-TYPE
+    SYNTAX BuiltInPointingDeviceEntry 
+    ACCESS not-accessible
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { builtInPointingDeviceTable 1 }
+
+BuiltInPointingDeviceEntry ::=
+    SEQUENCE {
+        pointingDeviceNumberOfButtons
+            INTEGER,
+        pointingDeviceType
+            INTEGER
+    }
+
+pointingDeviceNumberOfButtons OBJECT-TYPE
+    SYNTAX INTEGER
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "
+        "
+    ::= { builtInPointingDevice 1 }
+    
+pointingDeviceType OBJECT-TYPE
+  SYNTAX INTEGER {
+              other(1),
+              unknown(2),
+              mouse(3),
+              trackBall(4),
+              trackPoint(5),
+              glidePoint(6),
+              touchPad(7),
+              touchScreen(8),
+              opticalSensor(9)
+         }
+  ACCESS read-only
+  STATUS mandatory
+  DESCRIPTION
+          "
+          "
+  ::= { builtInPointingDevice 2 }
+
+END
