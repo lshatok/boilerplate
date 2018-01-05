@@ -30,7 +30,7 @@
  IS PROHIBITED WITHOUT WRITTEN AUTHORIZATION FROM
  WEBTELEMETRY US.
 
- Author: Leo Shatokhin
+ Author:  Leo Shatokhin
  Date:    {{ ansible_date_time.date }}
  ****************************************************************************/
 
