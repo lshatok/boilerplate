@@ -1,730 +1,1520 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?><webtelemetry-smbios-mib>
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<webtelemetry-smbios-mib>
   <oid>1.3.6.1.4.1.20541</oid>
   <mibElement name="smbios">
     <oid>1.3.6.1.4.1.20541.1</oid>
     <mibElement name="chassis">
       <oid>1.3.6.1.4.1.20541.1.1</oid>
-    <mibElement name="bios"><oid>1.3.6.1.4.1.20541.1.1.1</oid><dmiBlockDescriptor>BIOS Information</dmiBlockDescriptor><type>0</type><mibElement name="biosVendor">
-					<oid>1.3.6.1.4.1.20541.1.1.1.1.0</oid>
-					<dmiBlockDescriptor>Vendor</dmiBlockDescriptor>
-					<type>STRING</type>
-				<value>Phoenix Technologies LTD</value></mibElement><mibElement name="biosVersion">
-					<oid>1.3.6.1.4.1.20541.1.1.1.2.0</oid>
-					<dmiBlockDescriptor>BIOS Version</dmiBlockDescriptor>
-					<type>STRING</type>
-				<value>6.00</value></mibElement><mibElement name="biosStartingAddressSegmentRaw">
-					<oid>1.3.6.1.4.1.20541.1.1.1.3.0</oid>
-					<dmiBlockDescriptor>BIOS Starting Address Segment</dmiBlockDescriptor>
-					<type>WORD</type>
-				<value>0xe7c7</value></mibElement><mibElement name="biosStartingAddressSegmentInterpreted">
-					<oid>1.3.6.1.4.1.20541.1.1.1.4.0</oid>
-					<dmiBlockDescriptor>BIOS Starting Address Segment</dmiBlockDescriptor>
-					<type>WORD</type>
-					<translationIndex>0</translationIndex>
-					<translationType>STRING</translationType>
-				<value>0xe7c7</value></mibElement><mibElement name="biosReleaseDate">
-					<oid>1.3.6.1.4.1.20541.1.1.1.5.0</oid>
-					<dmiBlockDescriptor>BIOS Release Date</dmiBlockDescriptor>
-					<type>STRING</type>
-				<value>04/17/2006</value></mibElement><mibElement name="biosROMSizeRaw">
-					<oid>1.3.6.1.4.1.20541.1.1.1.6.0</oid>
-					<dmiBlockDescriptor>BIOS ROM Size</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<value>0x00</value></mibElement><mibElement name="biosROMSizeInterpreted">
-					<oid>1.3.6.1.4.1.20541.1.1.1.7.0</oid>
-					<dmiBlockDescriptor>BIOS ROM Size</dmiBlockDescriptor>
-					<type>BYTE</type>
-					<translationIndex>1</translationIndex>
-					<translationType>STRING</translationType>
-				<value>0x00</value></mibElement></mibElement><mibElement name="system"><oid>1.3.6.1.4.1.20541.1.1.2</oid><dmiBlockDescriptor>System Information</dmiBlockDescriptor><type>1</type><mibElement name="systemManufacturer">
-					<oid>1.3.6.1.4.1.20541.1.1.2.1.0</oid>
-					<dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor>
-					<type>STRING</type>
-				<value>VMware, Inc.</value></mibElement><mibElement name="systemProductName">
-					<oid>1.3.6.1.4.1.20541.1.1.2.2.0</oid>
-					<dmiBlockDescriptor>Product Name</dmiBlockDescriptor>
-					<type>STRING</type>
-				<value>VMware Virtual Platform</value></mibElement><mibElement name="systemVersion">
-					<oid>1.3.6.1.4.1.20541.1.1.2.3.0</oid>
-					<dmiBlockDescriptor>Version</dmiBlockDescriptor>
-					<type>STRING</type>
-				<value>None</value></mibElement><mibElement name="systemSerialNumber">
-					<oid>1.3.6.1.4.1.20541.1.1.2.4.0</oid>
-					<dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<value>VMware-56 4d 26 f2 44 6a 06 0e-c6 7f ce 0b bd b8 0f e1</value></mibElement><mibElement name="systemWakeUpType">
-					<oid>1.3.6.1.4.1.20541.1.1.2.5.0</oid>
-					<dmiBlockDescriptor>Wake-up Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<value>0x06</value></mibElement></mibElement><mibElement name="baseboard"><oid>1.3.6.1.4.1.20541.1.1.3</oid><dmiBlockDescriptor>Base Board Information</dmiBlockDescriptor><type>2</type><mibElement name="baseboardManufacturer">
-					<oid>1.3.6.1.4.1.20541.1.1.3.1.0</oid>
-					<dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor>
-					<type>STRING</type>
-				<value>Intel Corporation</value></mibElement><mibElement name="baseboardProduct">
-					<oid>1.3.6.1.4.1.20541.1.1.3.2.0</oid>
-					<dmiBlockDescriptor>Product</dmiBlockDescriptor>
-					<type>STRING</type>
-				<value>440BX Desktop Reference Platform</value></mibElement><mibElement name="baseboardVersion">
-					<oid>1.3.6.1.4.1.20541.1.1.3.3.0</oid>
-					<dmiBlockDescriptor>Version</dmiBlockDescriptor>
-					<type>STRING</type>
-				<value>None</value></mibElement><mibElement name="baseboardSerialNumber">
-					<oid>1.3.6.1.4.1.20541.1.1.3.4.0</oid>
-					<dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<value>None</value></mibElement></mibElement><mibElement name="enclosure"><oid>1.3.6.1.4.1.20541.1.1.4</oid><dmiBlockDescriptor>System Enclosure or Chassis</dmiBlockDescriptor><type>3</type><mibElement name="enclosureManufacturer">
-					<oid>1.3.6.1.4.1.20541.1.1.4.1.0</oid>
-					<dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor>
-					<type>STRING</type>
-				<value>No Enclosure</value></mibElement><mibElement name="enclosureType">
-					<oid>1.3.6.1.4.1.20541.1.1.4.2.0</oid>
-					<dmiBlockDescriptor>Enclosure Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<value>0x01</value></mibElement><mibElement name="enclosureVersion">
-					<oid>1.3.6.1.4.1.20541.1.1.4.3.0</oid>
-					<dmiBlockDescriptor>Version</dmiBlockDescriptor>
-					<type>STRING</type>
-				<value>N/A</value></mibElement><mibElement name="enclosureSerialNumber">
-					<oid>1.3.6.1.4.1.20541.1.1.4.4.0</oid>
-					<dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<value>None</value></mibElement><mibElement name="enclosureAssetTag">
-					<oid>1.3.6.1.4.1.20541.1.1.4.5.0</oid>
-					<dmiBlockDescriptor>Asset Tag Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<value>No Asset Tag</value></mibElement><mibElement name="enclosureBootupState">
-					<oid>1.3.6.1.4.1.20541.1.1.4.6.0</oid>
-					<dmiBlockDescriptor>Boot-up State</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<value>0x03</value></mibElement><mibElement name="enclosureSecurityStatus">
-					<oid>1.3.6.1.4.1.20541.1.1.4.7.0</oid>
-					<dmiBlockDescriptor>Security Status</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<value>0x03</value></mibElement></mibElement><mibElement name="processor"><oid>1.3.6.1.4.1.20541.1.1.5.1</oid><dmiBlockDescriptor>Processor Information</dmiBlockDescriptor><type>4</type><count>4</count><mibElement name="processorSocketDesignation"><oid>1.3.6.1.4.1.20541.1.1.5.1.1</oid><type>STRING</type><dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor><mibElement name="processorSocketDesignation">
-					
-					<dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.1.1</oid><value>CPU socket #0</value></mibElement><mibElement name="processorSocketDesignation">
-					
-					<dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.1.2</oid><value>CPU socket #1</value></mibElement><mibElement name="processorSocketDesignation">
-					
-					<dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.1.3</oid><value>CPU socket #2</value></mibElement><mibElement name="processorSocketDesignation">
-					
-					<dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.1.4</oid><value>CPU socket #3</value></mibElement></mibElement><count>1</count><mibElement name="processorType"><oid>1.3.6.1.4.1.20541.1.1.5.1.2</oid><type>BYTE</type><dmiBlockDescriptor>Processor Type</dmiBlockDescriptor><mibElement name="processorType">
-					
-					<dmiBlockDescriptor>Processor Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.2.1</oid><value>0x03</value></mibElement><mibElement name="processorType">
-					
-					<dmiBlockDescriptor>Processor Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.2.2</oid><value>0x03</value></mibElement><mibElement name="processorType">
-					
-					<dmiBlockDescriptor>Processor Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.2.3</oid><value>0x03</value></mibElement><mibElement name="processorType">
-					
-					<dmiBlockDescriptor>Processor Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.2.4</oid><value>0x03</value></mibElement></mibElement><count>1</count><mibElement name="processorFamily"><oid>1.3.6.1.4.1.20541.1.1.5.1.3</oid><type>BYTE</type><dmiBlockDescriptor>Processor Family</dmiBlockDescriptor><mibElement name="processorFamily">
-					
-					<dmiBlockDescriptor>Processor Family</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.3.1</oid><value>0x0c</value></mibElement><mibElement name="processorFamily">
-					
-					<dmiBlockDescriptor>Processor Family</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.3.2</oid><value>0x02</value></mibElement><mibElement name="processorFamily">
-					
-					<dmiBlockDescriptor>Processor Family</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.3.3</oid><value>0x02</value></mibElement><mibElement name="processorFamily">
-					
-					<dmiBlockDescriptor>Processor Family</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.3.4</oid><value>0x02</value></mibElement></mibElement><count>1</count><mibElement name="processorManufacturer"><oid>1.3.6.1.4.1.20541.1.1.5.1.4</oid><type>STRING</type><dmiBlockDescriptor>Processor Manufacturer</dmiBlockDescriptor><mibElement name="processorManufacturer">
-					
-					<dmiBlockDescriptor>Processor Manufacturer</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.4.1</oid><value>GenuineIntel</value></mibElement><mibElement name="processorManufacturer">
-					
-					<dmiBlockDescriptor>Processor Manufacturer</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.4.2</oid><value>000000000000</value></mibElement><mibElement name="processorManufacturer">
-					
-					<dmiBlockDescriptor>Processor Manufacturer</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.4.3</oid><value>000000000000</value></mibElement><mibElement name="processorManufacturer">
-					
-					<dmiBlockDescriptor>Processor Manufacturer</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.4.4</oid><value>000000000000</value></mibElement></mibElement><count>1</count><mibElement name="processorId"><oid>1.3.6.1.4.1.20541.1.1.5.1.5</oid><type>QWORD</type><dmiBlockDescriptor>Processor ID</dmiBlockDescriptor><mibElement name="processorId">
-					
-					<dmiBlockDescriptor>Processor ID</dmiBlockDescriptor>
-					<type>QWORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.5.1</oid><value>0xfebfbff000006f8</value></mibElement><mibElement name="processorId">
-					
-					<dmiBlockDescriptor>Processor ID</dmiBlockDescriptor>
-					<type>QWORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.5.2</oid><value>0x000000000</value></mibElement><mibElement name="processorId">
-					
-					<dmiBlockDescriptor>Processor ID</dmiBlockDescriptor>
-					<type>QWORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.5.3</oid><value>0x000000000</value></mibElement><mibElement name="processorId">
-					
-					<dmiBlockDescriptor>Processor ID</dmiBlockDescriptor>
-					<type>QWORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.5.4</oid><value>0x000000000</value></mibElement></mibElement><count>1</count><mibElement name="processorVersion"><oid>1.3.6.1.4.1.20541.1.1.5.1.6</oid><type>STRING</type><dmiBlockDescriptor>Processor Version</dmiBlockDescriptor><mibElement name="processorVersion">
-					
-					<dmiBlockDescriptor>Processor Version</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.6.1</oid><value>Pentium(R) Pro</value></mibElement><mibElement name="processorVersion">
-					
-					<dmiBlockDescriptor>Processor Version</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.6.2</oid><value>00000000000000000000000000000000</value></mibElement><mibElement name="processorVersion">
-					
-					<dmiBlockDescriptor>Processor Version</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.6.3</oid><value>00000000000000000000000000000000</value></mibElement><mibElement name="processorVersion">
-					
-					<dmiBlockDescriptor>Processor Version</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.6.4</oid><value>00000000000000000000000000000000</value></mibElement></mibElement><count>1</count><mibElement name="processorSerialNumber"><oid>1.3.6.1.4.1.20541.1.1.5.1.7</oid><type>STRING</type><dmiBlockDescriptor>Serial Number</dmiBlockDescriptor><mibElement name="processorSerialNumber">
-					
-					<dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.7.1</oid><value> </value></mibElement><mibElement name="processorSerialNumber">
-					
-					<dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.7.2</oid><value> </value></mibElement><mibElement name="processorSerialNumber">
-					
-					<dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.7.3</oid><value> </value></mibElement><mibElement name="processorSerialNumber">
-					
-					<dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.7.4</oid><value> </value></mibElement></mibElement><count>1</count><mibElement name="processorAssetTag"><oid>1.3.6.1.4.1.20541.1.1.5.1.8</oid><type>STRING</type><dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor><mibElement name="processorAssetTag">
-					
-					<dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.8.1</oid><value> </value></mibElement><mibElement name="processorAssetTag">
-					
-					<dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.8.2</oid><value> </value></mibElement><mibElement name="processorAssetTag">
-					
-					<dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.8.3</oid><value> </value></mibElement><mibElement name="processorAssetTag">
-					
-					<dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.8.4</oid><value> </value></mibElement></mibElement><count>1</count><mibElement name="processorPartNumber"><oid>1.3.6.1.4.1.20541.1.1.5.1.9</oid><type>STRING</type><dmiBlockDescriptor>Part Number</dmiBlockDescriptor><mibElement name="processorPartNumber">
-					
-					<dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.9.1</oid><value> </value></mibElement><mibElement name="processorPartNumber">
-					
-					<dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.9.2</oid><value> </value></mibElement><mibElement name="processorPartNumber">
-					
-					<dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.9.3</oid><value> </value></mibElement><mibElement name="processorPartNumber">
-					
-					<dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.9.4</oid><value> </value></mibElement></mibElement><count>1</count><mibElement name="processorUpgrade"><oid>1.3.6.1.4.1.20541.1.1.5.1.10</oid><type>BYTE</type><dmiBlockDescriptor>Processor Upgrade</dmiBlockDescriptor><mibElement name="processorUpgrade">
-					
-					<dmiBlockDescriptor>Processor Upgrade</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.10.1</oid><value>0x04</value></mibElement><mibElement name="processorUpgrade">
-					
-					<dmiBlockDescriptor>Processor Upgrade</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.10.2</oid><value>0x04</value></mibElement><mibElement name="processorUpgrade">
-					
-					<dmiBlockDescriptor>Processor Upgrade</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.10.3</oid><value>0x04</value></mibElement><mibElement name="processorUpgrade">
-					
-					<dmiBlockDescriptor>Processor Upgrade</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.10.4</oid><value>0x04</value></mibElement></mibElement><count>1</count><mibElement name="processorSpeed"><oid>1.3.6.1.4.1.20541.1.1.5.1.11</oid><type>WORD</type><dmiBlockDescriptor>Current Speed</dmiBlockDescriptor><mibElement name="processorSpeed">
-					
-					<dmiBlockDescriptor>Current Speed</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.11.1</oid><value>0x74a</value></mibElement><mibElement name="processorSpeed">
-					
-					<dmiBlockDescriptor>Current Speed</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.11.2</oid><value>0x00</value></mibElement><mibElement name="processorSpeed">
-					
-					<dmiBlockDescriptor>Current Speed</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.11.3</oid><value>0x00</value></mibElement><mibElement name="processorSpeed">
-					
-					<dmiBlockDescriptor>Current Speed</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.11.4</oid><value>0x00</value></mibElement></mibElement><count>1</count><mibElement name="processorVoltageRaw"><oid>1.3.6.1.4.1.20541.1.1.5.1.12</oid><type>BYTE</type><dmiBlockDescriptor>Voltage</dmiBlockDescriptor><mibElement name="processorVoltageRaw">
-					
-					<dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.12.1</oid><value>0x02</value></mibElement><mibElement name="processorVoltageRaw">
-					
-					<dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.12.2</oid><value>0x02</value></mibElement><mibElement name="processorVoltageRaw">
-					
-					<dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.12.3</oid><value>0x02</value></mibElement><mibElement name="processorVoltageRaw">
-					
-					<dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.12.4</oid><value>0x02</value></mibElement></mibElement><count>1</count><mibElement name="processorVoltageInterpreted"><oid>1.3.6.1.4.1.20541.1.1.5.1.13</oid><type>BYTE</type><dmiBlockDescriptor>Voltage</dmiBlockDescriptor><mibElement name="processorVoltageInterpreted">
-					
-					<dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
-					<type>BYTE</type>
-					<translationIndex>2</translationIndex>
-					<translationType>STRING</translationType>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.13.1</oid><value>0x02</value></mibElement><mibElement name="processorVoltageInterpreted">
-					
-					<dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
-					<type>BYTE</type>
-					<translationIndex>2</translationIndex>
-					<translationType>STRING</translationType>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.13.2</oid><value>0x02</value></mibElement><mibElement name="processorVoltageInterpreted">
-					
-					<dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
-					<type>BYTE</type>
-					<translationIndex>2</translationIndex>
-					<translationType>STRING</translationType>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.13.3</oid><value>0x02</value></mibElement><mibElement name="processorVoltageInterpreted">
-					
-					<dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
-					<type>BYTE</type>
-					<translationIndex>2</translationIndex>
-					<translationType>STRING</translationType>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.13.4</oid><value>0x02</value></mibElement></mibElement><count>1</count><mibElement name="processorExternalClock"><oid>1.3.6.1.4.1.20541.1.1.5.1.14</oid><type>WORD</type><dmiBlockDescriptor>External Clock</dmiBlockDescriptor><mibElement name="processorExternalClock">
-					
-					<dmiBlockDescriptor>External Clock</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.14.1</oid><value>0x00</value></mibElement><mibElement name="processorExternalClock">
-					
-					<dmiBlockDescriptor>External Clock</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.14.2</oid><value>0x00</value></mibElement><mibElement name="processorExternalClock">
-					
-					<dmiBlockDescriptor>External Clock</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.14.3</oid><value>0x00</value></mibElement><mibElement name="processorExternalClock">
-					
-					<dmiBlockDescriptor>External Clock</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.5.1.14.4</oid><value>0x00</value></mibElement></mibElement></mibElement><mibElement name="cache"><oid>1.3.6.1.4.1.20541.1.1.8.1</oid><dmiBlockDescriptor>Cache Information</dmiBlockDescriptor><type>7</type><count>2</count><mibElement name="cacheSocketDesignation"><oid>1.3.6.1.4.1.20541.1.1.8.1.1</oid><type>STRING</type><dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor><mibElement name="cacheSocketDesignation">
-					
-					<dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.8.1.1.1</oid><value>L1 Cache</value></mibElement><mibElement name="cacheSocketDesignation">
-					
-					<dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.8.1.1.2</oid><value>L2 Cache</value></mibElement></mibElement><count>1</count><mibElement name="cacheSupportedSRAMType"><oid>1.3.6.1.4.1.20541.1.1.8.1.2</oid><type>WORD</type><dmiBlockDescriptor>Supported SRAM Type</dmiBlockDescriptor><mibElement name="cacheSupportedSRAMType">
-					
-					<dmiBlockDescriptor>Supported SRAM Type</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.8.1.2.1</oid><value>0x58</value></mibElement><mibElement name="cacheSupportedSRAMType">
-					
-					<dmiBlockDescriptor>Supported SRAM Type</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.8.1.2.2</oid><value>0x58</value></mibElement></mibElement><count>1</count><mibElement name="cacheCurrentSRAMType"><oid>1.3.6.1.4.1.20541.1.1.8.1.3</oid><type>WORD</type><dmiBlockDescriptor>Current SRAM Type</dmiBlockDescriptor><mibElement name="cacheCurrentSRAMType">
-					
-					<dmiBlockDescriptor>Current SRAM Type</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.8.1.3.1</oid><value>0x40</value></mibElement><mibElement name="cacheCurrentSRAMType">
-					
-					<dmiBlockDescriptor>Current SRAM Type</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.8.1.3.2</oid><value>0x00</value></mibElement></mibElement><count>1</count><mibElement name="cacheConfigurationRaw"><oid>1.3.6.1.4.1.20541.1.1.8.1.4</oid><type>WORD</type><dmiBlockDescriptor>Cache Configuration</dmiBlockDescriptor><mibElement name="cacheConfigurationRaw">
-					
-					<dmiBlockDescriptor>Cache Configuration</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.8.1.4.1</oid><value>0x188</value></mibElement><mibElement name="cacheConfigurationRaw">
-					
-					<dmiBlockDescriptor>Cache Configuration</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.8.1.4.2</oid><value>0x129</value></mibElement></mibElement><count>1</count><mibElement name="cacheConfigurationInterpreted"><oid>1.3.6.1.4.1.20541.1.1.8.1.5</oid><type>WORD</type><dmiBlockDescriptor>Cache Configuration</dmiBlockDescriptor><mibElement name="cacheConfigurationInterpreted">
-					
-					<dmiBlockDescriptor>Cache Configuration</dmiBlockDescriptor>
-					<type>WORD</type>
-					<translationIndex>3</translationIndex>
-					<translationType>STRING</translationType>
-				<oid>1.3.6.1.4.1.20541.1.1.8.1.5.1</oid><value>0x188</value></mibElement><mibElement name="cacheConfigurationInterpreted">
-					
-					<dmiBlockDescriptor>Cache Configuration</dmiBlockDescriptor>
-					<type>WORD</type>
-					<translationIndex>3</translationIndex>
-					<translationType>STRING</translationType>
-				<oid>1.3.6.1.4.1.20541.1.1.8.1.5.2</oid><value>0x129</value></mibElement></mibElement><count>1</count><mibElement name="cacheSize"><oid>1.3.6.1.4.1.20541.1.1.8.1.6</oid><type>WORD</type><dmiBlockDescriptor>Installed Size</dmiBlockDescriptor><mibElement name="cacheSize">
-					
-					<dmiBlockDescriptor>Installed Size</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.8.1.6.1</oid><value>0x10</value></mibElement><mibElement name="cacheSize">
-					
-					<dmiBlockDescriptor>Installed Size</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.8.1.6.2</oid><value>0x00</value></mibElement></mibElement></mibElement><mibElement name="systemSlot"><oid>1.3.6.1.4.1.20541.1.1.10.1</oid><dmiBlockDescriptor>System Slots</dmiBlockDescriptor><type>9</type><count>7</count><mibElement name="systemSlotDesignation"><oid>1.3.6.1.4.1.20541.1.1.10.1.1</oid><type>STRING</type><dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor><mibElement name="systemSlotDesignation">
-					
-					<dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.1.1</oid><value>ISA Slot J8</value></mibElement><mibElement name="systemSlotDesignation">
-					
-					<dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.1.2</oid><value>ISA Slot J9</value></mibElement><mibElement name="systemSlotDesignation">
-					
-					<dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.1.3</oid><value>ISA Slot J10</value></mibElement><mibElement name="systemSlotDesignation">
-					
-					<dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.1.4</oid><value>PCI Slot J11</value></mibElement><mibElement name="systemSlotDesignation">
-					
-					<dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.1.5</oid><value>PCI Slot J12</value></mibElement><mibElement name="systemSlotDesignation">
-					
-					<dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.1.6</oid><value>PCI Slot J13</value></mibElement><mibElement name="systemSlotDesignation">
-					
-					<dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.1.7</oid><value>PCI Slot J14</value></mibElement></mibElement><count>1</count><mibElement name="systemSlotId"><oid>1.3.6.1.4.1.20541.1.1.10.1.2</oid><type>WORD</type><dmiBlockDescriptor>Slot ID</dmiBlockDescriptor><mibElement name="systemSlotId">
-					
-					<dmiBlockDescriptor>Slot ID</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.2.1</oid><value>0x00</value></mibElement><mibElement name="systemSlotId">
-					
-					<dmiBlockDescriptor>Slot ID</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.2.2</oid><value>0x00</value></mibElement><mibElement name="systemSlotId">
-					
-					<dmiBlockDescriptor>Slot ID</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.2.3</oid><value>0x00</value></mibElement><mibElement name="systemSlotId">
-					
-					<dmiBlockDescriptor>Slot ID</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.2.4</oid><value>0x01</value></mibElement><mibElement name="systemSlotId">
-					
-					<dmiBlockDescriptor>Slot ID</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.2.5</oid><value>0x02</value></mibElement><mibElement name="systemSlotId">
-					
-					<dmiBlockDescriptor>Slot ID</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.2.6</oid><value>0x03</value></mibElement><mibElement name="systemSlotId">
-					
-					<dmiBlockDescriptor>Slot ID</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.2.7</oid><value>0x04</value></mibElement></mibElement><count>1</count><mibElement name="systemSlotType"><oid>1.3.6.1.4.1.20541.1.1.10.1.3</oid><type>BYTE</type><dmiBlockDescriptor>Slot Type</dmiBlockDescriptor><mibElement name="systemSlotType">
-					
-					<dmiBlockDescriptor>Slot Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.3.1</oid><value>0x03</value></mibElement><mibElement name="systemSlotType">
-					
-					<dmiBlockDescriptor>Slot Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.3.2</oid><value>0x03</value></mibElement><mibElement name="systemSlotType">
-					
-					<dmiBlockDescriptor>Slot Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.3.3</oid><value>0x03</value></mibElement><mibElement name="systemSlotType">
-					
-					<dmiBlockDescriptor>Slot Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.3.4</oid><value>0x06</value></mibElement><mibElement name="systemSlotType">
-					
-					<dmiBlockDescriptor>Slot Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.3.5</oid><value>0x06</value></mibElement><mibElement name="systemSlotType">
-					
-					<dmiBlockDescriptor>Slot Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.3.6</oid><value>0x06</value></mibElement><mibElement name="systemSlotType">
-					
-					<dmiBlockDescriptor>Slot Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.1.10.1.3.7</oid><value>0x06</value></mibElement></mibElement></mibElement></mibElement>
+      <mibElement name="bios">
+        <oid>1.3.6.1.4.1.20541.1.1.1</oid>
+        <dmiBlockDescriptor>BIOS Information</dmiBlockDescriptor>
+        <type>0</type>
+        <mibElement name="biosVendor">
+          <oid>1.3.6.1.4.1.20541.1.1.1.1.0</oid>
+          <dmiBlockDescriptor>Vendor</dmiBlockDescriptor>
+          <type>STRING</type>
+          <value>Phoenix Technologies LTD</value>
+        </mibElement>
+        <mibElement name="biosVersion">
+          <oid>1.3.6.1.4.1.20541.1.1.1.2.0</oid>
+          <dmiBlockDescriptor>BIOS Version</dmiBlockDescriptor>
+          <type>STRING</type>
+          <value>6.00</value>
+        </mibElement>
+        <mibElement name="biosStartingAddressSegmentRaw">
+          <oid>1.3.6.1.4.1.20541.1.1.1.3.0</oid>
+          <dmiBlockDescriptor>BIOS Starting Address Segment</dmiBlockDescriptor>
+          <type>WORD</type>
+          <value>0xe7c7</value>
+        </mibElement>
+        <mibElement name="biosStartingAddressSegmentInterpreted">
+          <oid>1.3.6.1.4.1.20541.1.1.1.4.0</oid>
+          <dmiBlockDescriptor>BIOS Starting Address Segment</dmiBlockDescriptor>
+          <type>WORD</type>
+          <translationIndex>0</translationIndex>
+          <translationType>STRING</translationType>
+          <value>0xe7c7</value>
+        </mibElement>
+        <mibElement name="biosReleaseDate">
+          <oid>1.3.6.1.4.1.20541.1.1.1.5.0</oid>
+          <dmiBlockDescriptor>BIOS Release Date</dmiBlockDescriptor>
+          <type>STRING</type>
+          <value>04/17/2006</value>
+        </mibElement>
+        <mibElement name="biosROMSizeRaw">
+          <oid>1.3.6.1.4.1.20541.1.1.1.6.0</oid>
+          <dmiBlockDescriptor>BIOS ROM Size</dmiBlockDescriptor>
+          <type>BYTE</type>
+          <value>0x00</value>
+        </mibElement>
+        <mibElement name="biosROMSizeInterpreted">
+          <oid>1.3.6.1.4.1.20541.1.1.1.7.0</oid>
+          <dmiBlockDescriptor>BIOS ROM Size</dmiBlockDescriptor>
+          <type>BYTE</type>
+          <translationIndex>1</translationIndex>
+          <translationType>STRING</translationType>
+          <value>0x00</value>
+        </mibElement>
+      </mibElement>
+      <mibElement name="system">
+        <oid>1.3.6.1.4.1.20541.1.1.2</oid>
+        <dmiBlockDescriptor>System Information</dmiBlockDescriptor>
+        <type>1</type>
+        <mibElement name="systemManufacturer">
+          <oid>1.3.6.1.4.1.20541.1.1.2.1.0</oid>
+          <dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor>
+          <type>STRING</type>
+          <value>VMware, Inc.</value>
+        </mibElement>
+        <mibElement name="systemProductName">
+          <oid>1.3.6.1.4.1.20541.1.1.2.2.0</oid>
+          <dmiBlockDescriptor>Product Name</dmiBlockDescriptor>
+          <type>STRING</type>
+          <value>VMware Virtual Platform</value>
+        </mibElement>
+        <mibElement name="systemVersion">
+          <oid>1.3.6.1.4.1.20541.1.1.2.3.0</oid>
+          <dmiBlockDescriptor>Version</dmiBlockDescriptor>
+          <type>STRING</type>
+          <value>None</value>
+        </mibElement>
+        <mibElement name="systemSerialNumber">
+          <oid>1.3.6.1.4.1.20541.1.1.2.4.0</oid>
+          <dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
+          <type>STRING</type>
+          <value>VMware-56 4d 26 f2 44 6a 06 0e-c6 7f ce 0b bd b8 0f e1</value>
+        </mibElement>
+        <mibElement name="systemWakeUpType">
+          <oid>1.3.6.1.4.1.20541.1.1.2.5.0</oid>
+          <dmiBlockDescriptor>Wake-up Type</dmiBlockDescriptor>
+          <type>BYTE</type>
+          <value>0x06</value>
+        </mibElement>
+      </mibElement>
+      <mibElement name="baseboard">
+        <oid>1.3.6.1.4.1.20541.1.1.3</oid>
+        <dmiBlockDescriptor>Base Board Information</dmiBlockDescriptor>
+        <type>2</type>
+        <mibElement name="baseboardManufacturer">
+          <oid>1.3.6.1.4.1.20541.1.1.3.1.0</oid>
+          <dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor>
+          <type>STRING</type>
+          <value>Intel Corporation</value>
+        </mibElement>
+        <mibElement name="baseboardProduct">
+          <oid>1.3.6.1.4.1.20541.1.1.3.2.0</oid>
+          <dmiBlockDescriptor>Product</dmiBlockDescriptor>
+          <type>STRING</type>
+          <value>440BX Desktop Reference Platform</value>
+        </mibElement>
+        <mibElement name="baseboardVersion">
+          <oid>1.3.6.1.4.1.20541.1.1.3.3.0</oid>
+          <dmiBlockDescriptor>Version</dmiBlockDescriptor>
+          <type>STRING</type>
+          <value>None</value>
+        </mibElement>
+        <mibElement name="baseboardSerialNumber">
+          <oid>1.3.6.1.4.1.20541.1.1.3.4.0</oid>
+          <dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
+          <type>STRING</type>
+          <value>None</value>
+        </mibElement>
+      </mibElement>
+      <mibElement name="enclosure">
+        <oid>1.3.6.1.4.1.20541.1.1.4</oid>
+        <dmiBlockDescriptor>System Enclosure or Chassis</dmiBlockDescriptor>
+        <type>3</type>
+        <mibElement name="enclosureManufacturer">
+          <oid>1.3.6.1.4.1.20541.1.1.4.1.0</oid>
+          <dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor>
+          <type>STRING</type>
+          <value>No Enclosure</value>
+        </mibElement>
+        <mibElement name="enclosureType">
+          <oid>1.3.6.1.4.1.20541.1.1.4.2.0</oid>
+          <dmiBlockDescriptor>Enclosure Type</dmiBlockDescriptor>
+          <type>BYTE</type>
+          <value>0x01</value>
+        </mibElement>
+        <mibElement name="enclosureVersion">
+          <oid>1.3.6.1.4.1.20541.1.1.4.3.0</oid>
+          <dmiBlockDescriptor>Version</dmiBlockDescriptor>
+          <type>STRING</type>
+          <value>N/A</value>
+        </mibElement>
+        <mibElement name="enclosureSerialNumber">
+          <oid>1.3.6.1.4.1.20541.1.1.4.4.0</oid>
+          <dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
+          <type>STRING</type>
+          <value>None</value>
+        </mibElement>
+        <mibElement name="enclosureAssetTag">
+          <oid>1.3.6.1.4.1.20541.1.1.4.5.0</oid>
+          <dmiBlockDescriptor>Asset Tag Number</dmiBlockDescriptor>
+          <type>STRING</type>
+          <value>No Asset Tag</value>
+        </mibElement>
+        <mibElement name="enclosureBootupState">
+          <oid>1.3.6.1.4.1.20541.1.1.4.6.0</oid>
+          <dmiBlockDescriptor>Boot-up State</dmiBlockDescriptor>
+          <type>BYTE</type>
+          <value>0x03</value>
+        </mibElement>
+        <mibElement name="enclosureSecurityStatus">
+          <oid>1.3.6.1.4.1.20541.1.1.4.7.0</oid>
+          <dmiBlockDescriptor>Security Status</dmiBlockDescriptor>
+          <type>BYTE</type>
+          <value>0x03</value>
+        </mibElement>
+      </mibElement>
+      <mibElement name="processor">
+        <oid>1.3.6.1.4.1.20541.1.1.5.1</oid>
+        <dmiBlockDescriptor>Processor Information</dmiBlockDescriptor>
+        <type>4</type>
+        <count>4</count>
+        <mibElement name="processorSocketDesignation">
+          <oid>1.3.6.1.4.1.20541.1.1.5.1.1</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor>
+          <mibElement name="processorSocketDesignation">
+
+            <dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.1.1</oid>
+            <value>CPU socket #0</value>
+          </mibElement>
+          <mibElement name="processorSocketDesignation">
+
+            <dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.1.2</oid>
+            <value>CPU socket #1</value>
+          </mibElement>
+          <mibElement name="processorSocketDesignation">
+
+            <dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.1.3</oid>
+            <value>CPU socket #2</value>
+          </mibElement>
+          <mibElement name="processorSocketDesignation">
+
+            <dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.1.4</oid>
+            <value>CPU socket #3</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="processorType">
+          <oid>1.3.6.1.4.1.20541.1.1.5.1.2</oid>
+          <type>BYTE</type>
+          <dmiBlockDescriptor>Processor Type</dmiBlockDescriptor>
+          <mibElement name="processorType">
+
+            <dmiBlockDescriptor>Processor Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.2.1</oid>
+            <value>0x03</value>
+          </mibElement>
+          <mibElement name="processorType">
+
+            <dmiBlockDescriptor>Processor Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.2.2</oid>
+            <value>0x03</value>
+          </mibElement>
+          <mibElement name="processorType">
+
+            <dmiBlockDescriptor>Processor Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.2.3</oid>
+            <value>0x03</value>
+          </mibElement>
+          <mibElement name="processorType">
+
+            <dmiBlockDescriptor>Processor Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.2.4</oid>
+            <value>0x03</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="processorFamily">
+          <oid>1.3.6.1.4.1.20541.1.1.5.1.3</oid>
+          <type>BYTE</type>
+          <dmiBlockDescriptor>Processor Family</dmiBlockDescriptor>
+          <mibElement name="processorFamily">
+
+            <dmiBlockDescriptor>Processor Family</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.3.1</oid>
+            <value>0x0c</value>
+          </mibElement>
+          <mibElement name="processorFamily">
+
+            <dmiBlockDescriptor>Processor Family</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.3.2</oid>
+            <value>0x02</value>
+          </mibElement>
+          <mibElement name="processorFamily">
+
+            <dmiBlockDescriptor>Processor Family</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.3.3</oid>
+            <value>0x02</value>
+          </mibElement>
+          <mibElement name="processorFamily">
+
+            <dmiBlockDescriptor>Processor Family</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.3.4</oid>
+            <value>0x02</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="processorManufacturer">
+          <oid>1.3.6.1.4.1.20541.1.1.5.1.4</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Processor Manufacturer</dmiBlockDescriptor>
+          <mibElement name="processorManufacturer">
+
+            <dmiBlockDescriptor>Processor Manufacturer</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.4.1</oid>
+            <value>GenuineIntel</value>
+          </mibElement>
+          <mibElement name="processorManufacturer">
+
+            <dmiBlockDescriptor>Processor Manufacturer</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.4.2</oid>
+            <value>000000000000</value>
+          </mibElement>
+          <mibElement name="processorManufacturer">
+
+            <dmiBlockDescriptor>Processor Manufacturer</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.4.3</oid>
+            <value>000000000000</value>
+          </mibElement>
+          <mibElement name="processorManufacturer">
+
+            <dmiBlockDescriptor>Processor Manufacturer</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.4.4</oid>
+            <value>000000000000</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="processorId">
+          <oid>1.3.6.1.4.1.20541.1.1.5.1.5</oid>
+          <type>QWORD</type>
+          <dmiBlockDescriptor>Processor ID</dmiBlockDescriptor>
+          <mibElement name="processorId">
+
+            <dmiBlockDescriptor>Processor ID</dmiBlockDescriptor>
+            <type>QWORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.5.1</oid>
+            <value>0xfebfbff000006f8</value>
+          </mibElement>
+          <mibElement name="processorId">
+
+            <dmiBlockDescriptor>Processor ID</dmiBlockDescriptor>
+            <type>QWORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.5.2</oid>
+            <value>0x000000000</value>
+          </mibElement>
+          <mibElement name="processorId">
+
+            <dmiBlockDescriptor>Processor ID</dmiBlockDescriptor>
+            <type>QWORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.5.3</oid>
+            <value>0x000000000</value>
+          </mibElement>
+          <mibElement name="processorId">
+
+            <dmiBlockDescriptor>Processor ID</dmiBlockDescriptor>
+            <type>QWORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.5.4</oid>
+            <value>0x000000000</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="processorVersion">
+          <oid>1.3.6.1.4.1.20541.1.1.5.1.6</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Processor Version</dmiBlockDescriptor>
+          <mibElement name="processorVersion">
+
+            <dmiBlockDescriptor>Processor Version</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.6.1</oid>
+            <value>Pentium(R) Pro</value>
+          </mibElement>
+          <mibElement name="processorVersion">
+
+            <dmiBlockDescriptor>Processor Version</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.6.2</oid>
+            <value>00000000000000000000000000000000</value>
+          </mibElement>
+          <mibElement name="processorVersion">
+
+            <dmiBlockDescriptor>Processor Version</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.6.3</oid>
+            <value>00000000000000000000000000000000</value>
+          </mibElement>
+          <mibElement name="processorVersion">
+
+            <dmiBlockDescriptor>Processor Version</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.6.4</oid>
+            <value>00000000000000000000000000000000</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="processorSerialNumber">
+          <oid>1.3.6.1.4.1.20541.1.1.5.1.7</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
+          <mibElement name="processorSerialNumber">
+
+            <dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.7.1</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="processorSerialNumber">
+
+            <dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.7.2</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="processorSerialNumber">
+
+            <dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.7.3</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="processorSerialNumber">
+
+            <dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.7.4</oid>
+            <value></value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="processorAssetTag">
+          <oid>1.3.6.1.4.1.20541.1.1.5.1.8</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
+          <mibElement name="processorAssetTag">
+
+            <dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.8.1</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="processorAssetTag">
+
+            <dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.8.2</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="processorAssetTag">
+
+            <dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.8.3</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="processorAssetTag">
+
+            <dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.8.4</oid>
+            <value></value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="processorPartNumber">
+          <oid>1.3.6.1.4.1.20541.1.1.5.1.9</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
+          <mibElement name="processorPartNumber">
+
+            <dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.9.1</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="processorPartNumber">
+
+            <dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.9.2</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="processorPartNumber">
+
+            <dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.9.3</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="processorPartNumber">
+
+            <dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.9.4</oid>
+            <value></value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="processorUpgrade">
+          <oid>1.3.6.1.4.1.20541.1.1.5.1.10</oid>
+          <type>BYTE</type>
+          <dmiBlockDescriptor>Processor Upgrade</dmiBlockDescriptor>
+          <mibElement name="processorUpgrade">
+
+            <dmiBlockDescriptor>Processor Upgrade</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.10.1</oid>
+            <value>0x04</value>
+          </mibElement>
+          <mibElement name="processorUpgrade">
+
+            <dmiBlockDescriptor>Processor Upgrade</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.10.2</oid>
+            <value>0x04</value>
+          </mibElement>
+          <mibElement name="processorUpgrade">
+
+            <dmiBlockDescriptor>Processor Upgrade</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.10.3</oid>
+            <value>0x04</value>
+          </mibElement>
+          <mibElement name="processorUpgrade">
+
+            <dmiBlockDescriptor>Processor Upgrade</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.10.4</oid>
+            <value>0x04</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="processorSpeed">
+          <oid>1.3.6.1.4.1.20541.1.1.5.1.11</oid>
+          <type>WORD</type>
+          <dmiBlockDescriptor>Current Speed</dmiBlockDescriptor>
+          <mibElement name="processorSpeed">
+
+            <dmiBlockDescriptor>Current Speed</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.11.1</oid>
+            <value>0x74a</value>
+          </mibElement>
+          <mibElement name="processorSpeed">
+
+            <dmiBlockDescriptor>Current Speed</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.11.2</oid>
+            <value>0x00</value>
+          </mibElement>
+          <mibElement name="processorSpeed">
+
+            <dmiBlockDescriptor>Current Speed</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.11.3</oid>
+            <value>0x00</value>
+          </mibElement>
+          <mibElement name="processorSpeed">
+
+            <dmiBlockDescriptor>Current Speed</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.11.4</oid>
+            <value>0x00</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="processorVoltageRaw">
+          <oid>1.3.6.1.4.1.20541.1.1.5.1.12</oid>
+          <type>BYTE</type>
+          <dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
+          <mibElement name="processorVoltageRaw">
+
+            <dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.12.1</oid>
+            <value>0x02</value>
+          </mibElement>
+          <mibElement name="processorVoltageRaw">
+
+            <dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.12.2</oid>
+            <value>0x02</value>
+          </mibElement>
+          <mibElement name="processorVoltageRaw">
+
+            <dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.12.3</oid>
+            <value>0x02</value>
+          </mibElement>
+          <mibElement name="processorVoltageRaw">
+
+            <dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.12.4</oid>
+            <value>0x02</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="processorVoltageInterpreted">
+          <oid>1.3.6.1.4.1.20541.1.1.5.1.13</oid>
+          <type>BYTE</type>
+          <dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
+          <mibElement name="processorVoltageInterpreted">
+
+            <dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <translationIndex>2</translationIndex>
+            <translationType>STRING</translationType>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.13.1</oid>
+            <value>0x02</value>
+          </mibElement>
+          <mibElement name="processorVoltageInterpreted">
+
+            <dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <translationIndex>2</translationIndex>
+            <translationType>STRING</translationType>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.13.2</oid>
+            <value>0x02</value>
+          </mibElement>
+          <mibElement name="processorVoltageInterpreted">
+
+            <dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <translationIndex>2</translationIndex>
+            <translationType>STRING</translationType>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.13.3</oid>
+            <value>0x02</value>
+          </mibElement>
+          <mibElement name="processorVoltageInterpreted">
+
+            <dmiBlockDescriptor>Voltage</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <translationIndex>2</translationIndex>
+            <translationType>STRING</translationType>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.13.4</oid>
+            <value>0x02</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="processorExternalClock">
+          <oid>1.3.6.1.4.1.20541.1.1.5.1.14</oid>
+          <type>WORD</type>
+          <dmiBlockDescriptor>External Clock</dmiBlockDescriptor>
+          <mibElement name="processorExternalClock">
+
+            <dmiBlockDescriptor>External Clock</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.14.1</oid>
+            <value>0x00</value>
+          </mibElement>
+          <mibElement name="processorExternalClock">
+
+            <dmiBlockDescriptor>External Clock</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.14.2</oid>
+            <value>0x00</value>
+          </mibElement>
+          <mibElement name="processorExternalClock">
+
+            <dmiBlockDescriptor>External Clock</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.14.3</oid>
+            <value>0x00</value>
+          </mibElement>
+          <mibElement name="processorExternalClock">
+
+            <dmiBlockDescriptor>External Clock</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.5.1.14.4</oid>
+            <value>0x00</value>
+          </mibElement>
+        </mibElement>
+      </mibElement>
+      <mibElement name="cache">
+        <oid>1.3.6.1.4.1.20541.1.1.8.1</oid>
+        <dmiBlockDescriptor>Cache Information</dmiBlockDescriptor>
+        <type>7</type>
+        <count>2</count>
+        <mibElement name="cacheSocketDesignation">
+          <oid>1.3.6.1.4.1.20541.1.1.8.1.1</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor>
+          <mibElement name="cacheSocketDesignation">
+
+            <dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.8.1.1.1</oid>
+            <value>L1 Cache</value>
+          </mibElement>
+          <mibElement name="cacheSocketDesignation">
+
+            <dmiBlockDescriptor>Socket Designation</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.8.1.1.2</oid>
+            <value>L2 Cache</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="cacheSupportedSRAMType">
+          <oid>1.3.6.1.4.1.20541.1.1.8.1.2</oid>
+          <type>WORD</type>
+          <dmiBlockDescriptor>Supported SRAM Type</dmiBlockDescriptor>
+          <mibElement name="cacheSupportedSRAMType">
+
+            <dmiBlockDescriptor>Supported SRAM Type</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.8.1.2.1</oid>
+            <value>0x58</value>
+          </mibElement>
+          <mibElement name="cacheSupportedSRAMType">
+
+            <dmiBlockDescriptor>Supported SRAM Type</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.8.1.2.2</oid>
+            <value>0x58</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="cacheCurrentSRAMType">
+          <oid>1.3.6.1.4.1.20541.1.1.8.1.3</oid>
+          <type>WORD</type>
+          <dmiBlockDescriptor>Current SRAM Type</dmiBlockDescriptor>
+          <mibElement name="cacheCurrentSRAMType">
+
+            <dmiBlockDescriptor>Current SRAM Type</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.8.1.3.1</oid>
+            <value>0x40</value>
+          </mibElement>
+          <mibElement name="cacheCurrentSRAMType">
+
+            <dmiBlockDescriptor>Current SRAM Type</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.8.1.3.2</oid>
+            <value>0x00</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="cacheConfigurationRaw">
+          <oid>1.3.6.1.4.1.20541.1.1.8.1.4</oid>
+          <type>WORD</type>
+          <dmiBlockDescriptor>Cache Configuration</dmiBlockDescriptor>
+          <mibElement name="cacheConfigurationRaw">
+
+            <dmiBlockDescriptor>Cache Configuration</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.8.1.4.1</oid>
+            <value>0x188</value>
+          </mibElement>
+          <mibElement name="cacheConfigurationRaw">
+
+            <dmiBlockDescriptor>Cache Configuration</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.8.1.4.2</oid>
+            <value>0x129</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="cacheConfigurationInterpreted">
+          <oid>1.3.6.1.4.1.20541.1.1.8.1.5</oid>
+          <type>WORD</type>
+          <dmiBlockDescriptor>Cache Configuration</dmiBlockDescriptor>
+          <mibElement name="cacheConfigurationInterpreted">
+
+            <dmiBlockDescriptor>Cache Configuration</dmiBlockDescriptor>
+            <type>WORD</type>
+            <translationIndex>3</translationIndex>
+            <translationType>STRING</translationType>
+            <oid>1.3.6.1.4.1.20541.1.1.8.1.5.1</oid>
+            <value>0x188</value>
+          </mibElement>
+          <mibElement name="cacheConfigurationInterpreted">
+
+            <dmiBlockDescriptor>Cache Configuration</dmiBlockDescriptor>
+            <type>WORD</type>
+            <translationIndex>3</translationIndex>
+            <translationType>STRING</translationType>
+            <oid>1.3.6.1.4.1.20541.1.1.8.1.5.2</oid>
+            <value>0x129</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="cacheSize">
+          <oid>1.3.6.1.4.1.20541.1.1.8.1.6</oid>
+          <type>WORD</type>
+          <dmiBlockDescriptor>Installed Size</dmiBlockDescriptor>
+          <mibElement name="cacheSize">
+
+            <dmiBlockDescriptor>Installed Size</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.8.1.6.1</oid>
+            <value>0x10</value>
+          </mibElement>
+          <mibElement name="cacheSize">
+
+            <dmiBlockDescriptor>Installed Size</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.8.1.6.2</oid>
+            <value>0x00</value>
+          </mibElement>
+        </mibElement>
+      </mibElement>
+      <mibElement name="systemSlot">
+        <oid>1.3.6.1.4.1.20541.1.1.10.1</oid>
+        <dmiBlockDescriptor>System Slots</dmiBlockDescriptor>
+        <type>9</type>
+        <count>7</count>
+        <mibElement name="systemSlotDesignation">
+          <oid>1.3.6.1.4.1.20541.1.1.10.1.1</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor>
+          <mibElement name="systemSlotDesignation">
+
+            <dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.1.1</oid>
+            <value>ISA Slot J8</value>
+          </mibElement>
+          <mibElement name="systemSlotDesignation">
+
+            <dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.1.2</oid>
+            <value>ISA Slot J9</value>
+          </mibElement>
+          <mibElement name="systemSlotDesignation">
+
+            <dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.1.3</oid>
+            <value>ISA Slot J10</value>
+          </mibElement>
+          <mibElement name="systemSlotDesignation">
+
+            <dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.1.4</oid>
+            <value>PCI Slot J11</value>
+          </mibElement>
+          <mibElement name="systemSlotDesignation">
+
+            <dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.1.5</oid>
+            <value>PCI Slot J12</value>
+          </mibElement>
+          <mibElement name="systemSlotDesignation">
+
+            <dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.1.6</oid>
+            <value>PCI Slot J13</value>
+          </mibElement>
+          <mibElement name="systemSlotDesignation">
+
+            <dmiBlockDescriptor>Slot Designation</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.1.7</oid>
+            <value>PCI Slot J14</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="systemSlotId">
+          <oid>1.3.6.1.4.1.20541.1.1.10.1.2</oid>
+          <type>WORD</type>
+          <dmiBlockDescriptor>Slot ID</dmiBlockDescriptor>
+          <mibElement name="systemSlotId">
+
+            <dmiBlockDescriptor>Slot ID</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.2.1</oid>
+            <value>0x00</value>
+          </mibElement>
+          <mibElement name="systemSlotId">
+
+            <dmiBlockDescriptor>Slot ID</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.2.2</oid>
+            <value>0x00</value>
+          </mibElement>
+          <mibElement name="systemSlotId">
+
+            <dmiBlockDescriptor>Slot ID</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.2.3</oid>
+            <value>0x00</value>
+          </mibElement>
+          <mibElement name="systemSlotId">
+
+            <dmiBlockDescriptor>Slot ID</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.2.4</oid>
+            <value>0x01</value>
+          </mibElement>
+          <mibElement name="systemSlotId">
+
+            <dmiBlockDescriptor>Slot ID</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.2.5</oid>
+            <value>0x02</value>
+          </mibElement>
+          <mibElement name="systemSlotId">
+
+            <dmiBlockDescriptor>Slot ID</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.2.6</oid>
+            <value>0x03</value>
+          </mibElement>
+          <mibElement name="systemSlotId">
+
+            <dmiBlockDescriptor>Slot ID</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.2.7</oid>
+            <value>0x04</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="systemSlotType">
+          <oid>1.3.6.1.4.1.20541.1.1.10.1.3</oid>
+          <type>BYTE</type>
+          <dmiBlockDescriptor>Slot Type</dmiBlockDescriptor>
+          <mibElement name="systemSlotType">
+
+            <dmiBlockDescriptor>Slot Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.3.1</oid>
+            <value>0x03</value>
+          </mibElement>
+          <mibElement name="systemSlotType">
+
+            <dmiBlockDescriptor>Slot Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.3.2</oid>
+            <value>0x03</value>
+          </mibElement>
+          <mibElement name="systemSlotType">
+
+            <dmiBlockDescriptor>Slot Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.3.3</oid>
+            <value>0x03</value>
+          </mibElement>
+          <mibElement name="systemSlotType">
+
+            <dmiBlockDescriptor>Slot Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.3.4</oid>
+            <value>0x06</value>
+          </mibElement>
+          <mibElement name="systemSlotType">
+
+            <dmiBlockDescriptor>Slot Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.3.5</oid>
+            <value>0x06</value>
+          </mibElement>
+          <mibElement name="systemSlotType">
+
+            <dmiBlockDescriptor>Slot Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.3.6</oid>
+            <value>0x06</value>
+          </mibElement>
+          <mibElement name="systemSlotType">
+
+            <dmiBlockDescriptor>Slot Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.1.10.1.3.7</oid>
+            <value>0x06</value>
+          </mibElement>
+        </mibElement>
+      </mibElement>
+    </mibElement>
     <mibElement name="memory">
       <oid>1.3.6.1.4.1.20541.1.2</oid>
-    <mibElement name="memoryDevice"><oid>1.3.6.1.4.1.20541.1.2.18.1</oid><dmiBlockDescriptor>Memory Device</dmiBlockDescriptor><type>17</type><count>4</count><mibElement name="memoryDeviceLocator"><oid>1.3.6.1.4.1.20541.1.2.18.1.1</oid><type>STRING</type><dmiBlockDescriptor>Device Locator</dmiBlockDescriptor><mibElement name="memoryDeviceLocator">
-					
-					<dmiBlockDescriptor>Device Locator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.1.1</oid><value>RAM slot #0</value></mibElement><mibElement name="memoryDeviceLocator">
-					
-					<dmiBlockDescriptor>Device Locator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.1.2</oid><value>RAM slot #1</value></mibElement><mibElement name="memoryDeviceLocator">
-					
-					<dmiBlockDescriptor>Device Locator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.1.3</oid><value>RAM slot #2</value></mibElement><mibElement name="memoryDeviceLocator">
-					
-					<dmiBlockDescriptor>Device Locator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.1.4</oid><value>RAM slot #3</value></mibElement></mibElement><count>1</count><mibElement name="memoryBankLocator"><oid>1.3.6.1.4.1.20541.1.2.18.1.2</oid><type>STRING</type><dmiBlockDescriptor>Bank Locator</dmiBlockDescriptor><mibElement name="memoryBankLocator">
-					
-					<dmiBlockDescriptor>Bank Locator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.2.1</oid><value>RAM slot #0</value></mibElement><mibElement name="memoryBankLocator">
-					
-					<dmiBlockDescriptor>Bank Locator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.2.2</oid><value>RAM slot #1</value></mibElement><mibElement name="memoryBankLocator">
-					
-					<dmiBlockDescriptor>Bank Locator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.2.3</oid><value>RAM slot #2</value></mibElement><mibElement name="memoryBankLocator">
-					
-					<dmiBlockDescriptor>Bank Locator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.2.4</oid><value>RAM slot #3</value></mibElement></mibElement><count>1</count><mibElement name="memoryManufacturer"><oid>1.3.6.1.4.1.20541.1.2.18.1.3</oid><type>STRING</type><dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor><mibElement name="memoryManufacturer">
-					
-					<dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.3.1</oid><value> </value></mibElement><mibElement name="memoryManufacturer">
-					
-					<dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.3.2</oid><value> </value></mibElement><mibElement name="memoryManufacturer">
-					
-					<dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.3.3</oid><value> </value></mibElement><mibElement name="memoryManufacturer">
-					
-					<dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.3.4</oid><value> </value></mibElement></mibElement><count>1</count><mibElement name="memorySerialNumber"><oid>1.3.6.1.4.1.20541.1.2.18.1.4</oid><type>STRING</type><dmiBlockDescriptor>Serial Number</dmiBlockDescriptor><mibElement name="memorySerialNumber">
-					
-					<dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.4.1</oid><value> </value></mibElement><mibElement name="memorySerialNumber">
-					
-					<dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.4.2</oid><value> </value></mibElement><mibElement name="memorySerialNumber">
-					
-					<dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.4.3</oid><value> </value></mibElement><mibElement name="memorySerialNumber">
-					
-					<dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.4.4</oid><value> </value></mibElement></mibElement><count>1</count><mibElement name="memoryAssetTag"><oid>1.3.6.1.4.1.20541.1.2.18.1.5</oid><type>STRING</type><dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor><mibElement name="memoryAssetTag">
-					
-					<dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.5.1</oid><value> </value></mibElement><mibElement name="memoryAssetTag">
-					
-					<dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.5.2</oid><value> </value></mibElement><mibElement name="memoryAssetTag">
-					
-					<dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.5.3</oid><value> </value></mibElement><mibElement name="memoryAssetTag">
-					
-					<dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.5.4</oid><value> </value></mibElement></mibElement><count>1</count><mibElement name="memoryPartNumber"><oid>1.3.6.1.4.1.20541.1.2.18.1.6</oid><type>STRING</type><dmiBlockDescriptor>Part Number</dmiBlockDescriptor><mibElement name="memoryPartNumber">
-					
-					<dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.6.1</oid><value> </value></mibElement><mibElement name="memoryPartNumber">
-					
-					<dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.6.2</oid><value> </value></mibElement><mibElement name="memoryPartNumber">
-					
-					<dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.6.3</oid><value> </value></mibElement><mibElement name="memoryPartNumber">
-					
-					<dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.6.4</oid><value> </value></mibElement></mibElement><count>1</count><mibElement name="memoryDeviceFormFactor"><oid>1.3.6.1.4.1.20541.1.2.18.1.7</oid><type>BYTE</type><dmiBlockDescriptor>Form Factor</dmiBlockDescriptor><mibElement name="memoryDeviceFormFactor">
-					
-					<dmiBlockDescriptor>Form Factor</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.7.1</oid><value>0x09</value></mibElement><mibElement name="memoryDeviceFormFactor">
-					
-					<dmiBlockDescriptor>Form Factor</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.7.2</oid><value>0x09</value></mibElement><mibElement name="memoryDeviceFormFactor">
-					
-					<dmiBlockDescriptor>Form Factor</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.7.3</oid><value>0x09</value></mibElement><mibElement name="memoryDeviceFormFactor">
-					
-					<dmiBlockDescriptor>Form Factor</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.7.4</oid><value>0x09</value></mibElement></mibElement><count>1</count><mibElement name="memoryDeviceType"><oid>1.3.6.1.4.1.20541.1.2.18.1.8</oid><type>BYTE</type><dmiBlockDescriptor>Memory Type</dmiBlockDescriptor><mibElement name="memoryDeviceType">
-					
-					<dmiBlockDescriptor>Memory Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.8.1</oid><value>0x03</value></mibElement><mibElement name="memoryDeviceType">
-					
-					<dmiBlockDescriptor>Memory Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.8.2</oid><value>0x03</value></mibElement><mibElement name="memoryDeviceType">
-					
-					<dmiBlockDescriptor>Memory Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.8.3</oid><value>0x03</value></mibElement><mibElement name="memoryDeviceType">
-					
-					<dmiBlockDescriptor>Memory Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.8.4</oid><value>0x03</value></mibElement></mibElement><count>1</count><mibElement name="memorySize"><oid>1.3.6.1.4.1.20541.1.2.18.1.9</oid><type>WORD</type><dmiBlockDescriptor>Size</dmiBlockDescriptor><mibElement name="memorySize">
-					
-					<dmiBlockDescriptor>Size</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.9.1</oid><value>0x100</value></mibElement><mibElement name="memorySize">
-					
-					<dmiBlockDescriptor>Size</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.9.2</oid><value>0x00</value></mibElement><mibElement name="memorySize">
-					
-					<dmiBlockDescriptor>Size</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.9.3</oid><value>0x00</value></mibElement><mibElement name="memorySize">
-					
-					<dmiBlockDescriptor>Size</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.9.4</oid><value>0x00</value></mibElement></mibElement><count>1</count><mibElement name="memorySpeed"><oid>1.3.6.1.4.1.20541.1.2.18.1.10</oid><type>WORD</type><dmiBlockDescriptor>Speed</dmiBlockDescriptor><mibElement name="memorySpeed">
-					
-					<dmiBlockDescriptor>Speed</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.10.1</oid><value>0x00</value></mibElement><mibElement name="memorySpeed">
-					
-					<dmiBlockDescriptor>Speed</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.10.2</oid><value>0x00</value></mibElement><mibElement name="memorySpeed">
-					
-					<dmiBlockDescriptor>Speed</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.10.3</oid><value>0x00</value></mibElement><mibElement name="memorySpeed">
-					
-					<dmiBlockDescriptor>Speed</dmiBlockDescriptor>
-					<type>WORD</type>
-				<oid>1.3.6.1.4.1.20541.1.2.18.1.10.4</oid><value>0x00</value></mibElement></mibElement></mibElement></mibElement>
+      <mibElement name="memoryDevice">
+        <oid>1.3.6.1.4.1.20541.1.2.18.1</oid>
+        <dmiBlockDescriptor>Memory Device</dmiBlockDescriptor>
+        <type>17</type>
+        <count>4</count>
+        <mibElement name="memoryDeviceLocator">
+          <oid>1.3.6.1.4.1.20541.1.2.18.1.1</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Device Locator</dmiBlockDescriptor>
+          <mibElement name="memoryDeviceLocator">
+
+            <dmiBlockDescriptor>Device Locator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.1.1</oid>
+            <value>RAM slot #0</value>
+          </mibElement>
+          <mibElement name="memoryDeviceLocator">
+
+            <dmiBlockDescriptor>Device Locator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.1.2</oid>
+            <value>RAM slot #1</value>
+          </mibElement>
+          <mibElement name="memoryDeviceLocator">
+
+            <dmiBlockDescriptor>Device Locator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.1.3</oid>
+            <value>RAM slot #2</value>
+          </mibElement>
+          <mibElement name="memoryDeviceLocator">
+
+            <dmiBlockDescriptor>Device Locator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.1.4</oid>
+            <value>RAM slot #3</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="memoryBankLocator">
+          <oid>1.3.6.1.4.1.20541.1.2.18.1.2</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Bank Locator</dmiBlockDescriptor>
+          <mibElement name="memoryBankLocator">
+
+            <dmiBlockDescriptor>Bank Locator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.2.1</oid>
+            <value>RAM slot #0</value>
+          </mibElement>
+          <mibElement name="memoryBankLocator">
+
+            <dmiBlockDescriptor>Bank Locator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.2.2</oid>
+            <value>RAM slot #1</value>
+          </mibElement>
+          <mibElement name="memoryBankLocator">
+
+            <dmiBlockDescriptor>Bank Locator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.2.3</oid>
+            <value>RAM slot #2</value>
+          </mibElement>
+          <mibElement name="memoryBankLocator">
+
+            <dmiBlockDescriptor>Bank Locator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.2.4</oid>
+            <value>RAM slot #3</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="memoryManufacturer">
+          <oid>1.3.6.1.4.1.20541.1.2.18.1.3</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor>
+          <mibElement name="memoryManufacturer">
+
+            <dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.3.1</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="memoryManufacturer">
+
+            <dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.3.2</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="memoryManufacturer">
+
+            <dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.3.3</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="memoryManufacturer">
+
+            <dmiBlockDescriptor>Manufacturer</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.3.4</oid>
+            <value></value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="memorySerialNumber">
+          <oid>1.3.6.1.4.1.20541.1.2.18.1.4</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
+          <mibElement name="memorySerialNumber">
+
+            <dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.4.1</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="memorySerialNumber">
+
+            <dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.4.2</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="memorySerialNumber">
+
+            <dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.4.3</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="memorySerialNumber">
+
+            <dmiBlockDescriptor>Serial Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.4.4</oid>
+            <value></value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="memoryAssetTag">
+          <oid>1.3.6.1.4.1.20541.1.2.18.1.5</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
+          <mibElement name="memoryAssetTag">
+
+            <dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.5.1</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="memoryAssetTag">
+
+            <dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.5.2</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="memoryAssetTag">
+
+            <dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.5.3</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="memoryAssetTag">
+
+            <dmiBlockDescriptor>Asset Tag</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.5.4</oid>
+            <value></value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="memoryPartNumber">
+          <oid>1.3.6.1.4.1.20541.1.2.18.1.6</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
+          <mibElement name="memoryPartNumber">
+
+            <dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.6.1</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="memoryPartNumber">
+
+            <dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.6.2</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="memoryPartNumber">
+
+            <dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.6.3</oid>
+            <value></value>
+          </mibElement>
+          <mibElement name="memoryPartNumber">
+
+            <dmiBlockDescriptor>Part Number</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.6.4</oid>
+            <value></value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="memoryDeviceFormFactor">
+          <oid>1.3.6.1.4.1.20541.1.2.18.1.7</oid>
+          <type>BYTE</type>
+          <dmiBlockDescriptor>Form Factor</dmiBlockDescriptor>
+          <mibElement name="memoryDeviceFormFactor">
+
+            <dmiBlockDescriptor>Form Factor</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.7.1</oid>
+            <value>0x09</value>
+          </mibElement>
+          <mibElement name="memoryDeviceFormFactor">
+
+            <dmiBlockDescriptor>Form Factor</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.7.2</oid>
+            <value>0x09</value>
+          </mibElement>
+          <mibElement name="memoryDeviceFormFactor">
+
+            <dmiBlockDescriptor>Form Factor</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.7.3</oid>
+            <value>0x09</value>
+          </mibElement>
+          <mibElement name="memoryDeviceFormFactor">
+
+            <dmiBlockDescriptor>Form Factor</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.7.4</oid>
+            <value>0x09</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="memoryDeviceType">
+          <oid>1.3.6.1.4.1.20541.1.2.18.1.8</oid>
+          <type>BYTE</type>
+          <dmiBlockDescriptor>Memory Type</dmiBlockDescriptor>
+          <mibElement name="memoryDeviceType">
+
+            <dmiBlockDescriptor>Memory Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.8.1</oid>
+            <value>0x03</value>
+          </mibElement>
+          <mibElement name="memoryDeviceType">
+
+            <dmiBlockDescriptor>Memory Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.8.2</oid>
+            <value>0x03</value>
+          </mibElement>
+          <mibElement name="memoryDeviceType">
+
+            <dmiBlockDescriptor>Memory Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.8.3</oid>
+            <value>0x03</value>
+          </mibElement>
+          <mibElement name="memoryDeviceType">
+
+            <dmiBlockDescriptor>Memory Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.8.4</oid>
+            <value>0x03</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="memorySize">
+          <oid>1.3.6.1.4.1.20541.1.2.18.1.9</oid>
+          <type>WORD</type>
+          <dmiBlockDescriptor>Size</dmiBlockDescriptor>
+          <mibElement name="memorySize">
+
+            <dmiBlockDescriptor>Size</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.9.1</oid>
+            <value>0x100</value>
+          </mibElement>
+          <mibElement name="memorySize">
+
+            <dmiBlockDescriptor>Size</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.9.2</oid>
+            <value>0x00</value>
+          </mibElement>
+          <mibElement name="memorySize">
+
+            <dmiBlockDescriptor>Size</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.9.3</oid>
+            <value>0x00</value>
+          </mibElement>
+          <mibElement name="memorySize">
+
+            <dmiBlockDescriptor>Size</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.9.4</oid>
+            <value>0x00</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="memorySpeed">
+          <oid>1.3.6.1.4.1.20541.1.2.18.1.10</oid>
+          <type>WORD</type>
+          <dmiBlockDescriptor>Speed</dmiBlockDescriptor>
+          <mibElement name="memorySpeed">
+
+            <dmiBlockDescriptor>Speed</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.10.1</oid>
+            <value>0x00</value>
+          </mibElement>
+          <mibElement name="memorySpeed">
+
+            <dmiBlockDescriptor>Speed</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.10.2</oid>
+            <value>0x00</value>
+          </mibElement>
+          <mibElement name="memorySpeed">
+
+            <dmiBlockDescriptor>Speed</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.10.3</oid>
+            <value>0x00</value>
+          </mibElement>
+          <mibElement name="memorySpeed">
+
+            <dmiBlockDescriptor>Speed</dmiBlockDescriptor>
+            <type>WORD</type>
+            <oid>1.3.6.1.4.1.20541.1.2.18.1.10.4</oid>
+            <value>0x00</value>
+          </mibElement>
+        </mibElement>
+      </mibElement>
+    </mibElement>
     <mibElement name="port">
       <oid>1.3.6.1.4.1.20541.1.3</oid>
-    <mibElement name="portConnector"><oid>1.3.6.1.4.1.20541.1.3.9.1</oid><dmiBlockDescriptor>Port Connector Information</dmiBlockDescriptor><type>8</type><count>4</count><mibElement name="portInternalReferenceDesignator"><oid>1.3.6.1.4.1.20541.1.3.9.1.1</oid><type>STRING</type><dmiBlockDescriptor>Internal Reference Designator</dmiBlockDescriptor><mibElement name="portInternalReferenceDesignator">
-					
-					<dmiBlockDescriptor>Internal Reference Designator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.1.1</oid><value>J19</value></mibElement><mibElement name="portInternalReferenceDesignator">
-					
-					<dmiBlockDescriptor>Internal Reference Designator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.1.2</oid><value>J23</value></mibElement><mibElement name="portInternalReferenceDesignator">
-					
-					<dmiBlockDescriptor>Internal Reference Designator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.1.3</oid><value>J11</value></mibElement><mibElement name="portInternalReferenceDesignator">
-					
-					<dmiBlockDescriptor>Internal Reference Designator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.1.4</oid><value>J12</value></mibElement></mibElement><count>1</count><mibElement name="portExternalReferenceDesignator"><oid>1.3.6.1.4.1.20541.1.3.9.1.2</oid><type>STRING</type><dmiBlockDescriptor>External Reference Designator</dmiBlockDescriptor><mibElement name="portExternalReferenceDesignator">
-					
-					<dmiBlockDescriptor>External Reference Designator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.2.1</oid><value>COM 1</value></mibElement><mibElement name="portExternalReferenceDesignator">
-					
-					<dmiBlockDescriptor>External Reference Designator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.2.2</oid><value>Parallel</value></mibElement><mibElement name="portExternalReferenceDesignator">
-					
-					<dmiBlockDescriptor>External Reference Designator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.2.3</oid><value>Keyboard</value></mibElement><mibElement name="portExternalReferenceDesignator">
-					
-					<dmiBlockDescriptor>External Reference Designator</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.2.4</oid><value>PS/2 Mouse</value></mibElement></mibElement><count>1</count><mibElement name="portInternalConnectorType"><oid>1.3.6.1.4.1.20541.1.3.9.1.3</oid><type>BYTE</type><dmiBlockDescriptor>Internal Connector Type</dmiBlockDescriptor><mibElement name="portInternalConnectorType">
-					
-					<dmiBlockDescriptor>Internal Connector Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.3.1</oid><value>0x18</value></mibElement><mibElement name="portInternalConnectorType">
-					
-					<dmiBlockDescriptor>Internal Connector Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.3.2</oid><value>0x19</value></mibElement><mibElement name="portInternalConnectorType">
-					
-					<dmiBlockDescriptor>Internal Connector Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.3.3</oid><value>0x00</value></mibElement><mibElement name="portInternalConnectorType">
-					
-					<dmiBlockDescriptor>Internal Connector Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.3.4</oid><value>0x00</value></mibElement></mibElement><count>1</count><mibElement name="portExternalConnectorType"><oid>1.3.6.1.4.1.20541.1.3.9.1.4</oid><type>BYTE</type><dmiBlockDescriptor>External Connector Type</dmiBlockDescriptor><mibElement name="portExternalConnectorType">
-					
-					<dmiBlockDescriptor>External Connector Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.4.1</oid><value>0x08</value></mibElement><mibElement name="portExternalConnectorType">
-					
-					<dmiBlockDescriptor>External Connector Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.4.2</oid><value>0x05</value></mibElement><mibElement name="portExternalConnectorType">
-					
-					<dmiBlockDescriptor>External Connector Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.4.3</oid><value>0x14</value></mibElement><mibElement name="portExternalConnectorType">
-					
-					<dmiBlockDescriptor>External Connector Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.4.4</oid><value>0x14</value></mibElement></mibElement><count>1</count><mibElement name="portType"><oid>1.3.6.1.4.1.20541.1.3.9.1.5</oid><type>BYTE</type><dmiBlockDescriptor>Port Type</dmiBlockDescriptor><mibElement name="portType">
-					
-					<dmiBlockDescriptor>Port Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.5.1</oid><value>0x09</value></mibElement><mibElement name="portType">
-					
-					<dmiBlockDescriptor>Port Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.5.2</oid><value>0x05</value></mibElement><mibElement name="portType">
-					
-					<dmiBlockDescriptor>Port Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.5.3</oid><value>0x0d</value></mibElement><mibElement name="portType">
-					
-					<dmiBlockDescriptor>Port Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.3.9.1.5.4</oid><value>0x0d</value></mibElement></mibElement></mibElement></mibElement>
+      <mibElement name="portConnector">
+        <oid>1.3.6.1.4.1.20541.1.3.9.1</oid>
+        <dmiBlockDescriptor>Port Connector Information</dmiBlockDescriptor>
+        <type>8</type>
+        <count>4</count>
+        <mibElement name="portInternalReferenceDesignator">
+          <oid>1.3.6.1.4.1.20541.1.3.9.1.1</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Internal Reference Designator</dmiBlockDescriptor>
+          <mibElement name="portInternalReferenceDesignator">
+
+            <dmiBlockDescriptor>Internal Reference Designator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.1.1</oid>
+            <value>J19</value>
+          </mibElement>
+          <mibElement name="portInternalReferenceDesignator">
+
+            <dmiBlockDescriptor>Internal Reference Designator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.1.2</oid>
+            <value>J23</value>
+          </mibElement>
+          <mibElement name="portInternalReferenceDesignator">
+
+            <dmiBlockDescriptor>Internal Reference Designator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.1.3</oid>
+            <value>J11</value>
+          </mibElement>
+          <mibElement name="portInternalReferenceDesignator">
+
+            <dmiBlockDescriptor>Internal Reference Designator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.1.4</oid>
+            <value>J12</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="portExternalReferenceDesignator">
+          <oid>1.3.6.1.4.1.20541.1.3.9.1.2</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>External Reference Designator</dmiBlockDescriptor>
+          <mibElement name="portExternalReferenceDesignator">
+
+            <dmiBlockDescriptor>External Reference Designator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.2.1</oid>
+            <value>COM 1</value>
+          </mibElement>
+          <mibElement name="portExternalReferenceDesignator">
+
+            <dmiBlockDescriptor>External Reference Designator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.2.2</oid>
+            <value>Parallel</value>
+          </mibElement>
+          <mibElement name="portExternalReferenceDesignator">
+
+            <dmiBlockDescriptor>External Reference Designator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.2.3</oid>
+            <value>Keyboard</value>
+          </mibElement>
+          <mibElement name="portExternalReferenceDesignator">
+
+            <dmiBlockDescriptor>External Reference Designator</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.2.4</oid>
+            <value>PS/2 Mouse</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="portInternalConnectorType">
+          <oid>1.3.6.1.4.1.20541.1.3.9.1.3</oid>
+          <type>BYTE</type>
+          <dmiBlockDescriptor>Internal Connector Type</dmiBlockDescriptor>
+          <mibElement name="portInternalConnectorType">
+
+            <dmiBlockDescriptor>Internal Connector Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.3.1</oid>
+            <value>0x18</value>
+          </mibElement>
+          <mibElement name="portInternalConnectorType">
+
+            <dmiBlockDescriptor>Internal Connector Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.3.2</oid>
+            <value>0x19</value>
+          </mibElement>
+          <mibElement name="portInternalConnectorType">
+
+            <dmiBlockDescriptor>Internal Connector Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.3.3</oid>
+            <value>0x00</value>
+          </mibElement>
+          <mibElement name="portInternalConnectorType">
+
+            <dmiBlockDescriptor>Internal Connector Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.3.4</oid>
+            <value>0x00</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="portExternalConnectorType">
+          <oid>1.3.6.1.4.1.20541.1.3.9.1.4</oid>
+          <type>BYTE</type>
+          <dmiBlockDescriptor>External Connector Type</dmiBlockDescriptor>
+          <mibElement name="portExternalConnectorType">
+
+            <dmiBlockDescriptor>External Connector Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.4.1</oid>
+            <value>0x08</value>
+          </mibElement>
+          <mibElement name="portExternalConnectorType">
+
+            <dmiBlockDescriptor>External Connector Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.4.2</oid>
+            <value>0x05</value>
+          </mibElement>
+          <mibElement name="portExternalConnectorType">
+
+            <dmiBlockDescriptor>External Connector Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.4.3</oid>
+            <value>0x14</value>
+          </mibElement>
+          <mibElement name="portExternalConnectorType">
+
+            <dmiBlockDescriptor>External Connector Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.4.4</oid>
+            <value>0x14</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="portType">
+          <oid>1.3.6.1.4.1.20541.1.3.9.1.5</oid>
+          <type>BYTE</type>
+          <dmiBlockDescriptor>Port Type</dmiBlockDescriptor>
+          <mibElement name="portType">
+
+            <dmiBlockDescriptor>Port Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.5.1</oid>
+            <value>0x09</value>
+          </mibElement>
+          <mibElement name="portType">
+
+            <dmiBlockDescriptor>Port Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.5.2</oid>
+            <value>0x05</value>
+          </mibElement>
+          <mibElement name="portType">
+
+            <dmiBlockDescriptor>Port Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.5.3</oid>
+            <value>0x0d</value>
+          </mibElement>
+          <mibElement name="portType">
+
+            <dmiBlockDescriptor>Port Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.3.9.1.5.4</oid>
+            <value>0x0d</value>
+          </mibElement>
+        </mibElement>
+      </mibElement>
+    </mibElement>
     <mibElement name="device">
       <oid>1.3.6.1.4.1.20541.1.4</oid>
-    <mibElement name="onBoardDevice"><oid>1.3.6.1.4.1.20541.1.4.11.1</oid><dmiBlockDescriptor>On Board Devices Information</dmiBlockDescriptor><type>10</type><count>1</count><mibElement name="onBoardDeviceDescriptionString"><oid>1.3.6.1.4.1.20541.1.4.11.1.1</oid><type>STRING</type><dmiBlockDescriptor>Description String</dmiBlockDescriptor><mibElement name="onBoardDeviceDescriptionString">
-					
-					<dmiBlockDescriptor>Description String</dmiBlockDescriptor>
-					<type>STRING</type>
-				<oid>1.3.6.1.4.1.20541.1.4.11.1.1.1</oid><value>VMware SVGA II</value></mibElement></mibElement><count>1</count><mibElement name="onBoardDeviceType"><oid>1.3.6.1.4.1.20541.1.4.11.1.2</oid><type>BYTE</type><dmiBlockDescriptor>Device Type</dmiBlockDescriptor><mibElement name="onBoardDeviceType">
-					
-					<dmiBlockDescriptor>Device Type</dmiBlockDescriptor>
-					<type>BYTE</type>
-				<oid>1.3.6.1.4.1.20541.1.4.11.1.2.1</oid><value>0x03</value></mibElement></mibElement></mibElement></mibElement>
+      <mibElement name="onBoardDevice">
+        <oid>1.3.6.1.4.1.20541.1.4.11.1</oid>
+        <dmiBlockDescriptor>On Board Devices Information</dmiBlockDescriptor>
+        <type>10</type>
+        <count>1</count>
+        <mibElement name="onBoardDeviceDescriptionString">
+          <oid>1.3.6.1.4.1.20541.1.4.11.1.1</oid>
+          <type>STRING</type>
+          <dmiBlockDescriptor>Description String</dmiBlockDescriptor>
+          <mibElement name="onBoardDeviceDescriptionString">
+
+            <dmiBlockDescriptor>Description String</dmiBlockDescriptor>
+            <type>STRING</type>
+            <oid>1.3.6.1.4.1.20541.1.4.11.1.1.1</oid>
+            <value>VMware SVGA II</value>
+          </mibElement>
+        </mibElement>
+        <count>1</count>
+        <mibElement name="onBoardDeviceType">
+          <oid>1.3.6.1.4.1.20541.1.4.11.1.2</oid>
+          <type>BYTE</type>
+          <dmiBlockDescriptor>Device Type</dmiBlockDescriptor>
+          <mibElement name="onBoardDeviceType">
+
+            <dmiBlockDescriptor>Device Type</dmiBlockDescriptor>
+            <type>BYTE</type>
+            <oid>1.3.6.1.4.1.20541.1.4.11.1.2.1</oid>
+            <value>0x03</value>
+          </mibElement>
+        </mibElement>
+      </mibElement>
+    </mibElement>
   </mibElement>
 </webtelemetry-smbios-mib>
