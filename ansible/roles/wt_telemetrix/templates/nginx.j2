@@ -8,8 +8,8 @@ upstream grafana {
 server {
 
     listen 80;
-    server_name ~^(?<subdomain>.+)\.webtelemetry.us$;
-    rewrite ^ https://$subdomain.webtelemetry.us$request_uri? permanent;
+    server_name ~^(?<subdomain>.+)\.wildrivertechnologies.com$;
+    rewrite ^ https://$subdomain.wildrivertechnologies.com$request_uri? permanent;
     client_max_body_size       10m;
 }
 

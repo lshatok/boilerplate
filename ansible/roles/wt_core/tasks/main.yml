@@ -121,7 +121,7 @@
   when: "xvdf.rc == 0"
 
 - name: git config user.email
-  shell: "git config --global user.email 'ai@webtelemetry.us'"
+  shell: "git config --global user.email 'ai@wildrivertechnologies.com'"
   become_user: {{ product.user }}
 
 - name: git config user.name

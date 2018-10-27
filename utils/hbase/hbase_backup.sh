@@ -11,7 +11,7 @@
 #  __author__ = Larry Sellars
 #  __copyright__ = Copyright 2017, WebTelemetry US
 #  __version__ = "0.7.6"
-#  __email__ = larry.sellars@webtelemetry.us
+#  __email__ = larry.sellars@wildrivertechnologies.com
 #
 ##########################################
 

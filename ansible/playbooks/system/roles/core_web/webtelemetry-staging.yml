@@ -9,14 +9,14 @@ tasks:
 run_commands:
     get_sslcerts:
         - [ root, /usr/local/ssl/certs,
-            'curl -u ai:AGdev0ps -O http://10.0.0.11/sslcerts/webtelemetry.us/webtelemetry.us.ca-chain.crt' ]
+            'curl -u ai:AGdev0ps -O http://10.0.0.11/sslcerts/wildrivertechnologies.com/wildrivertechnologies.com.ca-chain.crt' ]
         - [ root, /usr/local/ssl/certs,
-            'curl -u ai:AGdev0ps -O http://10.0.0.11/sslcerts/webtelemetry.us/webtelemetry.us.crt' ]
+            'curl -u ai:AGdev0ps -O http://10.0.0.11/sslcerts/wildrivertechnologies.com/wildrivertechnologies.com.crt' ]
         - [ root, /usr/local/ssl/private,
-            'curl -u ai:AGdev0ps -O http://10.0.0.11/sslcerts/webtelemetry.us/webtelemetry.us.key' ]
-        - [ root, /usr/local/ssl/private, 'chmod 600 webtelemetry.us.key' ]
+            'curl -u ai:AGdev0ps -O http://10.0.0.11/sslcerts/wildrivertechnologies.com/wildrivertechnologies.com.key' ]
+        - [ root, /usr/local/ssl/private, 'chmod 600 wildrivertechnologies.com.key' ]
 
     make_ssl_links:
-        - [ root, /usr/local/ssl/certs, 'ln -s webtelemetry.us.ca-chain.crt webtelemetry_star.crt']
-        - [ root, /usr/local/ssl/private, 'ln -s webtelemetry.us.key webtelemetry_star.key']
+    - [ root, /usr/local/ssl/certs, 'ln -s wildrivertechnologies.com.ca-chain.crt webtelemetry_star.crt']
+    - [ root, /usr/local/ssl/private, 'ln -s wildrivertechnologies.com.key webtelemetry_star.key']
 

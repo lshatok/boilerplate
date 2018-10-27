@@ -29,10 +29,10 @@ show-Instance-info.py  [ --vpcid=  --region= ] | [ --all-regions ] [ --json | --
         --attr < key>  : Print only the Instance Attributes of value <key>
 """
 __author__ = 'eric sales'
-__copyright__ = "Copyright 2017, WebTelemetry US Inc."
+__copyright__ = "Copyright 2017, WildRiver Technologies Inc"
 __version__ = "0.7.6"
 __maintainer__ = "Larry Sellars"
-__email__ = "larry.sellars@webtelemetry.us"
+__email__ = "larry.sellars@wildrivertechnologies.com"
 __status__ = "Production"
 
 import boto

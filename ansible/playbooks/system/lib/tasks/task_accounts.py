@@ -1,9 +1,9 @@
 ################################################
 __author__ = 'eric sales'
-__copyright__ = "Copyright 2017, WebTelemetry US Inc."
+__copyright__ = "Copyright 2017, WildRiver Technologies Inc"
 __version__ = "0.2.0"
 __maintainer__ = "Larry Sellars"
-__email__ = "larry.sellars@webtelemetry.us"
+__email__ = "larry.sellars@wildrivertechnologies.com"
 __status__ = "production"
 ################################################
 """
@@ -65,7 +65,7 @@ def accounts(accts_dict):
         home = details.get('home', '/home/%s' % acct)
         group = details.get('group', acct)
         groups = details.get('groups', [])
-        email = details.get('email', '%s@webtelemetry.us' % acct)
+        email = details.get('email', '%s@wildrivertechnologies.com' % acct)
         comment = details.get('comment', acct)
         add_profiles_list = details.get('add_profile', [])
 
@@ -170,7 +170,7 @@ def user_add(accounts_dict):
         home = details.get('home', '/home/%s' % acct)
         acct_group = details.get('group')
         acct_groups = details.get('groups')
-        email = details.get('email', '%s@webtelemetry.us' % acct)
+        email = details.get('email', '%s@wildrivertechnologies.com' % acct)
         comment = details.get('comment', acct)
         source_profile = details.get('source_profile')
         public_keys = details.get('pubkey')

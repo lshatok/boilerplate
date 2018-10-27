@@ -1,10 +1,10 @@
 # Notification variables  
 ---
 email:
-  user: alerts@webtelemetry.us
+  user: alerts@wildrivertechnologies.com
   pass: Z5pv@1NN
-  from: alerts@webtelemetry.us
-  to:   alerts@webtelemetry.us
+  from: alerts@wildrivertechnologies.com
+  to:   alerts@wildrivertechnologies.com
   smtp: smtp.gmail.com
 
 chat:

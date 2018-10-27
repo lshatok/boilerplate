@@ -1,0 +1,11 @@
+---
+branch: deploy/webtelemetry/webtelemetry-2.1/webtelemetry-2.1/demo
+webtelemetry_home: /WT
+webtelemetry_path: /WT/appserver
+domain: dev.{{ product.url }}
+ssl_cert: wildrivertechnologies.com.crt
+ssl_key: wildrivertechnologies.com.key
+rds_username: {{ product.admin }}
+rds_host: demo.seksejwlaqos.us-west-2.rds.amazonaws.com
+rds_password: aReer6shiujiez6a
+influxdb_password: guest

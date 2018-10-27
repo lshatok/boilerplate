@@ -1,4 +1,4 @@
-# Deploy webtelemetry.us wildcart cert
+# Deploy wildrivertechnologies.com wildcart cert
 
 required_roles:  [ core_web ]
 
@@ -8,13 +8,13 @@ tasks:
     - run_commands:make_ssl_links
 
 files:
-    /usr/local/ssl/certs/webtelemetry.us.crt:
-        source: webtelemetry-dev/webtelemetry.us.crt
+  /usr/local/ssl/certs/wildrivertechnologies.com.crt:
+    source: webtelemetry-dev/wildrivertechnologies.com.crt
         owner:  root
         group:  root
         mode:  0644
-    /usr/local/ssl/private/webtelemetry.us.key:
-        source: webtelemetry-dev/webtelemetry.us.key
+  /usr/local/ssl/private/wildrivertechnologies.com.key:
+    source: webtelemetry-dev/wildrivertechnologies.com.key
         owner:  root
         group:  root
         mode:  0600
@@ -22,5 +22,5 @@ files:
 
 run_commands:
     make_ssl_links:
-        - [ root, /usr/local/ssl/certs, 'ln -s webtelemetry.us.crt webtelemetry_star.crt' ]
-        - [ root, /usr/local/ssl/private, 'ln -s webtelemetry.us.key webtelemetry_star.key' ]
+    - [ root, /usr/local/ssl/certs, 'ln -s wildrivertechnologies.com.crt webtelemetry_star.crt' ]
+    - [ root, /usr/local/ssl/private, 'ln -s wildrivertechnologies.com.key webtelemetry_star.key' ]

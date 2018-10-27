@@ -62,7 +62,7 @@
 
 
 - name: Replace 7
-  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/WEBTELEMETRY US/WEBTELEMETRY US INC./g' {}"
+  shell: "find /WT -name {{ item }}  | xargs -I {}  sed -i 's/WEBTELEMETRY US/WildRiver Technologies Inc/g' {}"
   with_items:
     - "*.jsp"
     - "*.js"

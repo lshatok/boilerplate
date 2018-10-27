@@ -23,16 +23,16 @@
   when: "nginx.rc != 0 or nginx_update"
 
 - name: Copy ssl certs
-  copy: src=webtelemetry.us/{{ item }} dest=/usr/local/ssl/certs/{{ item }} owner=root group=root
+  copy: src=wildrivertechnologies.com/{{ item }} dest=/usr/local/ssl/certs/{{ item }} owner=root group=root
   with_items:
-    - webtelemetry.us.ca-bundle
-    - webtelemetry.us.ca-chain.crt
-    - webtelemetry.us.crt
-  when: domain == "webtelemetry.us"
+  - wildrivertechnologies.com.ca-bundle
+  - wildrivertechnologies.com.ca-chain.crt
+  - wildrivertechnologies.com.crt
+  when: domain == "wildrivertechnologies.com"
 
-- name: Copy webtelemetry.us ssl key
-  copy: src=webtelemetry.us/webtelemetry.us.key dest=/usr/local/ssl/private/webtelemetry.us.key owner=root group=root
-  when: domain == "webtelemetry.us"
+- name: Copy wildrivertechnologies.com ssl key
+  copy: src=wildrivertechnologies.com/wildrivertechnologies.com.key dest=/usr/local/ssl/private/wildrivertechnologies.com.key owner=root group=root
+  when: domain == "wildrivertechnologies.com"
 
 - name: Copy dev.{{ product.url }} ssl certs
   copy: src=dev.{{ product.url }}/{{ item }} dest=/usr/local/ssl/certs/{{ item }} owner=root group=root
@@ -58,18 +58,18 @@
   copy: src=fed.{{ product.url }}/fed.{{ product.url }}.key dest=/usr/local/ssl/private/fed.{{ product.url }}.key owner=root group=root
   when: domain == "fed.{{ product.url }}"
 
-- name: Copy webtelemetry.us ssl certs
-  copy: src=webtelemetry.us/{{ item }} dest=/usr/local/ssl/certs/{{ item }} owner=root group=root
+- name: Copy wildrivertechnologies.com ssl certs
+  copy: src=wildrivertechnologies.com/{{ item }} dest=/usr/local/ssl/certs/{{ item }} owner=root group=root
   with_items:
-    - webtelemetry.us.ca-bundle
-    - webtelemetry.us.crt
-  when: domain == "webtelemetry.us"
+  - wildrivertechnologies.com.ca-bundle
+  - wildrivertechnologies.com.crt
+  when: domain == "wildrivertechnologies.com"
 
-- name: Copy webtelemetry.us ssl key
-  copy: src=webtelemetry.us/{{ item }} dest=/usr/local/ssl/private/{{ item }} owner=root group=root
+- name: Copy wildrivertechnologies.com ssl key
+  copy: src=wildrivertechnologies.com/{{ item }} dest=/usr/local/ssl/private/{{ item }} owner=root group=root
   with_items:
-    - webtelemetry.us.key
-  when: domain == "webtelemetry.us"
+  - wildrivertechnologies.com.key
+  when: domain == "wildrivertechnologies.com"
 
 - name: Copy ssn.{{ product.url }} ssl certs
   copy: src=ssn.{{ product.url }}/{{ item }} dest=/usr/local/ssl/certs/{{ item }} owner=root group=root

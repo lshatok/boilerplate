@@ -19,7 +19,7 @@ export TELEMETRIX_HOME=${WT_PATH}/shared
 #_iam=$(who am i | awk '{print $1}')
 #if [ -z ${_iam} ]; then
 #    GIT_AUTHOR_NAME="${_iam} (${HOSTNAME})"
-#    GIT_AUTHOR_EMAIL="ai@webtelemetry.us"
+#    GIT_AUTHOR_EMAIL="ai@wildrivertechnologies.com"
 #    _myemail=$(grep ${_iam} /etc/passwd | cut -d: -f5)
 #    if [ $(echo ${_myemail} | grep '@') ]; then
 #        GIT_AUTHOR_EMAIL="${_myemail}"

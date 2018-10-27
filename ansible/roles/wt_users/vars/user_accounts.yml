@@ -1,73 +1,73 @@
-# WebTelemetry users inventory (user@webtelemetry.us)
+# WebTelemetry users inventory (user@wildrivertechnologies.com)
 ---
 users:
 
   - user: alexey.voronin
     groups: wtgroup,eng
     comment: Alexey Voronin
-    email: alexey.voronin@webtelemetry.us
+    email: alexey.voronin@wildrivertechnologies.com
     pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCgt5bFHu4OeVYB84FHfZzsm09H1ZoUqdAVXkt+ecRucc8XwN5AeyzlAsPHkMeeVT8tTsSKtli4C+pSa36l1xhoqxxWGFvbO2zo+EfyRmv5ODtEHpqZTgHg4lzaVamGoczhh1MS2GOXOHiae4ZawxvYpyWR7t933jqtz6VFFbi7bOpUs+RRMtoZJxaQTAv8hnCWn9t49Eg8i0M5xmXLSAyRBK0Eo5JG1H4NLxmWd46W3cJtv6QjKA8suVeot0T+cWTBiDcikqFmYp1M1fWUBQcOjfqNfAPbV3D+CUqe9an07DI6IePp0W4XqbapoIpadZNTL/lcFhfxx8ef4PD3dL71 alexey@ukstv.me
 
   - user: bahadur.karim
     groups: wtgroup,eng
     comment: Bahadur Karim
-    email: bahadur.karim@webtelemetry.us
+    email: bahadur.karim@wildrivertechnologies.com
     pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDeUxVMkPZKIMQD2G2RsGfwqULocXiNhYhWrQ1KddHbZaLJbiwcxj/6k3JeC5g3hv7GeCbEjdf1CAYDoZWN3O5+9VGpKVheFdiXFFzrfCtsdhX/7SktcaC8Qp641Dt0a0EU34e+IU9zDeRnHVWQBdRK2RrQSf5s7dgZsiCP951vryKODtopoWbUvaE8/nhI1yqpNSTvOF47/gr8xn9MvWrcycsNAECkQ4FVh4N6WiMhE/SkhqAZtY/XSxdJpRspCh83Lmp9w5FnbOAdMxZAv7jC12B2s55ovi/giKnuaryWAQ2b0wSBnaL/8i4Iis9KpucU8fNFV2jkpA7FS4/xDV/d nkarim@Nuris-MacBook-Pro.local
 
   - user: taydula.sarfati
     groups: wtgroup,eng,qa,ai
     comment: Taydula Sarfati
-    email: taydula.sarfati@webtelemetry.us
+    email: taydula.sarfati@wildrivertechnologies.com
     pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPPEz/cvfmDAJYwrITP3hKZIyESZ3V2CLEQyy/5EfJinoTutEhloXw/NgEZQ9cPGnsRYtLkSqZvhKYOud+Rovo586BzeYyRkBt41gU1OCQmLL3WhIctvG9VfYivMkHUx0QkQvLJAJcSUHG3VJQWy4rHnpOiMTXwqF0ixpnafPNKTuHR/gjfGqkG2j0f7vtQAobKcTW7ewVM374EDsDJ3AzARx8eI4QpjgEejS4T6taZb/g3dSXWD5TEyEFHnsBkWpTaAzdK3rmMIPaqofgukldgRCvlp6Zt4FPZEDcfyiQUaq62fgYlPw40jZal1+HVV9KvsLYtP3KqsgGCRCQ/HYN taydula@Tests-MacBook-Pro.local
 
   - user: noyan.darimkhan
     groups: wtgroup,telemetrix
     comment: Noyan Darimkhan
-    email: noyan.darimkhan@webtelemetry.us
-    pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDVi9MTdufjvbJzDyMZxI3HCYE8BZVoZhtLJgh2RUXAc9R9zRZXrmXEbWEHNkxXeD5eBJF9BmQEcxYE84L1aItjnSdAgddcD6P/7bKieS9ZkV42GSsDfVoPmirEDOk0ZwbOWYu7v1Qu0QBnX8HXvXjK+HdoVw0+6nrxSWZLsEWRmIRBTFFOE48eC1tI/TasDRaYxKp8Zx0I6Tk/gIg4MT7Y9gnUcjdqFw9JcLlTmrEJYZwKwBfKtG1fvBzLdtXicooeAhGpkknHVWVHpzyJWrePTdbXsBJ/si/HSDGaL3ldwCtOjKFVjmteJySkr37i4vj7jZ/kEZtxfCFbqBntVhtJ noyan.darimkhan@webtelemetry.us
+    email: noyan.darimkhan@wildrivertechnologies.com
+    pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDVi9MTdufjvbJzDyMZxI3HCYE8BZVoZhtLJgh2RUXAc9R9zRZXrmXEbWEHNkxXeD5eBJF9BmQEcxYE84L1aItjnSdAgddcD6P/7bKieS9ZkV42GSsDfVoPmirEDOk0ZwbOWYu7v1Qu0QBnX8HXvXjK+HdoVw0+6nrxSWZLsEWRmIRBTFFOE48eC1tI/TasDRaYxKp8Zx0I6Tk/gIg4MT7Y9gnUcjdqFw9JcLlTmrEJYZwKwBfKtG1fvBzLdtXicooeAhGpkknHVWVHpzyJWrePTdbXsBJ/si/HSDGaL3ldwCtOjKFVjmteJySkr37i4vj7jZ/kEZtxfCFbqBntVhtJ noyan.darimkhan@wildrivertechnologies.com
 
   - user: timur.fadlil
     groups: wtgroup,ai,{{ product.admin }},eng
     comment: Timur Fadlil
-    email: timur.fadlil@webtelemetry.us
+    email: timur.fadlil@wildrivertechnologies.com
     pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDom238xpI44inYYaFHZiRvlRF2GPHEIm2qiBYkdwUY8B5Ug4K02ZflhzvDY/lPa/f7VpOiMzUqK5iGSSXCNNlV63j2wiqZAXTSgAt2pkN15jsOw2e0LV9BOf/skip5pYRX7GcbAD3ZTnsUU6L422kKVFeN6zDGlkyjf6uwMdr+gS8ejL09Y5tGsWbF+b8DwVNrre6qTrGAnbuFfPCm+wMQh/RcXYyzEQknq2qazcpogSGTp6cTqfqiaDb2ATf+3/D661k9RmCtSvsehQ3DVeS7NqhGEcWKn3vDU0ZvllxLGwSfXglr9MxOEMeYlxFgrlVkzI1SenG5PbcmuAEtA1Nl Timur Fadlil AWS
 
   - user: alexander.pushkin
     groups: wtgroup,ai,eng
     comment: Alexander Pushkin
-    email: alexander.pushkin@webtelemetry.us
+    email: alexander.pushkin@wildrivertechnologies.com
     pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJ7LmwXjHq+xgKMRtl9LONdv07izgQwpNBAHbi4M+Lg4OdB2Wctx5yWCiC3G9LWxHfHx/Pn2ZCRQ1i7OBkMQinzHNSkTasv7CkPw2saUt539ZIJ+INRx96NxaS54C80WRK19S0KQ+QV4c54A1eFlfsq6vEmnEjii/+uJvDRWcfPWTY+FEHCJiIMAnt7CZiy0gmccehoZPQq3xjAeD5eO3AWCVKGA3wAwIwMus6ibDcD0FtHjrOG6MWIQyBIi5qTfKJGKDLZiCrT7YG3rdlAMB6j2wkUiFlBcSOtc2XjB1taYYC2EnLVyVUMCDb7t2otuWijUi4i7rvbsMLa+Iaifsx ingvarch@gmail.com
 
   - user: boris.derevyakin
     groups: wtgroup,eng
     comment: Boris Derevyakin
-    email: boris.derevyakin@webtelemetry.us
+    email: boris.derevyakin@wildrivertechnologies.com
     pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCj/RF6O0q/OCgOEUaj8NScFvmq8yMVUUxDOgMKHx3zKUnUI6veDYDE9n2OuXJZbTnW0/Z6mdmv4FhBLk43DD3+HuKiGYeurvD2wLdfVcWRLIfztIbuxU04PIxYDwY/5uE2/oZUdNCd+3oVucDE/aR0DObF73RyvqDYSPlmNCjlkZUrFVfwbFMOPBwlLfANS0K+EsXhxudZ4pDeAso01je7o9n33JXFC7lfiMyKZT7Ibv3qfhHU7nnDcAykWVXY3Y5eDuFmfnUMuRUtxhAPiNXs871NYYYBOOOqDLmAN6CpORkMWHjp+nJbEv/6ZkxGFn3NoNWMP7KwD95thXyRFffSo10YqPDCp6MubqdpUakXnDll2anxbADpUIr7vmIaOIPxA7mIPQ++dCZQ92AN/3yORFM3vtj9xnkqBmX0fYTVF0ACD4WKiVK/a/6b2suzUE3V3MpXpoSrO3Pj82zMYhEytZ4ojH/IyyXCGJV0PXLQKb4h87SkAbY+m3K+L5zES8l/FfzlNFcHV7kEUPbAYnT+DpzeYcBp7RJ1nWTkG6RhjrK3w1bYd0R1FqFpGhUvUuEX4QA1pT/YzSsyhRr7rDUbJ7ol45eqBV3ORDfcZJ2hXKI5FWkLArIBkY4SpZnwQxwI93bBO7xNSmGhCrA91Rx5kuEWiiCETMBKou36XAS4jQ== sdahuja@gmail.com
 
   - user: leo.shatokhin
     groups: eng,wtgroup,ai
     comment: Leo Shatokhin
-    email: leo.shatokhin@webtelemetry.us
+    email: leo.shatokhin@wildrivertechnologies.com
     pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC71IKm4KzhYv1uBbraGe1rB7Ui3lZnVeS5cVn1gXo53/Led2Pn8oi3IfFTta0GJ0Lqf+38zFKa+N8Xg9WWTb607UNcz9U0zgOg9WtLRsbBSyTAjMltRcq1SfDYjOXKl6+Y/P+WQlouydiSH0D8KhoLwtRFwDGU/hnc4zbtnU+Xd0Nr34zSbfN8/iaMYd8C2qEpoYdxdBJKaaMVyoXf4alU1U6Q4BEj4+uf6SNz4ZjF7qc/v0ArmxsVoNF8Vh8ciFC0H8bdTzqXRwTGgnf0bkPqr2qu6HSuvzGSiqupPISLWmSlHaTm2a0TnPd1IRrbRokFc1IGNR4qbB5WOiJi/noV lshatokhin@Leos-MacBook-Pro.local
 
   - user: vikas.more
     groups: wtgroup,eng,qa
     comment: Vikas More
-    email: vikas.more@webtelemetry.us
+    email: vikas.more@wildrivertechnologies.com
     pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAqeqI35aXRmJjzKzAFfTxMdLIp65RksiEIr+LLdN+/gmDS6XbbgPQ4lZCdesYpkMKGJb5yoafb7HylDwrjDixfaLZVHS48Y05gyngS4qYgQXDZ50TV8zPjoszRmtSD1ku+/C9nQ5h0Vq+DDZCb6p8tc1izA9IHEa5Xv6E+DyUDdAwnzvpqq9JUH8Pry9tDy7H6AyVSDBaXUCcTmKZkZDAFXgXrU6EIjzS0kb216qge8EWnacpDEX7WikDUpDI4HpkKD1CnFdPJvofiNtA6//HxjAvUENnYeuRsVs17ZVK3RoAEucuwlflUykH7uhMWxPsFSS3Aef4DlK9y2C6kEjCrw== sshkey
 
   - user: andy.vargas
     groups: wtgroup,eng,qa
     comment: Andy Vargas
-    email: andy.vargas@webtelemetry.us
+    email: andy.vargas@wildrivertechnologies.com
     pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDcvQ2oE87o3OvrRs4/oT2K3/bK4o7gRMMINWlwjQcRN0TCk9mUzG+3vMmb2H0sjLLGB9FgZwwLg9MQNAbpvpfoxyFO+pb8PK81lPcyrI32dx/d0VioVoSnLfbOQG0Nju4OHvL7VdyO23lKAX7KCEozR7Mc0luRpDdskk/jj0DpYkI7wIsXCBYhd2axHohM7TAmQhTHjiNU07eq+GhJjtBB6fmCGhbCF9t8TV7Ev6geWc3VIfRbSBxPBP5RT+VUdidk18z2li/DXSvj23ZHKYx3Zlw5FbA2rkDxOcuoHUFhN5Edk7JsgbGjuDb/iF8kPdaXjwNF/IZXOx/iY8AVgLX5 andresvargas@DEV04MBP.local
 
   - user: nikita.gopnik
     groups: wtgroup,eng,qa
     comment: Nikita Gopnik
-    email: nikita.gopnik@webtelemetry.us
+    email: nikita.gopnik@wildrivertechnologies.com
     pubkey: |
-                ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDb16cMnUL2cRzuSI5wMexpy/sTCau0IzWg6mgS5pSWaT34nq0CGePYST3LIV7LIIU49aF6a9O0r/Jl2w1w8692W1qkQUIKAmx/dXOfVQPrzoUptDgPMd36uNWRXvIt5v3WxBFGNjrEXLn7U26f8j/cB8poeE1Pyq8pN2dj9l34Bogeldt5MrKSla+9FyxPhqZsqcdgtZ07wkcU4D73Puao7GoTeyR86a03uREsWFBc6311HrdhAZHVIXAfyH9I0k497rMuttsBErh+9kVVabKjNHBzB1qjUOQOjx2X4Ad2gcCCZqDa+05s96xfAH/stKDsEdlAVc9VICVgLuEpdlpQMzzLORJpf/HlPUiXMd6s0iWev3aez0CaGuqr/mfa+gaVyXaxdb3IfFJeQlM04vdEcK2S5avLMr67IPAV3NnNwsXujqQ5IlJ1gFtq9B0CSIFlEQpjGPA68rcCYAqt6w5WjAy5APXg3Gw6qEXUfIzDbjRGe4ykr/jFiAmiv/+eQLapeHM0TZCAlINZMSg3jj9+j//QIUFaADWf8tjSX52eTZQVp61hdbxUEP4Fl1otHgfMRustqB4WRd12n2NQggtaMtl2f7Jy0ik0aofa3bpCcaEc+jBgyaHkFXdw0TUs8C8RyAg7s/NFJDbKfpLwRs/JH8jkN8MtGOdMenZCtG2hKw==nikita.gopnik@webtelemetry.us
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDb16cMnUL2cRzuSI5wMexpy/sTCau0IzWg6mgS5pSWaT34nq0CGePYST3LIV7LIIU49aF6a9O0r/Jl2w1w8692W1qkQUIKAmx/dXOfVQPrzoUptDgPMd36uNWRXvIt5v3WxBFGNjrEXLn7U26f8j/cB8poeE1Pyq8pN2dj9l34Bogeldt5MrKSla+9FyxPhqZsqcdgtZ07wkcU4D73Puao7GoTeyR86a03uREsWFBc6311HrdhAZHVIXAfyH9I0k497rMuttsBErh+9kVVabKjNHBzB1qjUOQOjx2X4Ad2gcCCZqDa+05s96xfAH/stKDsEdlAVc9VICVgLuEpdlpQMzzLORJpf/HlPUiXMd6s0iWev3aez0CaGuqr/mfa+gaVyXaxdb3IfFJeQlM04vdEcK2S5avLMr67IPAV3NnNwsXujqQ5IlJ1gFtq9B0CSIFlEQpjGPA68rcCYAqt6w5WjAy5APXg3Gw6qEXUfIzDbjRGe4ykr/jFiAmiv/+eQLapeHM0TZCAlINZMSg3jj9+j//QIUFaADWf8tjSX52eTZQVp61hdbxUEP4Fl1otHgfMRustqB4WRd12n2NQggtaMtl2f7Jy0ik0aofa3bpCcaEc+jBgyaHkFXdw0TUs8C8RyAg7s/NFJDbKfpLwRs/JH8jkN8MtGOdMenZCtG2hKw==nikita.gopnik@wildrivertechnologies.com
                 ssh-rsa AAABAQCd+66TPfRdmvVJsGb+eK5PfbdXAZDFWn7p1qOBzzPAb9gnknX3EiXMhYN8SJnypSp8YD/IttmpEftbG16+IJEPvz4iC23e6BoDgr/BQVen78S/MfsTGQkMSCDPgAjaLirBD/PmWxdIhBgrBmd7twUqCaw4xWzGMFFxzvUOGr6yGGUdCvZJ3b472zHVVN//WZP5OyPWABU5pzBFGOf3RaGXkqRR/Uhhy++Myr3NCBq+jd9XQyTDIHroZ2C0hlrdXMxl/eRqFpMV30Uc2d4mYRUkQAxjIIHJ+7War6lkIc2ZTDt/j1S6GL6ZpTtaxWyTC2d+oBf81DrN3GOqsZ1onT1NAAAAgQDo1bz0SlEdbM1CazEls8RWk09UtLqNTIgDbhix1eW/NeTEZQYD0YsjWz35l/VtB+7wPUh3TFlCCMA6bM+eK4zuPo9s1roapXST58/0qCzCDOcOKmuUS9LuN4yEJZAzp4mIWkuHgQz3GFDS63WMMtOMTiptUp9VdNJf3M/EBOvCuwAAAIEA5YiaNkiREjKUyLkqaI61+XWYJhBnRvFp/L8gX0ARJO9HJV8fqcc0SU4PyPv/VPhe6B8whTzbbNxJUWpCBwfpbQgzF3RN0dNMIl+9eG4J2ZctERXqWsg9gBPuXYppI9EBRBOpx152qY8QUBNVRK0X4wPpHRtocrem/8KDvt4K+w0AAACBAOBlQrqoS/16vwvW4W+SmyN9JCcF6ocaSBNo9X602u2e1OUjMtgLwb4HOjjSWTMIkdmtB6bfe0sXiWbFl7HwsLjtp9rVvDKSUg2Ph5Sj/bgJ1s0Vbj1xrwFgOo0iSWQAjKViTbcSihhWIHYRq+Cg9vc69nnDNECoOp/kfJ9uWSXY
                 ssh-rsa 1023 37 5292253698397538850647620686440128414484507749560535794255747622805589097234314972201178494596193190041708715.1.3251191437627088621640796968113700199709421589710754482251945029770965012936674050643848230644853202208953136904760766172583118252882950194087960357673871254689426829957969095985663504006134423101 rsa-key-new-win
                 ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEA0MNv1NsC6Wgx2Dtjhx94n+Yf/B1/Te5w2ZJ8omQWrAGCNEquKw7WhR4kmxbLblpBSOzmkl9WetfDAYi9Mhi/sDy2rPzRL7K0qTXrGs0z1MX62BRU64WnYoPiNsSd+70Bo7CCS9PMe0DWyyPkLJ+P94zIJnKY4VIievYM9zWgj+svaUo5K1l9SehD2bBIisL4JIfqH+sU3GpbY/VoLwCeP7/5wsaorEPEo1mrGb93oK3kD8iRr5+ac5InDsMvjtWN8hso+8pTZ/Dj5IjAWzblStZ4w1Ms3vh5s1C4YgFwTEHR6M4jZ7achLJV/+H7xszKXflg/CA6c1yaLpmlLTQ8fw==
@@ -75,5 +75,5 @@ users:
   - user: morris.kane
     groups: wtgroup,ai,{{ product.admin }},eng
     comment: Morris Kane
-    email: morris.kane@webtelemetry.us
-    pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCkAlvEJ5nTpnnyfAgpm/opL7RZH1XgvJMQB1TOIcyndHREHOYI5OS5iVDJiZzbqU78j70mNrSNZ9TUvYLiCk2g9tLAq0zDRnt0IPVO0iUXE3gM402sAfTdc8CKS2y9BaF3iyxBNm35M8BhZCqv3n0AbAQe7nyJg2G1NzxP3juSkk0Da9bpX7/aiCL4mgB1SIUOhV/k6D7zRgGHl1bt9+IMJq1ssALAaHYXacmhsWwwr1Z33z+dRiAFE6+si3FYBU+v6A/V9v2EGr0BWdxR5BLYjH6u8FdoeOIQvyRgbgQAhwKFcgOeZzGuWdsBezm1PRbwlUar9jkzhKmF3LG5ix7PYAwSiOvUtxbwgYa3TwxUCJcyXIqjsFoYxQIY81Pk7niwD0WH3w0mschkmwDAEOeu19fT4a7E5LCEXXYxfgLkTGeP00szuOPmq2xpowYBT99sqNxGEBoR5UjYc7i9kfgJyUZXeoQuPRJoIqgZ/gyWL8X8j5CQAKktXxn2J990KsdbcR7xqshOd2cWwizq6WHsoXXT6hj75n8lTDDs/xVQaf3XonE+b9jN3+cMyGzKx0hM8h2hRf4FDVl/fSfVKACS5GMBBrcpcP0WgtL6+k1Td9rh+hg+E9zH6Eyq9DW05eDIETrtA58FyiCjtI7aIHTMxKaId1RGxr+pzNk/lspEwQ== morris.kane@webtelemetry.us
+    email: morris.kane@wildrivertechnologies.com
+    pubkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCkAlvEJ5nTpnnyfAgpm/opL7RZH1XgvJMQB1TOIcyndHREHOYI5OS5iVDJiZzbqU78j70mNrSNZ9TUvYLiCk2g9tLAq0zDRnt0IPVO0iUXE3gM402sAfTdc8CKS2y9BaF3iyxBNm35M8BhZCqv3n0AbAQe7nyJg2G1NzxP3juSkk0Da9bpX7/aiCL4mgB1SIUOhV/k6D7zRgGHl1bt9+IMJq1ssALAaHYXacmhsWwwr1Z33z+dRiAFE6+si3FYBU+v6A/V9v2EGr0BWdxR5BLYjH6u8FdoeOIQvyRgbgQAhwKFcgOeZzGuWdsBezm1PRbwlUar9jkzhKmF3LG5ix7PYAwSiOvUtxbwgYa3TwxUCJcyXIqjsFoYxQIY81Pk7niwD0WH3w0mschkmwDAEOeu19fT4a7E5LCEXXYxfgLkTGeP00szuOPmq2xpowYBT99sqNxGEBoR5UjYc7i9kfgJyUZXeoQuPRJoIqgZ/gyWL8X8j5CQAKktXxn2J990KsdbcR7xqshOd2cWwizq6WHsoXXT6hj75n8lTDDs/xVQaf3XonE+b9jN3+cMyGzKx0hM8h2hRf4FDVl/fSfVKACS5GMBBrcpcP0WgtL6+k1Td9rh+hg+E9zH6Eyq9DW05eDIETrtA58FyiCjtI7aIHTMxKaId1RGxr+pzNk/lspEwQ== morris.kane@wildrivertechnologies.com

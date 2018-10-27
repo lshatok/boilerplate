@@ -82,7 +82,7 @@ do_postgresql_backup()
         find ${BACKUP_PATH} -name "${DB_NAME}.*.sql.gz" -type f -mtime +${LOCAL_RETAIN} | xargs rm -f 2>&1 | tee -a $LOGFILE
     else
         logger "s3cmd for $DB_NAME to s3://${S3_BUCKET}/${S3_PATH}/ had an error"
-        email_ops error devops@webtelemetry.us "s3cmd for $DB_NAME to s3://${S3_BUCKET}/${S3_PATH}/ had an error"
+        email_ops error devops@wildrivertechnologies.com "s3cmd for $DB_NAME to s3://${S3_BUCKET}/${S3_PATH}/ had an error"
     fi
 }
 
@@ -90,7 +90,7 @@ email_ops()
 {
     # Usage email_ops (info|error) email@addr "Message "
     MSG_TYPE=$1
-    FROM_ADDR=devops@webtelemetry.us
+    FROM_ADDR=devops@wildrivertechnologies.com
     TO_LIST=$2
     EMAIL_MSG="$3"
    
@@ -133,7 +133,7 @@ backup_app_dir()
     #echo "DEBUG: sudo tar zcf ${TAR_BACKUP} --exclude log --exclude tmp -C /WT $WT_APP_PATH 2>&1 | tee -a $LOGFILE"
     if [ $? -gt 0 ]; then
         logger "error: tar command returned an error."
-        email_ops error devops@webtelemetry.us "error: tar command returned an error."
+        email_ops error devops@wildrivertechnologies.com "error: tar command returned an error."
     else
         sudo chown ubuntu:ubuntu ${TAR_BACKUP}
         #echo "DEBUG: sudo chown ubuntu:ubuntu ${TAR_BACKUP}"
@@ -142,7 +142,7 @@ backup_app_dir()
         RETV=$?
         if [ $RETV -gt 0 ]; then
             logger "error s3cmd failed for put ${TAR_BACKUP} s3://${S3_BUCKET}/${S3_PATH}/"
-            email_ops error devops@webtelemetry.us "error s3cmd failed for put ${TAR_BACKUP} s3://${S3_BUCKET}/${S3_PATH}/"
+            email_ops error devops@wildrivertechnologies.com "error s3cmd failed for put ${TAR_BACKUP} s3://${S3_BUCKET}/${S3_PATH}/"
         else 
             # local clean up #
             logger "cleaning up files older than ${LOCAL_RETAIN} days"
@@ -189,7 +189,7 @@ main()
                 do_postgresql_backup $REVASSURE_DB $REVASSURE_BACKUP_PATH $REVASSURE_S3_PATH
                 backup_app_dir revassure
                 do_postgresql_backup $SIGNUP_DB $SIGNUP_BACKUP_PATH $SIGNUP_S3_PATH
-                email_ops info eric@webtelemetry.us "backup all completed"
+                email_ops info eric@wildrivertechnologies.com "backup all completed"
                 ;; 
             *)
                 logger "error - unknown arg $DO_DB"

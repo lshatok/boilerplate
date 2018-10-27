@@ -1,0 +1,10 @@
+---
+branch: master
+webtelemetry_home: /WT
+
+domain: wildrivertechnologies.com
+
+telemetrix_db_user: telemetrix
+telemetrix_db_pass: bij2oomaShieveka
+telemetrix_db_host: bpa-prod.c9wgtsalen8m.us-gov-west-1.rds.amazonaws.com
+telemetrix_db_name: telemetrix_db

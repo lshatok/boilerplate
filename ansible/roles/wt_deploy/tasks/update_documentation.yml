@@ -61,7 +61,7 @@
   tags:  brand2
 
 - name: Replace 4
-  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/webtelemetry.com/webtelemetry.us/g' {}"
+  shell: "find /WT/htdocs  -name '*.html'  | xargs -I {}  sed -i 's/webtelemetry.com/wildrivertechnologies.com/g' {}"
   tags:  brand2
 
 - name: Replace 4

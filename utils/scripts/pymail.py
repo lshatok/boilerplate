@@ -15,7 +15,7 @@ except IndexError:
 msg = MIMEText(messg)
 
 msg['Subject'] = subj
-msg['From'] = 'devops@webtelemetry.us'
+msg['From'] = 'devops@wildrivertechnologies.com'
 msg['To'] = toaddr
 
 username = 'webtelemetry_dev'
@@ -25,5 +25,5 @@ a = smtplib.SMTP('smtp.sendgrid.net:587')
 a.starttls()
 a.login(username, password)
 
-a.sendmail('devops@webtelemetry.us', toaddr, msg.as_string())
+a.sendmail('devops@wildrivertechnologies.com', toaddr, msg.as_string())
 a.quit()

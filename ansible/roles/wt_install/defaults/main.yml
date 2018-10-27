@@ -86,7 +86,7 @@ product:
   hostname: "webtelemetry"
   unique_hostname: "WTuniqueHostName"
   capitalname: "WEBTELEMETRY"
-  email: "support@webtelemetry.us"
+  email: "support@wildrivertechnologies.com"
   user:  "wtuser"
   admin: "wtuser"
   packages: "files/packages.yml"

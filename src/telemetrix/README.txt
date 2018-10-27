@@ -3,7 +3,7 @@
 *******************************
 
 ------------------------------------------------------------------------------
-Copyright(c) 2017, WEBTELEMETRY, Inc. (www.webtelemetry.us)
+Copyright(c) 2017, WEBTELEMETRY, Inc. (www.wildrivertechnologies.com)
 Product names used in this document are trademarks of their respective owners.
 ------------------------------------------------------------------------------
 

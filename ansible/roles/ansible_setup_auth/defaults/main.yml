@@ -3,7 +3,7 @@
 common:
   root_password: wt123
   deploy_password: wt123
-  logwatch_email: logwatch@webtelemetry.us
+  logwatch_email: logwatch@wildrivertechnologies.com
   deploy_user_name: {{ product.admin }}
   deploy_user_groups: {{ product.admin }},wtgroup
   deploy_user_shell: /bin/bash

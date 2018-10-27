@@ -40,7 +40,7 @@ custom.
       username: <smtp username>
       password: <smtp password>
     from_address: <myname@mydomain.com>
-    to_address: vipul.gholap+pge_prod04_csv_processing@webtelemetry.us
+    to_address: vipul.gholap+pge_prod04_csv_processing@wildrivertechnologies.com
 
   telemetrix:
     path: /tmp/telemetrixlistener

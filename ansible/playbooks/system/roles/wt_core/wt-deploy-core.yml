@@ -39,7 +39,7 @@ accounts:
             - tty
         comment:  WebTelemetry User
         home:   /home/webtelemetry
-        email:  ai@webtelemetry.us
+        email:  ai@wildrivertechnologies.com
         add_profile:
             - /WT/profiles/profile-webtelemetry_core.sh
 

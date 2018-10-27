@@ -57,4 +57,4 @@ WebTelemetry Inc.
 
 Author Information
 ------------------
-Leo Shatokhin leo.shatokhin@webtelemetry.us
+Leo Shatokhin leo.shatokhin@wildrivertechnologies.com

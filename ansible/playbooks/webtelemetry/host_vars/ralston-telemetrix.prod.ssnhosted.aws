@@ -1,6 +1,0 @@
----
-branch: heco/2.0/prod
-webtelemetry_home:  /WT
-webtelemetry_path:  /WT/appserver
-
-domain: webtelemetry.us
